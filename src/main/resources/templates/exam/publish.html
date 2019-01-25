@@ -11,164 +11,70 @@
     <div class="jax-box">
         <div class="box-body">
             <form id="articleForm" class="form-horizontal">
-                <input id="status" type="hidden" name="status">
-                <input id="articleContent" type="hidden" name="content">
-                <input id="articleContentMd" type="hidden" name="contentMd">
-                <div class="col-lg-8 pl0">
+                <div class="col-lg-4 exam-extra">
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input type="text" class="form-control" id="title" name="title" placeholder="请输入考试标题" require="">
-                        </div>
-                    </div>
-                    <div class="form-group form-editor">
-                        <div class="col-xs-12">
-                            <textarea id="articleField"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 article-extra">
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <a class="article-btn table-btn table-btn-info" onclick="saveArticle(0)">保存草稿</a>
-                            <a class="article-btn table-btn table-btn-info ml10" onclick="saveArticle(0)">发布考试</a>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <label class="control-label label-four" for="">文章类型:</label>
-                            <div class="tags ml80 checkbox icheck">
-                                <label>
-                                    <input class="minimal"  type="radio"  name="original" checked  value="1">原创
-                                </label>
-                                <label>
-                                    <input class="minimal"  type="radio"  name="original" value="0">转载
-                                </label>
-                            </div>
+                            <a class="btn btn-primary btn-sm" onclick="saveArticle(0)">保存草稿</a>
+                            <a class="btn btn-success btn-sm ml10" onclick="saveArticle(0)">发布考试</a>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12 ">
-                            <label class="control-label label-four"  for="">文章分类:</label>
+                            <label class="control-label label-four"  for="">考试课程:</label>
                             <div class="ml80">
-                                <select id="category-select" class="form-control" name="categoryId" require="">
+                                <select id="subject-select" class="form-control" name="subjectId" require="">
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <label class="control-label label-four" for="">文章标签:</label>
-                            <div class="tags checkbox icheck ml80">
-                                <label th:each="tag:${tags}">
-                                    <input class="minimal" type="checkbox"  name="tag"  th:value="${tag.id}" th:text="${tag.name}">
+                        	<label class="control-label label-four" for="">考试标题:</label>
+                        	<div class="ml80">
+                            	<input type="text" class="form-control" id="title" name="title" placeholder="请输入考试标题" require="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <label class="control-label label-four">题目类型:</label>
+                            <div class="question checkbox icheck ml80">
+                                <label>
+                                    <input class="minimal" type="checkbox"  name="questionType" value="0"> 单项选择题
+                                </label>
+                                <label>
+                                    <input class="minimal" type="checkbox"  name="questionType" value="1"> 多项选择题
+                                </label>
+                                <label>
+                                    <input class="minimal" type="checkbox"  name="questionType" value="2"> 主观简答题
+                                </label>
+                                <label>
+                                    <input class="minimal" type="checkbox"  name="questionType" value="3"> 编程题
                                 </label>
                             </div>
                         </div>
-
                     </div>
-                 <!--   <div class="form-group">
-                        <div class="col-xs-12">
-                            <label class="control-label label-four" for="">文章简介:</label>
+                    <div class="form-group">
+                    	<div class="col-xs-12">
+                            <label class="control-label label-four">开始时间:</label>
                             <div class="ml80">
-                                <textarea type="text" rows="3" class="form-control" name="description" require=""></textarea>
-                            </div>
-                        </div>
-                    </div>-->
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <label class="control-label label-four" for="">文章封面:</label>
-                            <div class="ml80" style="position: relative">
-                                <input type="text"  class="form-control" name="coverImage" id="coverImage" placeholder="文章封面地址" require="">
-                                <div class="jax-upload-btn" style="position: absolute;right: 10px;top: 0">
-                                    <i class="fa fa-cloud-upload upload-img-btn"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div id="upload-content" class="upload-content form-group"></div>
-                    <div id="sliderImgContent" class="form-group display-none">
-                        <div class="col-xs-12">
-                            <label class="control-label label-four" for="">轮播图:</label>
-                            <div class="ml80" style="position: relative">
-                                <input id="sliderImg" type="text" class="form-control" name="sliderImg" placeholder="轮播图地址（建议800*300）" require="">
-                                <div class="jax-upload-btn" style="position: absolute;right: 10px;top: 0">
-                                    <i class="fa fa-cloud-upload upload-slider-btn"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <label class="control-label label-four" for="">是否轮播:</label>
-                            <div class="tags ml80 checkbox icheck">
-                                <label>
-                                    <input class="minimal"  type="radio"  name="slider"  value="1">是
-                                </label>
-                                <label>
-                                    <input class="minimal"  type="radio"  name="slider" checked  value="0">否
-                                </label>
+                                <input type="text" class="form-control" id="startExamTime" placeholder="请选择开始考试时间" readonly="readonly" />
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-xs-12">
-                            <label class="control-label label-four" for="">是否置顶:</label>
-                            <div class="tags ml80 checkbox icheck">
-                                <label>
-                                    <input class="minimal" type="radio"  name="top"  value="1">是
-                                </label>
-                                <label>
-                                    <input class="minimal" type="radio"  name="top" checked  value="0">否
-                                </label>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <label class="control-label label-four" for="">是否推荐:</label>
-                            <div class="tags ml80 checkbox icheck">
-                                <label>
-                                    <input class="minimal" type="radio"  name="recommended"  value="1">是
-                                </label>
-                                <label>
-                                    <input class="minimal" type="radio"  name="recommended" checked  value="0">否
-                                </label>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <label class="control-label label-four" for="">开启评论:</label>
-                            <div class="tags ml80 checkbox icheck">
-                                <label>
-                                    <input class="minimal" type="radio"  name="comment"  checked  value="1">是
-                                </label>
-                                <label>
-                                    <input class="minimal" type="radio"  name="comment"  value="0">否
-                                </label>
+                    	<div class="col-xs-12">
+                            <label class="control-label label-four">结束时间:</label>
+                            <div class="ml80">
+                                <input type="text" class="form-control" id="endExamTime" placeholder="请选择结束考试时间" readonly="readonly" />
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 article-extra mt20">
-                    <div class="form-group">
+                <div class="col-lg-8">
+                    <div class="form-group form-editor">
                         <div class="col-xs-12">
-                            <label class="control-label label-four" for="">概要:</label>
-                            <div class="ml80">
-                                <textarea type="text" rows="2" class="form-control" name="description" require="" placeholder="文章概要"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <label class="control-label label-four" for="">关键词:</label>
-                            <div class="ml80">
-                                <textarea type="text" rows="2" class="form-control" name="keywords" require="" placeholder="文章关键词（SEO优化）"></textarea>
-                            </div>
+                        	<table id="table" style="table-layout:fixed"></table>
                         </div>
                     </div>
                 </div>
@@ -178,22 +84,45 @@
 </section>
 <script>
     /*去tm的thymeleaf，只能祭出jq了？*/
-    var categories = "[[${categories}]]";
-    var categoriesObj = JSON.parse(categories.replace(/&quot;/g, '"'));
+    var subjects = "[[${subjects}]]";
+    var subjectsObj = JSON.parse(subjects.replace(/&quot;/g, '"'));
     var html='<option value="">请选择</option>';
-    $.each(categoriesObj,function (i,item) {
-        if(item.nodes.length>0){
-            html+='<optgroup label="'+item.name+'" >';
-            $.each(item.nodes,function (j,jItem) {
-                html+='<option value="'+jItem.id+'">'+jItem.name+'</option>';
-            })
-            html+='</optgroup>';
-        }else if(item.parent==null){
+    $.each(subjectsObj,function (i,item) {
+    	if(item!=null){
             html+='<option value="'+item.id+'">'+item.name+'</option>';
+        }else{
+        	html='<option value="">请添加课程</option>';
         }
-    })
-    $("#category-select").html(html);
+    });
+    $("#subject-select").html(html);
 
+  	//日期时间控件
+    $('#startExamTime').datetimepicker({
+        language:  'zh-CN',
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: false,
+        showMeridian: 1,
+        startDate:new Date(),
+        todayBtn: true,
+        format: "yyyy-mm-dd hh:ii:ss", //时间格式
+    }).on("click",function(){
+        $("#startExamTime").datetimepicker("setEndDate",$("#endExamTime").val())
+    });
+    $('#endExamTime').datetimepicker({
+        language:  'zh-CN',
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: false,
+        showMeridian: 1,
+        todayBtn: true,
+        format: "yyyy-mm-dd hh:ii:ss", //时间格式
+    }).on("click",function(){
+        $("#endExamTime").datetimepicker("setStartDate",$("#startExamTime").val())
+    });
+    
     $("input[name=slider]").on('ifChecked', function(event){ //ifCreated 事件应该在插件初始化之前绑定
         var slider = $("input[name=slider]:checked").val();
         var sliderSize=$("#upload-content").find(".upload-slider-div").size();
@@ -210,34 +139,83 @@
         }
     });
 
-    $('[type="checkbox"].minimal,input[type="radio"].minimal').iCheck({
+    $('[type="checkbox"].minimal').on('ifChecked', function(event){
+		var checkVal = $("input[name=questionType]:checked").val();
+		if(checkVal == 0){
+			$(".form-editor").show();
+		}else{
+			$(".form-editor").hide();
+		}
+	}).iCheck({
         checkboxClass: 'icheckbox_minimal-blue',
         radioClass: 'iradio_minimal-blue',
     });
-    var simplemde = new SimpleMDE({
-        // textarea的DOM对象
-        element: document.getElementById("articleField"),
-        // 自动下载FontAwesome，设为false为不下载(如果设为false则必须手动引入)
-        autoDownloadFontAwesome: false,
-        placeholder: "请输入文章内容",
-        autosave: {
-            // 启用自动保存功能
-            enabled: true,
-            // 自动保存的间隔，以毫秒为单位。默认为10000（10s）
-            delay: 15000,
-            // 唯一的字符串标识符(保证每个SimpleMDE编辑器的uniqueId唯一)
-            uniqueId: "editor-1"
-        },
-        renderingConfig: {
-            // 如果设置为true，将使用highlight.js高亮显示。默认为false
-            codeSyntaxHighlighting: true
-        },
-        showIcons: ["code", "table", "clean-block", "horizontal-rule"],
-        tabSize: 4,
-        // 编辑器底部的状态栏
-        status: true,
-        status: [ "lines", "words"] // Optional usage
-    });
+    
+    var columns = [
+        {
+            checkbox: true,
+
+        },{
+            field: 'title',
+            title: '题名',
+            width : '33%',
+            cellStyle:{ 
+           	css:{
+           	"overflow": "hidden", 
+           	"text-overflow": "ellipsis", 
+           	"white-space": "nowrap", 
+           	"word-break": "keep-all",
+        	"white-space": "nowrap",
+           	}
+            },
+            //align : "center"
+        },{
+            field: 'score',
+            title: '分值',
+            align : "center",
+            width : '10%',
+        },{
+            field: 'difficulty',
+            title: '难度',
+            align : "center",
+            width : '10%',
+            formatter : function(difficulty) {
+                var diffHtml = '';
+                if(difficulty == 1){
+                	diffHtml = "★☆☆☆☆";
+                }else if(difficulty == 2){
+                	diffHtml = "★★☆☆☆";	
+                 }else if(difficulty == 3){
+                	diffHtml = "★★★☆☆";	
+                 }else if(difficulty == 4){
+                	diffHtml = "★★★★☆";	
+                 }else if(difficulty == 5){
+                	diffHtml = "★★★★★";	
+                 }
+                return diffHtml;
+            }
+        },{
+            field: 'status',
+            title: '状态',
+            align : "center",
+            width : '10%',
+            formatter : function(value) {
+               if(value){
+                   return '已考过题目'
+               }else{
+                   return '未考过题目'
+               }
+            }
+        }];
+    var options={
+        id:"#table",
+        url: '/question/list',
+        columns:columns,
+        toolbar: '#toolbar',
+        //showRefresh: true,
+        //queryParams : queryParams
+    }
+    Core.initTable(options);
 
     function  saveArticle(status) {
         if(validArticle()){
@@ -276,63 +254,5 @@
         return false;
     }
 
-    function changeSlider(val) {
-        console.log(val);
-    }
-
-    $(function () {
-        inlineAttachment.editors.codemirror4.attach(simplemde.codemirror, {
-            uploadUrl: "/upload/upload2QiniuForMd"
-        });
-        /*上传图片*/
-        $(".upload-img-btn").click(function(){
-            if($("#upload-content").find(".upload-img-div").size()==0){
-                var imgHtml = '<div class="col-md-6 upload-div upload-img-div">'+
-                        '<div class="upload-item">'+
-                        '<p class="upload-title">封面图</p>'+
-                        '<p class="upload-file"><i class="fa fa-cloud-upload fz-70"></i></p>'+
-                        '<p class="upload-btns">'+
-                        '<a type="button" class="btn btn-sm btn-block btn-info imgUploader">上传</a>'+
-                        '</p>'+
-                        '</div>'+
-                        '</div>'
-                $("#upload-content").append(imgHtml);
-                $(".imgUploader").upload({
-                    server : '[[@{/upload/upload}]]',
-                    swf: '/img/Uploader.swf',
-                    imgAccept:true
-                }, function(url, picker) {
-                    $("#coverImage").val(url);
-                    echoGtUploadResMethd(url,picker);
-                });
-            };
-        })
-
-        $(".upload-slider-btn").click(function(){
-            if($("#upload-content").find(".upload-slider-div").size()==0){
-                var imgHtml = '<div class="col-md-6 upload-div upload-slider-div">'+
-                    '<div class="upload-item">'+
-                    '<p class="upload-title">轮播图</p>'+
-                    '<p class="upload-file"><i class="fa fa-cloud-upload fz-70"></i></p>'+
-                    '<p class="upload-btns">'+
-                    '<a type="button" class="btn btn-sm btn-block btn-info sliderUploader">上传</a>'+
-                    '</p>'+
-                    '</div>'+
-                    '</div>'
-                $("#upload-content").append(imgHtml);
-                $(".sliderUploader").upload({
-                    server : '[[@{/upload/upload}]]',
-                    swf: '/img/Uploader.swf',
-                    imgAccept:true
-                }, function(url, picker) {
-                    $("#sliderImg").val(url);
-                    echoGtUploadResMethd(url,picker);
-                });
-            };
-        })
-
-
-
-
-    })
+   
 </script>

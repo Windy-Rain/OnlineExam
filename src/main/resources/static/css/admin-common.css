@@ -34,6 +34,9 @@
 .ml10{
     margin-left: 10px!important;
 }
+.ml5{
+	margin-left: 5px;
+}
 .ml20{
     margin-left: 20px;
 }
@@ -336,6 +339,10 @@ body .demo-class .layui-layer-btn .layui-layer-btn1{background:#f1f1f1;}
     margin-bottom: 5px;
     margin-right: 10px;
 }
+.question label{
+	margin-bottom: 5px;
+    margin-right: 10px;
+}
 .table-tags .btn{
     background-color: #e6e6e6;
     border-color: #adadad
@@ -359,7 +366,13 @@ body .demo-class .layui-layer-btn .layui-layer-btn1{background:#f1f1f1;}
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 4px;
+}
 
+.exam-extra{
+	margin-top:20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
 .CodeMirror .cm-spell-error:not(.cm-url):not(.cm-comment):not(.cm-tag):not(.cm-word) {

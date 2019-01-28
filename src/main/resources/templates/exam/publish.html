@@ -10,17 +10,17 @@
 <section class="content">
     <div class="jax-box">
         <div class="box-body">
-            <form id="articleForm" class="form-horizontal">
+            <form id="examForm" class="form-horizontal">
+            	<input id="status" type="hidden" name="status">
                 <div class="col-lg-4 exam-extra">
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <a class="btn btn-primary btn-sm" onclick="saveArticle(0)">保存草稿</a>
-                            <a class="btn btn-success btn-sm ml10" onclick="saveArticle(0)">发布考试</a>
+                    <div class="form-group ">
+                        <div class="page-header col-xs-12 ">
+                            <h3>在线考试系统 <small>OnlineExam</small></h3>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12 ">
-                            <label class="control-label label-four"  for="">考试课程:</label>
+                            <label class="control-label label-four">考试课程:</label>
                             <div class="ml80">
                                 <select id="subject-select" class="form-control" name="subjectId" require="">
                                 </select>
@@ -29,7 +29,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                        	<label class="control-label label-four" for="">考试标题:</label>
+                        	<label class="control-label label-four">考试标题:</label>
                         	<div class="ml80">
                             	<input type="text" class="form-control" id="title" name="title" placeholder="请输入考试标题" require="">
                             </div>
@@ -37,19 +37,21 @@
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <label class="control-label label-four">题目类型:</label>
-                            <div class="question checkbox icheck ml80">
+                        	<label class="control-label label-four">考试分值:</label>
+                        	<div class="ml80">
+                            	<input type="text" class="form-control" id="totalScore" name="totalScore" placeholder="0" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <label class="control-label label-four">导入题目:</label>
+                            <div class="question radio icheck ml80">
                                 <label>
-                                    <input class="minimal" type="checkbox"  name="questionType" value="0"> 单项选择题
+                                    <input class="minimal" name="questions" type="radio" checked value="0"> 从题库中导入
                                 </label>
                                 <label>
-                                    <input class="minimal" type="checkbox"  name="questionType" value="1"> 多项选择题
-                                </label>
-                                <label>
-                                    <input class="minimal" type="checkbox"  name="questionType" value="2"> 主观简答题
-                                </label>
-                                <label>
-                                    <input class="minimal" type="checkbox"  name="questionType" value="3"> 编程题
+                                    <input class="minimal" name="questions" type="radio" value="1"> 自定义题目
                                 </label>
                             </div>
                         </div>
@@ -58,7 +60,7 @@
                     	<div class="col-xs-12">
                             <label class="control-label label-four">开始时间:</label>
                             <div class="ml80">
-                                <input type="text" class="form-control" id="startExamTime" placeholder="请选择开始考试时间" readonly="readonly" />
+                                <input type="text" name="startTime" class="form-control" id="startExamTime" placeholder="请选择开始考试时间" readonly="readonly" />
                             </div>
                         </div>
                     </div>
@@ -66,8 +68,13 @@
                     	<div class="col-xs-12">
                             <label class="control-label label-four">结束时间:</label>
                             <div class="ml80">
-                                <input type="text" class="form-control" id="endExamTime" placeholder="请选择结束考试时间" readonly="readonly" />
+                                <input type="text" name="endTime" class="form-control" id="endExamTime" placeholder="请选择结束考试时间" readonly="readonly" />
                             </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <a class="btn btn-info btn-lg col-xs-12" onclick="saveExam(0)">发布考试</a>
                         </div>
                     </div>
                 </div>
@@ -123,25 +130,11 @@
         $("#endExamTime").datetimepicker("setStartDate",$("#startExamTime").val())
     });
     
-    $("input[name=slider]").on('ifChecked', function(event){ //ifCreated 事件应该在插件初始化之前绑定
-        var slider = $("input[name=slider]:checked").val();
-        var sliderSize=$("#upload-content").find(".upload-slider-div").size();
-        if(slider==1){
-            $("#sliderImgContent").show();
-            if(sliderSize==1){
-                $(".upload-slider-div").show();
-            }
-        }else{
-            $("#sliderImgContent").hide();
-            if(sliderSize==1){
-                $(".upload-slider-div").hide();
-            }
-        }
-    });
 
-    $('[type="checkbox"].minimal').on('ifChecked', function(event){
-		var checkVal = $("input[name=questionType]:checked").val();
+    $('[type="radio"].minimal').on('ifChecked', function(event){
+		var checkVal = $("input[name=questions]:checked").val();
 		if(checkVal == 0){
+			Core.refreshTable("#table");
 			$(".form-editor").show();
 		}else{
 			$(".form-editor").hide();
@@ -170,10 +163,23 @@
             },
             //align : "center"
         },{
-            field: 'score',
-            title: '分值',
+            field: 'questionType',
+            title: '题目类型',
             align : "center",
             width : '10%',
+            formatter: function (questionType) {
+                var questionTypeName = '';
+                if(questionType == 0){
+                	questionTypeName = '单项选择题';
+                }else if(questionType == 1){
+                   	questionTypeName = '多项选择题';
+                }else if(questionType == 2){
+                   	questionTypeName = '主观问答题';
+                }else if(questionType == 3){
+                   	questionTypeName = '编程题';
+                }  
+                return questionTypeName;
+            }
         },{
             field: 'difficulty',
             title: '难度',
@@ -195,17 +201,10 @@
                 return diffHtml;
             }
         },{
-            field: 'status',
-            title: '状态',
+            field: 'score',
+            title: '分值',
             align : "center",
             width : '10%',
-            formatter : function(value) {
-               if(value){
-                   return '已考过题目'
-               }else{
-                   return '未考过题目'
-               }
-            }
         }];
     var options={
         id:"#table",
@@ -213,18 +212,29 @@
         columns:columns,
         toolbar: '#toolbar',
         //showRefresh: true,
-        //queryParams : queryParams
+        queryParams : queryParams
     }
     Core.initTable(options);
 
-    function  saveArticle(status) {
-        if(validArticle()){
-            Core.confirm("确认保存文章？",function () {
+    /*查询参数*/
+    function queryParams(params) {
+        var temp = { //这里的键的名字和控制器的变量名必须一致，这边改动，控制器也需要改成一样的
+            limit : params.limit, //页面大小
+            offset : params.offset, //页码
+            keywords : $("#keywords").val(),
+            subjectId : $("#subject-select").val(),
+            status : 1,
+        };
+        return temp;
+    }
+
+    function  saveExam(status) {
+        if(validExam()){
+            Core.confirm("确认发布考试？",function () {
                 $("#status").val(status);
-                Core.postAjax("/article/add",$("#articleForm").serialize(),function (data) {
+                Core.postAjax("/exam/add",$("#examForm").serialize(),function (data) {
                     if(data.status=200){
-                        simplemde.clearAutosavedValue();
-                        Core.load("#content","article/add");
+                        Core.load("#table","exam/add");
                     }
                     layer.msg(data.msg)
                 })
@@ -232,24 +242,21 @@
         }
     }
     
-    function  validArticle() {
-        if(doValidForm(articleForm)){
-            var contentMd=simplemde.value();
-            if(contentMd!=""){
-                $("#articleContentMd").val(contentMd);
-                $("#articleContent").val(simplemde.markdown(contentMd));
-                var tags =[];
-                $('input[name="tag"]:checked').each(function(){
-                    tags.push($(this).val());
-                });
-                if(tags.length>0){
-                    return true;
-                }else{
-                    layer.msg("请选择文章标签！")
-                }
-            }else{
-                layer.msg("请输入文章内容！")
-            }
+    function  validExam() {
+        if(doValidForm(examForm)){
+        	var checkedRows= Core.selectMutiData("#table");
+	        var ids =[];
+	        var score = 0;
+	        $.each(checkedRows, function (i, item) {
+                ids.push(item.id);
+                score += item.score;
+                $("#totalScore").val(score);
+            })
+	        if(ids.length>0){
+	            return true;
+	        }else{
+	            layer.msg("请添加题目！")
+	        }
         }
         return false;
     }

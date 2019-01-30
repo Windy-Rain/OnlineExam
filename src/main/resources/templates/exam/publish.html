@@ -15,7 +15,7 @@
                 <div class="col-lg-4 exam-extra">
                     <div class="form-group ">
                         <div class="page-header col-xs-12 ">
-                            <h3>在线考试系统 <small>OnlineExam</small></h3>
+                        	<h3>在线考试系统 <small>OnlineExam</small></h3>
                         </div>
                     </div>
                     <div class="form-group">
@@ -39,14 +39,14 @@
                         <div class="col-xs-12">
                         	<label class="control-label label-four">考试分值:</label>
                         	<div class="ml80">
-                            	<input type="text" class="form-control" id="totalScore" name="totalScore" placeholder="0" readonly>
+                            	<input type="text" class="form-control" id="totalScore" name="totalScore" readonly>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
                             <label class="control-label label-four">导入题目:</label>
-                            <div class="question radio icheck ml80">
+                            <div class="question radio icheck ml80" require="">
                                 <label>
                                     <input class="minimal" name="questions" type="radio" checked value="0"> 从题库中导入
                                 </label>
@@ -60,7 +60,7 @@
                     	<div class="col-xs-12">
                             <label class="control-label label-four">开始时间:</label>
                             <div class="ml80">
-                                <input type="text" name="startTime" class="form-control" id="startExamTime" placeholder="请选择开始考试时间" readonly="readonly" />
+                                <input type="text" class="form-control" id="startExamTime" placeholder="请选择开始考试时间" readonly="readonly" require="" />
                             </div>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                     	<div class="col-xs-12">
                             <label class="control-label label-four">结束时间:</label>
                             <div class="ml80">
-                                <input type="text" name="endTime" class="form-control" id="endExamTime" placeholder="请选择结束考试时间" readonly="readonly" />
+                                <input type="text" class="form-control" id="endExamTime" placeholder="请选择结束考试时间" readonly="readonly" require="" />
                             </div>
                         </div>
                     </div>

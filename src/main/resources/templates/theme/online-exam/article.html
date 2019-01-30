@@ -26,8 +26,8 @@
 		<header id="header">
 			<div th:replace="home/fragments/navbar :: navbar"></div>
 		</header>
-		<div class="zb-container zb-content">
-			<div class="zb-main">
+		<div class="container content">
+			<div class="main">
 				<div class="article-main">
 					<h3 th:text="${article.title}" class="article-title"></h3>
 					<span th:text="${article.original==1 ? '原创' : '转载'}" class="article-original"></span>

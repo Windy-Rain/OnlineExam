@@ -67,20 +67,15 @@ img{
 }
 
 /*-------top-start------*/
-.zb-container{
+.container{
     margin-right: auto;
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
 }
-/*@media (min-width: 992px){
-    .zb-container {
-        width: 970px;
-    }
-}*/
 
 @media (min-width: 1200px){
-    .zb-container {
+    .container {
         width: 1170px;
     }
 }

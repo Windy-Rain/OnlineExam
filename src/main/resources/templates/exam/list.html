@@ -20,7 +20,7 @@
                 <div class="col-md-4 col-sm-6">
                     <label class="control-label  col-xs-4" for="subject">考试课程:</label>
                     <div class="col-xs-8">
-                        <select class="form-control"id="subjectId">
+                        <select class="form-control" id="subjectId">
                             <option  value="">请选择</option>
                             <option th:each="subject:${subjects}" th:value="${subject.id}" th:text="${subject.name}"></option>
                         </select>
@@ -48,7 +48,7 @@
     <div class="jax-box jax-box-table">
         <div id="toolbar" class="btn-group">
             <shiro:hasPermission name="exam:add">
-            <button id="btn_add" type="button" class="btn btn-primary">
+            <button id="btn_add" type="button" class="btn btn-primary" data-toggle="modal" data-target="#examModal">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发布考试
             </button>
             </shiro:hasPermission>
@@ -61,8 +61,82 @@
         <table id="table"></table>
     </div>
 </section>
+<!-- 考试新增模态框 -->
+<div id="examModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog"  role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">发布考试</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="examForm">            
+                    <div class="box-body">
+	                    <div class="form-group">
+                            <label class="col-sm-3 control-label">考试课程<span class="red">*</span>:</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="subjectId" name="subjectId">
+		                            <option  value="">请选择</option>
+		                            <option th:each="subject:${subjects}" th:value="${subject.id}" th:text="${subject.name}"></option>
+		                        </select>
+                            </div>
+	                    </div>
+                        <div class="form-group">
+                            <label  class="col-sm-3 control-label">考试标题 <span class="red">*</span>:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="title" placeholder="请输入考试标题" require="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label  class="col-sm-3 control-label">开始时间<span class="red">*</span>:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" data-date-format="yyyy-mm-dd hh:ii" id="startExamTime" placeholder="请选择开始考试时间" readonly="readonly" require="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label  class="col-sm-3 control-label">结束时间<span class="red">*</span>:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" data-date-format="yyyy-mm-dd hh:ii" id="endExamTime" placeholder="请选择结束考试时间" readonly="readonly" require="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <div class="pull-right">
+                            <button type="button" id="saveExam" class="btn btn-info">确定</button>
+                            <button type="button" data-dismiss="modal" class="btn btn-default">取消</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
+	//日期时间控件
+	$('#startExamTime').datetimepicker({
+	    language:  'zh-CN',
+	    autoclose: 1,
+	    todayHighlight: 1,
+	    startView: 2,
+	    forceParse: false,
+	    showMeridian: 1,
+	    startDate:new Date(),
+	    todayBtn: true,
+	}).on("click",function(){
+	    $("#startExamTime").datetimepicker("setEndDate",$("#endExamTime").val())
+	});
+	$('#endExamTime').datetimepicker({
+	    language:  'zh-CN',
+	    autoclose: 1,
+	    todayHighlight: 1,
+	    startView: 2,
+	    forceParse: false,
+	    showMeridian: 1,
+	    todayBtn: true
+	}).on("click",function(){
+	    $("#endExamTime").datetimepicker("setStartDate",$("#startExamTime").val())
+	});
     var editFlag = "[[${@perms.hasPerm('article:edit')}]]";
     var deleteFlag = "[[${@perms.hasPerm('article:delete')}]]";
     var columns = [
@@ -164,8 +238,26 @@
             Core.refreshTable("#table");
         });
         /*新增*/
-        $("#btn_add").click(function(){
+       $("#btn_add").click(function(){
+            $("#examForm")[0].reset();
+            Core.clearError("#examForm");
+        });
+       /* $("#btn_add").click(function(){
             window.location.href="#exam/add"
+        }); */
+        /*保存*/
+       $("#saveExam").click(function(){
+            if(doValidForm("#examForm")){
+                Core.mask("#saveExam");
+                Core.postAjax("/exam/add",$("#examForm").serialize(),function (data) {
+                    Core.unmask("#saveExam");
+                    if(data.status==200){
+                        $("#examModal").modal("hide");
+                        Menu.table.refresh();
+                    }
+                    layer.msg(data.msg);
+                })
+            };
         });
         /*批量删除*/
         $("#btn_batch_delete").click(function(){

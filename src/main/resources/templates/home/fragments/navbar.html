@@ -1,42 +1,41 @@
 <meta charset="utf-8">
-<div th:fragment="top"  class="top-box">
-    <div class="zb-container">
+<div id="top" th:fragment="top"  class="top-box">
+    <div class="container">
         <span class="">
-            欢迎访问智博客，这是一个记录世界的平台！
+                                      欢迎访问在线考试平台，这是一个记录世界的平台！
         </span>
     </div>
 </div>
 <nav id ="navbar" th:fragment="navbar" class="navbar navbar-default ">
-    <div class="zb-container">
-        <div class="navbar-header">
-            <a class="logo-a" href="/">
-            	<h2 class="logo-text">[[${@module.get('sysConfig').SITE_NAME}]]<small>  欢迎访问，这是在线考试平台！</small></h2>
-                <!-- <img src="/img/logo1.png" alt="logo" /> -->
-            </a>
-        </div>
-        <div class="collapse navbar-collapse navbar-right" aria-expanded="false">
-            <ul class="nav navbar-nav">
-                <li th:class="${categoryId=='index' ? 'active' : ''} ">
+	<div class="container">
+    	<div class="navbar-header">
+	    	<a class="logo-a" href="/">
+	            <img src="/img/logo.png" alt="logo" />
+	        </a>
+	    </div>
+	    <div class="collapse navbar-collapse navbar-right" aria-expanded="false">
+	    	<ul class="nav navbar-nav">
+	    		<li th:class="${category=='index' ? 'active' : ''}">
                     <a th:href="@{/}">
-                        首页
+                    	<span class="glyphicon glyphicon-th-large"></span> 首页
                     </a>
-                </li>
-                <li th:each="category:${@module.get('categoryList')}" th:class="${category.id==categoryId ? 'active':(#lists.isEmpty(category.nodes)?'':'dropdown')}">
-                    <a th:if="${category.pid==null||category.pid==0}" th:href="@{${not #lists.isEmpty(category.nodes)? '#': ('/blog/category/' + category.id)}}" th:class="${#lists.isEmpty(category.nodes)?'':'dropdown-toggle'}" th:data-toggle="${#lists.isEmpty(category.nodes)?'':'dropdown'}">
-                        <span th:text="${category.name}"></span>
-                        <b th:if="${not #lists.isEmpty(category.nodes)}" class="caret"></b>
-                    </a>
-                    <ul th:if="${not #lists.isEmpty(category.nodes)}" class="dropdown-menu">
-                        <li th:each="node:${category.nodes}"><a th:href="@{${'/blog/category/' + node.id}}" th:text="${node.name}"></a></li>
-                    </ul>
-
                 </li>
                 <li class="">
-                    <a href="/blog/comment" th:class="${categoryId=='comment' ? 'active' : ''} ">
-                        留言板
+                    <a th:href="@{/}">
+                       	 <span class="glyphicon glyphicon-road"></span> 在线考试
                     </a>
                 </li>
-            </ul>
-        </div>
+                <li class="">
+                    <a th:href="@{/}">
+                       	<span class="glyphicon glyphicon-hdd"></span> 题库中心
+                    </a>
+                </li>
+                <li class="">
+                    <a th:href="@{/}">
+                       	 <span class="glyphicon glyphicon-send"></span> 讨论区
+                    </a>
+                </li>
+	    	</ul>
+	    </div>
     </div>
 </nav>

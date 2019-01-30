@@ -1,5 +1,5 @@
-body{
-    background: #f1f1f1;
+body, html {
+	background: #f1f1f1;
 }
 .top-box{
 	height: 35px;
@@ -8,27 +8,54 @@ body{
 	line-height: 35px;
 }
 
-.zb-content{
+.content{
     position: relative;
     margin-top: 55px;
 }
 
-.zb-main{
+.main{
     float: left;
     margin-top: 20px;
     width: 100%;
 }
 
-.zb-sidebar {
+.sidebar {
     float: left;
     width: 100%;
 }
 
+.carousel .item {
+  height: 320px;
+  background-color: #fff;
+}
+.carousel-inner > .item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 320px;
+}
+
+.feature{
+	padding:15px;
+	background-color:#fff;
+}
+
+.feature_item{
+	padding:20px;
+}
+.icon{
+	font-size:36px;
+}
+.feature_content{
+	padding-bottom:20px;
+}
+
 @media (min-width: 1024px){
-	.zb-main {
+	.main {
 	    width: 70%;
 	}
-	.zb-sidebar{
+	.sidebar{
 		width: 30%;
 		margin-top: 20px;
 		padding-left: 20px;
@@ -153,25 +180,25 @@ body{
     border-color: #0077dd;
 }
 
-.zb-sidebar-tabs{
+.sidebar-tabs{
 	background-color: #fff;
 	border: 1px solid #ddd;
     border-radius: 4px;
     margin-bottom: 20px;
 }
-.zb-sidebar-tabs .nav-tabs{
+.sidebar-tabs .nav-tabs{
 	background-color: #f5f5f5;
 }
 
-.zb-sidebar-tabs .nav-tabs>li{
+.sidebar-tabs .nav-tabs>li{
 	width: 33.33%;
 	text-align: center;
 	border-right: 1px solid #ddd;
 }
-.zb-sidebar-tabs .nav-tabs>li:last-child{
+.sidebar-tabs .nav-tabs>li:last-child{
 	border-right: none;
 }
-.zb-sidebar-tabs .nav-tabs>li>a{
+.sidebar-tabs .nav-tabs>li>a{
     color: #333;
     margin-right: 0;
     border: none;
@@ -180,14 +207,14 @@ body{
     border-top: 2px solid transparent;
 }
 
-.zb-sidebar-tabs .nav-tabs>li.active>a, .zb-sidebar-tabs .nav-tabs>li.active>a:focus{
+.sidebar-tabs .nav-tabs>li.active>a, .sidebar-tabs .nav-tabs>li.active>a:focus{
     background-color: #fff;
     color: #0077dd;
     border: none;
     border-top: 2px solid #0077e4;
 }
 
-.zb-sidebar-tabs .tab-content{
+.sidebar-tabs .tab-content{
 	padding: 5px 15px;
 }
 .article-list li{
@@ -531,23 +558,23 @@ body{
 .superscript-new{
     color: #f23131;
 }
-.zb-main .swiper-slide img {
+.main .swiper-slide img {
     width: 100%;
 }
-.zb-main .swiper-pagination{
+.main .swiper-pagination{
     text-align: right;
     padding-right: 10px;
 }
-.zb-main .swiper-pagination-bullet{
+.main .swiper-pagination-bullet{
     width: 10px;
     height: 10px;
     opacity: 0.5;
 }
-.zb-main .swiper-pagination-bullet-active{
+.main .swiper-pagination-bullet-active{
     background: #fff;
     opacity: 1;
 }
-.zb-main .swiper-slide .slider-title{
+.main .swiper-slide .slider-title{
     position: absolute;
     bottom: 0;
     left: 0;

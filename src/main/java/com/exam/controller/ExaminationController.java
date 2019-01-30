@@ -1,5 +1,6 @@
 package com.exam.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.shiro.SecurityUtils;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.exam.model.Examination;
-import com.exam.model.Question;
 import com.exam.model.Subject;
 import com.exam.model.User;
 import com.exam.service.ExamQuestionService;
@@ -54,26 +54,24 @@ public class ExaminationController {
 		return ResultUtil.table(examList, pages.getTotal());
 	}
 	
-	@GetMapping("/add")
+	/*@GetMapping("/add")
 	public String addExam(Model model) {
 		Subject subject = new Subject();
 		subject.setStatus(CoreConst.STATUS_VALID);
 		List<Subject> subjects = subjectSevice.selectSubjects(subject);
-		List<Question> questions = questionService.select(new Question());
 		model.addAttribute("subjects", JSON.toJSONString(subjects));
-		model.addAttribute("questions", questions);
 		return "exam/publish";
-	}
+	}*/
 	
 	@PostMapping("/add")
 	@ResponseBody
-	public ResponseVo add(Examination examination, Integer[]question) {
+	public ResponseVo add(Examination examination) {
 		try {
 			User user = (User)SecurityUtils.getSubject().getPrincipal();
 			examination.setUserId(user.getUserId());
 			examination.setAuthor(user.getNickname());
 			Examination exam = examService.insertExam(examination);
-			examQuestionSevice.insertList(exam.getId(),question);
+			//examQuestionSevice.insertList(exam.getId(),question);
 			return ResultUtil.success("发布考试成功");
 		} catch (Exception e) {
 			return ResultUtil.error("发布考试失败");

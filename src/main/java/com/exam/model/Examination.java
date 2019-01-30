@@ -22,7 +22,7 @@ public class Examination extends BaseVo {
 	@Transient
 	List<Question> questions;
 	@Transient
-	List<Subject> subject;
+	Subject subject;
 	
 	public String getTitle() {
 		return title;
@@ -78,10 +78,10 @@ public class Examination extends BaseVo {
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
 	}
-	public List<Subject> getSubject() {
+	public Subject getSubject() {
 		return subject;
 	}
-	public void setSubject(List<Subject> subject) {
+	public void setSubject(Subject subject) {
 		this.subject = subject;
 	}
 }

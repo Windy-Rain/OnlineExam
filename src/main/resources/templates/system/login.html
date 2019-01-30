@@ -11,7 +11,7 @@
     <link rel="stylesheet" th:href="@{/libs/font-awesome/font-awesome.min.css}"/>
     <link rel="stylesheet" th:href="@{/libs/iCheck/square/blue.css}"/>
     <link rel="stylesheet" th:href="@{/libs/validate/validate.css}"/>
-    <link rel="stylesheet" th:href="@{/libs/theme/zblog/css/web-common.css}"/>
+    <link rel="stylesheet" th:href="@{/libs/theme/online-exam/css/web-common.css}"/>
     <link rel="stylesheet" th:href="@{/css/login.css}"/>
     <script th:src="@{/libs/jquery/jquery.min.js}"></script>
 </head>
@@ -20,7 +20,9 @@
     <div th:replace="home/fragments/navbar :: navbar"></div>
 </header>
 <div class="main-content login-content">
-    <div class="login-bg"></div>
+    <div class="login-bg">
+    	<!-- <img class="bg-img" src="/img/login-bg.jpg"> -->
+    </div>
     <div class="login-box">
         <form id="loginForm" class="login-form">
             <div class="login-title">管理员登录</div>
@@ -53,7 +55,6 @@
             </div>
         </form>
     </div>
-
 </div>
 <div th:replace="home/fragments/footer :: copyrightCommon"></div>
 

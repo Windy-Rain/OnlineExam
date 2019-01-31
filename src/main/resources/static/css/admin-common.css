@@ -72,6 +72,12 @@
     background-color: #4b8df8;
 }
 
+.btn-style{
+	height:100px; 
+	font-size:36px;
+	line-height:75px
+}
+
 .cursor-pointer{
     cursor: pointer;
 }
@@ -370,7 +376,7 @@ body .demo-class .layui-layer-btn .layui-layer-btn1{background:#f1f1f1;}
 
 .exam-extra{
 	margin-top:20px;
-    padding: 0 15px;
+    padding: 15px;
     border: 1px solid #ddd;
     border-radius: 4px;
 }

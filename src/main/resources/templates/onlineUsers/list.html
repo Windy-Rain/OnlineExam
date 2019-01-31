@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <section class="content-header">
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
@@ -64,7 +65,7 @@
             align : "center",
             formatter : function(value,
                                  row, index) {
-                var kickout = kickoutFlag=="true" ?  '<a class="table-btn table-btn-danger" href="javascript:void(0)" onclick="kickoutUser(\''+row.sessionId+'\',\''+row.username+'\')">踢出</a>' : '';
+                var kickout = kickoutFlag=="true" ?  '<a class="btn btn-danger btn-sm" href="javascript:void(0)" onclick="kickoutUser(\''+row.sessionId+'\',\''+row.username+'\')">踢出</a>' : '';
                 return kickout;
             }
         }];

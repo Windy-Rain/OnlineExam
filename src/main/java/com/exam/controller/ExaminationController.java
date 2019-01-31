@@ -54,24 +54,24 @@ public class ExaminationController {
 		return ResultUtil.table(examList, pages.getTotal());
 	}
 	
-	/*@GetMapping("/add")
+	@GetMapping("/add")
 	public String addExam(Model model) {
 		Subject subject = new Subject();
 		subject.setStatus(CoreConst.STATUS_VALID);
 		List<Subject> subjects = subjectSevice.selectSubjects(subject);
 		model.addAttribute("subjects", JSON.toJSONString(subjects));
 		return "exam/publish";
-	}*/
+	}
 	
 	@PostMapping("/add")
 	@ResponseBody
-	public ResponseVo add(Examination examination) {
+	public ResponseVo add(Examination examination,Integer[]question) {
 		try {
 			User user = (User)SecurityUtils.getSubject().getPrincipal();
 			examination.setUserId(user.getUserId());
 			examination.setAuthor(user.getNickname());
 			Examination exam = examService.insertExam(examination);
-			//examQuestionSevice.insertList(exam.getId(),question);
+			examQuestionSevice.insertList(exam.getId(),question);
 			return ResultUtil.success("发布考试成功");
 		} catch (Exception e) {
 			return ResultUtil.error("发布考试失败");

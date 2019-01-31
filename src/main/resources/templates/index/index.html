@@ -17,6 +17,7 @@
     <link rel="stylesheet" th:href="@{/libs/ztree/css/ztree-bootstrap.css}"/>
     <link rel="stylesheet" th:href="@{/libs/zplayer/css/zplayer.min.css}"/>
     <link rel="stylesheet" th:href="@{/libs/upload/css/webuploader.css}"/>
+    <link rel="stylesheet" th:href="@{/libs/Ionicons/css/ionicons.min.css}"/>
     <link rel="stylesheet" th:href="@{/libs/markdown/simplemde.min.css}">
     <link rel="stylesheet" th:href="@{/libs/markdown/github-markdown.min.css}">
     <link rel="stylesheet" th:href="@{/libs/markdown/highlight.min.css}">
@@ -47,6 +48,7 @@
     <script th:src="@{/libs/markdown/highlight.min.js}"></script>
     <script th:src="@{/libs/markdown/simplemde.min.js}"></script>
     <script th:src="@{/libs/iCheck/icheck.min.js}"></script>
+    <script th:src="@{/libs/chartJs/chart.js}"></script>
     <script th:src="@{/js/inline-attachment.js}"></script>
     <script th:src="@{/js/codemirror.inline-attachment.js}"></script>
     <script th:src="@{/js/core.js}"></script>
@@ -57,6 +59,7 @@
     <div th:replace="fragments/sidebar :: sidebar"></div>
     <div id="content" class="content-wrapper" >
     </div>
+    <div th:replace="fragments/footer :: footer"></div>
     <aside class="control-sidebar control-sidebar-dark">
         <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
         </ul>
@@ -65,6 +68,7 @@
             </div>
         </div>
     </aside>
+    
 </div>
 <script th:src="@{/libs/adminlte/js/app.js}"></script>
 <script th:src="@{/libs/adminlte/js/settings-skins.js}"></script>

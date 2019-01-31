@@ -48,7 +48,8 @@
     <div class="jax-box jax-box-table">
         <div id="toolbar" class="btn-group">
             <shiro:hasPermission name="exam:add">
-            <button id="btn_add" type="button" class="btn btn-primary" data-toggle="modal" data-target="#examModal">
+			<!--<button id="btn_add" type="button" class="btn btn-primary" data-toggle="modal" data-target="#examModal"> -->
+            <button id="btn_add" type="button" class="btn btn-primary">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发布考试
             </button>
             </shiro:hasPermission>
@@ -238,15 +239,15 @@
             Core.refreshTable("#table");
         });
         /*新增*/
-       $("#btn_add").click(function(){
+      /*  $("#btn_add").click(function(){
             $("#examForm")[0].reset();
             Core.clearError("#examForm");
-        });
-       /* $("#btn_add").click(function(){
-            window.location.href="#exam/add"
         }); */
+       $("#btn_add").click(function(){
+            window.location.href="#exam/add"
+        });
         /*保存*/
-       $("#saveExam").click(function(){
+       /* $("#saveExam").click(function(){
             if(doValidForm("#examForm")){
                 Core.mask("#saveExam");
                 Core.postAjax("/exam/add",$("#examForm").serialize(),function (data) {
@@ -258,7 +259,7 @@
                     layer.msg(data.msg);
                 })
             };
-        });
+        }); */
         /*批量删除*/
         $("#btn_batch_delete").click(function(){
             var checkedRows= Core.selectMutiData("#table");

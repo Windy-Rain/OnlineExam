@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <section class="content-header">
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
@@ -199,9 +200,9 @@
                 title : '操作',
                 align : "center",
                 formatter : function(row, index) {
-                    var edit = editFlag=="true"  ?  '<a class="table-btn table-btn-info" href="javascript:void(0)" onclick="editPermission('+row.permissionId+')">编辑</a>' : '';
-                    var del = deleteFlag=="true"  ?  '<a  class="table-btn table-btn-danger" href="javascript:void(0)" onclick="deletePermission('+row.permissionId+')">删除</a>' : '';
-                    return edit + del;
+                    var edit = editFlag=="true"  ?  '<a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="editPermission('+row.permissionId+')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑</a>' : '';
+                    var del = deleteFlag=="true"  ?  '<a  class="btn btn-danger btn-sm" href="javascript:void(0)" onclick="deletePermission('+row.permissionId+')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除</a>' : '';
+                    return edit +" "+ del;
                 }
             }]
         return columns;

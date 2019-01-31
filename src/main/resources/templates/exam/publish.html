@@ -13,11 +13,6 @@
             <form id="examForm" class="form-horizontal">
             	<input id="status" type="hidden" name="status">
                 <div class="col-lg-4 exam-extra">
-                    <div class="form-group ">
-                        <div class="page-header col-xs-12 ">
-                        	<h3>在线考试系统 <small>OnlineExam</small></h3>
-                        </div>
-                    </div>
                     <div class="form-group">
                         <div class="col-xs-12 ">
                             <label class="control-label label-four">考试课程:</label>
@@ -74,7 +69,18 @@
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <a class="btn btn-info btn-lg col-xs-12" onclick="saveExam(0)">发布考试</a>
+                            <a class="btn btn-success col-xs-12 btn-style" onclick="">
+                            <span class="glyphicon glyphicon-duplicate"></span>
+                           		 添加题目
+                            </a>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <a class="btn btn-primary col-xs-12 btn-style" style="height:100px" onclick="saveExam(0)">
+	                            <span class="glyphicon glyphicon-blackboard"></span>
+	                           		发布考试
+	                        </a>
                         </div>
                     </div>
                 </div>

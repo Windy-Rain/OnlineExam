@@ -63,6 +63,16 @@ public class ExaminationController {
 		return "exam/publish";
 	}
 	
+	//添加题目
+	@GetMapping("/questions")
+	public String addQuestion(Model model) {
+		Subject subject = new Subject();
+		subject.setStatus(CoreConst.STATUS_VALID);
+		List<Subject> subjects = subjectSevice.selectSubjects(subject);
+		model.addAttribute("subjects", JSON.toJSONString(subjects));
+		return "exam/questions";
+	}
+	
 	@PostMapping("/add")
 	@ResponseBody
 	public ResponseVo add(Examination examination,Integer[]question) {

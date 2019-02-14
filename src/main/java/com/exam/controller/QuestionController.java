@@ -44,6 +44,7 @@ public class QuestionController {
 		PageInfo<Question> pages = new PageInfo<>(questionList);
 		return ResultUtil.table(questionList, pages.getTotal());
 	}
+	
 	//添加题目
 	@GetMapping("/add")
 	public String addQuestion(Model model) {

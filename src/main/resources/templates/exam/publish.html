@@ -12,6 +12,7 @@
         <div class="box-body">
             <form id="examForm" class="form-horizontal">
             	<input id="status" type="hidden" name="status">
+            	<input id="question" type="hidden" name="question">
                 <div class="col-lg-4 exam-extra">
                     <div class="form-group">
                         <div class="col-xs-12 ">
@@ -69,7 +70,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <a id="add_btn" class="btn btn-success col-xs-12 btn-style">
+                            <a id="btn_query" class="btn btn-success col-xs-12 btn-style">
                             <span class="glyphicon glyphicon-duplicate"></span>
                            		 添加题目
                             </a>
@@ -108,7 +109,6 @@
         }
     });
     $("#subject-select").html(html);
-
   	//日期时间控件
     $('#startExamTime').datetimepicker({
         language:  'zh-CN',
@@ -136,7 +136,6 @@
         $("#endExamTime").datetimepicker("setStartDate",$("#startExamTime").val())
     });
     
-
     $('[type="radio"].minimal').on('ifChecked', function(event){
 		var checkVal = $("input[name=questions]:checked").val();
 		if(checkVal == 0){
@@ -149,11 +148,20 @@
         checkboxClass: 'icheckbox_minimal-blue',
         radioClass: 'iradio_minimal-blue',
     });
-    
+    var overAllIds = new Array();  //全局数组
+    var score = 0;
     var columns = [
         {
+            align: 'center',
             checkbox: true,
-
+            formatter: function(i,row){
+				if($.inArray(row.id,Array.from(overAllIds)) != -1){
+					return{
+						checked : true
+					}
+				}	
+            }
+            
         },{
             field: 'title',
             title: '题名',
@@ -216,12 +224,12 @@
         id:"#table",
         url: '/question/list',
         columns:columns,
-        toolbar: '#toolbar',
+        //toolbar: '#toolbar',
         //showRefresh: true,
+        pageList : [ 10, 20, 30, 40 ],
         queryParams : queryParams
     }
     Core.initTable(options);
-
     /*查询参数*/
     function queryParams(params) {
         var temp = { //这里的键的名字和控制器的变量名必须一致，这边改动，控制器也需要改成一样的
@@ -229,22 +237,59 @@
             offset : params.offset, //页码
             keywords : $("#keywords").val(),
             subjectId : $("#subject-select").val(),
-            status : 1,
+            
         };
         return temp;
     }
+
+    $('#table').on('uncheck.bs.table check.bs.table check-all.bs.table uncheck-all.bs.table',function(e,rows){
+        var datas = $.isArray(rows) ? rows : [rows]; 
+        //alert(datas);       // 点击时获取选中的行或取消选中的行
+        examine(e.type,datas);                                 // 保存到全局 Set() 里
+   });
     
+    /* function examine(type,datas){            // 操作类型，选中的行
+        if(type.indexOf('uncheck')==-1){    
+            $.each(datas,function(i,v){        // 如果是选中则添加选中行的 id
+                overAllIds.add(v.id);
+            });
+        }else{
+            $.each(datas,function(i,v){        
+                overAllIds.delete(v.id);     // 删除取消选中行的 id
+            });
+        }
+    } */
+    function examine(type,datas){            
+        if(type.indexOf('uncheck')==-1){    
+            $.each(datas,function(i,v){
+               // 添加时，判断一行或多行的 id 是否已经在数组里 不存则添加　
+               overAllIds.indexOf(v.id) == -1 ? overAllIds.push(v.id) : -1;
+               overAllIds.indexOf(v.id) == -1 ? score+=v.score : -1;
+               $("#totalScore").val(score);
+            });
+        }else{
+            $.each(datas,function(i,v){
+                overAllIds.splice(overAllIds.indexOf(v.id),1);    //删除取消选中行
+            });
+        }
+           console.log(overAllIds);
+           console.log(score);
+    }
     $(function(){
     	/*新增*/
         $("#add_btn").click(function(){
             window.location.href="#exam/questions"
         });
+        /*查询*/
+        $("#btn_query").click(function(){
+            Core.refreshTable("#table");
+        });
     })
-
     function  saveExam(status) {
         if(validExam()){
             Core.confirm("确认发布考试？",function () {
                 $("#status").val(status);
+                $("#question").val(overAllIds);
                 Core.postAjax("/exam/add",$("#examForm").serialize(),function (data) {
                     if(data.status=200){
                         Core.load("#table","exam/add");
@@ -259,11 +304,8 @@
         if(doValidForm(examForm)){
         	var checkedRows= Core.selectMutiData("#table");
 	        var ids =[];
-	        var score = 0;
 	        $.each(checkedRows, function (i, item) {
                 ids.push(item.id);
-                score += item.score;
-                $("#totalScore").val(score);
             })
 	        if(ids.length>0){
 	            return true;
@@ -273,6 +315,5 @@
         }
         return false;
     }
-
    
 </script>

@@ -34,7 +34,7 @@ public class ResultUtil{
 	public static PageResultVo table( List<?> list, Long total){
 		return new PageResultVo(list, total);
 	}
-
+	
 	public static ResponseVo vo(Integer status, String message, Object data) {
 		return new ResponseVo<>(status, message, data);
 	}

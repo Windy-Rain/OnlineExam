@@ -1,6 +1,5 @@
 package com.exam.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import org.apache.shiro.SecurityUtils;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.exam.model.Examination;
+import com.exam.model.Question;
 import com.exam.model.Subject;
 import com.exam.model.User;
 import com.exam.service.ExamQuestionService;
@@ -24,6 +24,7 @@ import com.exam.util.CoreConst;
 import com.exam.util.PageUtil;
 import com.exam.util.ResultUtil;
 import com.exam.vo.ExaminationConditionVo;
+import com.exam.vo.QuestionConditionVo;
 import com.exam.vo.base.PageResultVo;
 import com.exam.vo.base.ResponseVo;
 import com.github.pagehelper.PageHelper;
@@ -54,12 +55,21 @@ public class ExaminationController {
 		return ResultUtil.table(examList, pages.getTotal());
 	}
 	
+	@PostMapping("listQuestion")
+	@ResponseBody
+	public List<Question> loadQuestion(QuestionConditionVo questionConditionVo){
+		List<Question> questionList = questionService.findByCondition(questionConditionVo);
+		return questionList;
+	}
+	
 	@GetMapping("/add")
 	public String addExam(Model model) {
 		Subject subject = new Subject();
 		subject.setStatus(CoreConst.STATUS_VALID);
 		List<Subject> subjects = subjectSevice.selectSubjects(subject);
+		List<Question> questions = questionService.select(new Question());
 		model.addAttribute("subjects", JSON.toJSONString(subjects));
+		model.addAttribute("questions",questions);
 		return "exam/publish";
 	}
 	

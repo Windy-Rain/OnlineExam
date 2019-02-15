@@ -2,6 +2,8 @@ package com.exam.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Select;
+
 import com.exam.model.Question;
 import com.exam.vo.QuestionConditionVo;
 
@@ -34,5 +36,7 @@ public interface QuestionService extends BaseService<Question> {
 	 * @return
 	 */
 	int deleteBatch(Integer[] ids);
+
+	int totalNum();
 
 }

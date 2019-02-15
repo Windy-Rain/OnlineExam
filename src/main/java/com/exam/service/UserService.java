@@ -78,5 +78,7 @@ public interface UserService {
 
 
     void kickout(Serializable sessionId, String username);
+    
+    int userNums();
 
 }

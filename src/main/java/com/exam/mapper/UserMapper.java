@@ -3,6 +3,8 @@ package com.exam.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Select;
+
 import com.exam.model.User;
 import com.exam.util.MapperUtil;
 
@@ -61,4 +63,7 @@ public interface UserMapper extends MapperUtil<User> {
      * @return list
      */
     List<User> findByRoleIds(List<String> roleIds);
+    
+    @Select("select count(id) userNums from user")
+    int userNums();
 }

@@ -3,6 +3,7 @@ package com.exam.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import com.exam.model.Examination;
 import com.exam.model.Question;
@@ -31,6 +32,9 @@ public interface QuestionMapper extends MapperUtil<Question> {
 	 * @return
 	 */
 	int deleteBatch(Integer[] ids);
+
+	@Select("select count(id) questionNums from question")
+	int countNum();
 
 	
 

@@ -44,10 +44,10 @@
                             <label class="control-label label-four">导入题目:</label>
                             <div class="question radio icheck ml80" require="">
                                 <label>
-                                    <input class="minimal" name="questions" type="radio" checked value="0"> 从题库中导入
+                                    <input class="minimal"  type="radio" checked value="0"> 从题库中导入
                                 </label>
                                 <label>
-                                    <input class="minimal" name="questions" type="radio" value="1"> 自定义题目
+                                    <input class="minimal"  type="radio" value="1"> 自定义题目
                                 </label>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                     	<div class="col-xs-12">
                             <label class="control-label label-four">开始时间:</label>
                             <div class="ml80">
-                                <input type="text" class="form-control" id="startExamTime" placeholder="请选择开始考试时间" readonly="readonly" require="" />
+                                <input type="text" class="form-control" name="startTime" id="startExamTime" placeholder="请选择开始考试时间" readonly="readonly" require="" />
                             </div>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                     	<div class="col-xs-12">
                             <label class="control-label label-four">结束时间:</label>
                             <div class="ml80">
-                                <input type="text" class="form-control" id="endExamTime" placeholder="请选择结束考试时间" readonly="readonly" require="" />
+                                <input type="text" class="form-control" name="endTime" id="endExamTime" placeholder="请选择结束考试时间" readonly="readonly" require="" />
                             </div>
                         </div>
                     </div>
@@ -85,8 +85,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8">
-                    <div class="form-group form-editor">
+                <div class="col-lg-8 form-editor">
+                	<div class="col-xs-12 callout callout-info" style="margin-bottom: 0!important;">
+                		<h4>
+                			<i class="fa fa-info"></i>
+                			题库：
+                		</h4>
+                		This page has been enhanced for printing. Click the print button at the bottom of the invoice to test.
+                	</div>
+                    <div class="form-group">
                         <div class="col-xs-12">
                         	<table id="table" style="table-layout:fixed"></table>
                         </div>
@@ -137,7 +144,7 @@
     });
     
     $('[type="radio"].minimal').on('ifChecked', function(event){
-		var checkVal = $("input[name=questions]:checked").val();
+		var checkVal = $("input[class=minimal]:checked").val();
 		if(checkVal == 0){
 			Core.refreshTable("#table");
 			$(".form-editor").show();
@@ -243,38 +250,28 @@
     }
 
     $('#table').on('uncheck.bs.table check.bs.table check-all.bs.table uncheck-all.bs.table',function(e,rows){
-        var datas = $.isArray(rows) ? rows : [rows]; 
-        //alert(datas);       // 点击时获取选中的行或取消选中的行
-        examine(e.type,datas);                                 // 保存到全局 Set() 里
+        var datas = $.isArray(rows) ? rows : [rows];  // 点击时获取选中的行或取消选中的行
+        examine(e.type,datas);                        // 保存到全局 Array() 里
    });
     
-    /* function examine(type,datas){            // 操作类型，选中的行
-        if(type.indexOf('uncheck')==-1){    
-            $.each(datas,function(i,v){        // 如果是选中则添加选中行的 id
-                overAllIds.add(v.id);
-            });
-        }else{
-            $.each(datas,function(i,v){        
-                overAllIds.delete(v.id);     // 删除取消选中行的 id
-            });
-        }
-    } */
     function examine(type,datas){            
         if(type.indexOf('uncheck')==-1){    
             $.each(datas,function(i,v){
                // 添加时，判断一行或多行的 id 是否已经在数组里 不存则添加　
                overAllIds.indexOf(v.id) == -1 ? overAllIds.push(v.id) : -1;
-               overAllIds.indexOf(v.id) == -1 ? score+=v.score : -1;
-               $("#totalScore").val(score);
+               score += v.score;
             });
         }else{
             $.each(datas,function(i,v){
                 overAllIds.splice(overAllIds.indexOf(v.id),1);    //删除取消选中行
+                score -= v.score;
             });
         }
            console.log(overAllIds);
            console.log(score);
+           $("#totalScore").val(score);
     }
+    
     $(function(){
     	/*新增*/
         $("#add_btn").click(function(){
@@ -285,12 +282,18 @@
             Core.refreshTable("#table");
         });
     })
+    
     function  saveExam(status) {
         if(validExam()){
             Core.confirm("确认发布考试？",function () {
+            	var startTime = new Date($('#startExamTime').val());
+                var endTime = new Date($('#endExamTime').val());
+                $('#startExamTime').val(startTime);
+                $('#endExamTime').val(endTime);
                 $("#status").val(status);
                 $("#question").val(overAllIds);
-                Core.postAjax("/exam/add",$("#examForm").serialize(),function (data) {
+                alert($("#examForm").serialize());
+                Core.postAjax("/exam/add", $("#examForm").serialize(), function (data) {
                     if(data.status=200){
                         Core.load("#table","exam/add");
                     }

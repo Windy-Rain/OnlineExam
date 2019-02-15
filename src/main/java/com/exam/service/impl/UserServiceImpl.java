@@ -199,5 +199,11 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+	@Override
+	public int userNums() {
+		int userNums = userMapper.userNums();
+		return userNums;
+	}
+
 
 }

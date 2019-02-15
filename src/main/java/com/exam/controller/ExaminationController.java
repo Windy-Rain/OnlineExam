@@ -55,13 +55,6 @@ public class ExaminationController {
 		return ResultUtil.table(examList, pages.getTotal());
 	}
 	
-	@PostMapping("listQuestion")
-	@ResponseBody
-	public List<Question> loadQuestion(QuestionConditionVo questionConditionVo){
-		List<Question> questionList = questionService.findByCondition(questionConditionVo);
-		return questionList;
-	}
-	
 	@GetMapping("/add")
 	public String addExam(Model model) {
 		Subject subject = new Subject();
@@ -85,7 +78,7 @@ public class ExaminationController {
 	
 	@PostMapping("/add")
 	@ResponseBody
-	public ResponseVo add(Examination examination,Integer[]question) {
+	public ResponseVo add(Examination examination , Integer[]question) {
 		try {
 			User user = (User)SecurityUtils.getSubject().getPrincipal();
 			examination.setUserId(user.getUserId());

@@ -114,30 +114,6 @@
 </div>
 
 <script>
-	//日期时间控件
-	$('#startExamTime').datetimepicker({
-	    language:  'zh-CN',
-	    autoclose: 1,
-	    todayHighlight: 1,
-	    startView: 2,
-	    forceParse: false,
-	    showMeridian: 1,
-	    startDate:new Date(),
-	    todayBtn: true,
-	}).on("click",function(){
-	    $("#startExamTime").datetimepicker("setEndDate",$("#endExamTime").val())
-	});
-	$('#endExamTime').datetimepicker({
-	    language:  'zh-CN',
-	    autoclose: 1,
-	    todayHighlight: 1,
-	    startView: 2,
-	    forceParse: false,
-	    showMeridian: 1,
-	    todayBtn: true
-	}).on("click",function(){
-	    $("#endExamTime").datetimepicker("setStartDate",$("#startExamTime").val())
-	});
     var editFlag = "[[${@perms.hasPerm('article:edit')}]]";
     var deleteFlag = "[[${@perms.hasPerm('article:delete')}]]";
     var columns = [
@@ -168,11 +144,11 @@
             formatter : function(status) {
                 var statusName = '';
                if(status == 0){
-            	   statusName = '未开始';
+            	   statusName = '<span class="label label-warning">未开始</span>';
                }else if(status == 1){
-            	   statusName = '进行中';
+            	   statusName = '<span class="label label-success">进行中</span>';
                }else if(status == 2){
-            	   statusName = '已结束';
+            	   statusName = '<span class="label label-danger">已结束</span>';
                }
                return statusName;
             }
@@ -191,9 +167,9 @@
             class:'min-width-100',
             formatter : function(value,
                                  row, index) {
-                var edit = editFlag=="true" ? '<a class="table-btn table-btn-info" onclick="editArticle('+row.id+')">编辑</a>' : '';
-                var del = deleteFlag=="true" ? '<a  class="table-btn table-btn-danger" onclick="deleteArticle('+row.id+')">删除</a>' : '';
-                return edit + del;
+                var edit = editFlag=="true" ? '<a class="btn btn-primary btn-sm" onclick="editArticle('+row.id+')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑</a>' : '';
+                var del = deleteFlag=="true" ? '<a  class="btn btn-danger btn-sm" onclick="deleteArticle('+row.id+')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除</a>' : '';
+                return edit +" "+ del;
             }
         }];
     var options={
@@ -224,7 +200,7 @@
     }
     /*删除*/
     function deleteArticle(id) {
-        Core.confirm("确定删除该分类？",function () {
+        Core.confirm("确定删除此次考试？",function () {
             Core.postAjax("/article/delete",{"id":id},function (data) {
                 if(data.status==200){
                     Core.refreshTable("#table");
@@ -238,28 +214,9 @@
         $("#btn_query").click(function(){
             Core.refreshTable("#table");
         });
-        /*新增*/
-      /*  $("#btn_add").click(function(){
-            $("#examForm")[0].reset();
-            Core.clearError("#examForm");
-        }); */
        $("#btn_add").click(function(){
             window.location.href="#exam/add"
         });
-        /*保存*/
-       /* $("#saveExam").click(function(){
-            if(doValidForm("#examForm")){
-                Core.mask("#saveExam");
-                Core.postAjax("/exam/add",$("#examForm").serialize(),function (data) {
-                    Core.unmask("#saveExam");
-                    if(data.status==200){
-                        $("#examModal").modal("hide");
-                        Menu.table.refresh();
-                    }
-                    layer.msg(data.msg);
-                })
-            };
-        }); */
         /*批量删除*/
         $("#btn_batch_delete").click(function(){
             var checkedRows= Core.selectMutiData("#table");

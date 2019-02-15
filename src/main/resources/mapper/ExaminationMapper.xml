@@ -84,4 +84,37 @@
 			)
 		</if>
     </select>
+    
+    <select id="listQuestionsByExamId" parameterType="List" resultMap="BaseResultMap">
+    	SELECT
+    	e.*,
+    	q.id AS question_id,
+    	q.title AS question_title,
+    	q.content AS question_content,
+    	q.question_type AS q_question_type,
+    	q.option_a AS question_option_a,
+    	q.option_b AS question_option_b,
+    	q.option_c AS question_option_c,
+    	q.option_d AS question_option_d,
+    	q.option_e AS question_option_e,
+    	q.option_f AS question_option_f,
+    	q.answer AS question_answer,
+    	q.parse AS question_parse,
+    	q.score AS question_score,
+    	q.difficulty AS question_difficulty,
+    	q.subject_id AS question_subject_id,
+    	q.create_time AS question_create_time,
+    	q.update_time AS question_update_time,
+    	q.status AS question_status
+    	FROM
+    	examination e
+    	INNER JOIN exam_question eq ON e.id = eq.exam_id
+    	INNER JOIN question q ON eq.question_id = q.id
+    	WHERE
+    	e.id IN (
+    	<foreach collection="list" item="id" separator=",">
+    		#{id}
+    	</foreach>
+    	)
+    </select>
 </mapper>

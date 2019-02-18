@@ -24,4 +24,6 @@ public interface ExaminationMapper extends MapperUtil<Examination> {
 
 	Examination selectById(Integer id);
 
+	int deleteBatch(Integer[] ids);
+
 }

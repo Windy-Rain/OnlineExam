@@ -53,7 +53,7 @@
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发布考试
             </button>
             </shiro:hasPermission>
-            <shiro:hasPermission name="article:batchDelete">
+            <shiro:hasPermission name="exam:batchDelete">
             <button id="btn_batch_delete" type="button" class="btn btn-danger">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>批量删除
             </button>
@@ -168,7 +168,7 @@
             formatter : function(value,
                                  row, index) {
                 var edit = editFlag=="true" ? '<a class="btn btn-primary btn-sm" onclick="editExam('+row.id+')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑</a>' : '';
-                var del = deleteFlag=="true" ? '<a  class="btn btn-danger btn-sm" onclick="deleteArticle('+row.id+')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除</a>' : '';
+                var del = deleteFlag=="true" ? '<a  class="btn btn-danger btn-sm" onclick="deleteExam('+row.id+')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除</a>' : '';
                 return edit +" "+ del;
             }
         }];
@@ -199,9 +199,9 @@
         window.location.href="#exam/edit?id="+id
     }
     /*删除*/
-    function deleteArticle(id) {
+    function deleteExam(id) {
         Core.confirm("确定删除此次考试？",function () {
-            Core.postAjax("/article/delete",{"id":id},function (data) {
+            Core.postAjax("/exam/delete",{"id":id},function (data) {
                 if(data.status==200){
                     Core.refreshTable("#table");
                 }
@@ -226,7 +226,7 @@
                     $.each(checkedRows, function (i, item) {
                         ids.push(item.id);
                     })
-                    Core.postAjax("/article/batch/delete", {"ids": ids}, function (data) {
+                    Core.postAjax("/exam/batch/delete", {"ids": ids}, function (data) {
                         if (data.status == 200) {
                             Core.refreshTable("#table");
                         }

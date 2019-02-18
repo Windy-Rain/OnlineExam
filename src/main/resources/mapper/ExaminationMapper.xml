@@ -53,25 +53,10 @@
     	FROM
     	examination a
     	INNER JOIN subject ON a.subject_id = subject.id
-    	<!-- INNER JOIN exam_question eq ON a.id = eq.exam_id -->
     	WHERE 1 = 1
     	<if test="subjectId != null">
     		AND a.subject_id = #{subjectId}
     	</if>
-    	<!-- <choose>
-    		<when test="questionIds != null">
-    			AND eq.question_id IN (
-    			<foreach collection="questionIds" item="questionId" separator=",">
-    				#{questionId}
-    			</foreach>
-    			)
-    		</when>
-    		<otherwise>
-    			<if test="questionId != null">
-    				AND eq.question_id = #{questionId}
-    			</if>
-    		</otherwise>
-    	</choose> -->
     	<if test="status != null">
 			AND	a.status = #{status}
 		</if>
@@ -126,4 +111,15 @@
     	WHERE
     	e.id = #{id}
     </select>
+    
+    <delete id="deleteBatch" parameterType="map">
+    	DELETE
+    	FROM
+    	examination
+    	WHERE
+    	id in
+    	<foreach collection="array" item="item" index="index" open="(" separator="," close=")">
+    		#{item}
+    	</foreach>
+    </delete>
 </mapper>

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
@@ -107,6 +108,28 @@ public class ExaminationController {
 		examQuestionSevice.removeByExamId(examination.getId());
 		examQuestionSevice.insertList(examination.getId(),question);
 		return ResultUtil.success("编辑考试成功");
+	}
+	
+	@PostMapping("/delete")
+	@ResponseBody
+	public ResponseVo delete(Integer id) {
+		int i = examService.deleteBatch(new Integer[] {id});
+		if(i > 0) {
+			return ResultUtil.success("删除考试成功");
+		}else {
+			return ResultUtil.error("删除考试失败");
+		}
+	}
+	
+	@PostMapping("/batch/delete")
+	@ResponseBody
+	public ResponseVo deleteBatch(@RequestParam("ids[]") Integer[] ids) {
+		int i = examService.deleteBatch(ids);
+		if(i > 0) {
+			return ResultUtil.success("批量删除成功");
+		}else {
+			return ResultUtil.error("批量删除失败");
+		}
 	}
 	
 }

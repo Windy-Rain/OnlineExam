@@ -62,4 +62,9 @@ public class ExaminationServiceImpl extends BaseServiceImpl<Examination> impleme
 		return examMapper.selectById(id);
 	}
 
+	@Override
+	public int deleteBatch(Integer[] ids) {
+		return examMapper.deleteBatch(ids);
+	}
+
 }

@@ -1,5 +1,6 @@
 package com.exam.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.shiro.SecurityUtils;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
+import com.exam.model.ExamQuestion;
 import com.exam.model.Examination;
 import com.exam.model.Question;
 import com.exam.model.Subject;
@@ -24,7 +26,6 @@ import com.exam.util.CoreConst;
 import com.exam.util.PageUtil;
 import com.exam.util.ResultUtil;
 import com.exam.vo.ExaminationConditionVo;
-import com.exam.vo.QuestionConditionVo;
 import com.exam.vo.base.PageResultVo;
 import com.exam.vo.base.ResponseVo;
 import com.github.pagehelper.PageHelper;
@@ -38,7 +39,7 @@ public class ExaminationController {
 	private ExaminationService examService;
 	
 	@Autowired
-	private SubjectService subjectSevice;
+	private SubjectService subjectService;
 	
 	@Autowired
 	private QuestionService questionService;
@@ -59,22 +60,13 @@ public class ExaminationController {
 	public String addExam(Model model) {
 		Subject subject = new Subject();
 		subject.setStatus(CoreConst.STATUS_VALID);
-		List<Subject> subjects = subjectSevice.selectSubjects(subject);
+		List<Subject> subjects = subjectService.selectSubjects(subject);
 		List<Question> questions = questionService.select(new Question());
 		model.addAttribute("subjects", JSON.toJSONString(subjects));
 		model.addAttribute("questions",questions);
 		return "exam/publish";
 	}
 	
-	//添加题目
-	@GetMapping("/questions")
-	public String addQuestion(Model model) {
-		Subject subject = new Subject();
-		subject.setStatus(CoreConst.STATUS_VALID);
-		List<Subject> subjects = subjectSevice.selectSubjects(subject);
-		model.addAttribute("subjects", JSON.toJSONString(subjects));
-		return "exam/questions";
-	}
 	
 	@PostMapping("/add")
 	@ResponseBody
@@ -89,6 +81,32 @@ public class ExaminationController {
 		} catch (Exception e) {
 			return ResultUtil.error("发布考试失败");
 		}
+	}
+	
+	@GetMapping("/edit")
+	public String edit(Model model, Integer id) {
+		Examination examination = examService.selectById(id);
+		model.addAttribute("examination", examination);
+		Subject subject = new Subject();
+		subject.setStatus(CoreConst.STATUS_VALID);
+		List<Subject> subjects = subjectService.selectSubjects(subject);
+		model.addAttribute("subjects", JSON.toJSONString(subjects));
+		List<ExamQuestion> examQuestions = examQuestionSevice.selectByExamId(id);
+		List<Integer> questionIds = new ArrayList<>();
+		for(ExamQuestion examQuestion : examQuestions) {
+			questionIds.add(examQuestion.getQuestionId());
+		}
+		model.addAttribute("questionIds", questionIds);
+		return "exam/detail";
+	}
+	
+	@PostMapping("/edit")
+	@ResponseBody
+	public ResponseVo edit(Examination examination, Integer[]question) {
+		examService.updateNotNull(examination);
+		examQuestionSevice.removeByExamId(examination.getId());
+		examQuestionSevice.insertList(examination.getId(),question);
+		return ResultUtil.success("编辑考试成功");
 	}
 	
 }

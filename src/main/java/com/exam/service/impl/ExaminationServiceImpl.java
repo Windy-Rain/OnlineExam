@@ -6,13 +6,14 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.shiro.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import com.exam.mapper.ExaminationMapper;
 import com.exam.mapper.QuestionMapper;
 import com.exam.model.Examination;
+import com.exam.model.Question;
 import com.exam.service.ExaminationService;
 import com.exam.vo.ExaminationConditionVo;
 
@@ -54,6 +55,11 @@ public class ExaminationServiceImpl extends BaseServiceImpl<Examination> impleme
 		examination.setUpdateTime(date);
 		examMapper.insertSelective(examination);
 		return examination;
+	}
+
+	@Override
+	public Examination selectById(Integer id) {
+		return examMapper.selectById(id);
 	}
 
 }

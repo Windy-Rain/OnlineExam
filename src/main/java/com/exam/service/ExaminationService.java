@@ -21,5 +21,7 @@ public interface ExaminationService extends BaseService<Examination> {
 	 */
 
 	Examination insertExam(Examination examination);
+
+	Examination selectById(Integer id);
 	
 }

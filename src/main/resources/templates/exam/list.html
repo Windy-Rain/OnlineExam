@@ -76,7 +76,7 @@
 	                    <div class="form-group">
                             <label class="col-sm-3 control-label">考试课程<span class="red">*</span>:</label>
                             <div class="col-sm-8">
-                                <select class="form-control" id="subjectId" name="subjectId">
+                                <select class="form-control" id="subjectId">
 		                            <option  value="">请选择</option>
 		                            <option th:each="subject:${subjects}" th:value="${subject.id}" th:text="${subject.name}"></option>
 		                        </select>
@@ -114,7 +114,7 @@
 </div>
 
 <script>
-    var editFlag = "[[${@perms.hasPerm('article:edit')}]]";
+    var editFlag = "[[${@perms.hasPerm('exam:edit')}]]";
     var deleteFlag = "[[${@perms.hasPerm('article:delete')}]]";
     var columns = [
         {checkbox: true },
@@ -167,7 +167,7 @@
             class:'min-width-100',
             formatter : function(value,
                                  row, index) {
-                var edit = editFlag=="true" ? '<a class="btn btn-primary btn-sm" onclick="editArticle('+row.id+')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑</a>' : '';
+                var edit = editFlag=="true" ? '<a class="btn btn-primary btn-sm" onclick="editExam('+row.id+')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑</a>' : '';
                 var del = deleteFlag=="true" ? '<a  class="btn btn-danger btn-sm" onclick="deleteArticle('+row.id+')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除</a>' : '';
                 return edit +" "+ del;
             }
@@ -188,15 +188,15 @@
             limit : params.limit, //页面大小
             offset : params.offset, //页码
             keywords : $("#keywords").val(),
-            categoryId : $("#subjectId").val(),
+            subjectId : $("#subjectId").val(),
             status : $("#status").val(),
         };
         return temp;
     }
 
     /*编辑*/
-    function editArticle(id) {
-        window.location.href="#article/edit?id="+id
+    function editExam(id) {
+        window.location.href="#exam/edit?id="+id
     }
     /*删除*/
     function deleteArticle(id) {

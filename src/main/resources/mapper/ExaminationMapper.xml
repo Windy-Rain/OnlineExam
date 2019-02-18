@@ -53,12 +53,12 @@
     	FROM
     	examination a
     	INNER JOIN subject ON a.subject_id = subject.id
-    	INNER JOIN exam_question eq ON a.id = eq.exam_id
+    	<!-- INNER JOIN exam_question eq ON a.id = eq.exam_id -->
     	WHERE 1 = 1
     	<if test="subjectId != null">
     		AND a.subject_id = #{subjectId}
     	</if>
-    	<choose>
+    	<!-- <choose>
     		<when test="questionIds != null">
     			AND eq.question_id IN (
     			<foreach collection="questionIds" item="questionId" separator=",">
@@ -71,21 +71,17 @@
     				AND eq.question_id = #{questionId}
     			</if>
     		</otherwise>
-    	</choose>
+    	</choose> -->
     	<if test="status != null">
 			AND	a.status = #{status}
 		</if>
 		<if test="keywords != null and keywords != '' ">
 			AND
-			(
-			a.title LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%') OR
-			a.content LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%') OR
-			a.keywords LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%')
-			)
+			a.title LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%')
 		</if>
     </select>
     
-    <select id="listQuestionsByExamId" parameterType="List" resultMap="BaseResultMap">
+    <select id="listQuestionsByExamId" parameterType="int" resultMap="BaseResultMap">
     	SELECT
     	e.*,
     	q.id AS question_id,
@@ -116,5 +112,18 @@
     		#{id}
     	</foreach>
     	)
+    </select>
+    
+    <select id="selectById" parameterType="int" resultMap="BaseResultMap">
+    	SELECT
+    	e.*,
+    	subject.id AS s_subject_id,
+    	subject.`name` AS s_subject_name,
+    	subject.description AS s_subject_description
+    	FROM
+    	examination e
+    	INNER JOIN subject ON e.subject_id = subject.id
+    	WHERE
+    	e.id = #{id}
     </select>
 </mapper>

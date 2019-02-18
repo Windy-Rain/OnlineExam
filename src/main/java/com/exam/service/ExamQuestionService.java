@@ -1,9 +1,12 @@
 package com.exam.service;
 
+import java.util.List;
+
 import com.exam.model.ExamQuestion;
 
 public interface ExamQuestionService extends BaseService<ExamQuestion> {
 
+	List<ExamQuestion> selectByExamId(Integer examId);
 	/**
 	 * 通过考试id删除考试-标签关联数据
 	 * @param examId

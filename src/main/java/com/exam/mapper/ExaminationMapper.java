@@ -22,4 +22,6 @@ public interface ExaminationMapper extends MapperUtil<Examination> {
 	 */
 	List<Examination> listQuestionsByExamId(List<Integer> ids);
 
+	Examination selectById(Integer id);
+
 }

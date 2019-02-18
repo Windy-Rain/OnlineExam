@@ -42,4 +42,9 @@ public class ExamQuestionServiceImpl extends BaseServiceImpl<ExamQuestion> imple
 		}
 	}
 
+	@Override
+	public List<ExamQuestion> selectByExamId(Integer examId) {
+		return examQuestionMapper.selectByExamId(examId);
+	}
+
 }

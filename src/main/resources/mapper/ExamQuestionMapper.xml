@@ -16,4 +16,12 @@
 		create_time,
 		update_time
 	</sql>
+	
+	<select id="selectByExamId" parameterType="int"  resultMap="BaseResultMap">
+		SELECT
+		eq.*
+		FROM
+		exam_question eq
+		WHERE eq.exam_id = #{examId}
+	</select>
 </mapper>

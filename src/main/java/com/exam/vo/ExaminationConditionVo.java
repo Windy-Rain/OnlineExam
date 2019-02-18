@@ -10,11 +10,11 @@ public class ExaminationConditionVo extends BaseConditionVo {
 	
 	private Integer subjectId;
 	
-	private Integer questionId;
+	//private Integer questionId;
 	
 	private Integer status;
 	
-	private List<Long> questionIds;
+	//private List<Long> questionIds;
 
 	public String getKeywords() {
 		return keywords;
@@ -32,13 +32,13 @@ public class ExaminationConditionVo extends BaseConditionVo {
 		this.subjectId = subjectId;
 	}
 	
-	public Integer getQuestionId() {
+	/*public Integer getQuestionId() {
 		return questionId;
 	}
 
 	public void setQuestionId(Integer questionId) {
 		this.questionId = questionId;
-	}
+	}*/
 
 	public Integer getStatus() {
 		return status;
@@ -48,12 +48,12 @@ public class ExaminationConditionVo extends BaseConditionVo {
 		this.status = status;
 	}
 
-	public List<Long> getQuestionIds() {
+	/*public List<Long> getQuestionIds() {
 		return questionIds;
 	}
 
 	public void setQuestionIds(List<Long> questionIds) {
 		this.questionIds = questionIds;
-	}
+	}*/
 
 }

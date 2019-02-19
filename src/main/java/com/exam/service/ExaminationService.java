@@ -22,8 +22,18 @@ public interface ExaminationService extends BaseService<Examination> {
 
 	Examination insertExam(Examination examination);
 
+	/**
+	 * 根据id查询考试
+	 * @param id
+	 * @return
+	 */
 	Examination selectById(Integer id);
 
+	/**
+	 * 删除与批量删除
+	 * @param ids
+	 * @return
+	 */
 	int deleteBatch(Integer[] ids);
 	
 }

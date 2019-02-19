@@ -24,4 +24,15 @@
 		exam_question eq
 		WHERE eq.exam_id = #{examId}
 	</select>
+	
+	<delete id="deleteBatch" parameterType="map">
+    	DELETE
+    	FROM
+    	exam_question
+    	WHERE
+    	exam_id in
+    	<foreach collection="array" item="item" index="index" open="(" separator="," close=")">
+    		#{item}
+    	</foreach>
+    </delete>
 </mapper>

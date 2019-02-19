@@ -20,4 +20,7 @@ public interface ExamQuestionService extends BaseService<ExamQuestion> {
 	 * @param examId
 	 */
 	void insertList(Integer examId, Integer[] questionIds);
+	
+	
+	int deleteBatch(Integer[] ids);
 }

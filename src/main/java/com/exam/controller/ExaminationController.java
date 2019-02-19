@@ -46,7 +46,7 @@ public class ExaminationController {
 	private QuestionService questionService;
 	
 	@Autowired
-	private ExamQuestionService examQuestionSevice;
+	private ExamQuestionService examQuestionService;
 
 	@PostMapping("list")
 	@ResponseBody
@@ -77,7 +77,7 @@ public class ExaminationController {
 			examination.setUserId(user.getUserId());
 			examination.setAuthor(user.getNickname());
 			Examination exam = examService.insertExam(examination);
-			examQuestionSevice.insertList(exam.getId(),question);
+			examQuestionService.insertList(exam.getId(),question);
 			return ResultUtil.success("发布考试成功");
 		} catch (Exception e) {
 			return ResultUtil.error("发布考试失败");
@@ -92,7 +92,7 @@ public class ExaminationController {
 		subject.setStatus(CoreConst.STATUS_VALID);
 		List<Subject> subjects = subjectService.selectSubjects(subject);
 		model.addAttribute("subjects", JSON.toJSONString(subjects));
-		List<ExamQuestion> examQuestions = examQuestionSevice.selectByExamId(id);
+		List<ExamQuestion> examQuestions = examQuestionService.selectByExamId(id);
 		List<Integer> questionIds = new ArrayList<>();
 		for(ExamQuestion examQuestion : examQuestions) {
 			questionIds.add(examQuestion.getQuestionId());
@@ -105,8 +105,8 @@ public class ExaminationController {
 	@ResponseBody
 	public ResponseVo edit(Examination examination, Integer[]question) {
 		examService.updateNotNull(examination);
-		examQuestionSevice.removeByExamId(examination.getId());
-		examQuestionSevice.insertList(examination.getId(),question);
+		examQuestionService.removeByExamId(examination.getId());
+		examQuestionService.insertList(examination.getId(),question);
 		return ResultUtil.success("编辑考试成功");
 	}
 	
@@ -114,7 +114,8 @@ public class ExaminationController {
 	@ResponseBody
 	public ResponseVo delete(Integer id) {
 		int i = examService.deleteBatch(new Integer[] {id});
-		if(i > 0) {
+		int j = examQuestionService.deleteBatch(new Integer[] {id});
+		if(i > 0 && j > 0) {
 			return ResultUtil.success("删除考试成功");
 		}else {
 			return ResultUtil.error("删除考试失败");
@@ -125,7 +126,8 @@ public class ExaminationController {
 	@ResponseBody
 	public ResponseVo deleteBatch(@RequestParam("ids[]") Integer[] ids) {
 		int i = examService.deleteBatch(ids);
-		if(i > 0) {
+		int j = examQuestionService.deleteBatch(ids);
+		if(i > 0 && j > 0) {
 			return ResultUtil.success("批量删除成功");
 		}else {
 			return ResultUtil.error("批量删除失败");

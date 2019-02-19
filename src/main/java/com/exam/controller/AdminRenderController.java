@@ -19,8 +19,6 @@ import com.exam.util.CoreConst;
 @Controller
 public class AdminRenderController {
     @Autowired
-    private BizCategoryService categoryService;
-    @Autowired
     private SysConfigService sysConfigService;
     @Autowired
     private SubjectService subjectService;
@@ -36,11 +34,6 @@ public class AdminRenderController {
     public String links(){
         return "link/list";
     }
-    /*分类*/
-    @GetMapping("/categories")
-    public String categories(){
-        return "category/list";
-    }
     /*课程*/
     @GetMapping("/subjects")
     public String subjects() {
@@ -52,18 +45,7 @@ public class AdminRenderController {
         return "tag/list";
     }
     
-    
 
-    /*文章*/
-    @GetMapping("/articles")
-    public String articles(Model model){
-        BizCategory bizCategory = new BizCategory();
-        bizCategory.setStatus(CoreConst.STATUS_VALID);
-        List<BizCategory> categories = categoryService.select(bizCategory);
-        model.addAttribute("categories",categories);
-        return "article/list";
-    }
-    
     /*考试*/
     @GetMapping("/exams")
     public String exams(Model model) {
@@ -87,11 +69,6 @@ public class AdminRenderController {
     @GetMapping("/comments")
     public String comments(){
         return "comment/list";
-    }
-
-    @GetMapping("themes")
-    public String themes(){
-        return "systheme/list";
     }
 
 }

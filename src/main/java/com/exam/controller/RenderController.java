@@ -26,7 +26,7 @@ public class RenderController {
     	int userNums = userService.userNums();
     	model.addAttribute("questionNums", questionNums);
     	model.addAttribute("userNums", userNums);
-        return "index/workdest";
+        return "manager/workdest";
     }
 
     /**用户列表入口*/

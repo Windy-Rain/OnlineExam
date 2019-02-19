@@ -47,4 +47,9 @@ public class ExamQuestionServiceImpl extends BaseServiceImpl<ExamQuestion> imple
 		return examQuestionMapper.selectByExamId(examId);
 	}
 
+	@Override
+	public int deleteBatch(Integer[] ids) {
+		return examQuestionMapper.deleteBatch(ids);
+	}
+
 }

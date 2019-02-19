@@ -1,45 +1,18 @@
 package com.exam.controller;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.alibaba.fastjson.JSONObject;
-import com.exam.exception.ArticleNotFoundException;
-import com.exam.model.BizArticle;
-import com.exam.service.BizArticleService;
-import com.exam.service.BizThemeService;
-import com.exam.util.CopyUtil;
-import com.exam.util.CoreConst;
-import com.exam.vo.ArticleConditionVo;
-import com.exam.vo.base.PageVo;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 
 @Controller
 public class BlogWebController {
-    private static final String THEME_PREFIX = "theme/";
-    @Autowired
-    private BizArticleService bizArticleService;
-    @Autowired
-    private BizThemeService bizThemeService;
     
-    
-    @GetMapping("/")
+  /*  @GetMapping("/")
     public String index(Model model){
         //model.addAttribute("pageUrl","blog/index");
         model.addAttribute("category","index");
         //model.addAttribute("sliderList",bizArticleService.sliderList());//轮播文章
         //loadMainPage(model,vo);
         return THEME_PREFIX + bizThemeService.selectCurrent().getName()+ "/index";
-    }
+    }*/
    /* @RequestMapping("/blog/index/{pageNumber}")
     public String index(@PathVariable("pageNumber") Integer pageNumber, ArticleConditionVo vo, Model model) {
         vo.setPageNumber(pageNumber);

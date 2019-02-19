@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>登录</title>
-    <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
     <link rel="stylesheet" th:href="@{/libs/bootstrap/bootstrap.min.css}"/>
@@ -17,7 +16,7 @@
 </head>
 <body>
 <header id="header">
-    <div th:replace="home/fragments/navbar :: navbar"></div>
+	<div th:replace="home/fragments/navbar :: loginNavbar"></div>
 </header>
 <div class="main-content login-content">
     <div class="login-bg">
@@ -75,8 +74,6 @@
 <script>
     $(function () {
         $(".vcode-img").on('click', function () {
-//            var url = '/Creditgt.jpg?d='+Math.random();
-//            $(this).attr('src',url);
             $(this).attr('src', '/verificationCode?' + Math.floor(Math.random() * 100));
         });
         $("#loginBtn").on('click', function () {
@@ -116,7 +113,7 @@
         });
     })
 
-    window.onload=function(){
+   /* window.onload=function(){
         var new_scroll_position = 0;
         var last_scroll_position;
         var header = document.getElementById("header");
@@ -131,9 +128,9 @@
                 header.classList.add("slideDown");
             }
             new_scroll_position = last_scroll_position;
-        });
+        }); 
 
-    }
+    } */
 </script>
 </body>
 </html>

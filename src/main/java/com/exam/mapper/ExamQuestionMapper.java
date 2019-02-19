@@ -9,4 +9,8 @@ public interface ExamQuestionMapper extends MapperUtil<ExamQuestion>{
 
 	List<ExamQuestion> selectByExamId(Integer examId);
 
+	int deleteBatch(Integer[] ids);
+	
+	
+
 }

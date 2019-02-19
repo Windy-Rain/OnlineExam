@@ -53,7 +53,7 @@ public class SystemController{
     /*后台首页*/
     @RequestMapping(value={"/index"})
     public String index(){
-        return "index/index";
+        return "manager/index";
     }
 
     /*登陆*/

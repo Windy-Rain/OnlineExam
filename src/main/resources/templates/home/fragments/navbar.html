@@ -2,11 +2,18 @@
 <div id="top" th:fragment="top"  class="top-box">
     <div class="container">
         <span class="">
-                                      欢迎访问在线考试平台，这是一个记录世界的平台！
+                                      
         </span>
     </div>
 </div>
-<nav id ="navbar" th:fragment="navbar" class="navbar navbar-default ">
+<nav id="loginNavbar" th:fragment="loginNavbar" style="background:#00CCCC">
+	<div class="container" >
+		<div class="navbar-header">
+	    	<p style="font-family:'微软雅黑';color:#fff;font-size:36px">C语言在线考试系统</p>
+	    </div>
+	</div>
+</nav>
+<nav id ="navbar" th:fragment="navbar" class="navbar navbar-default">
 	<div class="container">
     	<div class="navbar-header">
 	    	<a class="logo-a" href="/">
@@ -20,8 +27,8 @@
                     	<span class="glyphicon glyphicon-th-large"></span> 首页
                     </a>
                 </li>
-                <li class="">
-                    <a th:href="@{/}">
+                <li th:class="${category=='examination' ? 'active' : ''}">
+                    <a th:href="@{/toExam}">
                        	 <span class="glyphicon glyphicon-road"></span> 在线考试
                     </a>
                 </li>
@@ -34,6 +41,13 @@
                     <a th:href="@{/}">
                        	 <span class="glyphicon glyphicon-send"></span> 讨论区
                     </a>
+                </li>
+                
+                <li>
+                	<a class="btn btn-primary">登录</a>
+                </li>
+                <li>
+                	<a class="btn btn-primary">注册</a>
                 </li>
 	    	</ul>
 	    </div>

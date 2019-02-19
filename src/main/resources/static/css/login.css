@@ -175,24 +175,25 @@ button {
     opacity: 1
 }
 
-/*login鍐呭寮�濮�*/
+
 input{
     -webkit-appearance: none;
 }
+.main-content{
+	background:#00CCCC;
+}
 .login-content {
+	width:100%;
+	height:100%;
     position: relative;
-    margin-top: 55px;
+    margin-top:60px
+    
 }
 
 .login-bg {
-    /* background: url(../img/login-bg.jpg) center top no-repeat; */
-    width: 100%;
-    height: 100%;
+    width:100%;
+    height:100%;
     top: 0px;
-}
-.bg-img{
-	width: 100%;
-    height: 100%;
 }
 
 .login-box {

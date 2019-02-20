@@ -20,18 +20,30 @@ public class ExamWebController {
 	
 	@RequestMapping("/")
 	public String index(Model model) {
-		model.addAttribute("category", "index");
-		return "index/index";
+		if(SecurityUtils.getSubject().isAuthenticated()) {
+			return "index/index";
+		}else {
+			return "index/index";
+		}
 	}
 	
-	@GetMapping("/toExam")
+	@GetMapping("/exam")
 	public String exam(Model model) {
 		if(SecurityUtils.getSubject().isAuthenticated()) {
-			model.addAttribute("category", "examination");
-			return "index/examination";
+			return "redirect:/exam/examination";
 		}else {
-			return "index/login";
+			return "redirect:/exam/login";
 		}
 	}	
+	
+	@GetMapping("/exam/examination")
+	public String toExam(Model model) {
+		return "index/examination";
+	}
+	
+	@GetMapping("/exam/login")
+	public String login(Model model) {
+		return "index/login";
+	}
 	
 }

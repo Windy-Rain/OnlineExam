@@ -4,39 +4,26 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>C语言在线考试系统 | 登录</title>
-<!-- Tell the browser to be responsive to screen width -->
-<meta
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-	name="viewport">
-<!-- Bootstrap 3.3.7 -->
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<link rel="stylesheet" th:href="@{/libs/semantic-ui/semantic.min.css}" />
 <link rel="stylesheet" th:href="@{/libs/bootstrap/bootstrap.min.css}" />
-<!-- Font Awesome -->
-<link rel="stylesheet"
-	th:href="@{/libs/font-awesome/font-awesome.min.css}" />
-<!-- Ionicons -->
+<link rel="stylesheet" th:href="@{/libs/font-awesome/font-awesome.min.css}" />
 <link rel="stylesheet" th:href="@{/libs/Ionicons/css/ionicons.min.css}">
-<!-- Theme style -->
-<link rel="stylesheet" th:href="@{/libs/adminlte/css/AdminLTE.min.css}">
-
 <link rel="stylesheet" th:href="@{/libs/validate/validate.css}" />
-<!-- iCheck -->
 <link rel="stylesheet" th:href="@{/libs/iCheck/square/blue.css}" />
-
-<!-- Google Font -->
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+<link rel="stylesheet" th:href="@{/libs/theme/online-exam/css/web-common.css}" />
+<link rel="stylesheet" th:href="@{/css/login.css}" />
+<script type="text/javascript" th:src="@{/libs/semantic-ui/semantic.min.js}"></script>
 <script th:src="@{/libs/jquery/jquery.min.js}"></script>
 </head>
-<body class="hold-transition login-page">
-	<div class="login-box">
-		<div class="login-logo">
-			<a href=""><b>C语言</b>在线考试系统</a>
-		</div>
-		<!-- /.login-logo -->
-		<div class="login-box-body">
-			<p class="login-box-msg">Sign in to start your session</p>
-
-			<form id="loginForm">
+<body>
+	<header id="header">
+			<div th:replace="home/fragments/navbar :: navbar"></div>
+	</header>
+	<div class="main-content login-content">
+		<div class="login-box">
+			<form id="loginForm" class="login-form">
+				<div class="login-title">C语言在线考试系统</div>
 				<div class="form-group has-feedback">
 					<input type="text" name="username" class="form-control"
 						placeholder="学号/教工号/管理员" max="14" min="3" require="必填项"> <span
@@ -59,32 +46,28 @@
 				<div class="row">
 					<div class="col-xs-8">
 						<div class="checkbox icheck">
-							<label> <input type="checkbox"> 记住我
+							<label style="padding: 0"> <input type="checkbox"
+								id="rememberMe" name="rememberMe" checked value="1"> 记住我
 							</label>
 						</div>
 					</div>
-					<!-- /.col -->
 					<div class="col-xs-4">
-						<button type="submit" class="btn btn-primary btn-block btn-flat">登录</button>
+						<button id="loginBtn" type="button"
+							class="btn btn-primary btn-block btn-flat">登录</button>
 					</div>
-					<!-- /.col -->
 				</div>
+				<a href="#">忘记密码?</a><br> <a href="" class="text-center">注册账号</a>
 			</form>
-
-			<!-- /.social-auth-links -->
-
-			<a href="#">忘记密码?</a><br> <a href="" class="text-center">注册账号</a>
-
 		</div>
 	</div>
 	<div th:replace="home/fragments/footer :: copyrightCommon"></div>
-
-	<!-- Bootstrap 3.3.7 -->
-	<script th:src="@{/libs/bootstrap/bootstrap.min.js}"></script>
-	<!-- iCheck -->
-	<script th:src="@{/libs/iCheck/icheck.min.js}"></script>
-	<script th:src="@{/libs/validate/validate.js}"></script>
-	<script>
+<!-- Bootstrap 3.3.7 -->
+<script th:src="@{/libs/bootstrap/bootstrap.min.js}"></script>
+<script th:src="@{/libs/layer/layer.js}"></script>
+<!-- iCheck -->
+<script th:src="@{/libs/iCheck/icheck.min.js}"></script>
+<script th:src="@{/libs/validate/validate.js}"></script>
+<script>
   $(function () {
     $('input').iCheck({
       checkboxClass: 'icheckbox_square-blue',
@@ -92,6 +75,48 @@
       increaseArea: '20%' /* optional */
     });
   });
+</script>
+<script>
+	$(function () {
+	    $(".vcode-img").on('click', function () {
+	        $(this).attr('src', '/verificationCode?' + Math.floor(Math.random() * 100));
+	    });
+	    $("#loginBtn").on('click', function () {
+	        if (!doValidForm(loginForm)) {
+	            //没有通过验证
+	            return;
+	        }
+	        $.ajax({
+	            type: "POST",
+	            url: "/login",
+	            data: $(".login-form").serialize(),
+	            dataType: "json",
+	            success: function (data) {
+	                if (data.status == 200) {
+	                    layer.msg(data.msg, {
+	                        offset: '30%',
+	                        time: 800
+	                    }, function () {
+	                        window.location.href = "/exam/examination";
+	                    });
+	                }else{
+	                    layer.msg(data.msg, {
+	                        icon: 2,
+	                        offset: '30%',
+	                        time: 2000
+	                    });
+	                    $("#verificationCode").click();
+	                }
+	            }
+	        });
+	    });
+	
+	    $(document).keyup(function (event) {
+	        if (event.keyCode == 13) {
+	            $("#loginBtn").click();
+	        }
+	    });
+	})
 </script>
 </body>
 </html>

@@ -2,54 +2,47 @@
 <div id="top" th:fragment="top"  class="top-box">
     <div class="container">
         <span class="">
-                                      
         </span>
     </div>
+</div>
+<div th:fragment="navbar" class="ui fixed inverted menu" style="background:#4F94CD">
+    <a th:href="@{/}" class="header item">
+        <img class="ui" th:src="@{/img/logo.png}" width="156" height="32" alt="" />
+    </a>
+    <a th:href="@{/exam}" class="item">
+        <i class="desktop icon"></i>在线考试
+    </a>
+    <a th:href="@{/problemset/list}" class="item">
+        <i class="list layout icon"></i>题库中心
+    </a>
+    <a th:href="@{/discuss}" class="item">
+        <i class="talk icon"></i>讨论区
+    </a>
+    <shiro:notAuthenticated>
+	    <a id="login" class="right item">
+	        <i class="sign in icon"></i>登录
+	    </a>
+    </shiro:notAuthenticated>
+    <shiro:authenticated>
+	    <div class="ui simple dropdown right item">
+	        <img class="ui avatar image" th:src="@{/img/person.jpg}"/>
+	        <span id="userId" style="display: none"><shiro:principal property="userId" /></span>
+	        <span><shiro:principal property="nickname"/></span><i class="dropdown icon"></i>
+	        <div class="menu">
+	            <a class="item" th:href="@{/account/profile}">
+	                <i class="user icon"></i>我的主页
+	            </a>
+	            <a class="item" id="logoutBtn">
+	                <i class="sign out icon"></i>退出
+	            </a>
+	        </div>
+	    </div>
+    </shiro:authenticated>
 </div>
 <nav id="loginNavbar" th:fragment="loginNavbar" style="background:#00CCCC">
 	<div class="container" >
 		<div class="navbar-header">
-	    	<p style="font-family:'微软雅黑';color:#fff;font-size:36px">C语言在线考试系统</p>
+	    	<p style="font-family:'微软雅黑';color:#fff;font-size:36px">C语言在线考试系统管理后台登录</p>
 	    </div>
 	</div>
-</nav>
-<nav id ="navbar" th:fragment="navbar" class="navbar navbar-default">
-	<div class="container">
-    	<div class="navbar-header">
-	    	<a class="logo-a" href="/">
-	            <img src="/img/logo.png" alt="logo" />
-	        </a>
-	    </div>
-	    <div class="collapse navbar-collapse navbar-right" aria-expanded="false">
-	    	<ul class="nav navbar-nav">
-	    		<li th:class="${category=='index' ? 'active' : ''}">
-                    <a th:href="@{/}">
-                    	<span class="glyphicon glyphicon-th-large"></span> 首页
-                    </a>
-                </li>
-                <li th:class="${category=='examination' ? 'active' : ''}">
-                    <a th:href="@{/toExam}">
-                       	 <span class="glyphicon glyphicon-road"></span> 在线考试
-                    </a>
-                </li>
-                <li class="">
-                    <a th:href="@{/}">
-                       	<span class="glyphicon glyphicon-hdd"></span> 题库中心
-                    </a>
-                </li>
-                <li class="">
-                    <a th:href="@{/}">
-                       	 <span class="glyphicon glyphicon-send"></span> 讨论区
-                    </a>
-                </li>
-                
-                <li>
-                	<a class="btn btn-primary">登录</a>
-                </li>
-                <li>
-                	<a class="btn btn-primary">注册</a>
-                </li>
-	    	</ul>
-	    </div>
-    </div>
 </nav>

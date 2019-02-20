@@ -190,6 +190,18 @@ input{
     
 }
 
+.login-page{
+	width:100%;
+	height:100%;
+	background:#00CCCC;
+	position: relative;
+}
+
+.nav-box{
+	height:60px;
+	background:#00CCCC;
+}
+
 .login-bg {
     width:100%;
     height:100%;
@@ -199,20 +211,17 @@ input{
 .login-box {
     position: absolute;
     z-index: 2;
-    margin-top: 8%;
-    margin-right: 15%;
+    margin-top: 10%;
     top: 0px;
-    right: 0px;
+    margin-left:40%;
     padding-bottom: 30px;
     background: #fff;
     border-radius: 3px;
     border-color: #e2e2e2;
     border:1px solid #e2e2e2;
 }
-
 .login-form {
     width: 324px;
-    float: right;
     padding: 0px 26px;
 }
 

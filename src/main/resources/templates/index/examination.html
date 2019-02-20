@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title th:text="${@module.get('sysConfig').SITE_NAME}"></title>
+	<link rel="stylesheet" th:href="@{/libs/semantic-ui/semantic.min.css}" />
+	<link rel="stylesheet" th:href="@{/css/exam-common.css}" />
+    <script type="text/javascript" th:src="@{/libs/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/libs/semantic-ui/semantic.min.js}"></script>
+	<script th:src="@{/js/jquery.min.js}"></script>
+</head>
+<body>
+	<header id="header" class="nav-header">
+		<div th:replace="home/fragments/navbar :: navbar"></div>
+	</header>
+<div>考试页面</div>
+</body>
+</html>

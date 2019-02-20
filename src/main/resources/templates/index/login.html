@@ -11,16 +11,16 @@
 <link rel="stylesheet" th:href="@{/libs/Ionicons/css/ionicons.min.css}">
 <link rel="stylesheet" th:href="@{/libs/validate/validate.css}" />
 <link rel="stylesheet" th:href="@{/libs/iCheck/square/blue.css}" />
-<link rel="stylesheet" th:href="@{/libs/theme/online-exam/css/web-common.css}" />
 <link rel="stylesheet" th:href="@{/css/login.css}" />
+<link rel="stylesheet" th:href="@{/css/web-common.css}" />
+<script type="text/javascript" th:src="@{/libs/jquery/jquery.min.js}"></script>
 <script type="text/javascript" th:src="@{/libs/semantic-ui/semantic.min.js}"></script>
-<script th:src="@{/libs/jquery/jquery.min.js}"></script>
 </head>
 <body>
-	<header id="header">
+	<header class="login-header">
 			<div th:replace="home/fragments/navbar :: navbar"></div>
 	</header>
-	<div class="main-content login-content">
+	<div class="login-content">
 		<div class="login-box">
 			<form id="loginForm" class="login-form">
 				<div class="login-title">C语言在线考试系统</div>
@@ -60,7 +60,9 @@
 			</form>
 		</div>
 	</div>
-	<div th:replace="home/fragments/footer :: copyrightCommon"></div>
+	<div class="footer">
+		<div th:replace="home/fragments/footer :: copyrightCommon"></div>
+	</div>
 <!-- Bootstrap 3.3.7 -->
 <script th:src="@{/libs/bootstrap/bootstrap.min.js}"></script>
 <script th:src="@{/libs/layer/layer.js}"></script>

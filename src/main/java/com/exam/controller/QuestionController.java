@@ -42,7 +42,7 @@ public class QuestionController {
 		PageHelper.startPage(PageUtil.getPageNo(limit, offset),limit);
 		List<Question> questionList = questionService.findByCondition(questionConditionVo);
 		PageInfo<Question> pages = new PageInfo<>(questionList);
-		return ResultUtil.table(questionList, pages.getTotal());
+		return ResultUtil.table(questionList, pages.getTotal(),pages);
 	}
 	
 	//添加题目

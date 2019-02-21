@@ -11,12 +11,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.exam.model.User;
 import com.exam.service.UserService;
+import com.exam.util.PageUtil;
 import com.exam.util.ResultUtil;
 import com.exam.vo.UserOnlineVo;
 import com.exam.vo.UserSessionVo;
 import com.exam.vo.base.PageResultVo;
 import com.exam.vo.base.ResponseVo;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("/online/user")
@@ -29,8 +33,9 @@ public class OnlineUserController {
     @ResponseBody
     public PageResultVo onlineUsers(UserOnlineVo user, Integer limit, Integer offset){
         List<UserOnlineVo> userList = userService.selectOnlineUsers(user);
+        PageInfo<UserOnlineVo> pages = new PageInfo<>(userList);
         int endIndex = (offset+limit) > userList.size() ? userList.size() : (offset+limit);
-        return ResultUtil.table(userList.subList(offset,endIndex),(long)userList.size());
+        return ResultUtil.table(userList.subList(offset,endIndex),(long)userList.size(),pages);
     }
 
     // 强制踢出用户

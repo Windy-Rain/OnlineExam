@@ -1,48 +1,61 @@
 <meta charset="utf-8">
-<div id="top" th:fragment="top"  class="top-box">
-    <div class="container">
-        <span class="">
-        </span>
-    </div>
-</div>
-<div th:fragment="navbar" class="ui fixed inverted menu" style="background:#4F94CD">
-    <a th:href="@{/}" class="header item">
-        <img class="ui" th:src="@{/img/logo.png}" width="156" height="32" alt="" />
-    </a>
-    <a th:href="@{/exam}" class="item">
-        <i class="desktop icon"></i>在线考试
-    </a>
-    <a th:href="@{/problemset/list}" class="item">
-        <i class="list layout icon"></i>题库中心
-    </a>
-    <a th:href="@{/discuss}" class="item">
-        <i class="talk icon"></i>讨论区
-    </a>
-    <shiro:notAuthenticated>
-	    <a id="login" class="right item">
-	        <i class="sign in icon"></i>登录
+<div th:fragment="navbar">
+	<div class="ui fixed inverted menu" style="background:#4F94CD">
+	    <a th:href="@{/}" class="header item">
+	        <img class="ui" th:src="@{/img/logo.png}" width="156" height="32" alt="" />
 	    </a>
-    </shiro:notAuthenticated>
-    <shiro:authenticated>
-	    <div class="ui simple dropdown right item">
-	        <img class="ui avatar image" th:src="@{/img/person.jpg}"/>
-	        <span id="userId" style="display: none"><shiro:principal property="userId" /></span>
-	        <span><shiro:principal property="nickname"/></span><i class="dropdown icon"></i>
-	        <div class="menu">
-	            <a class="item" th:href="@{/account/profile}">
-	                <i class="user icon"></i>我的主页
-	            </a>
-	            <a class="item" id="logoutBtn">
-	                <i class="sign out icon"></i>退出
-	            </a>
-	        </div>
-	    </div>
-    </shiro:authenticated>
-</div>
-<nav id="loginNavbar" th:fragment="loginNavbar" style="background:#00CCCC">
-	<div class="container" >
-		<div class="navbar-header">
-	    	<p style="font-family:'微软雅黑';color:#fff;font-size:36px">C语言在线考试系统管理后台登录</p>
-	    </div>
+	    <a th:href="@{/exam}" class="item">
+	        <i class="desktop icon"></i>在线考试
+	    </a>
+	    <a th:href="@{/problemset/list}" class="item">
+	        <i class="list layout icon"></i>题库中心
+	    </a>
+	    <a th:href="@{/discuss}" class="item">
+	        <i class="talk icon"></i>讨论区
+	    </a>
+	    <shiro:notAuthenticated>
+		    <a id="login" class="right item">
+		        <i class="sign in icon"></i>登录
+		    </a>
+	    </shiro:notAuthenticated>
+	    <shiro:authenticated>
+		    <div class="ui simple dropdown right item">
+		        <img class="ui avatar image" th:src="@{/img/person.jpg}"/>
+		        <span id="userId" style="display: none"><shiro:principal property="userId" /></span>
+		        <span><shiro:principal property="nickname"/></span><i class="dropdown icon"></i>
+		        <div class="menu">
+		            <a class="item" id="myInfo">
+		                <i class="user icon"></i>我的主页
+		            </a>
+		            <a class="item" id="logoutBtn">
+		                <i class="sign out icon"></i>退出
+		            </a>
+		        </div>
+		    </div>
+	    </shiro:authenticated>
 	</div>
-</nav>
+	<script type="text/javascript">
+		$(function(){
+			/* 登录 */
+			$("#login").on('click', function(){
+				 window.location.href="/exam/login";
+			})
+			/* 退出 */
+			$("#logoutBtn").on('click',function(){
+				Core.confirm("确定退出?", function(){
+					Core.postAjax("/logout", {}, function(data){
+						if(data.status==200){
+							window.location.href="/exam/login";
+						}else{
+							layer.msg(data.msg);
+						}
+					})
+				})
+			})
+			/* 我的信息 */
+			$("#myInfo").on('click', function(){
+				alert("正在开发中...")
+			})
+		});
+	</script>
+</div>

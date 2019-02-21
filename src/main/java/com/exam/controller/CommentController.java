@@ -39,7 +39,7 @@ public class CommentController {
         PageHelper.startPage(PageUtil.getPageNo(limit, offset),limit);
         List<BizComment> comments = commentService.selectComments(comment);
         PageInfo<BizComment> pages = new PageInfo<>(comments);
-        return ResultUtil.table(comments,pages.getTotal());
+        return ResultUtil.table(comments,pages.getTotal(),pages);
     }
     @PostMapping("/reply")
     public ResponseVo edit(BizComment comment){

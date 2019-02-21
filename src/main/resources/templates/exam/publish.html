@@ -292,11 +292,9 @@
                 $('#endExamTime').val(endTime);
                 $("#status").val(status);
                 $("#question").val(overAllIds);
-                alert($("#examForm").serialize());
                 Core.postAjax("/exam/add", $("#examForm").serialize(), function (data) {
                     if(data.status=200){
                     	$("#examForm")[0].reset(); //清空表单
-                       // Core.load("#table","exam/add");
                     } 
                     layer.msg(data.msg)
                 })

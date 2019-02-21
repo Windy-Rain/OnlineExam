@@ -24,3 +24,26 @@
     </script>
     <p>Copyright © [[${#dates.format(new java.util.Date().getTime(), 'yyyy')}]]. [[${@module.get('sysConfig').SITE_NAME}]] · Powered by <a href="https://github.com/HungKuei" target="_blank" title="在线考试系统">HungKuei</a> </p>
 </div>
+
+<div th:fragment="copyrightExamWeb" class="ui container">
+    <div class="ui stackable two columns grid">
+        <div class="column">
+            <div class="ui two columns grid">
+                <div class="column">
+                    <h3>项目介绍</h3>
+                    C语言在线考试系统是一个在线测试学习系统，并用于辅助课程教学和学生学习。
+                </div>
+                <div class="column">
+                    <h3>联系我们</h3>
+                  	  如有问题请发邮件到:
+                    hungkuei@163.com
+                </div>
+            </div>
+        </div>
+        <div class="right aligned column">
+        	<br/>
+        	<br/>
+            <p>Copyright © [[${#dates.format(new java.util.Date().getTime(), 'yyyy')}]]. [[${@module.get('sysConfig').SITE_NAME}]] · Powered by <a href="https://github.com/HungKuei" target="_blank" title="在线考试系统">HungKuei</a> </p>
+        </div>
+    </div>
+</div>

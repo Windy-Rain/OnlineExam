@@ -42,3 +42,7 @@
 .footer a{
     color: #fff;
 }
+
+.exam-content{
+	min-height:76%;
+}

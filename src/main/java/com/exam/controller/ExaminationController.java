@@ -50,11 +50,11 @@ public class ExaminationController {
 
 	@PostMapping("list")
 	@ResponseBody
-	public PageResultVo loadExam(ExaminationConditionVo examConditionVo, Integer limit, Integer offset) {
+	public PageResultVo loadExam(ExaminationConditionVo examConditionVo, Model model, Integer limit, Integer offset) {
 		PageHelper.startPage(PageUtil.getPageNo(limit, offset),limit);
 		List<Examination> examList = examService.findByCondition(examConditionVo);
 		PageInfo<Examination> pages = new PageInfo<>(examList);
-		return ResultUtil.table(examList, pages.getTotal());
+		return ResultUtil.table(examList, pages.getTotal(), pages);
 	}
 	
 	@GetMapping("/add")

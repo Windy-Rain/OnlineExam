@@ -32,7 +32,7 @@ public class TagController {
         PageHelper.startPage(PageUtil.getPageNo(limit, offset),limit);
         List<BizTags> tagList= tagsService.selectTags(bizTags);
         PageInfo<BizTags> pages = new PageInfo<>(tagList);
-        return ResultUtil.table(tagList,pages.getTotal());
+        return ResultUtil.table(tagList,pages.getTotal(),pages);
     }
     @PostMapping("/add")
     @ResponseBody

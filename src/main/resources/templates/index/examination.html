@@ -2,18 +2,147 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title th:text="${@module.get('sysConfig').SITE_NAME}"></title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<link rel="stylesheet" th:href="@{/libs/bootstrap/bootstrap.min.css}"/>
 	<link rel="stylesheet" th:href="@{/libs/semantic-ui/semantic.min.css}" />
 	<link rel="stylesheet" th:href="@{/css/exam-common.css}" />
-    <script type="text/javascript" th:src="@{/libs/jquery/jquery.min.js}"></script>
-    <script type="text/javascript" th:src="@{/libs/semantic-ui/semantic.min.js}"></script>
-	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/libs/jquery/jquery.min.js}"></script>
+	<script th:src="@{/libs/bootstrap/bootstrap.min.js}"></script>
+    <script th:src="@{/libs/semantic-ui/semantic.min.js}"></script>
+    <script th:src="@{/js/core.js}"></script>
+    <script th:src="@{/libs/layer/layer.js}"></script>
 </head>
 <body>
 	<header id="header" class="nav-header">
 		<div th:replace="home/fragments/navbar :: navbar"></div>
 	</header>
-<div>考试页面</div>
+	<div class="exam-content">
+		<div class="ui countdownTime container">
+		    <div class="red ui tiny horizontal statistic">
+		        <div class="value">
+		            <i class="wait icon"></i>
+		            <span id="contest-time-countdown">00:00:00</span>
+		        </div>
+		    </div>
+		</div>
+		<div class="ui contestList container">
+			<table class="ui table" id="exam_table">
+				<thead><tr>
+		            <th class="eight wide">考试名称</th>
+		            <th class="second wide">考试科目</th>
+		            <th class="second wide">开始时间</th>
+		            <th class="second wide">结束时间</th>
+		            <th class="second wide">操作</th>
+		        </tr></thead>
+		        <tbody></tbody>
+			</table>
+			<!-- 显示分页信息 -->
+			<div class="row">
+				<!-- 分页文字信息 -->
+				<div class="col-md-6" id="page_info_area">
+				</div>
+				<div class="col-md-6" id="page_nav_area">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<div th:replace="home/fragments/footer :: copyrightExamWeb"></div>
+	</div>
+	<script type="text/javascript">
+		var totalPage,currentPage;
+		$(function(){
+			requestPage(0);
+		});
+
+		function requestPage(offset){
+			Core.postAjax("/exam/list",{"limit":5,"offset":offset},function (result) {
+				console.log(result);
+	            build_stus_table(result);
+	            build_page_info(result);
+	            build_page_nav(result);
+            })
+		}
+
+		function build_stus_table(result){
+			var exams = result.rows;
+			$("#exam_table tbody").empty();
+			$.each(exams, function(index, items){
+				var tableHeader = $("<span>未开始</span>").addClass("ui yellow ribbon label");
+				var titleTd = $("<td></td>").append(tableHeader).append($("<span></span>").addClass("ui header").append(items.title));
+				var classTd = $("<td></td>").append(items.subject.name);
+				var startTimeTd = $("<td></td>").append(items.startTime);
+				var endTimeTd = $("<td></td>").append(items.endTime);
+				var optionTd = $("<td></td>").append($("<a>进入考试</a>").addClass("small disabled positive ui button"));
+				$("<tr></tr>").append(titleTd)
+							  .append(classTd)
+							  .append(startTimeTd)
+							  .append(endTimeTd)
+							  .append(optionTd)
+							  .appendTo("#exam_table tbody");
+			})
+		}
+
+		function build_page_info(result){
+			var pageInfo = result.pageInfo;
+			console.log(pageInfo);			
+			$("#page_info_area").empty();
+			$("#page_info_area").append("当前第"+ 
+				pageInfo.pageNum +"页,总共"+ 
+				pageInfo.pages +"页,总共"+  
+				result.total +"条记录");
+			totalPage=pageInfo.total;
+			currentPage=pageInfo.pageNum;
+		}
+
+		function build_page_nav(result){
+			var pageInfo = result.pageInfo;
+			$("#page_nav_area").empty();
+			var ul = $("<ul></ul>").addClass("pagination");
+			var firstPageLi = $("<li></li>").append($("<a></a>").append("首页").attr("href","#"));
+			var prePageLi = $("<li></li>").append($("<a></a>").append("&laquo;").attr("href","#"));
+			if(pageInfo.hasPreviousPage == false){
+				firstPageLi.addClass("disabled");
+				prePageLi.addClass("disabled");
+			}else{
+				firstPageLi.click(function(){
+					requestPage(0);
+				});
+				prePageLi.click(function(){
+					requestPage(pageInfo.pageNum-1)	
+				});
+			}
+			
+			var nextPageLi = $("<li></li>").append($("<a></a>").append("&raquo;").attr("href","#"));
+			var lastPageLi = $("<li></li>").append($("<a></a>").append("尾页").attr("href", "#"));
+			if(pageInfo.hasNextPage == false){
+				nextPageLi.addClass("disabled");
+				lastPageLi.addClass("disabled");
+			}else{
+				nextPageLi.click(function(){
+					requestPage(pageInfo.pageNum+1);
+				});
+				lastPageLi.click(function(){
+					requestPage(pageInfo.pages);
+				});
+			}
+			ul.append(firstPageLi).append(prePageLi),
+			$.each(pageInfo.navigatepageNums, function(index, items){
+				var numLi = $("<li></li>").append($("<a></a>").append(items));
+				if(pageInfo.pageNum == items){
+					numLi.addClass("active");
+					}
+				numLi.click(function(){
+					requestPage(items);
+					});
+				ul.append(numLi);	
+				});
+			ul.append(nextPageLi).append(lastPageLi);
+			var nav = $("<nav></nav>").css("float","right").append(ul);
+			nav.appendTo("#page_nav_area");
+			};
+	</script>
 </body>
 </html>

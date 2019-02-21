@@ -2,14 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title th:text="${@module.get('sysConfig').SITE_NAME}"></title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="stylesheet" th:href="@{/libs/bootstrap/bootstrap.min.css}"/>
 	<link rel="stylesheet" th:href="@{/libs/semantic-ui/semantic.min.css}" />
 	<link rel="stylesheet" th:href="@{/css/exam-common.css}" />
-	<script type="text/javascript" th:src="@{/libs/bootstrap/bootstrap.min.js}"></script>
-    <script type="text/javascript" th:src="@{/libs/jquery/jquery.min.js}"></script>
-    <script type="text/javascript" th:src="@{/libs/semantic-ui/semantic.min.js}"></script>
+	<script th:src="@{/libs/jquery/jquery.min.js}"></script>
+	<script th:src="@{/libs/bootstrap/bootstrap.min.js}"></script>
+    <script th:src="@{/libs/semantic-ui/semantic.min.js}"></script>
+    <script th:src="@{/js/core.js}"></script>
+    <script th:src="@{/libs/layer/layer.js}"></script>
 </head>
 <body>
 	<header id="header" class="nav-header">
@@ -46,49 +49,8 @@
 	    </div>
 	</div>
 	<div class="footer">
-	    <div class="ui container">
-	        <div class="ui stackable two columns grid">
-	            <div class="column">
-	                <div class="ui two columns grid">
-	                    <div class="column">
-	                        <h3>项目介绍</h3>
-	                        C语言在线考试系统是一个在线测试学习系统，并用于辅助课程教学和学生学习。
-	                    </div>
-	                    <div class="column">
-	                        <h3>联系我们</h3>
-	                      	  如有问题请发邮件到:
-	                        hungkuei@163.com
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="right aligned column">
-	            	<br/>
-	            	<br/>
-	                <p>Copyright © [[${#dates.format(new java.util.Date().getTime(), 'yyyy')}]]. [[${@module.get('sysConfig').SITE_NAME}]] · Powered by <a href="https://github.com/HungKuei" target="_blank" title="在线考试系统">HungKuei</a> </p>
-	            </div>
-	        </div>
-	    </div>
-	</div>	
+	    <div th:replace="home/fragments/footer :: copyrightExamWeb"></div>
+	</div>
 	<div class="return_top"><a class=" fa fa-arrow-up"></a></div>
-	<script type="text/javascript">
-	$(function(){
-		/* 登录 */
-		$("#login").on('click', function(){
-			window.location.href="/exam";
-		})
-		/*退出登录*/
-		$("#logoutBtn").on('click', function () {
-		    Core.confirm("确认退出？",function () {
-		        Core.postAjax("/logout",{},function(data){
-		            if(data.status==200){
-		                window.location.href="/";
-		            }else{
-		                layer.msg(data.msg);
-		            }
-		        })
-		    })
-		})
-	});
-	</script>
 </body>
 </html>

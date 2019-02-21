@@ -33,7 +33,7 @@ public class LinksController {
         PageHelper.startPage(PageUtil.getPageNo(limit, offset),limit);
         List<BizLink> linkList = linkService.selectLinks(bizLink);
         PageInfo<BizLink> pages = new PageInfo<>(linkList);
-        return ResultUtil.table(linkList,pages.getTotal());
+        return ResultUtil.table(linkList,pages.getTotal(),pages);
     }
     @PostMapping("/add")
     @ResponseBody

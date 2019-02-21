@@ -56,7 +56,7 @@
                     	<div class="col-xs-12">
                             <label class="control-label label-four">开始时间:</label>
                             <div class="ml80">
-                                <input type="text" class="form-control" th:value="${examination.startTime}" data-date-format="yyyy-mm-dd hh:ii:ss" name="startTime" id="startExamTime" placeholder="请选择开始考试时间" readonly="readonly" require="" />
+                                <input type="text" class="form-control" th:value="${#dates.format(examination.startTime, 'yyyy-MM-dd HH:mm:ss')}" data-date-format="yyyy-mm-dd hh:ii:ss" name="startTime" id="startExamTime" placeholder="请选择开始考试时间" readonly="readonly" require="" />
                             </div>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                     	<div class="col-xs-12">
                             <label class="control-label label-four">结束时间:</label>
                             <div class="ml80">
-                                <input type="text" class="form-control" th:value="${examination.endTime}" data-date-format="yyyy-mm-dd hh:ii:ss" name="endTime" id="endExamTime" placeholder="请选择结束考试时间" readonly="readonly" require="" />
+                                <input type="text" class="form-control" th:value="${#dates.format(examination.endTime, 'yyyy-MM-dd HH:mm:ss')}" data-date-format="yyyy-mm-dd hh:ii:ss" name="endTime" id="endExamTime" placeholder="请选择结束考试时间" readonly="readonly" require="" />
                             </div>
                         </div>
                     </div>

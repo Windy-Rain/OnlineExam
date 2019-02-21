@@ -53,7 +53,7 @@ public class UserController {
         PageHelper.startPage(PageUtil.getPageNo(limit, offset),limit);
         List<User> userList = userService.selectUsers(user);
         PageInfo<User> pages = new PageInfo<>(userList);
-        return ResultUtil.table(userList,pages.getTotal());
+        return ResultUtil.table(userList,pages.getTotal(),pages);
     }
 
     /**新增用户*/

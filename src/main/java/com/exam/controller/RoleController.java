@@ -50,7 +50,7 @@ public class RoleController{
             PageHelper.startPage(PageUtil.getPageNo(limit, offset),limit);
             List<Role> roleList = roleService.selectRoles(role);
             PageInfo<Role> pages = new PageInfo<>(roleList);
-            return ResultUtil.table(roleList,pages.getTotal());
+            return ResultUtil.table(roleList,pages.getTotal(), pages);
         } catch (Exception e) {
             logger.error(String.format("RoleController.loadRoles%s", e));
             throw e;

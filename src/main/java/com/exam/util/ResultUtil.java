@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.exam.vo.base.PageResultVo;
 import com.exam.vo.base.ResponseVo;
+import com.github.pagehelper.PageInfo;
 
 public class ResultUtil{
 
@@ -31,8 +32,8 @@ public class ResultUtil{
 		return vo(CoreConst.FAIL_CODE, msg,data);
 	}
 
-	public static PageResultVo table( List<?> list, Long total){
-		return new PageResultVo(list, total);
+	public static PageResultVo table( List<?> list, Long total, PageInfo<?> pageInfo){
+		return new PageResultVo(list, total,pageInfo);
 	}
 	
 	public static ResponseVo vo(Integer status, String message, Object data) {

@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.exam.model.Examination;
 import com.exam.service.ExaminationService;
+import com.exam.util.PageUtil;
+import com.exam.vo.ExaminationConditionVo;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 public class ExamWebController {
@@ -37,13 +41,21 @@ public class ExamWebController {
 	}	
 	
 	@GetMapping("/exam/examination")
-	public String toExam(Model model) {
+	public String toExam(Model model, ExaminationConditionVo examConditionVo) {
+		PageHelper.startPage(PageUtil.getPageNo(10, 0),10);
+		List<Examination> examList = examService.findByCondition(examConditionVo);
+		PageInfo<Examination> pages = new PageInfo<>(examList);
+		model.addAttribute("pageInfo", pages);
 		return "index/examination";
 	}
 	
 	@GetMapping("/exam/login")
 	public String login(Model model) {
-		return "index/login";
+		if(SecurityUtils.getSubject().isAuthenticated()) {
+			return "redirect:/";
+		}else {
+			return "index/login";
+		}
 	}
 	
 }

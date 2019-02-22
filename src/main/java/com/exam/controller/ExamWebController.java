@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.alibaba.fastjson.JSON;
 import com.exam.model.Examination;
 import com.exam.service.ExaminationService;
 import com.exam.util.PageUtil;
@@ -56,6 +57,13 @@ public class ExamWebController {
 		}else {
 			return "index/login";
 		}
+	}
+	
+	@GetMapping("/exam/startexam")
+	public String startToExam(Model model, Integer id) {
+		List<Examination> listExam = examService.queryByExamId(id);
+		model.addAttribute("examination", listExam);
+		return "index/detail";
 	}
 	
 }

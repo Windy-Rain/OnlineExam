@@ -9,10 +9,12 @@
 	<link rel="stylesheet" th:href="@{/libs/semantic-ui/semantic.min.css}" />
 	<link rel="stylesheet" th:href="@{/css/exam-common.css}" />
 	<script th:src="@{/libs/jquery/jquery.min.js}"></script>
+	<script th:src="@{/libs/jquery/jquery.countdown.min.js}"></script>
 	<script th:src="@{/libs/bootstrap/bootstrap.min.js}"></script>
     <script th:src="@{/libs/semantic-ui/semantic.min.js}"></script>
-    <script th:src="@{/js/core.js}"></script>
     <script th:src="@{/libs/layer/layer.js}"></script>
+    <script th:src="@{/js/core.js}"></script>
+    <script th:src="@{/js/examination.js}"></script>
 </head>
 <body>
 	<header id="header" class="nav-header">
@@ -22,12 +24,12 @@
 		<div class="ui countdownTime container">
 		    <div class="red ui tiny horizontal statistic">
 		        <div class="value">
-		            <i class="wait icon"></i>
-		            <span id="contest-time-countdown">00:00:00</span>
+		            <i class="alarm large icon"></i>
+		            <span id="exam-time-countdown"></span>
 		        </div>
 		    </div>
 		</div>
-		<div class="ui contestList container">
+		<div class="ui examList container">
 			<table class="ui table" id="exam_table">
 				<thead><tr>
 		            <th class="eight wide">考试名称</th>
@@ -52,9 +54,9 @@
 		<div th:replace="home/fragments/footer :: copyrightExamWeb"></div>
 	</div>
 	<script type="text/javascript">
-		var totalPage,currentPage;
+		var totalPage,currentPage,offset=0;
 		$(function(){
-			requestPage(0);
+			requestPage(offset);
 		});
 
 		function requestPage(offset){
@@ -63,6 +65,7 @@
 	            build_stus_table(result);
 	            build_page_info(result);
 	            build_page_nav(result);
+	            examIndexPage.init(result.rows);
             })
 		}
 
@@ -70,17 +73,27 @@
 			var exams = result.rows;
 			$("#exam_table tbody").empty();
 			$.each(exams, function(index, items){
-				var tableHeader = $("<span>未开始</span>").addClass("ui yellow ribbon label");
+				var tableHeader,operateBtn;
+				if(items.status==0){
+					tableHeader = $("<span>未开始</span>").addClass("ui yellow ribbon label");
+					operateBtn = $("<a>进入考试</a>").addClass("small disabled positive ui button");
+				}else if(items.status == 1){
+					tableHeader = $("<span>进行中</span>").addClass("ui green ribbon label");
+					operateBtn = $("<a onclick='startToExamAction("+items.id+")'>进入考试</a>").addClass("small positive ui button");
+				}else{
+					tableHeader = $("<span>已结束</span>").addClass("ui red ribbon label");
+					operateBtn = $("<a>进入考试</a>").addClass("small disabled grey ui button");
+				}
 				var titleTd = $("<td></td>").append(tableHeader).append($("<span></span>").addClass("ui header").append(items.title));
 				var classTd = $("<td></td>").append(items.subject.name);
 				var startTimeTd = $("<td></td>").append(items.startTime);
 				var endTimeTd = $("<td></td>").append(items.endTime);
-				var optionTd = $("<td></td>").append($("<a>进入考试</a>").addClass("small disabled positive ui button"));
+				var operateTd = $("<td></td>").append(operateBtn);
 				$("<tr></tr>").append(titleTd)
 							  .append(classTd)
 							  .append(startTimeTd)
 							  .append(endTimeTd)
-							  .append(optionTd)
+							  .append(operateTd)
 							  .appendTo("#exam_table tbody");
 			})
 		}
@@ -109,9 +122,10 @@
 			}else{
 				firstPageLi.click(function(){
 					requestPage(0);
+					offset=0;
 				});
 				prePageLi.click(function(){
-					requestPage(pageInfo.pageNum-1)	
+					requestPage(offset-=5)	
 				});
 			}
 			
@@ -122,10 +136,10 @@
 				lastPageLi.addClass("disabled");
 			}else{
 				nextPageLi.click(function(){
-					requestPage(pageInfo.pageNum+1);
+					requestPage(offset+=5);
 				});
 				lastPageLi.click(function(){
-					requestPage(pageInfo.pages);
+					requestPage(pageInfo.pages*5);
 				});
 			}
 			ul.append(firstPageLi).append(prePageLi),
@@ -135,7 +149,7 @@
 					numLi.addClass("active");
 					}
 				numLi.click(function(){
-					requestPage(items);
+					requestPage(items*5-1);
 					});
 				ul.append(numLi);	
 				});
@@ -143,6 +157,10 @@
 			var nav = $("<nav></nav>").css("float","right").append(ul);
 			nav.appendTo("#page_nav_area");
 			};
+			/*进入考试*/
+		    function startToExamAction(id) {
+		        window.location.href="/exam/startexam?id="+id
+		    }
 	</script>
 </body>
 </html>

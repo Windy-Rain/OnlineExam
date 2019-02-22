@@ -50,7 +50,9 @@ public class ExaminationController {
 
 	@PostMapping("list")
 	@ResponseBody
-	public PageResultVo loadExam(ExaminationConditionVo examConditionVo, Model model, Integer limit, Integer offset) {
+	public PageResultVo loadExam(ExaminationConditionVo examConditionVo,Integer limit, Integer offset) {
+		examService.updateExamToStart();
+		examService.updateExamToEnd();
 		PageHelper.startPage(PageUtil.getPageNo(limit, offset),limit);
 		List<Examination> examList = examService.findByCondition(examConditionVo);
 		PageInfo<Examination> pages = new PageInfo<>(examList);
@@ -62,9 +64,7 @@ public class ExaminationController {
 		Subject subject = new Subject();
 		subject.setStatus(CoreConst.STATUS_VALID);
 		List<Subject> subjects = subjectService.selectSubjects(subject);
-		List<Question> questions = questionService.select(new Question());
 		model.addAttribute("subjects", JSON.toJSONString(subjects));
-		model.addAttribute("questions",questions);
 		return "exam/publish";
 	}
 	

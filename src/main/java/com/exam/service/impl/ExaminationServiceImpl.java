@@ -61,10 +61,28 @@ public class ExaminationServiceImpl extends BaseServiceImpl<Examination> impleme
 	public Examination selectById(Integer id) {
 		return examMapper.selectById(id);
 	}
+	
+	@Override
+	public List<Examination> queryByExamId(Integer id) {
+		List<Integer> ids = new ArrayList<>();
+		ids.add(id);
+		List<Examination> listExam =  examMapper.listQuestionsByExamId(ids);
+		return listExam;
+	}
 
 	@Override
 	public int deleteBatch(Integer[] ids) {
 		return examMapper.deleteBatch(ids);
+	}
+
+	@Override
+	public boolean updateExamToStart() {
+		return examMapper.updateExamToStart(new Date()) > 0;
+	}
+
+	@Override
+	public boolean updateExamToEnd() {
+		return examMapper.updateExamToEnd(new Date()) > 0;
 	}
 
 }

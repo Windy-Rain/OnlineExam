@@ -18,7 +18,7 @@
 	<header id="header" class="nav-header">
 		<div th:replace="home/fragments/navbar :: navbar"></div>
 	</header>
-	<div class="main_background">
+	<div class="main_background" th:style="'background-image: url('+${#httpServletRequest.getContextPath()}+'/img/login-bg.jpg);'">
 		<div class="bg-container">
 	        <div class="logo_panel">
 	            <br/><br/><br/><br/><br/><br/>

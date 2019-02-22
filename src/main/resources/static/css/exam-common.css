@@ -9,6 +9,7 @@
 .main_background{
 	width:100%;
 	height:50%;
+	background-repeat: no-repeat;
 }
 
 .bg-container{
@@ -45,4 +46,30 @@
 
 .exam-content{
 	min-height:76%;
+}
+.ui.countdownTime.container {
+	height:10em;
+	padding-top:5em;
+	padding-left:15em
+}
+.ui.examList.container {
+	min-height:30em;
+}
+
+.ui.header.container {
+    margin-top: 1em;
+}
+
+.ui.problemDetail.container {
+    margin-top: 1em;
+}
+.ui.accordion.segment {
+    margin-top: 1em;
+}
+
+.active.section {
+    width: 245px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }

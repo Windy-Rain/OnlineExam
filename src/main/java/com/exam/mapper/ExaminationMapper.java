@@ -1,6 +1,9 @@
 package com.exam.mapper;
 
+import java.util.Date;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 
 import com.exam.model.Examination;
 import com.exam.util.MapperUtil;
@@ -25,5 +28,9 @@ public interface ExaminationMapper extends MapperUtil<Examination> {
 	Examination selectById(Integer id);
 
 	int deleteBatch(Integer[] ids);
+
+	int updateExamToStart(@Param("currentTime") Date currentTime);
+
+	int updateExamToEnd(@Param("currentTime") Date currentTime);
 
 }

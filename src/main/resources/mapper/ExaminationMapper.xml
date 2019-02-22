@@ -64,6 +64,7 @@
 			AND
 			a.title LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%')
 		</if>
+		order by a.id desc
     </select>
     
     <select id="listQuestionsByExamId" parameterType="int" resultMap="BaseResultMap">
@@ -112,6 +113,22 @@
     	e.id = #{id}
     </select>
     
+    <update id="updateExamToStart">
+        UPDATE examination
+        SET
+          status = 1
+        WHERE
+        status <![CDATA[ = ]]> 0 AND start_time <![CDATA[ <= ]]> #{currentTime} AND end_time <![CDATA[ > ]]> #{currentTime}
+    </update>
+
+    <update id="updateExamToEnd">
+        UPDATE examination
+        SET
+          status = 2
+        WHERE
+        status <![CDATA[ <= ]]> 2 AND end_time <![CDATA[ <= ]]> #{currentTime}
+    </update>
+    
     <delete id="deleteBatch" parameterType="map">
     	DELETE
     	FROM
@@ -122,4 +139,5 @@
     		#{item}
     	</foreach>
     </delete>
+    
 </mapper>

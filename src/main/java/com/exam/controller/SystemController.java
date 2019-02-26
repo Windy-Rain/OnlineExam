@@ -3,7 +3,6 @@ package com.exam.controller;
 import java.io.Serializable;
 import java.util.Deque;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,14 +23,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.exam.model.BizCategory;
 import com.exam.model.Permission;
 import com.exam.model.User;
-import com.exam.service.BizCategoryService;
 import com.exam.service.PermissionService;
 import com.exam.service.SysConfigService;
 import com.exam.service.UserService;
-import com.exam.util.CoreConst;
 import com.exam.util.ResultUtil;
 import com.exam.vo.base.ResponseVo;
 import com.google.code.kaptcha.Constants;
@@ -43,8 +39,6 @@ public class SystemController{
     private UserService userService;
     @Autowired
     private PermissionService permissionService;
-    @Autowired
-    private BizCategoryService bizCategoryService;
     @Autowired
     private RedisCacheManager redisCacheManager;
     @Autowired
@@ -62,10 +56,6 @@ public class SystemController{
         if(SecurityUtils.getSubject().isAuthenticated()){
             return "redirect:/index";
         }
-        BizCategory bizCategory = new BizCategory();
-        bizCategory.setStatus(CoreConst.STATUS_VALID);
-        model.addAttribute("categoryList", bizCategoryService.selectCategories(bizCategory));
-        getSysConfig(model);
         return "system/login";
     }
 
@@ -101,10 +91,6 @@ public class SystemController{
     /*踢出*/
     @GetMapping("/kickout")
     public String kickout(Model model){
-        BizCategory bizCategory = new BizCategory();
-        bizCategory.setStatus(CoreConst.STATUS_VALID);
-        model.addAttribute("categoryList", bizCategoryService.selectCategories(bizCategory));
-        getSysConfig(model);
         return "system/kickout";
     }
 
@@ -137,16 +123,5 @@ public class SystemController{
         List<Permission> permissionListList = permissionService.selectMenuByUserId(((User) SecurityUtils.getSubject().getPrincipal()).getUserId());
         return permissionListList;
     }
-
-    private void getSysConfig(Model model){
-        Map<String, String> map = configService.selectAll();
-        model.addAttribute("sysConfig",map);
-        BizCategory bizCategory = new BizCategory();
-        bizCategory.setStatus(CoreConst.STATUS_VALID);
-        model.addAttribute("categoryList", bizCategoryService.selectCategories(bizCategory));
-    }
-
-
-
 
 }

@@ -2,13 +2,13 @@ package com.exam.exception;
 
 
 
-public class ArticleNotFoundException extends RuntimeException {
+public class ExamNotFoundException extends RuntimeException {
     /**
      * Constructs a new runtime exception with {@code null} as its
      * detail message.  The cause is not initialized, and may subsequently be
      * initialized by a call to {@link #initCause}.
      */
-    public ArticleNotFoundException() {
+    public ExamNotFoundException() {
         super();
     }
 
@@ -21,7 +21,7 @@ public class ArticleNotFoundException extends RuntimeException {
      *         the detail message. The detail message is saved for
      *         later retrieval by the {@link #getMessage()} method.
      */
-    public ArticleNotFoundException(String message) {
+    public ExamNotFoundException(String message) {
         super(message);
     }
 
@@ -41,7 +41,7 @@ public class ArticleNotFoundException extends RuntimeException {
      *         unknown.)
      * @since 1.4
      */
-    public ArticleNotFoundException(String message, Throwable cause) {
+    public ExamNotFoundException(String message, Throwable cause) {
         super(message, cause);
     }
 }

@@ -12,14 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.exam.model.BizArticleLook;
 import com.exam.model.BizComment;
-import com.exam.model.BizLove;
-import com.exam.service.BizArticleLookService;
 import com.exam.service.BizCommentService;
-import com.exam.service.BizLoveService;
-import com.exam.util.CoreConst;
-import com.exam.util.DateUtil;
 import com.exam.util.IpUtil;
 import com.exam.util.MD5;
 import com.exam.util.ResultUtil;
@@ -34,10 +28,6 @@ import com.github.pagehelper.PageInfo;
 public class BlogApiController {
     @Autowired
     private BizCommentService commentService;
-    @Autowired
-    private BizArticleLookService articleLookService;
-    @Autowired
-    private BizLoveService loveService;
 
     @PostMapping("comments")
     public PageInfo<BizComment> getComments(CommentConditionVo vo){
@@ -75,43 +65,5 @@ public class BlogApiController {
             return ResultUtil.error("评论提交失败");
         }
     };
-    @PostMapping("article/look")
-    public ResponseVo checkLook(HttpServletRequest request, Integer articleId){
-        /*浏览次数*/
-        Date date = new Date();
-        String ip = IpUtil.getIpAddr(request);
-        int checkCount = articleLookService.checkArticleLook(articleId, ip, DateUtil.addHours(date,-1));
-        if(checkCount==0){
-            BizArticleLook articleLook = new BizArticleLook();
-            articleLook.setArticleId(articleId);
-            articleLook.setUserIp(ip);
-            articleLook.setLookTime(date);
-            articleLook.setCreateTime(date);
-            articleLook.setUpdateTime(date);
-            articleLookService.insert(articleLook);
-            return ResultUtil.success("浏览次数+1");
-        }else{
-            return ResultUtil.error("一小时内重复浏览不增加次数哦");
-        }
-    };
-    @PostMapping("love")
-    public ResponseVo love(HttpServletRequest request, Integer bizId,Integer bizType){
-        Date date = new Date();
-        String ip = IpUtil.getIpAddr(request);
-        BizLove bizLove = loveService.checkLove(bizId, ip);
-        if (bizLove == null) {
-            bizLove=new BizLove();
-            bizLove.setBizId(bizId);
-            bizLove.setBizType(bizType);
-            bizLove.setUserIp(ip);
-            bizLove.setStatus(CoreConst.STATUS_VALID);
-            bizLove.setCreateTime(date);
-            bizLove.setUpdateTime(date);
-            loveService.insert(bizLove);
-            return ResultUtil.success("点赞成功");
-        }else{
-            return ResultUtil.error("您已赞过了哦~");
-        }
-    }
 
 }

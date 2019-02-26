@@ -6,6 +6,7 @@
     </ol>
 </section>
 <!-- Main content -->
+<meta charset="utf-8">
 <section class="content">
     <div class="jax-box">
         <form id="formSearch" class="form-horizontal form-search">
@@ -196,9 +197,9 @@
             class:'min-width-100',
             formatter : function(value,
                                  row, index) {
-                var edit = editFlag=="true" ? '<a class="table-btn table-btn-info" onclick="editLink('+row.id+')">编辑</a>' : '';
-                var del = deleteFlag=="true" ? '<a  class="table-btn table-btn-danger" onclick="deleteLink('+row.id+')">删除</a>' : '';
-                return edit + del;
+                var edit = editFlag=="true" ? '<a class="btn btn-primary btn-sm" onclick="editLink('+row.id+')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑</a>' : '';
+                var del = deleteFlag=="true" ? '<a class="btn btn-danger btn-sm" onclick="deleteLink('+row.id+')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除</a>' : '';
+                return edit +" "+ del;
             }
         }];
     var options={

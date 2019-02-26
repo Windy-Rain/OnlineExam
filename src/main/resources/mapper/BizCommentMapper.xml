@@ -33,10 +33,6 @@
 			<result property="nickname" jdbcType="VARCHAR" column="parent_nickname"/>
 			<result property="content" jdbcType="VARCHAR" column="parent_content"/>
 		</association>
-		<association property="article" javaType="com.exam.model.BizArticle">
-			<result property="id" jdbcType="INTEGER" column="article_id"/>
-			<result property="title" jdbcType="VARCHAR" column="article_title"/>
-		</association>
 	</resultMap>
 	<sql id="Base_Column_List">
 		id,

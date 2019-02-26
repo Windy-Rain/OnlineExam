@@ -8,9 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.exam.model.BizCategory;
 import com.exam.model.Subject;
-import com.exam.service.BizCategoryService;
 import com.exam.service.SubjectService;
 import com.exam.service.SysConfigService;
 import com.exam.util.CoreConst;

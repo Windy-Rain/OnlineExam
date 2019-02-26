@@ -31,36 +31,59 @@
 		<div class="ui problemDetail container">
 		    <div class="ui grid" th:each="exam:${examination}">
 		        <div class="ten wide column">
-		            <div class="row">
+		            <div class="row" style="padding-left: 2.5em">
 		                <div class="ui stacked segment">
 		                    <h4 class="ui horizontal divider header"><i class="help circle icon"></i>题目描述</h4>
-		                    <div th:each="question:${exam.questions[1]}">
-			                    <p style="font-size: 16px;" th:text="'(单项选择)1、'+${question.title}"></p>
-			                    <div class="grouped fields">
-			                    	<div class="field">
-			                    		<div class="ui toggle checkbox">
-			                    			<input type="radio" name="questionAnswer" value="A"/>
+		                   <!--  <div th:each="question,questionStatus:${exam.questions[0]}"> -->
+								<!-- <input th:if="${questionStatus.index == index}" type="hidden" id="size" th:value="${questionStatus.size}"/>
+		                    	<p style="font-size: 16px;" th:if="${question.questionType == 0}" th:text="'（单项选择）1、'+${question.title}"></p>
+			                    <p style="font-size: 16px;" th:if="${question.questionType == 1}" th:text="'（不定项选择）1、'+${question.title}"></p>
+			                    <p style="font-size: 16px;" th:if="${question.questionType == 2}" th:text="'（问答题）1、'+${question.title}"></p> -->
+			                    <!-- <div th:if="${question.content != '无'}" th:utext="${question.content}" class="article-body markdown-body editor-preview-active-side">
+								</div> -->
+			                    <div class="grouped fields" th:each="question,questionStatus:${exam.questions[1]}">
+			                    	<label th:if="${question.questionType == 0}" th:text="'（单项选择）1、'+${question.title}"></label>
+			                    	<label th:if="${question.questionType == 1}" th:text="'（不定项选择）1、'+${question.title}"></label>
+			                    	<label th:if="${question.questionType == 2}" th:text="'（问答题）1、'+${question.title}"></label>
+			                    	<div class="field" style="padding-top:5px;">
+			                    		<div class="ui radio checkbox">
+			                    			<input type="radio" name="questionAnswer" value="A">
 			                    			<label th:text="'A. '+${question.optionA}"></label>
 			                    		</div>
-			                    		<div class="ui toggle checkbox">
-			                    			<input type="radio" name="questionAnswer" value="B"/>
+			                    	</div>
+			                    	<div class="field">
+			                    		<div class="ui radio checkbox">
+			                    			<input type="radio" name="questionAnswer" value="B">
 			                    			<label th:text="'B. '+${question.optionB}"></label>
 			                    		</div>
-			                    		<div class="ui toggle checkbox">
-			                    			<input type="radio" name="questionAnswer" value="C"/>
+			                    	</div>
+			                    	<div class="field">
+			                    		<div class="ui radio checkbox">
+			                    			<input type="radio" name="questionAnswer" value="C">
 			                    			<label th:text="'C. '+${question.optionC}"></label>
 			                    		</div>
-			                    		<div class="ui toggle checkbox">
-			                    			<input type="radio" name="questionAnswer" value="D"/>
+			                    	</div>
+			                    	<div class="field">
+			                    		<div class="ui radio checkbox">
+			                    			<input type="radio" name="questionAnswer" value="D">
 			                    			<label th:text="'D. '+${question.optionD}"></label>
 			                    		</div>
 			                    	</div>
 			                    </div>
-		                    </div>
+		                    <!-- </div> -->
 		                </div>
+		            <button class="ui labeled icon positive button">
+  						<i class="left arrow icon"></i>
+  						上一题
+					</button>
+					<button class="ui right labeled icon positive button">
+  						<i class="right arrow icon"></i>
+  						下一题
+					</button>
 		            </div>
 		        </div>
-		        <div class="four wide column" style="margin-left:10px">
+		        
+		        <div class="five wide column" style="margin-left:2em">
 		            <div class="row">
 		                <table class="ui table">
 		                    <tbody>
@@ -90,6 +113,16 @@
 		                    </tr>
 		                    </tbody>
 		                </table>
+		            </div>
+		            <div class="row" style="margin-top: 1em;">
+		                <div class="ui segment">
+		                    <div class="title">答题卡</div>
+		                    <div class="content ui segment" id="currentQuestionButton">
+		                    </div>
+		                    <div class="extra content">
+		                        <button type="button" onclick="" class="ui positive button">交卷</button>
+		                    </div>
+		                </div>
 		            </div>
 	            </div>
 		   </div>
@@ -157,6 +190,10 @@
 	</div>
 	<div class="return_top"><a class=" fa fa-arrow-up"></a></div>
 <script type="text/javascript">
+	$('.ui.checkbox').checkbox();   //使得单选框可以被选中
+	$(function(){
+		var size = $("#size").val();
+	});
 </script>
 </body>
 </html>

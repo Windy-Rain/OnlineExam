@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.exam.enmus.ResponseStatus;
-import com.exam.exception.ArticleNotFoundException;
+import com.exam.exception.ExamNotFoundException;
 import com.exam.exception.ExamException;
 
 
@@ -32,7 +32,7 @@ public class ExceptionHandleController {
         return "forward:/error";
     }
 
-    @ExceptionHandler(ArticleNotFoundException.class)
+    @ExceptionHandler(ExamNotFoundException.class)
     public String handleArticle(Exception e, HttpServletRequest request) {
         request.setAttribute("javax.servlet.error.status_code",ResponseStatus.NOT_FOUND.getCode());
         return "forward:/error";

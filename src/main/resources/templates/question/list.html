@@ -165,8 +165,8 @@
             //class:'min-width-100',
             formatter : function(value,
                                  row, index) {
-                var edit = editFlag=="true" ? '<button type="button" class="btn btn-primary btn-sm" onclick="editQuestion('+row.id+')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑</button>' : '';
-                var del = deleteFlag=="true" ? '<button type="button" class="btn btn-danger btn-sm" onclick="deleteQuestion('+row.id+')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除</button>' : '';
+                var edit = editFlag=="true" ? '<a class="btn btn-primary btn-sm" onclick="editQuestion('+row.id+')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑</a>' : '';
+                var del = deleteFlag=="true" ? '<a class="btn btn-danger btn-sm" onclick="deleteQuestion('+row.id+')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除</a>' : '';
                 return edit + " " + del;
             }
         }];

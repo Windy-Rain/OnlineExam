@@ -30,8 +30,6 @@ public class BizComment extends BaseVo {
     private Integer loveCount;
     @Transient
     BizComment parent;
-    @Transient
-    BizArticle article;
 
     public String getUserId() {
         return userId;
@@ -217,11 +215,4 @@ public class BizComment extends BaseVo {
         this.parent = parent;
     }
 
-    public BizArticle getArticle() {
-        return article;
-    }
-
-    public void setArticle(BizArticle article) {
-        this.article = article;
-    }
 }

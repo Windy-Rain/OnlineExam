@@ -57,16 +57,16 @@
 }
 
 .ui.header.container {
-    margin-top: 1em;
+	padding-top:1em;
+	padding-left:2em;
 }
-
-.ui.problemDetail.container {
-    margin-top: 1em;
+.grouped.fields{
+	font-size:15px;
 }
-.ui.accordion.segment {
-    margin-top: 1em;
+.field{
+	font-size:15px;
+	padding-left:3px;
 }
-
 .active.section {
     width: 245px;
     overflow: hidden;

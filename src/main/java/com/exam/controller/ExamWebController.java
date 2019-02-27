@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSON;
 import com.exam.model.Examination;
+import com.exam.model.User;
 import com.exam.service.ExaminationService;
 import com.exam.util.PageUtil;
 import com.exam.vo.ExaminationConditionVo;
@@ -61,8 +62,10 @@ public class ExamWebController {
 	
 	@GetMapping("/exam/startexam")
 	public String startToExam(Model model, Integer id) {
+		User user = (User)SecurityUtils.getSubject().getPrincipal();
 		List<Examination> listExam = examService.queryByExamId(id);
 		model.addAttribute("examination", listExam);
+		model.addAttribute("user", user);
 		return "index/detail";
 	}
 	

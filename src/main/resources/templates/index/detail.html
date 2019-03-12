@@ -14,7 +14,7 @@
     <script th:src="@{/libs/semantic-ui/semantic.min.js}"></script>
     <script th:src="@{/libs/layer/layer.js}"></script>
     <script th:src="@{/js/core.js}"></script>
-    <script th:src="@{/js/examination.js}"></script>
+    <script th:src="@{/js/detail.js}"></script>
 </head>
 <body>
 	<header id="header" class="nav-header">
@@ -22,60 +22,22 @@
 	</header>
 	<div class="exam-content">
 		<div class="ui header container">
-		    <div class="ui large breadcrumb" th:each="exam:${examination}">
+		    <div class="ui large breadcrumb" th:each="exam:${data['exam']}">
 		        <a class="section" href="/exam"><i class="home icon"></i>在线考试列表</a>
 		        <i class="right chevron icon divider"></i>
 		        <div class="section" th:value="${exam.id}" th:text="${exam.title}"></div>
 		    </div>
 		</div>
-		<div class="ui problemDetail container">
-		    <div class="ui grid" th:each="exam:${examination}">
+		<div class="ui problemDetail container" th:each="exam:${data['exam']}">
+		    <div class="ui grid">
 		        <div class="ten wide column">
 		            <div class="row" style="padding-left: 2.5em">
 		                <div class="ui stacked segment">
 		                    <h4 class="ui horizontal divider header"><i class="help circle icon"></i>题目描述</h4>
-		                   <!--  <div th:each="question,questionStatus:${exam.questions[0]}"> -->
-			                    <!-- <div th:if="${question.content != '无'}" th:utext="${question.content}" class="article-body markdown-body editor-preview-active-side">
-								</div> -->
-			                    <div class="grouped fields" th:each="question,questionStatus:${exam.questions[1]}">
-			                    	<label th:if="${question.questionType == 0}" th:text="'（单项选择）1、'+${question.title}"></label>
-			                    	<label th:if="${question.questionType == 1}" th:text="'（不定项选择）1、'+${question.title}"></label>
-			                    	<label th:if="${question.questionType == 2}" th:text="'（问答题）1、'+${question.title}"></label>
-			                    	<div class="field" style="padding-top:5px;">
-			                    		<div class="ui radio checkbox">
-			                    			<input type="radio" name="questionAnswer" value="A">
-			                    			<label th:text="'A. '+${question.optionA}"></label>
-			                    		</div>
-			                    	</div>
-			                    	<div class="field">
-			                    		<div class="ui radio checkbox">
-			                    			<input type="radio" name="questionAnswer" value="B">
-			                    			<label th:text="'B. '+${question.optionB}"></label>
-			                    		</div>
-			                    	</div>
-			                    	<div class="field">
-			                    		<div class="ui radio checkbox">
-			                    			<input type="radio" name="questionAnswer" value="C">
-			                    			<label th:text="'C. '+${question.optionC}"></label>
-			                    		</div>
-			                    	</div>
-			                    	<div class="field">
-			                    		<div class="ui radio checkbox">
-			                    			<input type="radio" name="questionAnswer" value="D">
-			                    			<label th:text="'D. '+${question.optionD}"></label>
-			                    		</div>
-			                    	</div>
-			                    </div>
-		                    <!-- </div> -->
+		                    <label id="currentQuetionTitle"></label>
+		                    <div class="grouped fields" id="currentQuestionAnswer"></div>
 		                </div>
-		            <button class="ui labeled icon positive button">
-  						<i class="left arrow icon"></i>
-  						上一题
-					</button>
-					<button class="ui right labeled icon positive button">
-  						<i class="right arrow icon"></i>
-  						下一题
-					</button>
+		            	<div id="preAndNextButton"></div>
 		            </div>
 		        </div>
 		        
@@ -93,7 +55,7 @@
 		                    </tr>
 		                    <tr>
 		                        <td><span style="font-weight: bolder;">剩余时间:</span></td>
-		                        <td><span id="contestTimeCountdown">00:00</span></td>
+		                        <td><span style="font-weight: bolder;color:red;" id="examTimeCountdown"></span></td>
 		                    </tr>
 		                    <tr>
 		                        <td><span style="font-weight: bolder;">开始时间:</span></td>
@@ -113,7 +75,7 @@
 		            <div class="row" style="margin-top: 1em;">
 		                <div class="ui segment">
 		                    <div class="title">答题卡</div>
-		                    <div class="content ui segment" id="currentQuestionButton">
+		                    	<div class="content ui segment" id="currentQuestionButton">
 		                    </div>
 		                    <div class="extra content">
 		                        <button type="button" onclick="" class="ui positive button">交卷</button>
@@ -123,72 +85,15 @@
 	            </div>
 		   </div>
 	   </div>
-		          <!--  编程题
-		             <div class="row" style="margin-top: 1em;">
-		                <div class="ui segment">
-		                    <h5 class="ui dividing header">作答区</h5>
-		                    <div class="ui form" id="currentQuestionAnswer">
-		                    </div>
-		                </div>
-		            </div>
-		        </div>
-		        <div class="one wide column">
-		        </div>
-		        <div class="four wide column">
-		            <div class="row">
-		                <table class="ui table">
-		                    <tbody>
-		                    <tr>
-		                        <td><span style="font-weight: bolder;">考生学号:</span></td>
-		                        <td><span th:text="${current_account.username}"></span></td>
-		                    </tr>
-		                    <tr>
-		                        <td><span style="font-weight: bolder;">当前考生:</span></td>
-		                        <td><span th:text="${current_account.name}"></span></td>
-		                    </tr>
-		                    <tr>
-		                        <td><span style="font-weight: bolder;">剩余时间:</span></td>
-		                        <td><span id="contestTimeCountdown"></span></td>
-		                    </tr>
-		                    <tr>
-		                        <td><span style="font-weight: bolder;">开始时间:</span></td>
-		                        <td><span th:text="${#dates.format(data['contest'].startTime, 'yyyy-MM-dd HH:mm:ss')}">2018-02-21 08:00:00</span></td>
-		                    </tr>
-		                    <tr>
-		                        <td><span style="font-weight: bolder;">结束时间:</span></td>
-		                        <td><span th:text="${#dates.format(data['contest'].endTime, 'yyyy-MM-dd HH:mm:ss')}">2018-03-16 11:00:00</span></td>
-		                    </tr>
-		                    <tr>
-		                        <td><span style="font-weight: bolder;">总分:</span></td>
-		                        <td><span th:text="${data['contest'].totalScore}"></span></td>
-		                    </tr>
-		                    </tbody>
-		                </table>
-		            </div>
-		            <div class="row" style="margin-top: 1em;">
-		                <div class="ui segment">
-		                    <div class="title">答题卡</div>
-		                    <div class="content ui segment" id="currentQuestionButton">
-		                    </div>
-		                    <div class="extra content">
-		                        <button type="button" onclick="contestDetailPage.finishContestAction()" class="ui positive button">交卷</button>
-		                    </div>
-		                </div>
-		            </div>
-		        </div>
-		        <div class="one wide column">
-		        </div>
-		    </div>
-		</div> -->
 	</div>
 	<div class="footer">
 	    <div th:replace="home/fragments/footer :: copyrightExamWeb"></div>
 	</div>
 	<div class="return_top"><a class=" fa fa-arrow-up"></a></div>
-<script type="text/javascript">
-	$('.ui.checkbox').checkbox();   //使得单选框可以被选中
+<script type="text/javascript" th:inline="javascript">
+	var exam = [[${data['exam']}]];
 	$(function(){
-		var size = $("#size").val();
+		examDetailPage.init(exam);
 	});
 </script>
 </body>

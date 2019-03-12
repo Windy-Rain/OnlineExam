@@ -1,6 +1,8 @@
 package com.exam.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +66,9 @@ public class ExamWebController {
 	public String startToExam(Model model, Integer id) {
 		User user = (User)SecurityUtils.getSubject().getPrincipal();
 		List<Examination> listExam = examService.queryByExamId(id);
-		model.addAttribute("examination", listExam);
+		Map<String, Object> data = new HashMap<>();
+		data.put("exam", listExam);
+		model.addAttribute("data", data);
 		model.addAttribute("user", user);
 		return "index/detail";
 	}

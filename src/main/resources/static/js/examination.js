@@ -14,7 +14,7 @@ var examIndexPage = {
         }
         $("#exam-time-countdown").countdown(killTime, function (event) {
             // 事件格式
-            var format = event.strftime("距离下一次考试倒计时还有: %D天 %H时 %M分 %S秒");
+            var format = event.strftime("距离最近一次考试倒计时还有: %D天 %H时 %M分 %S秒");
             console.log(format);
             $("#exam-time-countdown").html(format);
         }).on('finish.countdown', function () {

@@ -78,7 +78,7 @@
 		                    	<div class="content ui segment" id="currentQuestionButton">
 		                    </div>
 		                    <div class="extra content">
-		                        <button type="button" onclick="" class="ui positive button">交卷</button>
+		                        <button type="button" onclick="examDetailPage.finishExamAction()" class="ui positive button">交卷</button>
 		                    </div>
 		                </div>
 		            </div>
@@ -90,6 +90,13 @@
 	    <div th:replace="home/fragments/footer :: copyrightExamWeb"></div>
 	</div>
 	<div class="return_top"><a class=" fa fa-arrow-up"></a></div>
+	<!-- 正在提交试卷模态框 -->
+	<div class="ui mini modal" id="waitSubmitModal">
+	    <div class="header">信息</div>
+	    <div class="content" style='font-size:18px; '>
+	       	 请耐心等候,正在为您提交答题卡......
+	    </div>
+	</div>
 <script type="text/javascript" th:inline="javascript">
 	var exam = [[${data['exam']}]];
 	$(function(){

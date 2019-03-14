@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.exam.model.Subject;
+import com.exam.service.GradeService;
 import com.exam.service.SubjectService;
 import com.exam.service.SysConfigService;
 import com.exam.util.CoreConst;
@@ -20,6 +21,8 @@ public class AdminRenderController {
     private SysConfigService sysConfigService;
     @Autowired
     private SubjectService subjectService;
+    
+    
     /*网站基本信息*/
     @GetMapping("/siteinfo")
     public String siteinfo(Model model){
@@ -37,6 +40,7 @@ public class AdminRenderController {
     public String subjects() {
     	return "subject/list";
     }
+    
     /*标签*/
     @GetMapping("/tags")
     public String tags(){
@@ -63,6 +67,13 @@ public class AdminRenderController {
     	model.addAttribute("subjects", subjects);
     	return "question/list";
     }
+    
+    /*成绩*/
+    @GetMapping("/grades")
+    public String Grade() {
+    	return "grade/list";
+    }
+    
     /*评论*/
     @GetMapping("/comments")
     public String comments(){

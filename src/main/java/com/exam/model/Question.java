@@ -22,6 +22,8 @@ public class Question extends BaseVo {
 	private Integer subjectId;
 	private Integer status;
 	@Transient
+	private String stuAnswer;
+	@Transient
     Subject subject;
 	public String getTitle() {
 		return title;
@@ -112,6 +114,12 @@ public class Question extends BaseVo {
 	}
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+	public String getStuAnswer() {
+		return stuAnswer;
+	}
+	public void setStuAnswer(String stuAnswer) {
+		this.stuAnswer = stuAnswer;
 	}
 	public Subject getSubject() {
 		return subject;

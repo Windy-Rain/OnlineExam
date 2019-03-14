@@ -18,5 +18,25 @@
         id,user_id,exam_id,result,auto_result,manul_result,
         answer_json,create_time,update_time,status
     </sql>
-
+    
+    <select id="findByCondition" parameterType="com.exam.vo.GradeConditionVo" resultMap="BaseResultMap">
+    	SELECT
+    	a.*
+    	FROM
+    	grade a
+    	WHERE 1 = 1
+    	<if test="userId != null">
+    		AND a.user_id = #{userId}
+    	</if>
+    	<if test="status != null">
+    		AND a.status = #{status}
+    	</if>
+    	<if test="keywords != null and keywords != ''">
+    		AND
+    		a.exam_id LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%')
+    	</if>
+    	GROUP BY a.id
+    </select>
+    
+    
 </mapper>

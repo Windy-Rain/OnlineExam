@@ -65,24 +65,10 @@
 		t.*,
 		f.id AS parent_id,
 		f.nickname AS parent_nickname,
-		f.content AS parent_content,
-		a.id AS article_id,
-		a.title AS article_title,
-		IFNULL(love.love_count,0) AS love_count
+		f.content AS parent_content
 		FROM
 		biz_comment t
 		LEFT JOIN biz_comment f ON t.pid = f.id
-		LEFT JOIN biz_article a ON a.id = t.sid
-		LEFT JOIN (
-		SELECT
-		l.biz_id,
-		count(1) AS love_count
-		FROM
-		biz_love l
-		WHERE l.biz_type=2 AND l.status=1
-		GROUP BY
-		l.biz_id
-		) love ON t.id = love.biz_id
 		WHERE
 		1 = 1
 		<if test="userId != null">

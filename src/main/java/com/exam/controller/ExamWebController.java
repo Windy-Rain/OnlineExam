@@ -95,17 +95,28 @@ public class ExamWebController {
 			User user = (User)SecurityUtils.getSubject().getPrincipal();
 			List<String> answerStr = Arrays.asList(grade.getAnswerJson().split(","));
 			int autoResult = 0;
+			StringBuffer autoStr = new StringBuffer();
+			StringBuffer manulStr = new StringBuffer();
 			List<Examination> listExam = examService.queryByExamId(grade.getExamId());
 			List<Question> questions = listExam.get(0).getQuestions();
 			for(int i = 0; i < questions.size(); i++) {
 				Question question = questions.get(i);
+				if(question.getQuestionType() <= 1) {
+					autoStr.append(answerStr.get(i)+",");
+				}else {
+					manulStr.append(answerStr.get(i)+",");
+				}
 				if(question.getQuestionType() <= 1 && question.getAnswer().equals(answerStr.get(i))) {
 					autoResult += question.getScore();
 				}
 			}
+			String autoJson = new String(autoStr);
+			String manulJson = new String(manulStr);
 			grade.setUserId(user.getUserId());
 			grade.setAutoResult(autoResult);
 			grade.setResult(autoResult);
+			grade.setAutoJson(autoJson);
+			grade.setManulJson(manulJson);
 			grade.setManulResult(0);
 			grade.setStatus(0);
 			gradeService.insertSelective(grade);

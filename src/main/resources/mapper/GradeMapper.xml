@@ -12,6 +12,15 @@
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
         <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="auto_json" property="autoJson" jdbcType="LONGVARCHAR" />
+        <result column="manul_json" property="manulJson" jdbcType="LONGVARCHAR" />
+        <association property="user" javaType="com.exam.model.User">
+			<result property="username" jdbcType="VARCHAR" column="u_user_name"/>
+			<result property="nickname" jdbcType="VARCHAR" column="u_nick_name"/>
+		</association>
+		<association property="examination" javaType="com.exam.model.Examination">
+			<result property="title" jdbcType="VARCHAR" column="e_exam_title"/>
+		</association>
     </resultMap>
     
     <sql id="Base_Column_List" >
@@ -21,21 +30,38 @@
     
     <select id="findByCondition" parameterType="com.exam.vo.GradeConditionVo" resultMap="BaseResultMap">
     	SELECT
-    	a.*
+    	a.*,
+    	user.username as u_user_name,
+    	user.nickname as u_nick_name,
+    	e.title as e_exam_title
     	FROM
     	grade a
+    	INNER JOIN user ON a.user_id = user.user_id
+    	INNER JOIN examination e ON a.exam_id = e.id
     	WHERE 1 = 1
-    	<if test="userId != null">
-    		AND a.user_id = #{userId}
+    	<if test="name != null and name != ''">
+    		AND user.nickname = #{name}
+    	</if>
+    	<if test="stuId != null and stuId != ''">
+    		AND user.username = #{stuId}
     	</if>
     	<if test="status != null">
     		AND a.status = #{status}
     	</if>
     	<if test="keywords != null and keywords != ''">
     		AND
-    		a.exam_id LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%')
+    		e.title LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%')
     	</if>
     	GROUP BY a.id
+    </select>
+    
+    <select id="selectById" parameterType="int" resultMap="BaseResultMap">
+    	SELECT
+    	a.*
+    	FROM
+    	grade a
+    	WHERE
+    	a.id = #{id}
     </select>
     
     

@@ -32,4 +32,10 @@ public class GradeServiceImpl extends BaseServiceImpl<Grade> implements GradeSer
 		return grade;
 	}
 
+	@Override
+	public Grade selectById(Integer id) {
+		return gradeMpper.selectById(id);
+		
+	}
+
 }

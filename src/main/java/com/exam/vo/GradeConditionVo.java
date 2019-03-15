@@ -6,7 +6,9 @@ public class GradeConditionVo extends BaseConditionVo {
 	
 	private String keywords;
 	
-	private Integer userId;
+	private String name;
+	
+	private String stuId;
 	
 	private Integer status;
 
@@ -18,12 +20,20 @@ public class GradeConditionVo extends BaseConditionVo {
 		this.keywords = keywords;
 	}
 
-	public Integer getUserId() {
-		return userId;
+	public String getName() {
+		return name;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getStuId() {
+		return stuId;
+	}
+
+	public void setStuId(String stuId) {
+		this.stuId = stuId;
 	}
 
 	public Integer getStatus() {

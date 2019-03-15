@@ -1,5 +1,7 @@
 package com.exam.model;
 
+import javax.persistence.Transient;
+
 import com.exam.vo.base.BaseVo;
 
 public class Grade extends BaseVo {
@@ -11,6 +13,16 @@ public class Grade extends BaseVo {
 	private Integer manulResult;
 	private String answerJson;
 	private Integer status;
+	
+	@Transient
+	private String autoJson;
+	@Transient
+	private String manulJson;
+	@Transient
+	private User user;
+	
+	@Transient
+	private Examination examination;
 	
 	public String getUserId() {
 		return userId;
@@ -48,10 +60,34 @@ public class Grade extends BaseVo {
 	public void setAnswerJson(String answerJson) {
 		this.answerJson = answerJson;
 	}
+	public String getAutoJson() {
+		return autoJson;
+	}
+	public void setAutoJson(String autoJson) {
+		this.autoJson = autoJson;
+	}
+	public String getManulJson() {
+		return manulJson;
+	}
+	public void setManulJson(String manulJson) {
+		this.manulJson = manulJson;
+	}
 	public Integer getStatus() {
 		return status;
 	}
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public Examination getExamination() {
+		return examination;
+	}
+	public void setExamination(Examination examination) {
+		this.examination = examination;
 	}
 }

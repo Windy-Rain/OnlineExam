@@ -1,3 +1,16 @@
+<style>
+    .CodeMirror {
+        padding: 0px 10px;
+    }
+    .CodeMirror, .CodeMirror-scroll {
+        min-height: 130px;
+        max-height: 200px;
+        border-radius: 4px
+    }
+    .CodeMirror .cm-spell-error:not(.cm-url):not(.cm-comment):not(.cm-tag):not(.cm-word) {
+        background: none;
+    }
+</style>
 <meta charset="utf-8">
 <section class="content-header">
     <ol class="breadcrumb">
@@ -12,21 +25,21 @@
         <form id="formSearch" class="form-horizontal form-search">
             <div class="form-group">
                 <div class="col-md-3 col-sm-6">
-                    <label class="control-label  col-xs-4" for="keywords">考生姓名:</label>
+                    <label class="control-label  col-xs-4">考试名称:</label>
                     <div class="col-xs-8">
                         <input type="text" class="form-control" id="keywords">
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
-                    <label class="control-label  col-xs-4" for="userId">考生Id:</label>
+                    <label class="control-label  col-xs-4">考生姓名:</label>
                     <div class="col-xs-8">
-                        <input type="text" class="form-control" id="userId">
+                        <input type="text" class="form-control" id="name">
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
-                    <label class="control-label  col-xs-4" for="examId">考生Id:</label>
+                    <label class="control-label  col-xs-4">考生学号:</label>
                     <div class="col-xs-8">
-                        <input type="text" class="form-control" id="examId">
+                        <input type="text" class="form-control" id="stuId">
                     </div>
                 </div>
                 <div class="col-md-2 col-sm-6">
@@ -59,43 +72,90 @@
     </div>
 </section>
 
+<!-- 批阅模态框 -->
+<div id="markingModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">主管问答题批阅</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="markForm">
+                    <input id="gradeId" name="id" type="hidden">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label  class="col-sm-3 control-label">考生答案 :</label>
+                            <div class="col-sm-8">
+                            	<textarea id="manulJson"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">老师打分:</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="manulResult" name="manulResult"></input>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <div class="pull-right">
+                            <button type="button" id="saveResult" class="btn btn-info">确定</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
-    var editFlag = "[[${@perms.hasPerm('question:edit')}]]";
-    var deleteFlag = "[[${@perms.hasPerm('question:delete')}]]";
+    var markFlag = "[[${@perms.hasPerm('grade:mark')}]]";
+    var detailFlag = "[[${@perms.hasPerm('grade:detail')}]]";
+    var deleteFlag = "[[${@perms.hasPerm('grade:delete')}]]";
+    var markSimplemde,detailSimplemde;
     var columns = [
         {
             checkbox: true,
 
         },{
-            field: 'userId',
-            title: '考生ID',
-            width : '15%',
-            align : "center"
+            field: 'examination',
+            title: '考试名称',
+            width : '25%',
+            align : "center",
+           	formatter: function (value) {
+                   return value.title;
+               }
         },{
-            field: 'examId',
-            title: '考试ID',
+            field: 'user',
+            title: '考生姓名',
+            width : '10%',
+            align : "center",
+           	formatter: function (value) {
+                   return value.nickname;
+            }
+        },{
+            field: 'user',
+            title: '考试学号',
             align : "center",
             width : '10%',
-        }, {
-            field: 'result',
-            title: '得分',
-            align : "center",
-            width : '10%',
+            formatter: function (value) {
+                return value.username;
+            }
         },{
             field: 'autoResult',
-            title: '选择题成绩',
+            title: '选择题得分',
             align : "center",
-            width : '10%',
+            width : '8%',
         },{
             field: 'manulResult',
-            title: '问答题成绩',
+            title: '问答题得分',
             align : "center",
-            width : '10%',
+            width : '8%',
         },{
-            field: 'answerJson',
-            title: '考生答案',
+            field: 'result',
+            title: '最终得分',
             align : "center",
-            width : '20%',
+            width : '8%',
         },{
             field: 'status',
             title: '状态',
@@ -103,22 +163,23 @@
             width : '10%',
             formatter : function(value) {
                if(value){
-                   return '已提交已批阅'
+                   return '已批阅'
                }else{
-                   return '已提交未批阅'
+                   return '未批阅'
                }
             }
         },{
             field : 'operation',
             title : '操作',
             align : "center",
-            width : '15%',
-            //class:'min-width-100',
+            width : '13%',
+            class:'min-width-100',
             formatter : function(value,
                                  row, index) {
-                var edit = editFlag=="true" ? '<a class="btn btn-primary btn-sm" onclick="editQuestion('+row.id+')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 批阅</a>' : '';
-                var del = deleteFlag=="true" ? '<a class="btn btn-danger btn-sm" onclick="deleteQuestion('+row.id+')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除</a>' : '';
-                return edit + " " + del;
+                var mark = markFlag=="true"&&row.status==0 ? '<a class="btn btn-primary btn-sm" onclick="markGrade('+row.id+','+row.manulJson+')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 批阅</a>' : '';
+                var detail = detailFlag=="true"&&row.status==1 ? '<a class="btn btn-primary btn-sm" onclick="detailGrade('+row.id+')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 查看</a>' : '';
+                var del = deleteFlag=="true" ? '<a class="btn btn-danger btn-sm" onclick="deleteGrade('+row.id+')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除</a>' : '';
+                return mark + " " + detail + " " + del;
             }
         }];
     var options={
@@ -137,21 +198,36 @@
             limit : params.limit, //页面大小
             offset : params.offset, //页码
             keywords : $("#keywords").val(),
-            userId : $("#userId").val(),
-            examId : $("#examId").val(),
+            name : $("#name").val(),
+            stuId : $("#stuId").val(),
             status : $("#status").val(),
         };
         return temp;
     }
 
-    /*编辑*/
-    function editQuestion(id) {
-        window.location.href="#question/edit?id="+id
+    /*批阅*/
+    function markGrade(id,manulJson) {
+    	$("#gradeId").val(id);
+    	$("#manulJson").val(manulJson);
+        $("#markingModal").modal("show");
     }
+    
+    /*保存批阅*/
+    $("#saveResult").click(function(){
+        Core.mask("#saveResult");
+        Core.postAjax("/grade/mark",$("#markForm").serialize(),function (data) {
+            Core.unmask("#saveResult");
+            if(data.status==200){
+                $("#markingModal").modal("hide");
+                Core.refreshTable("#table",true);
+            }
+            layer.msg(data.msg);
+        })
+    });
     /*删除*/
-    function deleteQuestion(id) {
-        Core.confirm("确定删除该题目？",function () {
-            Core.postAjax("/question/delete",{"id":id},function (data) {
+    function deleteGrade(id) {
+        Core.confirm("确定删除该成绩？",function () {
+            Core.postAjax("/grade/delete",{"id":id},function (data) {
                 if(data.status==200){
                     Core.refreshTable("#table");
                 }

@@ -22,5 +22,7 @@ public interface GradeService extends BaseService<Grade> {
 	
 	Grade insertGrade(Grade grade);
 
+	Grade selectById(Integer id);
+
 
 }

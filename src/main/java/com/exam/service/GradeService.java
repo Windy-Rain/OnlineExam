@@ -24,5 +24,12 @@ public interface GradeService extends BaseService<Grade> {
 
 	Grade selectById(Integer id);
 
+	/**
+	 * 批量删除成绩
+	 * @param integers
+	 * @return
+	 */
+	int deleteBatch(Integer[] integers);
+
 
 }

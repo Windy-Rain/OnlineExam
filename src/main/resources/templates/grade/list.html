@@ -78,24 +78,28 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">主管问答题批阅</h4>
+                <h4 class="modal-title">问答题批阅</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" id="markForm">
                     <input id="gradeId" name="id" type="hidden">
                     <div class="box-body">
-                        <div class="form-group">
-                            <label  class="col-sm-3 control-label">考生答案 :</label>
-                            <div class="col-sm-8">
-                            	<textarea id="manulJson"></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">老师打分:</label>
-                            <div class="col-sm-8">
-                                <input type="text" id="manulResult" name="manulResult"></input>
-                            </div>
-                        </div>
+                    	<div class="form-group">
+	                        <div class="col-xs-12">
+	                            <label class="control-label label-four" for="">考生答案 :</label>
+	                            <div class="ml80">
+	                                <textarea type="text" id="manulJson" rows="4" class="form-control" readonly></textarea>
+	                            </div>
+	                        </div>
+                    	</div>
+                    	<div class="form-group">
+	                        <div class="col-xs-12">
+	                            <label class="control-label label-four" for="">老师打分 :</label>
+	                            <div class=" ml80">
+	                                <input type="text" id="manulResult" class="form-control" name="manulResult" placeholder="请输入得分" require="">
+	                            </div>
+	                        </div>
+                    	</div>
                     </div>
                     <div class="box-footer">
                         <div class="pull-right">
@@ -112,7 +116,6 @@
     var markFlag = "[[${@perms.hasPerm('grade:mark')}]]";
     var detailFlag = "[[${@perms.hasPerm('grade:detail')}]]";
     var deleteFlag = "[[${@perms.hasPerm('grade:delete')}]]";
-    var markSimplemde,detailSimplemde;
     var columns = [
         {
             checkbox: true,
@@ -135,7 +138,7 @@
             }
         },{
             field: 'user',
-            title: '考试学号',
+            title: '考生学号',
             align : "center",
             width : '10%',
             formatter: function (value) {
@@ -176,7 +179,7 @@
             class:'min-width-100',
             formatter : function(value,
                                  row, index) {
-                var mark = markFlag=="true"&&row.status==0 ? '<a class="btn btn-primary btn-sm" onclick="markGrade('+row.id+','+row.manulJson+')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 批阅</a>' : '';
+                var mark = markFlag=="true"&&row.status==0 ? '<a class="btn btn-primary btn-sm" onclick="markGrade('+row.id+')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 批阅</a>' : '';
                 var detail = detailFlag=="true"&&row.status==1 ? '<a class="btn btn-primary btn-sm" onclick="detailGrade('+row.id+')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 查看</a>' : '';
                 var del = deleteFlag=="true" ? '<a class="btn btn-danger btn-sm" onclick="deleteGrade('+row.id+')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除</a>' : '';
                 return mark + " " + detail + " " + del;
@@ -206,20 +209,23 @@
     }
 
     /*批阅*/
-    function markGrade(id,manulJson) {
+    function markGrade(id) {
     	$("#gradeId").val(id);
     	$("#manulJson").val(manulJson);
         $("#markingModal").modal("show");
     }
     
+    /*成绩详情*/
+    function detailGrade(id) {
+        window.location.href="#grade/detail?id="+id
+    }
+    
     /*保存批阅*/
     $("#saveResult").click(function(){
-        Core.mask("#saveResult");
         Core.postAjax("/grade/mark",$("#markForm").serialize(),function (data) {
-            Core.unmask("#saveResult");
             if(data.status==200){
                 $("#markingModal").modal("hide");
-                Core.refreshTable("#table",true);
+                Core.refreshTable("#table");
             }
             layer.msg(data.msg);
         })
@@ -240,10 +246,6 @@
         $("#btn_query").click(function(){
             Core.refreshTable("#table");
         });
-        /*新增*/
-        $("#btn_add").click(function(){
-            window.location.href="#question/add"
-        });
         /*批量删除*/
         $("#btn_batch_delete").click(function(){
             var checkedRows= Core.selectMutiData("#table");
@@ -253,7 +255,7 @@
                     $.each(checkedRows, function (i, item) {
                         ids.push(item.id);
                     })
-                    Core.postAjax("/question/batch/delete", {"ids": ids}, function (data) {
+                    Core.postAjax("/grade/batch/delete", {"ids": ids}, function (data) {
                         if (data.status == 200) {
                             Core.refreshTable("#table");
                         }

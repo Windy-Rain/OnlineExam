@@ -11,13 +11,11 @@ public class Grade extends BaseVo {
 	private Integer result;
 	private Integer autoResult;
 	private Integer manulResult;
+	private String autoJson;
+	private String manulJson;
 	private String answerJson;
 	private Integer status;
 	
-	@Transient
-	private String autoJson;
-	@Transient
-	private String manulJson;
 	@Transient
 	private User user;
 	

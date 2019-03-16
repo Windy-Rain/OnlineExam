@@ -64,5 +64,16 @@
     	a.id = #{id}
     </select>
     
+    <delete id="deleteBatch" parameterType="map">
+    	DELETE
+    	FROM
+    	grade
+    	WHERE
+    	id in
+    	<foreach collection="array" item="item" index="index" open="(" separator="," close=")">
+    		#{item}
+    	</foreach>
+    </delete>
+    
     
 </mapper>

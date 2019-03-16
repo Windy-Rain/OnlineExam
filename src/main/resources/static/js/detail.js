@@ -80,9 +80,10 @@ var examDetailPage = {
             $('#currentQuestionAnswer').html(selectOptionStr);
         } else {
             $('#currentQuetionTitle').html('( 主观问答题 )&nbsp;&nbsp;'+examDetailPage.data.exam[0].questions[0].title+'('+examDetailPage.data.exam[0].questions[0].score+'分)');
-            var selectOptionStr = '<div class="form-group">\n' +
-                '                        <textarea id="questionAnswer" class="form-control" rows="3"></textarea>\n' +
-                '                    </div>';
+            var selectOptionStr = '<div class="article-body markdown-body editor-preview-active-side" style="margin-top:10px;">'+examDetailPage.data.exam[0].questions[0].content+'</div>\n' +
+            	'   <div class="form-group">\n' +
+                '         <textarea id="questionAnswer" class="form-control" rows="3"></textarea>\n' +
+                '    </div>';
             $('#currentQuestionAnswer').html(selectOptionStr);
         }
 		$('.ui.checkbox').checkbox();   //使得单选框可以被选中
@@ -230,9 +231,10 @@ var examDetailPage = {
             }
         } else {
             $('#currentQuetionTitle').html('( 主观问答题 )&nbsp;&nbsp;'+examDetailPage.data.exam[0].questions[index].title+'('+examDetailPage.data.exam[0].questions[index].score+'分)');
-            var selectOptionStr = '<div class="form-group" style="margin-top:10px">\n' +
-                '                        <textarea id="questionAnswer" class="form-control" rows="10"></textarea>\n' +
-                '                    </div>';
+            var selectOptionStr = '<div class="article-body markdown-body editor-preview-active-side" style="margin-top:10px;">'+examDetailPage.data.exam[0].questions[index].content+'</div>\n' +
+            	'	 <div class="form-group" style="margin-top:10px">\n' +
+                '    	<textarea id="questionAnswer" class="form-control" rows="10"></textarea>\n' +
+                '    </div>';
             $('#currentQuestionAnswer').html(selectOptionStr);
         }
         

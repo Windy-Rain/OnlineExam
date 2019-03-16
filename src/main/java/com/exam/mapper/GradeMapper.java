@@ -18,4 +18,11 @@ public interface GradeMapper extends MapperUtil<Grade> {
 
 	Grade selectById(Integer id);
 
+	/**
+	 * 批量删除
+	 * @param ids
+	 * @return
+	 */
+	int deleteBatch(Integer[] ids);
+
 }

@@ -38,4 +38,9 @@ public class GradeServiceImpl extends BaseServiceImpl<Grade> implements GradeSer
 		
 	}
 
+	@Override
+	public int deleteBatch(Integer[] ids) {
+		return gradeMpper.deleteBatch(ids);
+	}
+
 }

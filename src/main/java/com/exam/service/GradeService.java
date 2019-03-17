@@ -31,5 +31,13 @@ public interface GradeService extends BaseService<Grade> {
 	 */
 	int deleteBatch(Integer[] integers);
 
+	/**
+	 * 验证该用户是否已经参加过考试
+	 * @param id
+	 * @param userId
+	 * @return
+	 */
+	Grade validateExam(Integer id, String userId);
+
 
 }

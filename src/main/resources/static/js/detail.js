@@ -95,27 +95,6 @@ var examDetailPage = {
             currentQuestionButtonStr += buttonStr;
         }
         $('#currentQuestionButton').html(currentQuestionButtonStr);
-        
-        /*var preAndNextButtonStr = '';
-        if(examDetailPage.data.currentQuestionIndex == 0){
-        	preAndNextButtonStr = '<button class="ui labeled icon button">\n' +
-        	'<i class="left arrow icon"></i>上一题</button>\n' +
-        	'<button class="ui right labeled icon positive button" onclick="examDetailPage.nextQuestionBtn()">\n' +
-        	'下一题<i class="right arrow icon"></i></button>';
-        } 
-        if(examDetailPage.data.currentQuestionIndex >= 0 && examDetailPage.data.currentQuestionIndex <= examDetailPage.data.exam[0].questions.length-1){
-    		preAndNextButtonStr = '<button class="ui labeled icon positive button" style="margin-bottom:10px;margin-left:5px;" onclick="examDetailPage.preQuestionBtn()">\n' +
-        	'<i class="left arrow icon"></i>上一题</button>\n' +
-        	'<button class="ui right labeled icon positive button" style="margin-bottom:10px;margin-left:61%;" onclick="examDetailPage.nextQuestionBtn()">\n' +
-        	'下一题<i class="right arrow icon"></i></button>';
-    	}
-        if(examDetailPage.data.currentQuestionIndex == examDetailPage.data.exam[0].questions.length-1){
-    		preAndNextButtonStr = '<button class="ui labeled icon positive button" onclick="examDetailPage.preQuestionBtn()">\n' +
-        	'<i class="left arrow icon"></i>上一题</button>\n' +
-        	'<button class="ui right labeled icon button">\n' +
-        	'下一题<i class="right arrow icon"></i></button>';
-    	}
-        $('#preAndNextButton').html(preAndNextButtonStr);*/
 	},
 	
 	preQuestionBtn: function(){
@@ -282,38 +261,33 @@ var examDetailPage = {
 	},
 	
 	submitExamAction: function(){
-		$("#waitSubmitModal").modal({
-			closable : false, //必须点击按钮才能关闭
-			blurring: true,  //模糊背景
-		}).modal('show');
-		
-		var answerJsonStr = '';
-		for(var i = 0; i < examDetailPage.data.exam[0].questions.length; i++){
-			console.log(examDetailPage.data.exam[0].questions[i].stuAnswer);
-			answerJsonStr += examDetailPage.data.exam[0].questions[i].stuAnswer;
-			if(i < examDetailPage.data.exam[0].questions.length-1){
-				answerJsonStr += ',';
+		Core.confirm("确认交卷？",function () {
+			var answerJsonStr = '';
+			for(var i = 0; i < examDetailPage.data.exam[0].questions.length; i++){
+				console.log(examDetailPage.data.exam[0].questions[i].stuAnswer);
+				answerJsonStr += examDetailPage.data.exam[0].questions[i].stuAnswer;
+				if(i < examDetailPage.data.exam[0].questions.length-1){
+					answerJsonStr += '~_~';
+				}
 			}
-		}
-		console.log("answerJson = " + answerJsonStr);
-		
-		//向后端发送答题卡
-		$.ajax({
-			url : "/exam/submitExam",
-			type : "POST",
-			dataType : "json",
-			contentType : "application/json;charset=UTF-8",
-			data : JSON.stringify({
-				examId: examDetailPage.data.exam[0].id,
-				answerJson: answerJsonStr,
-			}),
-			success:function(data){
-				layer.msg(data.msg)
-			}
+			//向后端发送答题卡
+			$.ajax({
+				url : "/exam/submitExam",
+				type : "POST",
+				dataType : "json",
+				contentType : "application/json;charset=UTF-8",
+				data : JSON.stringify({
+					examId: examDetailPage.data.exam[0].id,
+					answerJson: answerJsonStr,
+				}),
+				success:function(data){
+			        layer.msg(data.msg);
+			        window.location.href = "/exam/examination";
+				},
+				error:function(daata){
+					layer.msg(data.msg)
+				}
+			});
 		});
-		setTimeout(function () {
-	        $("#waitSubmitModal").modal("hide");
-	        window.location.href = "/exam/examination";
-	    }, 5000);
 	},
 };

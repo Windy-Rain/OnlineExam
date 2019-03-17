@@ -10,10 +10,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.yaml.snakeyaml.error.Mark;
 
+import com.exam.model.Examination;
 import com.exam.model.Grade;
+import com.exam.model.User;
 import com.exam.service.ExaminationService;
 import com.exam.service.GradeService;
+import com.exam.service.UserService;
 import com.exam.util.PageUtil;
 import com.exam.util.ResultUtil;
 import com.exam.vo.GradeConditionVo;
@@ -30,6 +34,8 @@ public class GradeController {
 	private GradeService gradeService;
 	@Autowired
 	private ExaminationService examService;
+	@Autowired
+	private UserService userService;
 	
 	@PostMapping("list")
 	@ResponseBody
@@ -45,6 +51,12 @@ public class GradeController {
 	 * @param grade
 	 * @return
 	 */
+	@GetMapping("/mark")
+	public String mark(Model model, Integer id) {
+		Grade grade = gradeService.selectByPrimaryKey(id);
+		model.addAttribute("grade", grade);
+		return "grade/mark";
+	}
 	
 	@PostMapping("/mark")
 	@ResponseBody
@@ -69,8 +81,12 @@ public class GradeController {
 	
 	@GetMapping("/detail")
 	public String detail(Model model, Integer id) {
-		Grade grade = gradeService.selectById(id);
+		Grade grade = gradeService.selectByPrimaryKey(id);
+		Examination examination = examService.selectByPrimaryKey(grade.getExamId());
+		User user = userService.selectByUserId(grade.getUserId());
 		model.addAttribute("grade", grade);
+		model.addAttribute("exam", examination);
+		model.addAttribute("user", user);
 		return "grade/detail";
 	}
 	

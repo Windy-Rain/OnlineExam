@@ -17,150 +17,160 @@
     <script th:src="@{/js/examination.js}"></script>
 </head>
 <body>
-	<header id="header" class="nav-header">
-		<div th:replace="home/fragments/navbar :: navbar"></div>
-	</header>
-	<div class="exam-content">
-		<div class="ui countdownTime container">
-		    <div class="red ui tiny horizontal statistic">
-		        <div class="value">
-		            <i class="alarm large icon"></i>
-		            <span id="exam-time-countdown"></span>
-		        </div>
-		    </div>
-		</div>
-		<div class="ui examList container">
-			<table class="ui table" id="exam_table">
-				<thead><tr>
-		            <th class="eight wide">考试名称</th>
-		            <th class="second wide">考试科目</th>
-		            <th class="second wide">开始时间</th>
-		            <th class="second wide">结束时间</th>
-		            <th class="second wide">操作</th>
-		        </tr></thead>
-		        <tbody></tbody>
-			</table>
-			<!-- 显示分页信息 -->
-			<div class="row">
-				<!-- 分页文字信息 -->
-				<div class="col-md-6" id="page_info_area">
-				</div>
-				<div class="col-md-6" id="page_nav_area">
-				</div>
+<header id="header" class="nav-header" style="background:#4F94CD">
+	<div th:replace="home/fragments/navbar :: navbar"></div>
+</header>
+<div class="exam-content">
+	<div class="ui countdownTime container">
+	    <div class="red ui tiny horizontal statistic">
+	        <div class="value">
+	            <i class="alarm large icon"></i>
+	            <span id="exam-time-countdown"></span>
+	        </div>
+	    </div>
+	</div>
+	<div class="ui examList container">
+		<table class="ui table" id="exam_table">
+			<thead><tr>
+	            <th class="eight wide">考试名称</th>
+	            <th class="second wide">考试科目</th>
+	            <th class="second wide">开始时间</th>
+	            <th class="second wide">结束时间</th>
+	            <th class="second wide">操作</th>
+	        </tr></thead>
+	        <tbody></tbody>
+		</table>
+		<!-- 显示分页信息 -->
+		<div class="row">
+			<!-- 分页文字信息 -->
+			<div class="col-md-6" id="page_info_area">
+			</div>
+			<div class="col-md-6" id="page_nav_area">
 			</div>
 		</div>
 	</div>
-	<div class="footer">
-		<div th:replace="home/fragments/footer :: copyrightExamWeb"></div>
-	</div>
-	<script type="text/javascript">
-		var totalPage,currentPage,offset=0;
-		$(function(){
-			requestPage(offset);
-		});
+</div>
+<div class="footer" style="background:#4F94CD">
+	<div th:replace="home/fragments/footer :: copyrightExamWeb"></div>
+</div>
+<script type="text/javascript">
+	var totalPage,currentPage,offset=0;
+	$(function(){
+		requestPage(offset);
+	});
 
-		function requestPage(offset){
-			Core.postAjax("/exam/list",{"limit":5,"offset":offset},function (result) {
-				console.log(result);
-	            build_stus_table(result);
-	            build_page_info(result);
-	            build_page_nav(result);
-	            examIndexPage.init(result.rows);
-            })
+	function requestPage(offset){
+		Core.postAjax("/exam/list",{"limit":5,"offset":offset},function (result) {
+			console.log(result);
+            build_stus_table(result);
+            build_page_info(result);
+            build_page_nav(result);
+            examIndexPage.init(result.rows);
+           })
+	}
+
+	function build_stus_table(result){
+		var exams = result.rows;
+		$("#exam_table tbody").empty();
+		$.each(exams, function(index, items){
+			var tableHeader,operateBtn;
+			if(items.status==0){
+				tableHeader = $("<span>未开始</span>").addClass("ui yellow ribbon label");
+				operateBtn = $("<a>进入考试</a>").addClass("small disabled positive ui button");
+			}else if(items.status == 1){
+				tableHeader = $("<span>进行中</span>").addClass("ui green ribbon label");
+				operateBtn = $("<a onclick='startToExamAction("+items.id+")'>进入考试</a>").addClass("small positive ui button");
+			}else{
+				tableHeader = $("<span>已结束</span>").addClass("ui red ribbon label");
+				operateBtn = $("<a>进入考试</a>").addClass("small disabled grey ui button");
+			}
+			var titleTd = $("<td></td>").append(tableHeader).append($("<span></span>").addClass("ui header").append(items.title));
+			var classTd = $("<td></td>").append(items.subject.name);
+			var startTimeTd = $("<td></td>").append(items.startTime);
+			var endTimeTd = $("<td></td>").append(items.endTime);
+			var operateTd = $("<td></td>").append(operateBtn);
+			$("<tr></tr>").append(titleTd)
+						  .append(classTd)
+						  .append(startTimeTd)
+						  .append(endTimeTd)
+						  .append(operateTd)
+						  .appendTo("#exam_table tbody");
+		})
+	}
+
+	function build_page_info(result){
+		var pageInfo = result.pageInfo;
+		console.log(pageInfo);			
+		$("#page_info_area").empty();
+		$("#page_info_area").append("当前第"+ 
+			pageInfo.pageNum +"页,总共"+ 
+			pageInfo.pages +"页,总共"+  
+			result.total +"条记录");
+		totalPage=pageInfo.total;
+		currentPage=pageInfo.pageNum;
+	}
+
+	function build_page_nav(result){
+		var pageInfo = result.pageInfo;
+		$("#page_nav_area").empty();
+		var ul = $("<ul></ul>").addClass("pagination");
+		var firstPageLi = $("<li></li>").append($("<a></a>").append("首页").attr("href","#"));
+		var prePageLi = $("<li></li>").append($("<a></a>").append("&laquo;").attr("href","#"));
+		if(pageInfo.hasPreviousPage == false){
+			firstPageLi.addClass("disabled");
+			prePageLi.addClass("disabled");
+		}else{
+			firstPageLi.click(function(){
+				requestPage(0);
+				offset=0;
+			});
+			prePageLi.click(function(){
+				requestPage(offset-=5)	
+			});
 		}
-
-		function build_stus_table(result){
-			var exams = result.rows;
-			$("#exam_table tbody").empty();
-			$.each(exams, function(index, items){
-				var tableHeader,operateBtn;
-				if(items.status==0){
-					tableHeader = $("<span>未开始</span>").addClass("ui yellow ribbon label");
-					operateBtn = $("<a>进入考试</a>").addClass("small disabled positive ui button");
-				}else if(items.status == 1){
-					tableHeader = $("<span>进行中</span>").addClass("ui green ribbon label");
-					operateBtn = $("<a onclick='startToExamAction("+items.id+")'>进入考试</a>").addClass("small positive ui button");
-				}else{
-					tableHeader = $("<span>已结束</span>").addClass("ui red ribbon label");
-					operateBtn = $("<a>进入考试</a>").addClass("small disabled grey ui button");
+		
+		var nextPageLi = $("<li></li>").append($("<a></a>").append("&raquo;").attr("href","#"));
+		var lastPageLi = $("<li></li>").append($("<a></a>").append("尾页").attr("href", "#"));
+		if(pageInfo.hasNextPage == false){
+			nextPageLi.addClass("disabled");
+			lastPageLi.addClass("disabled");
+		}else{
+			nextPageLi.click(function(){
+				requestPage(offset+=5);
+			});
+			lastPageLi.click(function(){
+				requestPage(pageInfo.pages*5);
+			});
+		}
+		ul.append(firstPageLi).append(prePageLi),
+		$.each(pageInfo.navigatepageNums, function(index, items){
+			var numLi = $("<li></li>").append($("<a></a>").append(items));
+			if(pageInfo.pageNum == items){
+				numLi.addClass("active");
 				}
-				var titleTd = $("<td></td>").append(tableHeader).append($("<span></span>").addClass("ui header").append(items.title));
-				var classTd = $("<td></td>").append(items.subject.name);
-				var startTimeTd = $("<td></td>").append(items.startTime);
-				var endTimeTd = $("<td></td>").append(items.endTime);
-				var operateTd = $("<td></td>").append(operateBtn);
-				$("<tr></tr>").append(titleTd)
-							  .append(classTd)
-							  .append(startTimeTd)
-							  .append(endTimeTd)
-							  .append(operateTd)
-							  .appendTo("#exam_table tbody");
+			numLi.click(function(){
+				requestPage(items*5-1);
+				});
+			ul.append(numLi);	
+			});
+		ul.append(nextPageLi).append(lastPageLi);
+		var nav = $("<nav></nav>").css("float","right").append(ul);
+		nav.appendTo("#page_nav_area");
+		};
+		/*进入考试*/
+	    function startToExamAction(id) {
+			Core.postAjax("/exam/validate",{"id":id}, function(data){
+				if(data.status==200){
+					setTimeout(function(){
+						window.location.href="/exam/startexam?id="+id;
+					},3000);
+					layer.msg(data.msg);
+				}else{
+					layer.msg(data.msg);
+				}
 			})
-		}
-
-		function build_page_info(result){
-			var pageInfo = result.pageInfo;
-			console.log(pageInfo);			
-			$("#page_info_area").empty();
-			$("#page_info_area").append("当前第"+ 
-				pageInfo.pageNum +"页,总共"+ 
-				pageInfo.pages +"页,总共"+  
-				result.total +"条记录");
-			totalPage=pageInfo.total;
-			currentPage=pageInfo.pageNum;
-		}
-
-		function build_page_nav(result){
-			var pageInfo = result.pageInfo;
-			$("#page_nav_area").empty();
-			var ul = $("<ul></ul>").addClass("pagination");
-			var firstPageLi = $("<li></li>").append($("<a></a>").append("首页").attr("href","#"));
-			var prePageLi = $("<li></li>").append($("<a></a>").append("&laquo;").attr("href","#"));
-			if(pageInfo.hasPreviousPage == false){
-				firstPageLi.addClass("disabled");
-				prePageLi.addClass("disabled");
-			}else{
-				firstPageLi.click(function(){
-					requestPage(0);
-					offset=0;
-				});
-				prePageLi.click(function(){
-					requestPage(offset-=5)	
-				});
-			}
-			
-			var nextPageLi = $("<li></li>").append($("<a></a>").append("&raquo;").attr("href","#"));
-			var lastPageLi = $("<li></li>").append($("<a></a>").append("尾页").attr("href", "#"));
-			if(pageInfo.hasNextPage == false){
-				nextPageLi.addClass("disabled");
-				lastPageLi.addClass("disabled");
-			}else{
-				nextPageLi.click(function(){
-					requestPage(offset+=5);
-				});
-				lastPageLi.click(function(){
-					requestPage(pageInfo.pages*5);
-				});
-			}
-			ul.append(firstPageLi).append(prePageLi),
-			$.each(pageInfo.navigatepageNums, function(index, items){
-				var numLi = $("<li></li>").append($("<a></a>").append(items));
-				if(pageInfo.pageNum == items){
-					numLi.addClass("active");
-					}
-				numLi.click(function(){
-					requestPage(items*5-1);
-					});
-				ul.append(numLi);	
-				});
-			ul.append(nextPageLi).append(lastPageLi);
-			var nav = $("<nav></nav>").css("float","right").append(ul);
-			nav.appendTo("#page_nav_area");
-			};
-			/*进入考试*/
-		    function startToExamAction(id) {
-		        window.location.href="/exam/startexam?id="+id
-		    }
-	</script>
+	        //window.location.href="/exam/startexam?id="+id
+	    }
+</script>
 </body>
 </html>

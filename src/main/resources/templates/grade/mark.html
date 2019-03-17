@@ -1,0 +1,41 @@
+<meta charset="utf-8">
+<form class="form-horizontal" id="markDetailForm">
+    <input name="id" type="hidden" th:value="${grade.id}">
+    <div class="box-body">
+        <div class="form-group">
+            <label  class="col-sm-3 control-label">考生答案 :</label>
+            <div class="col-sm-8">
+            	<textarea type="text" th:field="*{grade.manulJson}" rows="10" class="form-control" readonly></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label  class="col-sm-3 control-label">老师打分 <span class="red">*</span>:</label>
+            <div class="col-sm-8">
+                <input name="manulResult" class="form-control" require="">
+            </div>
+        </div>
+    </div>
+    <div class="box-footer">
+        <div class="pull-right">
+            <button type="button" id="saveDetailMark" class="btn btn-info">确定</button>
+            <button type="button" data-dismiss="modal" class="btn btn-default">取消</button>
+        </div>
+    </div>
+</form>
+<script>
+    $(function () {
+        $("#saveDetailMark").on('click', function () {
+            if (doValidForm("#markDetailForm")) {
+                Core.mask("#saveDetailMark");
+                Core.postAjax("/grade/mark",$("#markDetailForm").serialize(),function (data) {
+                    if (data.status == 200) {
+                        Core.unmask("#saveDetailMark");
+                        $("#markingModal").modal("hide");
+                        Core.refreshTable("#table",true);
+                    }
+                    layer.msg(data.msg);
+                })
+            }
+        });
+    });
+</script>

@@ -1,8 +1,48 @@
 <meta charset="utf-8">
-<section class="content-header">
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-        <li><a href="#">考试管理</a></li>
-        <li class="active">成绩详情</li>
-    </ol>
-</section>
+<form class="form-horizontal" id="markDetailForm">
+    <input name="id" type="hidden" th:value="${grade.id}">
+    <div class="box-body">
+        <div class="form-group">
+            <label  class="col-sm-3 control-label">考生姓名 :</label>
+            <div class="col-sm-8">
+            	<input th:value="${user.nickname}" class="form-control" readonly>
+            </div>
+        </div>
+        <div class="form-group">
+            <label  class="col-sm-3 control-label">考生学号 :</label>
+            <div class="col-sm-8">
+            	<input th:value="${user.username}" class="form-control" readonly>
+            </div>
+        </div>
+        <div class="form-group">
+            <label  class="col-sm-3 control-label">考试名称 :</label>
+            <div class="col-sm-8">
+            	<input th:value="${exam.title}" class="form-control" readonly>
+            </div>
+        </div>
+        <div class="form-group">
+            <label  class="col-sm-3 control-label">考生选择题答案:</label>
+            <div class="col-sm-8">
+            	<input th:value="${grade.autoJson}" class="form-control" readonly>
+            </div>
+        </div>
+        <div class="form-group">
+            <label  class="col-sm-3 control-label">考生问答题答案:</label>
+            <div class="col-sm-8">
+            	<textarea type="text" th:field="*{grade.manulJson}" rows="4" class="form-control" readonly></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label  class="col-sm-3 control-label">考生交卷时间:</label>
+            <div class="col-sm-8">
+            	<input type="text" class="form-control" th:value="${#dates.format(exam.createTime, 'yyyy-MM-dd HH:mm:ss')}" readonly/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label  class="col-sm-3 control-label">最终得分:</label>
+            <div class="col-sm-8">
+                <input type="text" th:value="${grade.result}" class="form-control" readonly>
+            </div>
+        </div>
+    </div>
+</form>

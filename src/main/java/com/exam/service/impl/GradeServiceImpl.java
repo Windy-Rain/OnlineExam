@@ -43,4 +43,9 @@ public class GradeServiceImpl extends BaseServiceImpl<Grade> implements GradeSer
 		return gradeMpper.deleteBatch(ids);
 	}
 
+	@Override
+	public Grade validateExam(Integer id, String userId) {
+		return gradeMpper.validateExam(id,userId);
+	}
+
 }

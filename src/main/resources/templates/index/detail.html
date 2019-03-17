@@ -17,86 +17,79 @@
     <script th:src="@{/js/detail.js}"></script>
 </head>
 <body>
-	<header id="header" class="nav-header">
-		<div th:replace="home/fragments/navbar :: navbar"></div>
-	</header>
-	<div class="exam-content">
-		<div class="ui header container">
-		    <div class="ui large breadcrumb" th:each="exam:${data['exam']}">
-		        <a class="section" href="/exam"><i class="home icon"></i>在线考试列表</a>
-		        <i class="right chevron icon divider"></i>
-		        <div class="section" th:value="${exam.id}" th:text="${exam.title}"></div>
-		    </div>
-		</div>
-		<div class="ui problemDetail container" th:each="exam:${data['exam']}">
-		    <div class="ui grid">
-		        <div class="ten wide column">
-		            <div class="row" style="padding-left: 2.5em">
-		                <div class="ui stacked segment">
-		                    <h4 class="ui horizontal divider header"><i class="help circle icon"></i>题目描述</h4>
-		                    <label id="currentQuetionTitle"></label>
-		                    <div class="grouped fields" id="currentQuestionAnswer"></div>
-		                </div>
-		            	<div id="preAndNextButton"></div>
-		            </div>
-		        </div>
-		        
-		        <div class="five wide column" style="margin-left:2em">
-		            <div class="row">
-		                <table class="ui table">
-		                    <tbody>
-		                    <tr>
-		                        <td><span style="font-weight: bolder;">考生学号:</span></td>
-		                        <td><span th:text="${user.username}"></span></td>
-		                    </tr>
-		                    <tr>
-		                        <td><span style="font-weight: bolder;">当前考生:</span></td>
-		                        <td><span th:text="${user.nickname}"></span></td>
-		                    </tr>
-		                    <tr>
-		                        <td><span style="font-weight: bolder;">剩余时间:</span></td>
-		                        <td><span style="font-weight: bolder;color:red;" id="examTimeCountdown"></span></td>
-		                    </tr>
-		                    <tr>
-		                        <td><span style="font-weight: bolder;">开始时间:</span></td>
-		                        <td><span th:text="${#dates.format(exam.startTime, 'yyyy-MM-dd HH:mm:ss')}"></span></td>
-		                    </tr>
-		                    <tr>
-		                        <td><span style="font-weight: bolder;">结束时间:</span></td>
-		                        <td><span th:text="${#dates.format(exam.endTime, 'yyyy-MM-dd HH:mm:ss')}"></span></td>
-		                    </tr>
-		                    <tr>
-		                        <td><span style="font-weight: bolder;">总分:</span></td>
-		                        <td><span th:text="${exam.totalScore}"></span></td>
-		                    </tr>
-		                    </tbody>
-		                </table>
-		            </div>
-		            <div class="row" style="margin-top: 1em;">
-		                <div class="ui segment">
-		                    <div class="title">答题卡</div>
-		                    	<div class="content ui segment" id="currentQuestionButton">
-		                    </div>
-		                    <div class="extra content">
-		                        <button type="button" onclick="examDetailPage.finishExamAction()" class="ui positive button">交卷</button>
-		                    </div>
-		                </div>
-		            </div>
-	            </div>
-		   </div>
-	   </div>
-	</div>
-	<div class="footer">
-	    <div th:replace="home/fragments/footer :: copyrightExamWeb"></div>
-	</div>
-	<div class="return_top"><a class=" fa fa-arrow-up"></a></div>
-	<!-- 正在提交试卷模态框 -->
-	<div class="ui mini modal" id="waitSubmitModal">
-	    <div class="header">信息</div>
-	    <div class="content" style='font-size:18px; '>
-	       	 请耐心等候,正在为您提交答题卡......
+<header id="header" class="nav-header">
+	<div th:replace="home/fragments/navbar :: navbar"></div>
+</header>
+<div class="exam-content">
+	<div class="ui header container">
+	    <div class="ui large breadcrumb" th:each="exam:${data['exam']}">
+	        <a class="section" href="/exam"><i class="home icon"></i>在线考试列表</a>
+	        <i class="right chevron icon divider"></i>
+	        <div class="section" th:value="${exam.id}" th:text="${exam.title}"></div>
 	    </div>
 	</div>
+	<div class="ui problemDetail container" th:each="exam:${data['exam']}">
+	    <div class="ui grid">
+	        <div class="ten wide column">
+	            <div class="row" style="padding-left: 2.5em">
+	                <div class="ui stacked segment">
+	                    <h4 class="ui horizontal divider header"><i class="help circle icon"></i>题目描述</h4>
+	                    <label id="currentQuetionTitle"></label>
+	                    <div class="grouped fields" id="currentQuestionAnswer"></div>
+	                </div>
+	            	<div id="preAndNextButton"></div>
+	            </div>
+	        </div>
+	        
+	        <div class="five wide column" style="margin-left:2em">
+	            <div class="row">
+	                <table class="ui table">
+	                    <tbody>
+	                    <tr>
+	                        <td><span style="font-weight: bolder;">考生学号:</span></td>
+	                        <td><span th:text="${user.username}"></span></td>
+	                    </tr>
+	                    <tr>
+	                        <td><span style="font-weight: bolder;">当前考生:</span></td>
+	                        <td><span th:text="${user.nickname}"></span></td>
+	                    </tr>
+	                    <tr>
+	                        <td><span style="font-weight: bolder;">剩余时间:</span></td>
+	                        <td><span style="font-weight: bolder;color:red;" id="examTimeCountdown"></span></td>
+	                    </tr>
+	                    <tr>
+	                        <td><span style="font-weight: bolder;">开始时间:</span></td>
+	                        <td><span th:text="${#dates.format(exam.startTime, 'yyyy-MM-dd HH:mm:ss')}"></span></td>
+	                    </tr>
+	                    <tr>
+	                        <td><span style="font-weight: bolder;">结束时间:</span></td>
+	                        <td><span th:text="${#dates.format(exam.endTime, 'yyyy-MM-dd HH:mm:ss')}"></span></td>
+	                    </tr>
+	                    <tr>
+	                        <td><span style="font-weight: bolder;">总分:</span></td>
+	                        <td><span th:text="${exam.totalScore}"></span></td>
+	                    </tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	            <div class="row" style="margin-top: 1em;">
+	                <div class="ui segment">
+	                    <div class="title">答题卡</div>
+	                    	<div class="content ui segment" id="currentQuestionButton">
+	                    </div>
+	                    <div class="extra content">
+	                        <button type="button" onclick="examDetailPage.finishExamAction()" class="ui positive button">交卷</button>
+	                    </div>
+	                </div>
+	            </div>
+            </div>
+	   </div>
+   </div>
+</div>
+<div class="footer">
+    <div th:replace="home/fragments/footer :: copyrightExamWeb"></div>
+</div>
+<div class="return_top"><a class="fa fa-arrow-up"></a></div>
 <script type="text/javascript" th:inline="javascript">
 	var exam = [[${data['exam']}]];
 	$(function(){

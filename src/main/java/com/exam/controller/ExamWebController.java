@@ -27,6 +27,7 @@ import com.exam.vo.ExaminationConditionVo;
 import com.exam.vo.base.ResponseVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.github.pagehelper.util.StringUtil;
 
 @Controller
 public class ExamWebController {
@@ -84,6 +85,23 @@ public class ExamWebController {
 	}
 	
 	/**
+	 * 验证该用户是否已经参加过考试
+	 * @param id
+	 * @return
+	 */
+	@PostMapping("/exam/validate")
+	@ResponseBody
+	public ResponseVo validate(Integer id) {
+		User user = (User)SecurityUtils.getSubject().getPrincipal();
+		Grade grade  = gradeService.validateExam(id,user.getUserId());
+		if(grade != null) {
+			return ResultUtil.error("你已经参加过该场次考试,不能再参加这场考试了，如有疑问请咨询代课教师！");
+		}else {
+			return ResultUtil.success("你已进入考试，请规范答题，不得离开考试界面，否则成绩不计入考试结果");
+		}
+	}
+	
+	/**
 	 * 提交考试
 	 * @param grade
 	 * @return
@@ -93,7 +111,7 @@ public class ExamWebController {
 	public ResponseVo submitExam(@RequestBody Grade grade) {
 		try {
 			User user = (User)SecurityUtils.getSubject().getPrincipal();
-			List<String> answerStr = Arrays.asList(grade.getAnswerJson().split(","));
+			List<String> answerStr = Arrays.asList(grade.getAnswerJson().split("~_~"));
 			int autoResult = 0;
 			StringBuffer autoStr = new StringBuffer();
 			StringBuffer manulStr = new StringBuffer();
@@ -102,9 +120,9 @@ public class ExamWebController {
 			for(int i = 0; i < questions.size(); i++) {
 				Question question = questions.get(i);
 				if(question.getQuestionType() <= 1) {
-					autoStr.append(answerStr.get(i)+",");
+					autoStr.append(answerStr.get(i)+"~_~");
 				}else {
-					manulStr.append(answerStr.get(i)+",");
+					manulStr.append(answerStr.get(i)+"~_~");
 				}
 				if(question.getQuestionType() <= 1 && question.getAnswer().equals(answerStr.get(i))) {
 					autoResult += question.getScore();

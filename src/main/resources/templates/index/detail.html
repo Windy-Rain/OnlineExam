@@ -86,11 +86,13 @@
 	   </div>
    </div>
 </div>
-<div class="footer">
+<div class="footer" style="background:#4F94CD">
     <div th:replace="home/fragments/footer :: copyrightExamWeb"></div>
 </div>
 <div class="return_top"><a class="fa fa-arrow-up"></a></div>
 <script type="text/javascript" th:inline="javascript">
+	var headerMain = document.getElementById('headerMain');
+	headerMain.setAttribute("style","background:#4F94CD");
 	var exam = [[${data['exam']}]];
 	$(function(){
 		examDetailPage.init(exam);

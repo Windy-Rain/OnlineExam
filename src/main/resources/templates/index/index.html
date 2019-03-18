@@ -56,4 +56,15 @@
 	</div>
 	<div class="return_top"><a class=" fa fa-arrow-up"></a></div>
 </body>
+<script type="text/javascript">
+	var headerMain = document.getElementById('headerMain');
+	headerMain.setAttribute("style","background:rgba(0,0,0,0.3)");
+	window.onscroll = function() {
+	   if(window.pageYOffset >= 70){
+	     headerMain.setAttribute("style","background:#4F94CD");
+	   } else {
+	     headerMain.setAttribute("style","background:rgba(0,0,0,0.3)");
+	   }
+	}
+</script>
 </html>

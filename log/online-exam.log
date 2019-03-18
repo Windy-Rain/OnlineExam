@@ -1,0 +1,103 @@
+2019-03-18 19:10:48.945  INFO 5136 --- [main] com.exam.OnlineExamApplication           : Starting OnlineExamApplication on LAPTOP-7SEUEP84 with PID 5136 (E:\eclipse_workspace\OnlineExam\target\classes started by HungKuei_PC in E:\eclipse_workspace\OnlineExam)
+2019-03-18 19:10:48.949 DEBUG 5136 --- [main] com.exam.OnlineExamApplication           : Running with Spring Boot v2.0.2.RELEASE, Spring v5.0.6.RELEASE
+2019-03-18 19:10:48.951  INFO 5136 --- [main] com.exam.OnlineExamApplication           : No active profile set, falling back to default profiles: default
+2019-03-18 19:10:49.938 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\CommentMapper.class]
+2019-03-18 19:10:49.986 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\ExaminationMapper.class]
+2019-03-18 19:10:49.986 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\ExamQuestionMapper.class]
+2019-03-18 19:10:49.987 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\GradeMapper.class]
+2019-03-18 19:10:49.987 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\LinkMapper.class]
+2019-03-18 19:10:49.987 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\PermissionMapper.class]
+2019-03-18 19:10:49.987 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\QuestionMapper.class]
+2019-03-18 19:10:49.987 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\RoleMapper.class]
+2019-03-18 19:10:49.987 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\RolePermissionMapper.class]
+2019-03-18 19:10:49.987 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\SiteInfoMapper.class]
+2019-03-18 19:10:49.988 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\SubjectMapper.class]
+2019-03-18 19:10:49.988 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\SysConfigMapper.class]
+2019-03-18 19:10:49.988 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\TagMapper.class]
+2019-03-18 19:10:49.988 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\UserMapper.class]
+2019-03-18 19:10:49.988 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\UserRoleMapper.class]
+2019-03-18 19:10:49.989 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'commentMapper' and 'com.exam.mapper.CommentMapper' mapperInterface
+2019-03-18 19:10:49.989 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'commentMapper'.
+2019-03-18 19:10:49.989 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'examinationMapper' and 'com.exam.mapper.ExaminationMapper' mapperInterface
+2019-03-18 19:10:49.989 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'examinationMapper'.
+2019-03-18 19:10:49.989 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'examQuestionMapper' and 'com.exam.mapper.ExamQuestionMapper' mapperInterface
+2019-03-18 19:10:49.989 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'examQuestionMapper'.
+2019-03-18 19:10:49.989 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'gradeMapper' and 'com.exam.mapper.GradeMapper' mapperInterface
+2019-03-18 19:10:49.989 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'gradeMapper'.
+2019-03-18 19:10:49.990 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'linkMapper' and 'com.exam.mapper.LinkMapper' mapperInterface
+2019-03-18 19:10:49.990 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'linkMapper'.
+2019-03-18 19:10:49.990 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'permissionMapper' and 'com.exam.mapper.PermissionMapper' mapperInterface
+2019-03-18 19:10:49.990 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'permissionMapper'.
+2019-03-18 19:10:49.991 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'questionMapper' and 'com.exam.mapper.QuestionMapper' mapperInterface
+2019-03-18 19:10:49.991 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'questionMapper'.
+2019-03-18 19:10:49.991 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'roleMapper' and 'com.exam.mapper.RoleMapper' mapperInterface
+2019-03-18 19:10:49.991 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'roleMapper'.
+2019-03-18 19:10:49.992 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'rolePermissionMapper' and 'com.exam.mapper.RolePermissionMapper' mapperInterface
+2019-03-18 19:10:49.993 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'rolePermissionMapper'.
+2019-03-18 19:10:49.994 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'siteInfoMapper' and 'com.exam.mapper.SiteInfoMapper' mapperInterface
+2019-03-18 19:10:49.994 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'siteInfoMapper'.
+2019-03-18 19:10:49.994 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'subjectMapper' and 'com.exam.mapper.SubjectMapper' mapperInterface
+2019-03-18 19:10:49.994 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'subjectMapper'.
+2019-03-18 19:10:49.994 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'sysConfigMapper' and 'com.exam.mapper.SysConfigMapper' mapperInterface
+2019-03-18 19:10:49.995 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'sysConfigMapper'.
+2019-03-18 19:10:49.995 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'tagMapper' and 'com.exam.mapper.TagMapper' mapperInterface
+2019-03-18 19:10:49.995 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'tagMapper'.
+2019-03-18 19:10:49.995 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'userMapper' and 'com.exam.mapper.UserMapper' mapperInterface
+2019-03-18 19:10:49.995 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'userMapper'.
+2019-03-18 19:10:49.995 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'userRoleMapper' and 'com.exam.mapper.UserRoleMapper' mapperInterface
+2019-03-18 19:10:49.995 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'userRoleMapper'.
+2019-03-18 19:10:53.328  INFO 5136 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-03-18 19:10:53.339 DEBUG 5136 --- [main] c.e.m.PermissionMapper.selectAllPerms    : ==>  Preparing: SELECT id, permission_id, name, description, url, perms, parent_id, type, order_num, icon, status, create_time, update_time FROM permission WHERE status=? ORDER BY order_num 
+2019-03-18 19:10:53.519 DEBUG 5136 --- [main] c.e.m.PermissionMapper.selectAllPerms    : ==> Parameters: 1(Integer)
+2019-03-18 19:10:53.566 DEBUG 5136 --- [main] c.e.m.PermissionMapper.selectAllPerms    : <==      Total: 77
+2019-03-18 19:10:53.957  INFO 5136 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-03-18 19:10:53.958  INFO 5136 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.31
+2019-03-18 19:10:53.981  INFO 5136 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.16] using APR version [1.6.3].
+2019-03-18 19:10:53.982  INFO 5136 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2019-03-18 19:10:53.982  INFO 5136 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2019-03-18 19:10:55.056  INFO 5136 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2m  2 Nov 2017]
+2019-03-18 19:10:55.242  INFO 5136 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-03-18 19:10:57.433  WARN 5136 --- [main] org.thymeleaf.templatemode.TemplateMode  : [THYMELEAF][main] Template Mode 'LEGACYHTML5' is deprecated. Using Template Mode 'HTML' instead.
+2019-03-18 19:10:58.268  INFO 5136 --- [main] com.exam.OnlineExamApplication           : Started OnlineExamApplication in 9.784 seconds (JVM running for 10.418)
+2019-03-18 19:12:47.694  INFO 5136 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-03-18 19:12:47.769  INFO 5136 --- [http-nio-8081-exec-1] a.s.s.m.AbstractValidatingSessionManager : Enabling session validation scheduler...
+2019-03-18 19:12:47.906 DEBUG 5136 --- [http-nio-8081-exec-1] com.exam.mapper.QuestionMapper.countNum  : ==>  Preparing: select count(id) questionNums from question 
+2019-03-18 19:12:47.909 DEBUG 5136 --- [http-nio-8081-exec-1] com.exam.mapper.QuestionMapper.countNum  : ==> Parameters: 
+2019-03-18 19:12:47.912 DEBUG 5136 --- [http-nio-8081-exec-1] com.exam.mapper.QuestionMapper.countNum  : <==      Total: 1
+2019-03-18 19:12:47.912 DEBUG 5136 --- [http-nio-8081-exec-1] com.exam.mapper.UserMapper.userNums      : ==>  Preparing: select count(id) userNums from user 
+2019-03-18 19:12:47.913 DEBUG 5136 --- [http-nio-8081-exec-1] com.exam.mapper.UserMapper.userNums      : ==> Parameters: 
+2019-03-18 19:12:47.919 DEBUG 5136 --- [http-nio-8081-exec-1] com.exam.mapper.UserMapper.userNums      : <==      Total: 1
+2019-03-18 19:12:50.183 DEBUG 5136 --- [http-nio-8081-exec-2] c.e.mapper.SubjectMapper.selectSubjects  : ==>  Preparing: SELECT s.* FROM subject s WHERE 1=1 AND s.`status` = ? ORDER BY s.sort ASC 
+2019-03-18 19:12:50.189 DEBUG 5136 --- [http-nio-8081-exec-2] c.e.mapper.SubjectMapper.selectSubjects  : ==> Parameters: 1(Integer)
+2019-03-18 19:12:50.193 DEBUG 5136 --- [http-nio-8081-exec-2] c.e.mapper.SubjectMapper.selectSubjects  : <==      Total: 3
+2019-03-18 19:12:50.548 DEBUG 5136 --- [http-nio-8081-exec-4] c.e.m.Q.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM (SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM question a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 GROUP BY a.id) table_count 
+2019-03-18 19:12:50.555 DEBUG 5136 --- [http-nio-8081-exec-4] c.e.m.Q.findByCondition_COUNT            : ==> Parameters: 
+2019-03-18 19:12:50.558 DEBUG 5136 --- [http-nio-8081-exec-4] c.e.m.Q.findByCondition_COUNT            : <==      Total: 1
+2019-03-18 19:12:50.559 DEBUG 5136 --- [http-nio-8081-exec-4] c.e.m.QuestionMapper.findByCondition     : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM question a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 GROUP BY a.id LIMIT ? 
+2019-03-18 19:12:50.562 DEBUG 5136 --- [http-nio-8081-exec-4] c.e.m.QuestionMapper.findByCondition     : ==> Parameters: 10(Integer)
+2019-03-18 19:12:50.572 DEBUG 5136 --- [http-nio-8081-exec-4] c.e.m.QuestionMapper.findByCondition     : <==      Total: 10
+2019-03-18 19:12:51.083 DEBUG 5136 --- [http-nio-8081-exec-5] com.exam.mapper.SubjectMapper.select     : ==>  Preparing: SELECT id,create_time,update_time,user_id,name,description,img_url,sort,author,status FROM subject WHERE status = ? 
+2019-03-18 19:12:51.084 DEBUG 5136 --- [http-nio-8081-exec-5] com.exam.mapper.SubjectMapper.select     : ==> Parameters: 1(Integer)
+2019-03-18 19:12:51.087 DEBUG 5136 --- [http-nio-8081-exec-5] com.exam.mapper.SubjectMapper.select     : <==      Total: 3
+2019-03-18 19:12:51.172 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.E.updateExamToStart                : ==>  Preparing: UPDATE examination SET status = 1 WHERE status = 0 AND start_time <= ? AND end_time > ? 
+2019-03-18 19:12:51.178 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.E.updateExamToStart                : ==> Parameters: 2019-03-18 19:12:51.171(Timestamp), 2019-03-18 19:12:51.171(Timestamp)
+2019-03-18 19:12:51.181 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.E.updateExamToStart                : <==    Updates: 0
+2019-03-18 19:12:51.181 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.ExaminationMapper.updateExamToEnd  : ==>  Preparing: UPDATE examination SET status = 2 WHERE status <= 2 AND end_time <= ? 
+2019-03-18 19:12:51.182 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.ExaminationMapper.updateExamToEnd  : ==> Parameters: 2019-03-18 19:12:51.181(Timestamp)
+2019-03-18 19:12:51.183 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.ExaminationMapper.updateExamToEnd  : <==    Updates: 4
+2019-03-18 19:12:51.194 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-18 19:12:51.195 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-18 19:12:51.196 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-18 19:12:51.198 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-18 19:12:51.200 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 10(Integer)
+2019-03-18 19:12:51.205 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-18 19:12:51.209 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-18 19:12:51.211 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-18 19:12:51.233 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-18 19:12:51.951 DEBUG 5136 --- [http-nio-8081-exec-9] c.e.mapper.SubjectMapper.selectSubjects  : ==>  Preparing: SELECT s.* FROM subject s WHERE 1=1 AND s.`status` = ? ORDER BY s.sort ASC 
+2019-03-18 19:12:51.952 DEBUG 5136 --- [http-nio-8081-exec-9] c.e.mapper.SubjectMapper.selectSubjects  : ==> Parameters: 1(Integer)
+2019-03-18 19:12:51.954 DEBUG 5136 --- [http-nio-8081-exec-9] c.e.mapper.SubjectMapper.selectSubjects  : <==      Total: 3
+2019-03-18 19:12:55.041  INFO 5136 --- [http-nio-8081-exec-8] io.lettuce.core.EpollProvider            : Starting without optional epoll library
+2019-03-18 19:12:55.043  INFO 5136 --- [http-nio-8081-exec-8] io.lettuce.core.KqueueProvider           : Starting without optional kqueue library
+2019-03-18 19:12:55.802  INFO 5136 --- [http-nio-8081-exec-8] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-18 19:12:55.898  INFO 5136 --- [http-nio-8081-exec-8] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据

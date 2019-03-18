@@ -5,8 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>C语言在线考试系统 | 登录</title>
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-<link rel="stylesheet" th:href="@{/libs/semantic-ui/semantic.min.css}" />
 <link rel="stylesheet" th:href="@{/libs/bootstrap/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/libs/semantic-ui/semantic.min.css}" />
 <link rel="stylesheet" th:href="@{/libs/font-awesome/font-awesome.min.css}" />
 <link rel="stylesheet" th:href="@{/libs/Ionicons/css/ionicons.min.css}">
 <link rel="stylesheet" th:href="@{/libs/validate/validate.css}" />
@@ -14,12 +14,16 @@
 <link rel="stylesheet" th:href="@{/css/login.css}" />
 <link rel="stylesheet" th:href="@{/css/web-common.css}" />
 <script type="text/javascript" th:src="@{/libs/jquery/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/libs/bootstrap/bootstrap.min.js}"></script>
 <script type="text/javascript" th:src="@{/libs/semantic-ui/semantic.min.js}"></script>
+<script type="text/javascript" th:src="@{/libs/layer/layer.js}"></script>
+<script type="text/javascript" th:src="@{/libs/iCheck/icheck.min.js}"></script>
+<script type="text/javascript" th:src="@{/libs/validate/validate.js}"></script>
 </head>
 <body>
-	<header class="login-header">
-			<div th:replace="home/fragments/navbar :: navbar"></div>
-	</header>
+	<div class="login-header">
+		<div th:replace="home/fragments/navbar :: navbar"></div>
+	</div>
 	<div class="login-content">
 		<div class="login-box">
 			<form id="loginForm" class="login-form">
@@ -60,13 +64,9 @@
 			</form>
 		</div>
 	</div>
-	<div class="footer">
-		<div th:replace="home/fragments/footer :: copyrightCommon"></div>
+	<div class="footer" style="background:#4F94CD">
+		<div th:replace="home/fragments/footer :: copyrightExamWeb"></div>
 	</div>
-<script th:src="@{/libs/bootstrap/bootstrap.min.js}"></script>
-<script th:src="@{/libs/layer/layer.js}"></script>
-<script th:src="@{/libs/iCheck/icheck.min.js}"></script>
-<script th:src="@{/libs/validate/validate.js}"></script>
 <script>
   $(function () {
     $('input').iCheck({
@@ -77,6 +77,10 @@
   });
 </script>
 <script>
+	var headerMain = document.getElementById('headerMain');
+	headerMain.setAttribute("style","background:#4F94CD");
+	headerMain.removeChild(document.getElementById('login'));
+	
 	$(function () {
 	    $(".vcode-img").on('click', function () {
 	        $(this).attr('src', '/verificationCode?' + Math.floor(Math.random() * 100));

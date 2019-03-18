@@ -7,7 +7,7 @@ logging:
     com.exam: DEBUG
     tk.mybatis: DEBUG
     org.springframework: WARN
-#  file: log/online-exam.log
+  file: log\online-exam.log
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource

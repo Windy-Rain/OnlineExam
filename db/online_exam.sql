@@ -3,25 +3,25 @@
 
  Source Server         : MySql
  Source Server Type    : MySQL
- Source Server Version : 50724
+ Source Server Version : 50723
  Source Host           : localhost:3306
  Source Schema         : online_exam
 
  Target Server Type    : MySQL
- Target Server Version : 50724
+ Target Server Version : 50723
  File Encoding         : 65001
 
- Date: 26/02/2019 17:09:06
+ Date: 18/03/2019 19:20:40
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for biz_comment
+-- Table structure for comment
 -- ----------------------------
-DROP TABLE IF EXISTS `biz_comment`;
-CREATE TABLE `biz_comment`  (
+DROP TABLE IF EXISTS `comment`;
+CREATE TABLE `comment`  (
   `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `sid` int(20) NULL DEFAULT NULL COMMENT '被评论的文章或者页面的ID(-1:留言板)',
   `user_id` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '评论人的ID',
@@ -50,79 +50,12 @@ CREATE TABLE `biz_comment`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
--- Records of biz_comment
+-- Records of comment
 -- ----------------------------
-INSERT INTO `biz_comment` VALUES (1, 1, NULL, NULL, '523179414', '郑其锋', 'http://q1.qlogo.cn/g?b=qq&nk=523179414&s=100', '', NULL, 1, '0:0:0:0:0:0:0:1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p>测试评论</p>', NULL, 0, 0, '2018-09-13 23:30:56', '2018-09-13 23:30:56');
-INSERT INTO `biz_comment` VALUES (2, 1, '1', 1, NULL, '郑其锋', 'http://cdn.nbclass.com/blog/img/person.jpg', '888@qq.com', NULL, 1, '0:0:0:0:0:0:0:1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p>测试回复评论~</p>\r\n', NULL, 0, 0, '2018-09-13 23:31:37', '2018-09-13 23:31:37');
-INSERT INTO `biz_comment` VALUES (3, 1, NULL, NULL, '123456', '腾讯视频', 'http://q1.qlogo.cn/g?b=qq&nk=123456&s=100', '', NULL, 1, '0:0:0:0:0:0:0:1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p>第三方</p>', NULL, 0, 0, '2018-09-20 00:52:21', '2018-09-20 00:52:21');
-INSERT INTO `biz_comment` VALUES (4, -1, NULL, NULL, '12345678', '腾讯视频', 'http://q1.qlogo.cn/g?b=qq&nk=12345678&s=100', '', NULL, 0, '0:0:0:0:0:0:0:1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p>士大夫</p>', NULL, 0, 0, '2018-09-20 00:52:37', '2018-09-20 00:52:37');
-
--- ----------------------------
--- Table structure for biz_link
--- ----------------------------
-DROP TABLE IF EXISTS `biz_link`;
-CREATE TABLE `biz_link`  (
-  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '链接名',
-  `url` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '链接地址',
-  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '链接介绍',
-  `img` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '友链图片地址',
-  `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '友链站长邮箱',
-  `qq` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '友链站长qq',
-  `status` int(1) UNSIGNED NULL DEFAULT NULL COMMENT '状态',
-  `origin` int(1) NULL DEFAULT NULL COMMENT '1-管理员添加 2-自助申请',
-  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
-  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '添加时间',
-  `update_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of biz_link
--- ----------------------------
-INSERT INTO `biz_link` VALUES (1, '宁夏理工学院', 'http://www.nxist.com/views/font/homepage.form', '宁夏理工学院官网', '', '', '', 1, 1, '', '2018-09-13 23:24:25', '2019-02-26 11:46:17');
-INSERT INTO `biz_link` VALUES (2, '百度', 'www.baidu.com', '百度网站', '', '', '', 1, 1, '', '2019-01-17 09:51:44', '2019-01-17 09:51:44');
-
--- ----------------------------
--- Table structure for biz_site_info
--- ----------------------------
-DROP TABLE IF EXISTS `biz_site_info`;
-CREATE TABLE `biz_site_info`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `site_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `site_desc` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `site_pic` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `create_time` datetime(0) NULL DEFAULT NULL,
-  `update_time` datetime(0) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of biz_site_info
--- ----------------------------
-INSERT INTO `biz_site_info` VALUES (1, 'OnlineExam | 在线考试系统', '95后少年，热爱写bug，热爱编程，热爱学习，分享一些个人项目经验，共同学习，少走弯路。Just do it！', 'http://cdn.nbclass.com/blog/img/person.jpg', '2018-11-22 22:13:26', '2019-11-22 22:13:29');
-
--- ----------------------------
--- Table structure for biz_tags
--- ----------------------------
-DROP TABLE IF EXISTS `biz_tags`;
-CREATE TABLE `biz_tags`  (
-  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '书签名',
-  `description` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述',
-  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '添加时间',
-  `update_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of biz_tags
--- ----------------------------
-INSERT INTO `biz_tags` VALUES (1, 'Linux', '111', '2018-01-14 21:35:31', '2018-07-25 18:53:34');
-INSERT INTO `biz_tags` VALUES (2, 'Java', '222', '2018-01-14 21:35:45', '2018-07-25 18:53:38');
-INSERT INTO `biz_tags` VALUES (3, 'Spring', NULL, '2018-01-14 21:35:52', '2018-01-14 21:35:52');
-INSERT INTO `biz_tags` VALUES (4, 'Spring Boot', NULL, '2018-01-14 21:36:01', '2018-01-14 21:36:01');
-INSERT INTO `biz_tags` VALUES (5, '其他', '其他', '2018-07-25 18:55:06', '2018-07-25 18:55:06');
+INSERT INTO `comment` VALUES (1, 1, NULL, NULL, '523179414', '郭洪奎', 'http://q1.qlogo.cn/g?b=qq&nk=523179414&s=100', '', NULL, 1, '0:0:0:0:0:0:0:1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p>测试评论</p>', NULL, 0, 0, '2018-09-13 23:30:56', '2018-09-13 23:30:56');
+INSERT INTO `comment` VALUES (2, 1, '1', 1, NULL, '郭洪奎', 'http://cdn.nbclass.com/blog/img/person.jpg', '888@qq.com', NULL, 1, '0:0:0:0:0:0:0:1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p>测试回复评论~</p>\r\n', NULL, 0, 0, '2018-09-13 23:31:37', '2018-09-13 23:31:37');
+INSERT INTO `comment` VALUES (3, 1, NULL, NULL, '123456', '腾讯视频', 'http://q1.qlogo.cn/g?b=qq&nk=123456&s=100', '', NULL, 1, '0:0:0:0:0:0:0:1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p>第三方</p>', NULL, 0, 0, '2018-09-20 00:52:21', '2018-09-20 00:52:21');
+INSERT INTO `comment` VALUES (4, -1, NULL, NULL, '12345678', '腾讯视频', 'http://q1.qlogo.cn/g?b=qq&nk=12345678&s=100', '', NULL, 0, '0:0:0:0:0:0:0:1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p>士大夫</p>', NULL, 0, 0, '2018-09-20 00:52:37', '2018-09-20 00:52:37');
 
 -- ----------------------------
 -- Table structure for exam_question
@@ -135,61 +68,38 @@ CREATE TABLE `exam_question`  (
   `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '添加时间',
   `update_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 85 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 78 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of exam_question
 -- ----------------------------
-INSERT INTO `exam_question` VALUES (1, 8, 6, '2019-02-15 13:20:24', '2019-02-15 13:20:24');
-INSERT INTO `exam_question` VALUES (2, 8, 7, '2019-02-15 13:20:24', '2019-02-15 13:20:24');
-INSERT INTO `exam_question` VALUES (3, 8, 8, '2019-02-15 13:20:24', '2019-02-15 13:20:24');
-INSERT INTO `exam_question` VALUES (4, 8, 9, '2019-02-15 13:20:24', '2019-02-15 13:20:24');
-INSERT INTO `exam_question` VALUES (5, 8, 10, '2019-02-15 13:20:24', '2019-02-15 13:20:24');
-INSERT INTO `exam_question` VALUES (6, 8, 11, '2019-02-15 13:20:24', '2019-02-15 13:20:24');
-INSERT INTO `exam_question` VALUES (7, 8, 12, '2019-02-15 13:20:24', '2019-02-15 13:20:24');
-INSERT INTO `exam_question` VALUES (8, 8, 13, '2019-02-15 13:20:24', '2019-02-15 13:20:24');
-INSERT INTO `exam_question` VALUES (9, 8, 14, '2019-02-15 13:20:24', '2019-02-15 13:20:24');
-INSERT INTO `exam_question` VALUES (10, 8, 18, '2019-02-15 13:20:24', '2019-02-15 13:20:24');
-INSERT INTO `exam_question` VALUES (30, 12, 15, '2019-02-19 09:58:44', '2019-02-19 09:58:44');
-INSERT INTO `exam_question` VALUES (31, 12, 16, '2019-02-19 09:58:44', '2019-02-19 09:58:44');
-INSERT INTO `exam_question` VALUES (32, 12, 17, '2019-02-19 09:58:44', '2019-02-19 09:58:44');
-INSERT INTO `exam_question` VALUES (33, 13, 8, '2019-02-21 15:04:18', '2019-02-21 15:04:18');
-INSERT INTO `exam_question` VALUES (34, 13, 9, '2019-02-21 15:04:18', '2019-02-21 15:04:18');
-INSERT INTO `exam_question` VALUES (35, 13, 10, '2019-02-21 15:04:18', '2019-02-21 15:04:18');
-INSERT INTO `exam_question` VALUES (36, 14, 6, '2019-02-21 15:04:56', '2019-02-21 15:04:56');
-INSERT INTO `exam_question` VALUES (37, 15, 6, '2019-02-21 15:05:10', '2019-02-21 15:05:10');
-INSERT INTO `exam_question` VALUES (38, 15, 10, '2019-02-21 15:05:10', '2019-02-21 15:05:10');
-INSERT INTO `exam_question` VALUES (39, 16, 6, '2019-02-21 15:05:29', '2019-02-21 15:05:29');
-INSERT INTO `exam_question` VALUES (40, 16, 10, '2019-02-21 15:05:29', '2019-02-21 15:05:29');
-INSERT INTO `exam_question` VALUES (41, 16, 18, '2019-02-21 15:05:29', '2019-02-21 15:05:29');
-INSERT INTO `exam_question` VALUES (42, 17, 6, '2019-02-21 15:05:46', '2019-02-21 15:05:46');
-INSERT INTO `exam_question` VALUES (43, 17, 10, '2019-02-21 15:05:46', '2019-02-21 15:05:46');
-INSERT INTO `exam_question` VALUES (44, 17, 18, '2019-02-21 15:05:46', '2019-02-21 15:05:46');
-INSERT INTO `exam_question` VALUES (45, 17, 7, '2019-02-21 15:05:46', '2019-02-21 15:05:46');
-INSERT INTO `exam_question` VALUES (46, 17, 8, '2019-02-21 15:05:46', '2019-02-21 15:05:46');
-INSERT INTO `exam_question` VALUES (47, 18, 18, '2019-02-21 15:06:34', '2019-02-21 15:06:34');
-INSERT INTO `exam_question` VALUES (48, 18, 15, '2019-02-21 15:06:34', '2019-02-21 15:06:34');
-INSERT INTO `exam_question` VALUES (49, 18, 16, '2019-02-21 15:06:34', '2019-02-21 15:06:34');
-INSERT INTO `exam_question` VALUES (50, 18, 17, '2019-02-21 15:06:34', '2019-02-21 15:06:34');
-INSERT INTO `exam_question` VALUES (51, 19, 18, '2019-02-21 15:06:50', '2019-02-21 15:06:50');
-INSERT INTO `exam_question` VALUES (52, 19, 15, '2019-02-21 15:06:50', '2019-02-21 15:06:50');
-INSERT INTO `exam_question` VALUES (53, 19, 17, '2019-02-21 15:06:50', '2019-02-21 15:06:50');
-INSERT INTO `exam_question` VALUES (54, 20, 18, '2019-02-21 15:07:49', '2019-02-21 15:07:49');
-INSERT INTO `exam_question` VALUES (55, 20, 15, '2019-02-21 15:07:49', '2019-02-21 15:07:49');
-INSERT INTO `exam_question` VALUES (56, 20, 16, '2019-02-21 15:07:49', '2019-02-21 15:07:49');
-INSERT INTO `exam_question` VALUES (57, 20, 17, '2019-02-21 15:07:49', '2019-02-21 15:07:49');
-INSERT INTO `exam_question` VALUES (58, 21, 18, '2019-02-21 15:08:03', '2019-02-21 15:08:03');
-INSERT INTO `exam_question` VALUES (59, 21, 15, '2019-02-21 15:08:03', '2019-02-21 15:08:03');
-INSERT INTO `exam_question` VALUES (60, 21, 16, '2019-02-21 15:08:03', '2019-02-21 15:08:03');
-INSERT INTO `exam_question` VALUES (61, 21, 17, '2019-02-21 15:08:03', '2019-02-21 15:08:03');
-INSERT INTO `exam_question` VALUES (62, 21, 14, '2019-02-21 15:08:03', '2019-02-21 15:08:03');
-INSERT INTO `exam_question` VALUES (68, 23, 6, '2019-02-22 10:30:06', '2019-02-22 10:30:06');
-INSERT INTO `exam_question` VALUES (69, 23, 7, '2019-02-22 10:30:06', '2019-02-22 10:30:06');
-INSERT INTO `exam_question` VALUES (80, 22, 18, '2019-02-25 14:56:06', '2019-02-25 14:56:06');
-INSERT INTO `exam_question` VALUES (81, 22, 16, '2019-02-25 14:56:06', '2019-02-25 14:56:06');
-INSERT INTO `exam_question` VALUES (82, 22, 17, '2019-02-25 14:56:06', '2019-02-25 14:56:06');
-INSERT INTO `exam_question` VALUES (83, 22, 8, '2019-02-25 14:56:06', '2019-02-25 14:56:06');
-INSERT INTO `exam_question` VALUES (84, 22, 14, '2019-02-25 14:56:06', '2019-02-25 14:56:06');
+INSERT INTO `exam_question` VALUES (28, 5, 9, '2019-02-18 22:13:08', '2019-02-18 22:13:08');
+INSERT INTO `exam_question` VALUES (29, 5, 10, '2019-02-18 22:13:08', '2019-02-18 22:13:08');
+INSERT INTO `exam_question` VALUES (30, 6, 7, '2019-02-21 19:28:23', '2019-02-21 19:28:23');
+INSERT INTO `exam_question` VALUES (31, 6, 8, '2019-02-21 19:28:23', '2019-02-21 19:28:23');
+INSERT INTO `exam_question` VALUES (32, 7, 9, '2019-02-21 19:28:47', '2019-02-21 19:28:47');
+INSERT INTO `exam_question` VALUES (33, 7, 10, '2019-02-21 19:28:47', '2019-02-21 19:28:47');
+INSERT INTO `exam_question` VALUES (43, 8, 9, '2019-03-12 14:29:41', '2019-03-12 14:29:41');
+INSERT INTO `exam_question` VALUES (44, 8, 10, '2019-03-12 14:29:41', '2019-03-12 14:29:41');
+INSERT INTO `exam_question` VALUES (45, 8, 13, '2019-03-12 14:29:41', '2019-03-12 14:29:41');
+INSERT INTO `exam_question` VALUES (46, 8, 14, '2019-03-12 14:29:41', '2019-03-12 14:29:41');
+INSERT INTO `exam_question` VALUES (47, 8, 15, '2019-03-12 14:29:41', '2019-03-12 14:29:41');
+INSERT INTO `exam_question` VALUES (48, 8, 16, '2019-03-12 14:29:41', '2019-03-12 14:29:41');
+INSERT INTO `exam_question` VALUES (63, 9, 7, '2019-03-16 17:48:16', '2019-03-16 17:48:16');
+INSERT INTO `exam_question` VALUES (64, 9, 8, '2019-03-16 17:48:16', '2019-03-16 17:48:16');
+INSERT INTO `exam_question` VALUES (65, 9, 17, '2019-03-16 17:48:16', '2019-03-16 17:48:16');
+INSERT INTO `exam_question` VALUES (66, 9, 18, '2019-03-16 17:48:16', '2019-03-16 17:48:16');
+INSERT INTO `exam_question` VALUES (67, 9, 19, '2019-03-16 17:48:16', '2019-03-16 17:48:16');
+INSERT INTO `exam_question` VALUES (68, 9, 20, '2019-03-16 17:48:16', '2019-03-16 17:48:16');
+INSERT INTO `exam_question` VALUES (69, 9, 21, '2019-03-16 17:48:16', '2019-03-16 17:48:16');
+INSERT INTO `exam_question` VALUES (70, 9, 22, '2019-03-16 17:48:16', '2019-03-16 17:48:16');
+INSERT INTO `exam_question` VALUES (71, 9, 23, '2019-03-16 17:48:16', '2019-03-16 17:48:16');
+INSERT INTO `exam_question` VALUES (72, 9, 24, '2019-03-16 17:48:16', '2019-03-16 17:48:16');
+INSERT INTO `exam_question` VALUES (73, 9, 25, '2019-03-16 17:48:16', '2019-03-16 17:48:16');
+INSERT INTO `exam_question` VALUES (74, 9, 26, '2019-03-16 17:48:16', '2019-03-16 17:48:16');
+INSERT INTO `exam_question` VALUES (75, 9, 27, '2019-03-16 17:48:16', '2019-03-16 17:48:16');
+INSERT INTO `exam_question` VALUES (76, 9, 29, '2019-03-16 17:48:16', '2019-03-16 17:48:16');
+INSERT INTO `exam_question` VALUES (77, 9, 33, '2019-03-16 17:48:16', '2019-03-16 17:48:16');
 
 -- ----------------------------
 -- Table structure for examination
@@ -208,23 +118,16 @@ CREATE TABLE `examination`  (
   `end_time` timestamp(0) NULL DEFAULT NULL COMMENT '考试结束时间',
   `status` int(8) NULL DEFAULT 0 COMMENT '进行状态:0表示未开始,1表示进行中,2表示考试已经结束,3表示该考试已经完成批卷',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of examination
 -- ----------------------------
-INSERT INTO `examination` VALUES (8, 'C语言程序设计期末考试', '1', '超级管理员', 60, 1, '2019-02-15 13:20:18', '2019-02-22 11:01:29', '2019-02-15 13:17:20', '2019-02-15 13:17:22', 2);
-INSERT INTO `examination` VALUES (12, 'Java语言程序设计期末考试', '1', '超级管理员', 20, 4, '2019-02-19 09:58:44', '2019-02-22 11:01:35', '2019-02-19 09:58:34', '2019-02-19 09:58:35', 2);
-INSERT INTO `examination` VALUES (13, '测试', '1', '超级管理员', 15, 1, '2019-02-21 15:04:18', '2019-02-22 11:01:37', '2019-02-21 15:04:10', '2019-02-21 15:04:12', 2);
-INSERT INTO `examination` VALUES (14, 'C语言程序设计期末考试', '1', '超级管理员', 5, 1, '2019-02-21 15:04:56', '2019-02-22 11:01:41', '2019-02-21 15:04:47', '2019-02-21 15:04:48', 2);
-INSERT INTO `examination` VALUES (15, '测试', '1', '超级管理员', 10, 1, '2019-02-21 15:05:10', '2019-02-22 11:01:43', '2019-02-21 15:05:01', '2019-02-21 15:05:03', 2);
-INSERT INTO `examination` VALUES (16, 'C语言程序设计期末考试', '1', '超级管理员', 15, 1, '2019-02-21 15:05:29', '2019-02-22 11:01:45', '2019-02-21 15:05:21', '2019-02-21 15:05:22', 2);
-INSERT INTO `examination` VALUES (17, 'C语言程序设计期末考试', '1', '超级管理员', 25, 1, '2019-02-21 15:05:46', '2019-02-22 11:01:46', '2019-02-21 15:05:41', '2019-02-21 15:05:43', 2);
-INSERT INTO `examination` VALUES (18, '测试', '1', '超级管理员', 20, 4, '2019-02-21 15:06:34', '2019-02-22 11:01:48', '2019-02-21 15:06:30', '2019-02-21 15:06:31', 2);
-INSERT INTO `examination` VALUES (19, '测试', '1', '超级管理员', 15, 4, '2019-02-21 15:06:50', '2019-02-22 11:01:49', '2019-02-21 15:06:45', '2019-02-21 15:06:47', 2);
-INSERT INTO `examination` VALUES (20, '测试', '1', '超级管理员', 20, 4, '2019-02-21 15:07:49', '2019-02-22 11:01:51', '2019-02-21 15:07:27', '2019-02-21 15:07:28', 2);
-INSERT INTO `examination` VALUES (21, '测试', '1', '超级管理员', 30, 1, '2019-02-21 15:08:03', '2019-02-26 13:55:04', '2019-02-26 13:55:00', '2019-02-28 11:00:00', 1);
-INSERT INTO `examination` VALUES (22, 'C语言程序设计期末考试', '1', '超级管理员', 30, 1, '2019-02-21 15:09:12', '2019-02-26 14:00:00', '2019-02-26 14:00:00', '2019-02-26 17:00:00', 1);
+INSERT INTO `examination` VALUES (5, 'Java期末测试', '1', '超级管理员', 15, 2, '2019-02-18 22:13:07', '2019-02-22 19:13:58', '2019-02-18 22:12:53', '2019-02-18 22:12:54', 2);
+INSERT INTO `examination` VALUES (6, '测试', '1', '超级管理员', 10, 1, '2019-02-21 19:28:23', '2019-02-22 19:13:58', '2019-02-21 19:27:57', '2019-02-21 19:27:59', 2);
+INSERT INTO `examination` VALUES (7, '测试', '1', '超级管理员', 15, 2, '2019-02-21 19:28:47', '2019-02-22 19:13:58', '2019-02-21 19:28:38', '2019-02-21 19:28:40', 2);
+INSERT INTO `examination` VALUES (8, '2018-2019年度宁夏理工学院Java期末测试', '1', '超级管理员', 40, 2, '2019-02-22 19:15:49', '2019-03-17 14:31:29', '2019-03-16 13:20:26', '2019-03-16 20:00:00', 2);
+INSERT INTO `examination` VALUES (9, '计算机学院大一第二学期C语言测试', '1', '超级管理员', 85, 1, '2019-03-16 17:20:54', '2019-03-16 17:48:37', '2019-03-16 17:25:22', '2019-03-20 12:00:22', 1);
 
 -- ----------------------------
 -- Table structure for grade
@@ -237,12 +140,46 @@ CREATE TABLE `grade`  (
   `result` int(8) NULL DEFAULT 0 COMMENT '最终分数',
   `auto_result` int(8) NULL DEFAULT 0 COMMENT '电脑自动评判选择题分数',
   `manul_result` int(8) NULL DEFAULT NULL COMMENT '人工手动评判分数',
-  `answer_json` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL COMMENT '考试作答答案json',
+  `auto_json` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL COMMENT '考生选择题答案json',
+  `manul_json` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL COMMENT '考生问答题答案json',
+  `answer_json` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL COMMENT '考生作答答案json',
   `create_time` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '考试交卷时间',
   `update_time` timestamp(0) NULL DEFAULT NULL COMMENT '改卷完成时间',
   `status` int(8) NULL DEFAULT 0 COMMENT '0表示已交卷但是未评卷,1表示已交卷已评卷',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of grade
+-- ----------------------------
+INSERT INTO `grade` VALUES (14, '1', '8', 100, 5, 95, 'B,B,BD,AD,A,', '可以，一个类中只能有一个被public修饰的类，这个类名还必须和文件名相同。,', 'B,B,可以，一个类中只能有一个被public修饰的类，这个类名还必须和文件名相同。,BD,AD,A', '2019-03-16 16:31:13', NULL, 1);
+INSERT INTO `grade` VALUES (19, '1', '9', 15, 15, 0, 'A~_~B~_~C~_~D~_~C~_~B~_~A~_~B~_~C~_~ABCD~_~ABCD~_~ABCD~_~ABCD~_~', 'C语言的表达式 (-10< x <10)不能够表达x在区间（-10,10），因为在C语言里面，逻辑运算符的运行顺序是从左至右的顺序，而 (-10< x <10)这种形式，-10会与输入的数据比较，输出正确与否，即0或1。正确的表达式如下：（x >-10 && x < 10）~_~10，12，120~_~', 'A~_~B~_~C~_~D~_~C~_~B~_~A~_~B~_~C~_~ABCD~_~ABCD~_~ABCD~_~ABCD~_~C语言的表达式 (-10< x <10)不能够表达x在区间（-10,10），因为在C语言里面，逻辑运算符的运行顺序是从左至右的顺序，而 (-10< x <10)这种形式，-10会与输入的数据比较，输出正确与否，即0或1。正确的表达式如下：（x >-10 && x < 10）~_~10，12，120', '2019-03-17 17:02:08', NULL, 0);
+INSERT INTO `grade` VALUES (20, '1000001795280200', '9', 10, 10, 0, 'D~_~C~_~A~_~B~_~B~_~C~_~B~_~B~_~C~_~BC~_~CD~_~AC~_~ABD~_~', 'rwetergfdcxcsdgrhgherf~_~rwefergrehtrherfsd~_~', 'D~_~C~_~A~_~B~_~B~_~C~_~B~_~B~_~C~_~BC~_~CD~_~AC~_~ABD~_~rwetergfdcxcsdgrhgherf~_~rwefergrehtrherfsd', '2019-03-18 18:02:24', NULL, 0);
+
+-- ----------------------------
+-- Table structure for link
+-- ----------------------------
+DROP TABLE IF EXISTS `link`;
+CREATE TABLE `link`  (
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '链接名',
+  `url` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '链接地址',
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '链接介绍',
+  `img` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '友链图片地址',
+  `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '友链站长邮箱',
+  `qq` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '友链站长qq',
+  `status` int(1) UNSIGNED NULL DEFAULT NULL COMMENT '状态',
+  `origin` int(1) NULL DEFAULT NULL COMMENT '1-管理员添加 2-自助申请',
+  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '添加时间',
+  `update_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of link
+-- ----------------------------
+INSERT INTO `link` VALUES (1, '百度', 'www.baidu.com', '百度网址', '', '', '', 1, 1, '', '2018-09-13 23:24:25', '2019-03-11 19:10:07');
 
 -- ----------------------------
 -- Table structure for permission
@@ -263,13 +200,13 @@ CREATE TABLE `permission`  (
   `create_time` datetime(0) NULL DEFAULT NULL,
   `update_time` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 109 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 111 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of permission
 -- ----------------------------
-INSERT INTO `permission` VALUES (1, '1', '管理首页', '工作台', '/workdest', 'workdest', 0, 1, 1, 'fa fa-windows', 1, '2017-09-27 21:22:02', '2019-01-31 15:35:17');
-INSERT INTO `permission` VALUES (2, '2', '权限管理', '权限管理', NULL, NULL, 0, 0, 4, 'fa fa-sitemap', 1, '2017-07-13 15:04:42', '2019-01-31 14:12:29');
+INSERT INTO `permission` VALUES (1, '1', '管理首页', '工作台', '/workdest', 'workdest', 0, 1, 1, 'fa fa-windows', 1, '2017-09-27 21:22:02', '2019-02-01 01:36:15');
+INSERT INTO `permission` VALUES (2, '2', '权限管理', '权限管理', NULL, NULL, 0, 0, 4, 'fa fa-sitemap', 1, '2017-07-13 15:04:42', '2019-02-01 01:34:08');
 INSERT INTO `permission` VALUES (3, '201', '用户管理', '用户管理', '/users', 'users', 2, 1, 1, 'fa fa-circle-o', 1, '2017-07-13 15:05:47', '2018-02-27 10:53:14');
 INSERT INTO `permission` VALUES (4, '20101', '列表查询', '用户列表查询', '/user/list', 'user:list', 3, 2, 0, NULL, 1, '2017-07-13 15:09:24', '2017-10-09 05:38:29');
 INSERT INTO `permission` VALUES (5, '20102', '新增', '新增用户', '/user/add', 'user:add', 3, 2, 0, NULL, 1, '2017-07-13 15:06:50', '2018-02-28 17:58:46');
@@ -289,14 +226,14 @@ INSERT INTO `permission` VALUES (18, '20301', '列表查询', '资源列表', '/
 INSERT INTO `permission` VALUES (19, '20302', '新增', '新增资源', '/permission/add', 'permission:add', 17, 2, 0, NULL, 1, '2017-09-26 08:06:58', '2018-02-27 10:53:14');
 INSERT INTO `permission` VALUES (20, '20303', '编辑', '编辑资源', '/permission/edit', 'permission:edit', 17, 2, 0, NULL, 1, '2017-09-27 21:29:04', '2018-02-27 10:53:14');
 INSERT INTO `permission` VALUES (21, '20304', '删除', '删除资源', '/permission/delete', 'permission:delete', 17, 2, 0, NULL, 1, '2017-09-27 21:29:50', '2018-02-27 10:53:14');
-INSERT INTO `permission` VALUES (22, '3', '运维管理', '运维管理', NULL, NULL, 0, 0, 7, 'fa  fa-database', 1, '2018-07-06 15:19:26', '2019-01-31 14:09:33');
+INSERT INTO `permission` VALUES (22, '3', '运维管理', '运维管理', NULL, NULL, 0, 0, 7, 'fa f fa-database', 1, '2018-07-06 15:19:26', '2019-02-01 01:32:49');
 INSERT INTO `permission` VALUES (23, '301', '数据监控', '数据监控', '/database/monitoring', 'database', 22, 1, 1, 'fa fa-circle-o', 1, '2018-07-06 15:19:55', '2018-07-06 15:19:55');
-INSERT INTO `permission` VALUES (24, '4', '系统管理', '系统管理', NULL, NULL, 0, 0, 5, 'fa  fa-users', 1, '2018-07-06 15:20:38', '2019-01-31 14:13:27');
+INSERT INTO `permission` VALUES (24, '4', '系统管理', '系统管理', NULL, NULL, 0, 0, 5, 'fa fa-th-list', 1, '2018-07-06 15:20:38', '2018-07-24 15:42:28');
 INSERT INTO `permission` VALUES (25, '401', '在线用户', '在线用户', '/online/users', 'onlineUsers', 24, 1, 1, 'fa fa-circle-o', 1, '2018-07-06 15:21:00', '2018-07-24 14:58:22');
 INSERT INTO `permission` VALUES (32, '1000001992372345', '在线用户查询', '在线用户查询', '/online/user/list', 'onlineUser:list', 25, 2, 0, '', 1, '2018-07-24 15:02:23', '2018-07-24 15:02:23');
 INSERT INTO `permission` VALUES (33, '1000002083579304', '踢出用户', '踢出用户', '/online/user/kickout', 'onlineUser:kickout', 25, 2, 0, '', 1, '2018-07-24 15:03:16', '2018-07-24 15:03:16');
 INSERT INTO `permission` VALUES (34, '1000000171409776', '批量踢出', '批量踢出', '/online/user/batch/kickout', 'onlineUser:batchKickout', 25, 2, 0, '', 1, '2018-07-24 15:04:09', '2018-07-24 15:04:09');
-INSERT INTO `permission` VALUES (35, '1000000863853891', '网站管理', '网站管理', NULL, NULL, 0, 0, 3, 'fa fa-coffee', 1, '2018-07-24 15:44:23', '2019-01-31 14:10:30');
+INSERT INTO `permission` VALUES (35, '1000000863853891', '网站管理', '网站管理', NULL, NULL, 0, 0, 3, 'fa fa-users', 1, '2018-07-24 15:44:23', '2019-02-01 01:38:47');
 INSERT INTO `permission` VALUES (36, '1000001264798222', '基础信息', '基础设置', '/siteinfo', 'siteinfo', 35, 1, 1, 'fa fa-circle-o', 1, '2018-07-24 15:48:13', '2018-07-24 17:43:39');
 INSERT INTO `permission` VALUES (37, '1000000432183856', '保存', '基础设置-保存', '/siteinfo/save', 'siteinfo:save', 36, 2, 0, '', 1, '2018-07-24 15:49:12', '2018-07-24 15:49:12');
 INSERT INTO `permission` VALUES (38, '1000001792841328', '系统公告', '系统公告', '/notifies', 'notifies', 35, 1, 2, 'fa fa-circle-o', 0, '2018-07-24 23:40:45', '2018-09-13 12:34:18');
@@ -312,42 +249,45 @@ INSERT INTO `permission` VALUES (48, '1000001679037501', '编辑', '友链-编�
 INSERT INTO `permission` VALUES (49, '1000001011730177', '删除', '友链-删除', '/link/delete', 'link:delete', 45, 2, 0, '', 1, '2018-07-25 11:08:53', '2018-07-25 11:08:53');
 INSERT INTO `permission` VALUES (50, '1000001312374743', '批量删除', '友链-批量删除', '/link/batch/delete', 'link:batchDelete', 45, 2, 0, '', 1, '2018-07-25 11:09:40', '2018-07-25 11:09:40');
 INSERT INTO `permission` VALUES (51, '1000001507480127', '审核', '友链-审核', '/link/audit', 'link:audit', 45, 2, 0, '', 1, '2018-07-25 11:42:28', '2018-07-25 11:42:28');
-INSERT INTO `permission` VALUES (52, '1000000602555213', '考试管理', '考试管理', NULL, NULL, 0, 0, 2, 'fa fa-institution', 1, '2018-07-25 17:43:12', '2019-01-31 14:08:52');
-INSERT INTO `permission` VALUES (59, '1000000976625379', '标签管理', '标签管理', '/tags', 'tags', 52, 1, 5, 'fa fa-circle-o', 1, '2018-07-25 18:50:47', '2019-02-19 10:18:34');
+INSERT INTO `permission` VALUES (52, '1000000602555213', '考试管理', '考试管理', NULL, NULL, 0, 0, 2, 'fa fa-institution', 1, '2018-07-25 17:43:12', '2019-02-01 01:33:39');
+INSERT INTO `permission` VALUES (59, '1000000976625379', '标签管理', '标签管理', '/tags', 'tags', 52, 1, 6, 'fa fa-circle-o', 1, '2018-07-25 18:50:47', '2019-03-14 10:55:44');
 INSERT INTO `permission` VALUES (60, '1000002127467055', '查询', '查询标签列表', '/tag/list', 'tag:list', 59, 2, 0, '', 1, '2018-07-25 18:51:20', '2018-07-25 18:51:20');
 INSERT INTO `permission` VALUES (61, '1000001458372033', '新增', '新增标签', '/tag/add', 'tag:add', 59, 2, 0, '', 1, '2018-07-25 18:51:42', '2018-07-25 18:51:42');
 INSERT INTO `permission` VALUES (62, '1000001832967209', '编辑', '编辑标签', '/tag/edit', 'tag:edit', 59, 2, 0, '', 1, '2018-07-25 18:52:17', '2018-07-25 18:52:17');
 INSERT INTO `permission` VALUES (63, '1000000754923037', '删除', '删除标签', '/tag/delete', 'tag:delete', 59, 2, 0, '', 1, '2018-07-25 18:52:40', '2018-07-25 18:52:40');
 INSERT INTO `permission` VALUES (64, '1000000759248744', '批量删除', '批量删除标签', '/tag/batch/delete', 'tag:batchDelete', 59, 2, 0, '', 1, '2018-07-25 18:53:14', '2018-07-25 18:53:14');
+INSERT INTO `permission` VALUES (71, '1000000899091444', '发布考试', '发布考试', '/exam/add', 'exam:add', 52, 1, 1, 'fa fa-dot-circle-o', 1, '2018-07-29 20:39:49', '2019-02-20 20:10:03');
 INSERT INTO `permission` VALUES (72, '1000000224901858', '评论管理', '评论管理', '/comments', 'comments', 35, 1, 4, 'fa fa-circle-o', 1, '2018-08-10 09:44:41', '2018-09-19 15:44:13');
 INSERT INTO `permission` VALUES (73, '1000001579533936', '查询', '查询', '/comment/list', 'comment:list', 72, 2, 0, '', 1, '2018-08-10 09:46:54', '2018-08-10 09:46:54');
 INSERT INTO `permission` VALUES (74, '1000000663968031', '审核', '审核评论', '/comment/audit', 'comment:audit', 72, 2, 0, '', 1, '2018-08-10 09:57:11', '2018-08-10 09:57:11');
 INSERT INTO `permission` VALUES (75, '1000000322655547', '回复', '回复评论', '/comment/reply', 'comment:audit', 72, 2, 0, '', 1, '2018-08-10 10:04:28', '2018-08-10 10:04:28');
 INSERT INTO `permission` VALUES (76, '1000001419287014', '删除', '删除评论', '/comment/delete', 'comment:delete', 72, 2, 0, '', 1, '2018-08-10 10:06:27', '2018-08-10 10:06:27');
 INSERT INTO `permission` VALUES (77, '1000002075182223', '批量删除', '批量删除评论', '/comment/batch/delete', 'comment:batchDelete', 72, 2, 0, '', 1, '2018-08-10 10:07:57', '2018-08-10 10:07:57');
-INSERT INTO `permission` VALUES (78, '1000000587822241', '上传管理', '上传管理', NULL, NULL, 0, 0, 6, 'fa fa-upload', 1, '2018-09-12 17:08:41', '2019-01-31 14:15:01');
+INSERT INTO `permission` VALUES (78, '1000000587822241', '上传管理', '上传管理', NULL, NULL, 0, 0, 6, 'fa fa-upload', 1, '2018-09-12 17:08:41', '2019-02-01 01:37:52');
 INSERT INTO `permission` VALUES (79, '1000000493635111', '云存储配置', '云存储配置', '/upload/config', 'upload:config', 78, 1, 1, 'fa fa-circle-o', 1, '2018-09-12 17:10:09', '2018-09-12 17:10:09');
 INSERT INTO `permission` VALUES (80, '1000000318760332', '保存', '保存云存储配置', '/upload/saveConfig', 'upload:saveConfig', 79, 2, 0, '', 1, '2018-09-12 17:10:42', '2018-09-12 17:10:42');
-INSERT INTO `permission` VALUES (89, '1000002036511171', '课程管理', '课程管理', '/subjects', 'subjects', 52, 1, 3, 'fa fa-circle-o', 1, '2019-01-17 13:34:57', '2019-02-19 10:18:10');
-INSERT INTO `permission` VALUES (90, '1000002022858347', '新增', '新增课程', '/subject/add', 'subject:add', 89, 2, 0, '', 1, '2019-01-17 14:46:13', '2019-01-17 14:46:13');
-INSERT INTO `permission` VALUES (91, '1000000411587667', '编辑', '编辑按钮', '/subject/edit', 'subject:edit', 89, 2, 0, '', 1, '2019-01-18 09:50:56', '2019-01-18 09:50:56');
-INSERT INTO `permission` VALUES (92, '1000000399537883', '删除', '删除按钮', '/subject/delete', 'subject:delete', 89, 2, 0, '', 1, '2019-01-18 09:51:33', '2019-01-18 09:51:33');
-INSERT INTO `permission` VALUES (93, '1000000250053894', '批量删除', '批量删除按钮', '/subject/batchDelete', 'subject:batchDelete', 89, 2, 0, '', 0, '2019-01-18 10:42:05', '2019-01-18 11:23:46');
-INSERT INTO `permission` VALUES (94, '1000002145951096', '题库管理', '题库管理菜单', '/questions', 'questions', 52, 1, 4, 'fa fa-circle-o', 1, '2019-01-18 15:31:50', '2019-02-19 10:18:26');
-INSERT INTO `permission` VALUES (95, '1000000776375556', '查询', '查询按钮', '/question/list', 'question:list', 94, 2, 0, '', 1, '2019-01-18 15:36:05', '2019-01-18 15:36:05');
-INSERT INTO `permission` VALUES (96, '1000000307777615', '新增', '新增按钮', '/question/add', 'question:add', 94, 2, 0, '', 1, '2019-01-18 15:36:59', '2019-01-18 15:36:59');
-INSERT INTO `permission` VALUES (97, '1000000428056556', '删除', '删除按钮', '/question/delete', 'question:delete', 94, 2, 0, '', 1, '2019-01-23 09:57:26', '2019-01-23 09:57:26');
-INSERT INTO `permission` VALUES (98, '1000000976279608', '批量删除', '批量删除按钮', '/question/batch/delete', 'question:batchDelete', 94, 2, 0, '', 1, '2019-01-23 09:58:53', '2019-01-23 09:58:53');
-INSERT INTO `permission` VALUES (99, '1000001644855070', '编辑', '编辑按钮', '/question/edit', 'question:edit', 94, 2, 0, '', 1, '2019-01-23 14:37:13', '2019-01-23 14:37:13');
-INSERT INTO `permission` VALUES (100, '1000001202958412', '考试列表', '考试列表菜单', '/exams', 'exams', 52, 1, 2, 'fa fa-circle-o', 1, '2019-01-24 15:02:31', '2019-02-21 16:21:45');
-INSERT INTO `permission` VALUES (101, '1000000163374336', '查询', '查询按钮', '/exam/list', 'exam:list', 100, 2, 0, NULL, 1, '2019-01-24 15:18:21', '2019-02-21 16:36:42');
-INSERT INTO `permission` VALUES (102, '1000001792019422', '发布考试', '发布考试按钮', '/exam/add', 'exam:add', 100, 2, 0, NULL, 0, '2019-01-24 16:25:18', '2019-01-30 14:54:31');
-INSERT INTO `permission` VALUES (103, '1000000946860898', '发布考试', '发布考试按钮', '/exam/add', 'exam:add', 100, 2, 0, NULL, 1, '2019-01-30 14:55:36', '2019-02-21 16:36:52');
-INSERT INTO `permission` VALUES (104, '1000000695457216', '查询题目', '导入题目', '/question/listQuestion', 'question:listQuestion', 100, 2, 0, '', 0, '2019-02-14 15:34:20', '2019-02-15 09:34:21');
-INSERT INTO `permission` VALUES (105, '1000001125494823', '发布考试', '发起考试菜单', '/exam/add', 'exam:add', 52, 1, 1, 'fa fa-circle-o', 1, '2019-02-15 14:31:28', '2019-02-21 16:36:31');
-INSERT INTO `permission` VALUES (106, '1000000249577272', '编辑', '编辑按钮', '/exam/edit', 'exam:edit', 100, 2, 0, NULL, 1, '2019-02-18 13:39:40', '2019-02-21 16:37:07');
-INSERT INTO `permission` VALUES (107, '1000000894058396', '删除', '删除按钮', '/exam/delete', 'exam:delete', 100, 2, 0, NULL, 1, '2019-02-19 09:21:29', '2019-02-21 16:37:17');
-INSERT INTO `permission` VALUES (108, '1000002132243773', '批量删除', '批量删除', '/exam/batch/delete', 'exam:batchDelete', 100, 2, 0, NULL, 1, '2019-02-19 09:22:28', '2019-02-21 16:37:28');
+INSERT INTO `permission` VALUES (89, '1000002085828985', '课程管理', '课程管理菜单', '/subjects', 'subjects', 52, 1, 3, 'fa fa-circle-o', 1, '2019-01-18 19:14:08', '2019-02-20 21:23:00');
+INSERT INTO `permission` VALUES (90, '1000000583815309', '新增', '新增按钮', '/subject/add', 'subject:add', 89, 2, 0, '', 1, '2019-01-18 19:15:39', '2019-01-18 19:15:39');
+INSERT INTO `permission` VALUES (91, '1000000414556681', '编辑', '编辑按钮', '/subject/edit', 'subject:edit', 89, 2, 0, '', 1, '2019-01-18 19:16:26', '2019-01-18 19:16:26');
+INSERT INTO `permission` VALUES (92, '1000001670195971', '删除', '删除按钮', '/subject/delete', 'subject:delete', 89, 2, 0, '', 1, '2019-01-18 19:17:06', '2019-01-18 19:17:06');
+INSERT INTO `permission` VALUES (93, '1000000233644405', '题库管理', '题库管理菜单', '/questions', 'questions', 52, 1, 4, 'fa fa-circle-o', 1, '2019-01-18 19:18:48', '2019-02-20 21:23:17');
+INSERT INTO `permission` VALUES (94, '1000000159347988', '新增', '新增按钮', '/question/add', 'question:add', 93, 2, 0, '', 1, '2019-01-18 19:20:08', '2019-01-18 19:20:08');
+INSERT INTO `permission` VALUES (95, '1000001743618837', '查询', '查询按钮', '/question/list', 'question:list', 93, 2, 0, '', 1, '2019-01-18 19:22:12', '2019-01-18 19:22:12');
+INSERT INTO `permission` VALUES (96, '1000000098066544', '删除', '删除按钮', '/question/delete', 'question:delete', 93, 2, 0, NULL, 1, '2019-01-22 22:39:34', '2019-01-22 22:40:28');
+INSERT INTO `permission` VALUES (97, '1000001512619368', '批量删除', '批量删除按钮', '/question/batch/delete', 'question:batchDelete', 93, 2, 0, '', 1, '2019-01-22 22:47:20', '2019-01-22 22:47:20');
+INSERT INTO `permission` VALUES (98, '1000000727959093', '编辑', '编辑按钮', '/question/edit', 'question:edit', 93, 2, 0, NULL, 1, '2019-01-23 23:30:36', '2019-01-23 23:34:06');
+INSERT INTO `permission` VALUES (99, '1000001224543466', '考试列表', '考试列表菜单', '/exams', 'exams', 52, 1, 2, 'fa fa-circle-o', 1, '2019-01-26 21:13:34', '2019-02-20 21:22:45');
+INSERT INTO `permission` VALUES (100, '1000001747915483', '查询', '查询按钮', '/exam/list', 'exam:list', 99, 2, 0, '', 1, '2019-01-26 21:16:16', '2019-01-26 21:16:16');
+INSERT INTO `permission` VALUES (101, '1000000864155694', '发布考试', '发布考试按钮', '/exam/add', 'exam:add', 99, 2, 0, NULL, 1, '2019-01-26 21:16:51', '2019-02-18 20:41:41');
+INSERT INTO `permission` VALUES (102, '1000000167185653', '编辑', '编辑按钮', '/exam/edit', 'exam:edit', 99, 2, 0, '', 1, '2019-02-18 20:41:27', '2019-02-18 20:41:27');
+INSERT INTO `permission` VALUES (103, '1000000850255464', '删除', '删除按钮', '/exam/delete', 'exam:delete', 99, 2, 0, '', 1, '2019-02-18 21:56:38', '2019-02-18 21:56:38');
+INSERT INTO `permission` VALUES (104, '1000000553415807', '批量删除', '批量删除按钮', '/exam/batch/delete', 'exam:batchDelete', 99, 2, 0, NULL, 1, '2019-02-18 21:57:57', '2019-02-20 20:33:27');
+INSERT INTO `permission` VALUES (105, '1000000243343801', '成绩管理', '成绩管理菜单', '/grades', 'grades', 52, 1, 5, 'fa fa-circle-o', 1, '2019-03-14 10:55:35', '2019-03-14 10:55:35');
+INSERT INTO `permission` VALUES (106, '1000000426716222', '查询', '查询按钮', '/grade/list', 'grade:list', 105, 2, 0, '', 1, '2019-03-14 10:56:42', '2019-03-14 10:56:42');
+INSERT INTO `permission` VALUES (107, '1000000773560150', '批阅', '批阅按钮', '/grade/mark', 'grade:mark', 105, 2, 0, '', 1, '2019-03-15 18:23:51', '2019-03-15 18:23:51');
+INSERT INTO `permission` VALUES (108, '1000000658745124', '详情', '详情按钮', '/grade/detail', 'grade:detail', 105, 2, 0, '', 1, '2019-03-16 16:10:16', '2019-03-16 16:10:16');
+INSERT INTO `permission` VALUES (109, '1000000281400324', '删除', '删除按钮', '/grade/delete', 'grade:delete', 105, 2, 0, '', 1, '2019-03-16 16:10:53', '2019-03-16 16:10:53');
+INSERT INTO `permission` VALUES (110, '1000000399266971', '批量删除', '批量删除按钮', '/grade/batch/delete', 'grade:batchDelete', 105, 2, 0, NULL, 1, '2019-03-16 16:12:10', '2019-03-16 16:13:13');
 
 -- ----------------------------
 -- Table structure for question
@@ -369,29 +309,43 @@ CREATE TABLE `question`  (
   `score` int(8) NULL DEFAULT NULL COMMENT '题目分值',
   `difficulty` int(8) NULL DEFAULT 1 COMMENT '题目难度',
   `subject_id` int(8) NULL DEFAULT NULL COMMENT '学科ID',
+  `exam_id` int(8) NULL DEFAULT NULL COMMENT '试卷ID',
   `create_time` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
   `status` int(8) NULL DEFAULT 1 COMMENT '0表示未考试题目,1表示已考试题目',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of question
 -- ----------------------------
-INSERT INTO `question` VALUES (6, 'C语言中，函数值类型的定义可以缺省，此时函数值的隐含类型是（　　）。', '<p>无</p>\r\n', 0, 'void', ' int', 'float', 'double', NULL, NULL, 'B', '无解析', 5, 1, 1, '2019-01-24 16:30:14', '2019-01-28 16:01:05', 1);
-INSERT INTO `question` VALUES (7, '关于野指针，下面说法错误的是（  ）。', '<p>无</p>\r\n', 0, '野指针指可能指向非法的内存地址。', '野指针有时也可能指向合法的内存地址。', '野指针都是由指针未初始化导致的。', '对野指针的访问，可能会导致程序异常。', NULL, NULL, 'C', '无解析', 5, 2, 1, '2019-01-24 16:31:48', '2019-01-24 16:31:48', 0);
-INSERT INTO `question` VALUES (8, '递归调用非常危险，可能导致很多问题，即使程序编写没有逻辑错误，也可能导致下面哪种现象的发生（  ）。', '<p>无</p>\r\n', 0, '死循环', '栈溢出', '内存泄漏', '空指针', NULL, NULL, 'B', '无解析', 5, 2, 1, '2019-01-24 16:33:22', '2019-01-24 16:33:22', 0);
-INSERT INTO `question` VALUES (9, '以下程序的运行情况是（   ） 。', '<pre><code>main() \r\n\r\n     {    <span class=\"hljs-keyword\">int</span> i=<span class=\"hljs-number\">1</span>,sum=<span class=\"hljs-number\">0</span>；\r\n\r\n          <span class=\"hljs-keyword\">while</span>(i&lt;<span class=\"hljs-number\">10</span>)  \r\n\r\n               sum=sum+<span class=\"hljs-number\">1</span>;  \r\n\r\n               i ++;  \r\n\r\n         <span class=\"hljs-keyword\">printf</span>(<span class=\"hljs-string\">\"i=%d,sum=%d\"</span>，i,sum)；\r\n\r\n     }\r\n</code></pre>', 0, 'i=10，sum=9', 'i=9,sum=9', 'i=2，sum=1', '以上结果都不对', NULL, NULL, 'D', '无解析', 5, 3, 1, '2019-01-24 16:35:30', '2019-01-28 16:01:09', 1);
-INSERT INTO `question` VALUES (10, '如下程序，程序运行结果为（ 　 ）', '<pre><code> intChange(<span class=\"hljs-keyword\">int</span> *pX)\r\n\r\n       {   <span class=\"hljs-keyword\">int</span> <span class=\"hljs-keyword\">y</span> ＝ <span class=\"hljs-number\">8</span>；\r\n\r\n           <span class=\"hljs-keyword\">y</span> ＝ <span class=\"hljs-keyword\">y</span> - *pX；\r\n\r\n           pX ＝＆<span class=\"hljs-keyword\">y</span>；\r\n\r\n           <span class=\"hljs-keyword\">return</span> <span class=\"hljs-number\">0</span>；\r\n\r\n       }\r\n\r\n       intmain()\r\n\r\n       {   <span class=\"hljs-keyword\">int</span> xx ＝ <span class=\"hljs-number\">3</span>；\r\n\r\n           <span class=\"hljs-keyword\">int</span> *pY；\r\n\r\n           pY ＝＆xx；\r\n\r\n           Change(pY)；\r\n\r\n           <span class=\"hljs-keyword\">printf</span>(“%d”, *pY)；\r\n\r\n           <span class=\"hljs-keyword\">return</span> <span class=\"hljs-number\">0</span>\r\n\r\n       }\r\n</code></pre>', 0, '8', '3', '5', '不确定', NULL, NULL, 'B', '无解析', 5, 3, 1, '2019-01-24 16:36:40', '2019-01-24 16:36:40', 0);
-INSERT INTO `question` VALUES (11, '下列程序执行后的输出结果是（    ） 。', '<pre><code>main() \r\n\r\n     {    <span class=\"hljs-keyword\">char</span>  arr[<span class=\"hljs-number\">2</span>][<span class=\"hljs-number\">4</span>]；\r\n\r\n          <span class=\"hljs-built_in\">strcpy</span>(arr,<span class=\"hljs-string\">\"you\"</span>)；\r\n\r\n          <span class=\"hljs-built_in\">strcpy</span>(arr[<span class=\"hljs-number\">1</span>],<span class=\"hljs-string\">\"me\"</span>);\r\n\r\n          arr[<span class=\"hljs-number\">0</span>][<span class=\"hljs-number\">3</span>]=<span class=\"hljs-string\">\'&amp;\'</span>；\r\n\r\n          <span class=\"hljs-built_in\">printf</span>(<span class=\"hljs-string\">\"%s\\n\"</span>,arr)；   }\r\n</code></pre>', 0, 'you&me', 'you ', 'me', 'err', NULL, NULL, 'A', '无解析', 5, 2, 1, '2019-01-24 16:38:02', '2019-01-24 16:38:02', 0);
-INSERT INTO `question` VALUES (12, '下面程序的运行结果是（    ）', '<pre><code><span class=\"hljs-meta\">#<span class=\"hljs-meta-keyword\">include</span> <span class=\"hljs-meta-string\">&lt;stdlib.h&gt;</span></span>\r\n\r\n       voidfun(<span class=\"hljs-keyword\">int</span> **a,<span class=\"hljs-keyword\">int</span> p[][<span class=\"hljs-number\">3</span>])\r\n\r\n       {  \r\n\r\n              **a= p[<span class=\"hljs-number\">1</span>][<span class=\"hljs-number\">1</span>]; \r\n\r\n       }\r\n\r\n       voidmain()\r\n\r\n       {\r\n\r\n              intx[<span class=\"hljs-number\">2</span>][<span class=\"hljs-number\">3</span>] = {<span class=\"hljs-number\">2</span>,<span class=\"hljs-number\">4</span>,<span class=\"hljs-number\">6</span>,<span class=\"hljs-number\">8</span>,<span class=\"hljs-number\">10</span>,<span class=\"hljs-number\">12</span>};\r\n\r\n              <span class=\"hljs-keyword\">int</span>* p = *x;\r\n\r\n              fun(&amp;p,x);\r\n\r\n              <span class=\"hljs-built_in\">printf</span>(<span class=\"hljs-string\">\"%d\\n\"</span>,*p);}\r\n</code></pre>', 0, '10', '12', '6', '&x[1][1]', NULL, NULL, 'A', '无解析', 5, 3, 1, '2019-01-24 16:38:59', '2019-01-24 16:38:59', 0);
-INSERT INTO `question` VALUES (13, '下列属于C语言标准库函数的为（）。', '<p>无</p>\r\n', 1, 'sin()', 'sqrt()', 'log10() ', 'ln() ', 'pow()', 'isalpha()', 'ABCEF', '无解析', 10, 2, 1, '2019-01-24 16:44:04', '2019-01-24 16:44:04', 0);
-INSERT INTO `question` VALUES (14, '以下合法的表达式是（ ）。', '<p>无</p>\r\n', 1, 'x＝y＝200', '5+(x＝10)', '5+x＝10 ', 'y+x＝＝10 ', NULL, NULL, 'ABD', 'C错在 5+x 不是个左值,只能给左值赋值.而b是正确的,他可以分解成 x=10,5+x', 10, 2, 1, '2019-01-24 16:45:52', '2019-01-24 16:45:52', 0);
-INSERT INTO `question` VALUES (15, 'JAVA所定义的版本中不包括：（）。', '<p>无</p>\r\n', 0, ' JAVA2 EE', 'JAVA2 Card', 'JAVA2 ME', 'JAVA2 HE', 'JAVA2 SE', NULL, 'D', '无解析', 5, 1, 4, '2019-01-24 16:47:38', '2019-01-24 16:47:38', 0);
-INSERT INTO `question` VALUES (16, '下列说法正确的是（）。', '<pre><code><span class=\"hljs-meta\">#<span class=\"hljs-meta-keyword\">include</span> <span class=\"hljs-meta-string\">&lt;stdlib.h&gt;</span></span>\r\n\r\n       voidfun(<span class=\"hljs-keyword\">int</span> **a,<span class=\"hljs-keyword\">int</span> p[][<span class=\"hljs-number\">3</span>])\r\n\r\n       {  \r\n\r\n              **a= p[<span class=\"hljs-number\">1</span>][<span class=\"hljs-number\">1</span>]; \r\n\r\n       }\r\n\r\n       voidmain()\r\n\r\n       {\r\n\r\n              intx[<span class=\"hljs-number\">2</span>][<span class=\"hljs-number\">3</span>] = {<span class=\"hljs-number\">2</span>,<span class=\"hljs-number\">4</span>,<span class=\"hljs-number\">6</span>,<span class=\"hljs-number\">8</span>,<span class=\"hljs-number\">10</span>,<span class=\"hljs-number\">12</span>};\r\n\r\n              <span class=\"hljs-keyword\">int</span>* p = *x;\r\n\r\n              fun(&amp;p,x);\r\n\r\n              <span class=\"hljs-built_in\">printf</span>(<span class=\"hljs-string\">\"%d\\n\"</span>,*p);}\r\n</code></pre>', 0, 'JAVA程序的main方法必须写在类里面', 'JAVA程序中可以有多个main方法', 'JAVA程序中类名必须与文件名一样', 'JAVA程序的main方法中如果只有一条语句，可以不用{}(大括号)括起来', NULL, NULL, 'A', '无解析', 5, 1, 4, '2019-01-24 16:48:40', '2019-02-25 15:35:19', 0);
-INSERT INTO `question` VALUES (17, 'Java中，在如下所示的Test类中，共有（）个构造方法。', '<pre><code><span class=\"hljs-keyword\">public</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-title\">Test</span>{</span>\r\n\r\n<span class=\"hljs-keyword\">private</span> <span class=\"hljs-keyword\">int</span> x;\r\n\r\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">public</span> <span class=\"hljs-title\">Test</span><span class=\"hljs-params\">()</span></span>{\r\n\r\nx=<span class=\"hljs-number\">35</span>;\r\n\r\n}\r\n\r\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">public</span> <span class=\"hljs-keyword\">void</span> <span class=\"hljs-title\">Test</span><span class=\"hljs-params\">(<span class=\"hljs-keyword\">double</span> f)</span></span>{\r\n\r\nThis.x=(<span class=\"hljs-keyword\">int</span>)f;\r\n\r\n}\r\n\r\n', 0, '0', '1', '2', '3', NULL, NULL, 'C', '无解析', 5, 2, 4, '2019-01-24 16:49:39', '2019-02-25 15:34:53', 0);
-INSERT INTO `question` VALUES (18, '测试', '<p>的</p>\r\n', 0, '能被java.exe成功运行的java class文件必须有mian（）方法。', NULL, NULL, NULL, NULL, NULL, 'S', 'S', 5, 1, 1, '2019-01-30 13:59:33', '2019-01-30 13:59:33', 0);
-INSERT INTO `question` VALUES (19, '在面向对象方法中，一个对象请求另一对象为其服务的方式是通过发送（）。', '<p>无</p>\r\n', 0, '命令', '口令', '消息', '调用语句', NULL, NULL, 'C', '无解析', 5, 1, 5, '2019-02-15 15:55:48', '2019-02-15 15:55:48', 0);
+INSERT INTO `question` VALUES (7, 'C语言中，函数值类型的定义可以缺省，此时函数值的隐含类型是（　　）。', '', 0, 'void', 'int', 'float', 'double', NULL, NULL, 'B', 'B，无解析', 5, 1, 1, NULL, '2019-01-23 00:01:42', '2019-03-11 16:34:37', 0);
+INSERT INTO `question` VALUES (8, '以下关于函数设计不正确的说法是（     ）。', '\r\n', 0, '函数设计应该追求高内聚低耦合', '要尽可能多的使用全局变量', '函数参数不易过多', '设计函数时，尽量做到谁申请的资源就由谁来释放', NULL, NULL, 'B', 'B，无解析', 5, 2, 1, NULL, '2019-01-23 00:03:51', '2019-03-11 16:34:39', 0);
+INSERT INTO `question` VALUES (9, 'Java中，在如下所示的Test类中，共有（）个构造方法。', '', 0, '0', '1', '2', '3', NULL, NULL, 'C', 'C，无解析', 10, 3, 2, NULL, '2019-01-23 00:06:42', '2019-03-12 16:38:39', 0);
+INSERT INTO `question` VALUES (10, '变量命名规范说法正确的是（       ）。', '', 0, '变量由字母、下划线、数字、$符号随意组成', '变量不能以数字作为开头', 'A和a在java中是同一个变量', '不同类型的变量，可以起相同的名字', NULL, NULL, 'B', 'B，无解析', 5, 2, 2, NULL, '2019-01-23 00:08:06', '2019-03-11 16:34:50', 0);
+INSERT INTO `question` VALUES (11, '索引是什么?有什么作用以及优缺点?', '', 2, '', NULL, NULL, NULL, NULL, NULL, '索引是对数据库表中一或多个列的值进行排序的结构，是帮助MySQL高效获取数据的数据结构\r\n你也可以这样理解：索引就是加快检索表中数据的方法。数据库的索引类似于书籍的索引。\r\n在书籍中，索引允许用户不必翻阅完整个书就能迅速地找到所需要的信息。\r\n在数据库中，索引也允许数据库程序迅速地找到表中的数据，而不必扫描整个数据库。\r\nMySQL数据库几个基本的索引类型：普通索引、唯一索引、主键索引、全文索引\r\n索引的优点\r\n① 建立索引的列可以保证行的唯一性，生成唯一的rowId\r\n② 建立索引可以有效缩短数据的检索时间\r\n③ 建立索引可以加快表与表之间的连接\r\n④ 为用来排序或者是分组的字段添加索引可以加快分组和排序顺序\r\n索引的缺点：\r\n① 创建索引和维护索引需要时间成本，这个成本随着数据量的增加而加大\r\n\r\n② 创建索引和维护索引需要空间成本，每一条索引都要占据数据库的物理存储空间，数据量越大，占用空间也越大(数据表占据的是数据库的数据空间)\r\n③ 会降低表的增删改的效率，因为每次增删改索引需要进行动态维护，导致时间变长', '无解析', 10, 5, 3, NULL, '2019-01-23 23:42:06', '2019-03-11 16:34:52', 0);
+INSERT INTO `question` VALUES (12, '要保证数据库的逻辑数据独立性，需要修改的是（）。', '', 0, '模式与外模式之间的映射', ' 模式与内模式之间的映射', '模式', '三级模式', NULL, NULL, 'A', '无解析', 5, 1, 3, NULL, '2019-02-13 22:01:16', '2019-03-11 16:34:58', 0);
+INSERT INTO `question` VALUES (13, '一个 \".java\"源文件中是否可以包括多个类（不内部）？有什么限制？', '哈哈哈哈哈哈哈', 2, '', NULL, NULL, NULL, NULL, NULL, '可以，一个类中只能有一个被public修饰的类，这个类名还必须和文件名相同。', '可以，一个类中只能有一个被public修饰的类，这个类名还必须和文件名相同。', 10, 2, 2, NULL, '2019-03-11 19:03:10', '2019-03-12 16:14:48', 0);
+INSERT INTO `question` VALUES (14, '下面说法错误的是（    ）', '', 1, '能被java.exe成功运行的java class文件必须有mian（）方法。', 'J2SDK就是Java API。', 'Appletviewer.exe可利用jar选项运行.jar文件。', '能被Appletviewer成功运行的java class文件必须有main方法。', NULL, NULL, 'BCD ', '正确答案：BCD \r\n A：main是主函数，是程序执行的起始点。没有main函数会报错不能编译执行。 \r\n B：J2SDK是java开发环境包，包括了JDK（开发工具包）和JRE（运行环境包）。而API是Application Programming Interface，是应用程序编程接口，两者不是一个东西。\r\n\r\n C：这个楼楼真的没搞懂，欢迎懂得大佬来踢馆。 \r\n D：Applet只要继承Applet类就行了,不需要main()方法。', 5, 2, 2, NULL, '2019-03-12 14:25:11', '2019-03-13 16:48:09', 0);
+INSERT INTO `question` VALUES (15, '不能用来修饰interface的有（  ）', '', 1, 'private', 'public', 'protected', 'static', NULL, NULL, 'ACD', '正确答案：ACD \r\n A：接口是为了让别人实现的，你私有化了，就和自身作用其冲突，所以错误。 \r\n B：正确。 \r\n C：接口为的是实现，所以你修饰protected了，别的类就无法实现了，错误。 \r\n D：interface是一个接口，也就是说它的方法全部都为空，只有方法名，没有方法体，如果定义成static，那么就能直接调用类来调用抽象方法，没有意义。故而规定interface不能用static修饰。', 5, 2, 2, NULL, '2019-03-12 14:27:04', '2019-03-13 16:48:13', 0);
+INSERT INTO `question` VALUES (16, '如下代码输出的结果是什么？', '<pre><code><span class=\"hljs-keyword\">public</span> <span class=\"hljs-keyword\">class</span> <span class=\"hljs-title\">Test</span> {\r\n  <span class=\"hljs-function\"><span class=\"hljs-keyword\">public</span> <span class=\"hljs-keyword\">int</span> <span class=\"hljs-title\">aMethod</span>(<span class=\"hljs-params\"></span>) </span>{\r\n      <span class=\"hljs-keyword\">static</span> <span class=\"hljs-keyword\">int</span> i = <span class=\"hljs-number\">0</span>;  <span class=\"hljs-comment\">//错误的语法</span>\r\n      i++;\r\n      <span class=\"hljs-keyword\">return</span> i;\r\n  }\r\n  <span class=\"hljs-function\"><span class=\"hljs-keyword\">public</span> <span class=\"hljs-keyword\">static</span> <span class=\"hljs-keyword\">void</span> <span class=\"hljs-title\">main</span> (<span class=\"hljs-params\">String args[]</span>) </span>{\r\n      Test test = <span class=\"hljs-keyword\">new</span> Test();\r\n      test.aMethod();\r\n      <span class=\"hljs-keyword\">int</span> j = test.aMethod();\r\n      System.<span class=\"hljs-keyword\">out</span>.println(j);\r\n  }\r\n}\r\n</code></pre>', 0, '0', '1', '2', ' 编译失败', NULL, NULL, 'D', 'i在方法aMethod中是成员变量，而static的作用域是整个类', 5, 2, 2, NULL, '2019-03-12 14:29:14', '2019-03-12 14:29:14', 0);
+INSERT INTO `question` VALUES (17, '若变量已正确定义并赋值,以下符合C语言语法的表达式是 ', '', 0, 'a:=b+1', 'a=b=c+2', 'int 18.5%3', 'a=a+7=c+b', NULL, NULL, 'B', '答案解析：选项A中包含一个不合法的运算符\":=\";选项C应改为(int)18.5%3;选项D可理解为两个表达式:a+7=c+b和a=a+7,其中第一个是错的,因为C语言规定赋值号的左边只能是单个变量,不能是表达式或常量等。因此,正确答案是选项B,它实际上相当于a=(b=c+2),进而可分解为两个表达式:b=c+2和a=b。', 5, 2, 1, NULL, '2019-03-12 17:36:48', '2019-03-16 17:26:38', 0);
+INSERT INTO `question` VALUES (18, '以下不合法的用户标识符是( ) ', '', 0, '804zhang', '_ hh', 'yy614', 'If', NULL, NULL, 'A', 'C语言规定，标识符是由字母、数字或下划线组成，并且它的第一个字符必须是字母或下划线', 5, 1, 1, NULL, '2019-03-16 16:46:28', '2019-03-16 17:26:42', 0);
+INSERT INTO `question` VALUES (19, '以下说法正确的是( )。', '', 0, '宏定义是C语句，要在行末加分号', '可以使用# undefine提前结束宏名的使用', '在进行宏定义时，宏定义不能嵌套', '双引号中出现的宏名也要进行替换', NULL, NULL, 'B', '本题考查宏的使用规则：①字符替换格式：#define标识符字符串，行末不加分号;②双引号中出现的宏名不替换;③如果提前结束宏名的使用，程序中可以使用#undefine;④在进行宏定义时，宏定义能层层置换，能够嵌套', 5, 2, 1, NULL, '2019-03-16 16:48:28', '2019-03-16 17:26:46', 0);
+INSERT INTO `question` VALUES (20, '设已有定义： float x; 则以下对指针变量p进行定义且赋初值的语句中正确的是( )', '', 0, 'int *p=(float)x', 'float *p=&x', 'float p=&x', 'float *p=1024', NULL, NULL, 'B', '定义指针变量的一般形式为：类型名 *指针变量名1，*指针变量名2,……;。对一个指针变量赋值要通过求地址运算符(&)获得变量的地址值，然后把此地址值赋给指针变量。因而在选项A的表达式中，赋值号的左边表示定义了指针变量p，而右边表示求变量x的地址值', 5, 2, 1, NULL, '2019-03-16 16:50:52', '2019-03-16 17:26:49', 0);
+INSERT INTO `question` VALUES (21, '以下选项中与 if(a==1)a=b; else a++; 语句功能不同的switch语句是( )', '', 0, 'switch(a==1) {case 0:a=b;break; case 1:a++; }', 'switch(A {case 1:a=b;break; default : a++; } ', 'switch(A {default:a++;break; case 1:a=b; }', 'switch(a==1) {case 1:a=b;break; case 0:a++; }', NULL, NULL, 'A', 'if else语句的含义是，如果变量a的值等于1，则把变量b的值赋给变量a，否则，变量a的值加1。在本题的4个选项中，与其含义不同的是选项A，表示如果变量a的值等于1，则把变量a的值加1，否则，把变量b的值赋给变量a', 5, 3, 1, NULL, '2019-03-16 16:52:58', '2019-03-16 17:26:53', 0);
+INSERT INTO `question` VALUES (22, '变量a中的数据用二进制表示的形式是01011101,变量b中的数据用二进制表示的形式是11110000。若要求将a的高4位取反,低4位不变,所要执行的运算是（）', '', 0, 'a^b', 'a|b', 'a&b', 'a<<4', NULL, NULL, 'A', '本题考查的是位运算的知识,对于任何二进制数,和1进行异或运算会让其取反,而和0进行异或运算不会产生任何变化,故本题选A', 5, 3, 1, NULL, '2019-03-16 16:54:47', '2019-03-16 17:26:57', 0);
+INSERT INTO `question` VALUES (23, '设有定义： char p[]={′1′, ′2′, ′3′},*q=p; 以下不能计算出一个char型数据所占字节数的表达式是( )', '', 0, 'sizeof(p)', 'izeof(char)', 'sizeof(*q)', 'sizeof(p[0])', NULL, NULL, 'A', '选项A计算的是p[ ]字符数组首地址所占的内存字节数，返回值数组中所有元素占有的空间。*q和p[0]分别表示数组p中下标为0的字符元素，选项B和D都可以计算char型数据占有的字节数', 5, 3, 1, NULL, '2019-03-16 16:56:20', '2019-03-16 17:27:00', 0);
+INSERT INTO `question` VALUES (24, '合法的数组定义是( ) ', '', 1, ' char a[ ] = {‘s’, ‘t’, ‘r’, ‘i’, ‘n’, ‘g’, 0}', 'char s = \"string\"', 'char a[ ] = {‘s’, ‘t’, ‘r’, ‘i’, ‘n’, ‘g’, ‘\\0’}', 'char a[] = \"string\"', NULL, NULL, 'ACD', '无解析', 5, 2, 1, NULL, '2019-03-16 16:58:40', '2019-03-16 17:27:03', 0);
+INSERT INTO `question` VALUES (25, '引用数组元素时，其数组下标表达式允许是（）', '', 1, '整型常量', '整型表达式', '任何类型的表达式', '任何类型的函数调用', NULL, NULL, 'AB', '无解析', 5, 1, 1, NULL, '2019-03-16 16:59:42', '2019-03-16 17:27:06', 0);
+INSERT INTO `question` VALUES (26, '若有说明int a[ ]={ 1,2,3,4};则对a数组元素的正确引用是( )', '', 1, 'a[0]', 'a[3.5]', 'a[2-1]', 'a[4]', NULL, NULL, 'AC', '无解析', 5, 2, 1, NULL, '2019-03-16 17:00:50', '2019-03-16 17:27:09', 0);
+INSERT INTO `question` VALUES (27, '以下选项中不是C语言合法整数的是()', '', 1, '10110', '0386 ', '0Xffa', 'x2a2', NULL, NULL, 'BD', '无解析', 5, 1, 1, NULL, '2019-03-16 17:02:27', '2019-03-16 17:27:12', 0);
+INSERT INTO `question` VALUES (28, '下列程序的输出结果是（）', '<pre><code>main(){\r\n    <span class=\"hljs-keyword\">int</span> a = <span class=\"hljs-number\">7</span>, b = <span class=\"hljs-number\">5</span>;\r\n    <span class=\"hljs-keyword\">printf</span>(<span class=\"hljs-string\">\"%d\"</span>, b = b/a);\r\n}\r\n</code></pre>', 0, '5', '1', '0', '不确定值', NULL, NULL, 'C', '无解析', 5, 2, 1, NULL, '2019-03-16 17:07:53', '2019-03-16 17:07:53', 0);
+INSERT INTO `question` VALUES (29, 'C语言的表达式 (-10< x <10)能够表达x在区间（-10,10）吗？为什么？如果不能，正确的表达式应该怎么写？', '', 2, '', NULL, NULL, NULL, NULL, NULL, 'C语言的表达式 (-10< x <10)不能够表达x在区间（-10,10），因为在C语言里面，逻辑运算符的运行顺序是从左至右的顺序，而 (-10< x <10)这种形式，-10会与输入的数据比较，输出正确与否，即0或1。正确的表达式如下：\r\n（x >-10 && x < 10）;', '无解析', 10, 3, 1, NULL, '2019-03-16 17:10:08', '2019-03-16 17:27:16', 0);
+INSERT INTO `question` VALUES (30, '给出以下定义: 则正确的叙述为( )', '<pre><code><span class=\"hljs-keyword\">char</span> acX[ ]= <span class=\"hljs-string\">\"abcdefg\"</span>;\r\n<span class=\"hljs-keyword\">char</span> acY[ ]= {<span class=\"hljs-string\">\'a\'</span>,<span class=\"hljs-string\">\'b\'</span>,<span class=\"hljs-string\">\'c\'</span>,<span class=\"hljs-string\">\'d\'</span>,<span class=\"hljs-string\">\'e\'</span>,<span class=\"hljs-string\">\'f\'</span>,<span class=\"hljs-string\">\'g\'</span>};\r\n</code></pre>', 0, '数组acX和数组acY等价', '数组acX和数组acY的长度相同', '数组acX的长度大于数组acY的长度', '数组acX的长度小于数组acY的长度', NULL, NULL, 'C', '无解析', 5, 2, 1, NULL, '2019-03-16 17:12:38', '2019-03-16 17:12:38', 0);
+INSERT INTO `question` VALUES (31, '下面这段代码输出结果是（）', '<pre><code><span class=\"hljs-function\"><span class=\"hljs-keyword\">void</span> <span class=\"hljs-title\">example</span><span class=\"hljs-params\">(<span class=\"hljs-keyword\">char</span> acHello[])</span>\r\n</span>{\r\n      <span class=\"hljs-built_in\">printf</span>(<span class=\"hljs-string\">\"%d\"</span>, <span class=\"hljs-keyword\">sizeof</span>(acHello));\r\n      <span class=\"hljs-keyword\">return</span>;\r\n}\r\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">void</span> <span class=\"hljs-title\">main</span><span class=\"hljs-params\">()</span>\r\n</span>{\r\n      <span class=\"hljs-keyword\">char</span> acHello[] = <span class=\"hljs-string\">\"hello\"</span>;\r\n      example(acHello);<span class=\"hljs-comment\">//数组名称作参数，传的是地址，一个地址占四个字节</span>\r\n      <span class=\"hljs-keyword\">return</span>;\r\n}\r\n</code></pre>', 0, '4', '5', '6', '不确定', NULL, NULL, 'A', '无解析', 10, 2, 1, NULL, '2019-03-16 17:13:42', '2019-03-16 17:13:42', 0);
+INSERT INTO `question` VALUES (32, '以下叙述中不正确的是( )', '', 0, '在不同的函数中可以使用相同名字的变量', '函数中的形式参数是局部变量', '在一个函数内定义的变量只在本函数范围内有效', '在一个函数内的复合语句中定义的变量在本函数范围内有效(复合语句指函数中的成对括号构成的代码)', NULL, NULL, 'D', '无解析', 5, 1, 1, NULL, '2019-03-16 17:14:42', '2019-03-16 17:27:21', 0);
+INSERT INTO `question` VALUES (33, '请写出下列代码的输出内容', '<pre><code><span class=\"hljs-meta\">#<span class=\"hljs-meta-keyword\">include</span>  　　</span>\r\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">int</span> <span class=\"hljs-title\">main</span><span class=\"hljs-params\">(<span class=\"hljs-keyword\">void</span>)</span> 　　\r\n</span>{ 　　　\r\n<span class=\"hljs-keyword\">int</span> a,b,c,d;\r\n　　a=<span class=\"hljs-number\">10</span>; 　\r\n　　b=a++; 　\r\n　　c=++a; 　　\r\n　 d=<span class=\"hljs-number\">10</span>*a++; 　\r\n　　<span class=\"hljs-built_in\">printf</span>(<span class=\"hljs-string\">\"b，c，d：%d，%d，%d\"</span>，b，c，d）; 　\r\n　　<span class=\"hljs-keyword\">return</span> <span class=\"hljs-number\">0</span>; 　\r\n　}\r\n</code></pre>', 2, '', NULL, NULL, NULL, NULL, NULL, '10，12，120', '10，12，120', 10, 2, 1, NULL, '2019-03-16 17:46:09', '2019-03-16 17:46:09', 0);
 
 -- ----------------------------
 -- Table structure for role
@@ -425,83 +379,112 @@ CREATE TABLE `role_permission`  (
   `role_id` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '角色id',
   `permission_id` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '权限id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3636 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3135 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of role_permission
 -- ----------------------------
-INSERT INTO `role_permission` VALUES (1917, '3', '1');
-INSERT INTO `role_permission` VALUES (3565, '1', '1');
-INSERT INTO `role_permission` VALUES (3566, '1', '1000000602555213');
-INSERT INTO `role_permission` VALUES (3567, '1', '1000001125494823');
-INSERT INTO `role_permission` VALUES (3568, '1', '1000001202958412');
-INSERT INTO `role_permission` VALUES (3569, '1', '1000000163374336');
-INSERT INTO `role_permission` VALUES (3570, '1', '1000000946860898');
-INSERT INTO `role_permission` VALUES (3571, '1', '1000000249577272');
-INSERT INTO `role_permission` VALUES (3572, '1', '1000000894058396');
-INSERT INTO `role_permission` VALUES (3573, '1', '1000002132243773');
-INSERT INTO `role_permission` VALUES (3574, '1', '1000002036511171');
-INSERT INTO `role_permission` VALUES (3575, '1', '1000002022858347');
-INSERT INTO `role_permission` VALUES (3576, '1', '1000000411587667');
-INSERT INTO `role_permission` VALUES (3577, '1', '1000000399537883');
-INSERT INTO `role_permission` VALUES (3578, '1', '1000002145951096');
-INSERT INTO `role_permission` VALUES (3579, '1', '1000000776375556');
-INSERT INTO `role_permission` VALUES (3580, '1', '1000000307777615');
-INSERT INTO `role_permission` VALUES (3581, '1', '1000000428056556');
-INSERT INTO `role_permission` VALUES (3582, '1', '1000000976279608');
-INSERT INTO `role_permission` VALUES (3583, '1', '1000001644855070');
-INSERT INTO `role_permission` VALUES (3584, '1', '1000000976625379');
-INSERT INTO `role_permission` VALUES (3585, '1', '1000002127467055');
-INSERT INTO `role_permission` VALUES (3586, '1', '1000001458372033');
-INSERT INTO `role_permission` VALUES (3587, '1', '1000001832967209');
-INSERT INTO `role_permission` VALUES (3588, '1', '1000000754923037');
-INSERT INTO `role_permission` VALUES (3589, '1', '1000000759248744');
-INSERT INTO `role_permission` VALUES (3590, '1', '1000000863853891');
-INSERT INTO `role_permission` VALUES (3591, '1', '1000001264798222');
-INSERT INTO `role_permission` VALUES (3592, '1', '1000000432183856');
-INSERT INTO `role_permission` VALUES (3593, '1', '1000000237721285');
-INSERT INTO `role_permission` VALUES (3594, '1', '1000001238193773');
-INSERT INTO `role_permission` VALUES (3595, '1', '1000001305005793');
-INSERT INTO `role_permission` VALUES (3596, '1', '1000001679037501');
-INSERT INTO `role_permission` VALUES (3597, '1', '1000001011730177');
-INSERT INTO `role_permission` VALUES (3598, '1', '1000001312374743');
-INSERT INTO `role_permission` VALUES (3599, '1', '1000001507480127');
-INSERT INTO `role_permission` VALUES (3600, '1', '1000000224901858');
-INSERT INTO `role_permission` VALUES (3601, '1', '1000001579533936');
-INSERT INTO `role_permission` VALUES (3602, '1', '1000000663968031');
-INSERT INTO `role_permission` VALUES (3603, '1', '1000000322655547');
-INSERT INTO `role_permission` VALUES (3604, '1', '1000001419287014');
-INSERT INTO `role_permission` VALUES (3605, '1', '1000002075182223');
-INSERT INTO `role_permission` VALUES (3606, '1', '2');
-INSERT INTO `role_permission` VALUES (3607, '1', '201');
-INSERT INTO `role_permission` VALUES (3608, '1', '20101');
-INSERT INTO `role_permission` VALUES (3609, '1', '20102');
-INSERT INTO `role_permission` VALUES (3610, '1', '20103');
-INSERT INTO `role_permission` VALUES (3611, '1', '20104');
-INSERT INTO `role_permission` VALUES (3612, '1', '20105');
-INSERT INTO `role_permission` VALUES (3613, '1', '20106');
-INSERT INTO `role_permission` VALUES (3614, '1', '202');
-INSERT INTO `role_permission` VALUES (3615, '1', '20201');
-INSERT INTO `role_permission` VALUES (3616, '1', '20202');
-INSERT INTO `role_permission` VALUES (3617, '1', '20203');
-INSERT INTO `role_permission` VALUES (3618, '1', '20204');
-INSERT INTO `role_permission` VALUES (3619, '1', '20205');
-INSERT INTO `role_permission` VALUES (3620, '1', '20206');
-INSERT INTO `role_permission` VALUES (3621, '1', '203');
-INSERT INTO `role_permission` VALUES (3622, '1', '20301');
-INSERT INTO `role_permission` VALUES (3623, '1', '20302');
-INSERT INTO `role_permission` VALUES (3624, '1', '20303');
-INSERT INTO `role_permission` VALUES (3625, '1', '20304');
-INSERT INTO `role_permission` VALUES (3626, '1', '4');
-INSERT INTO `role_permission` VALUES (3627, '1', '401');
-INSERT INTO `role_permission` VALUES (3628, '1', '1000001992372345');
-INSERT INTO `role_permission` VALUES (3629, '1', '1000002083579304');
-INSERT INTO `role_permission` VALUES (3630, '1', '1000000171409776');
-INSERT INTO `role_permission` VALUES (3631, '1', '1000000587822241');
-INSERT INTO `role_permission` VALUES (3632, '1', '1000000493635111');
-INSERT INTO `role_permission` VALUES (3633, '1', '1000000318760332');
-INSERT INTO `role_permission` VALUES (3634, '1', '3');
-INSERT INTO `role_permission` VALUES (3635, '1', '301');
+INSERT INTO `role_permission` VALUES (2906, '3', '1');
+INSERT INTO `role_permission` VALUES (2907, '3', '4');
+INSERT INTO `role_permission` VALUES (2908, '3', '401');
+INSERT INTO `role_permission` VALUES (2909, '3', '1000001992372345');
+INSERT INTO `role_permission` VALUES (2910, '3', '1000002083579304');
+INSERT INTO `role_permission` VALUES (3058, '1', '1');
+INSERT INTO `role_permission` VALUES (3059, '1', '1000000602555213');
+INSERT INTO `role_permission` VALUES (3060, '1', '1000000899091444');
+INSERT INTO `role_permission` VALUES (3061, '1', '1000001224543466');
+INSERT INTO `role_permission` VALUES (3062, '1', '1000001747915483');
+INSERT INTO `role_permission` VALUES (3063, '1', '1000000864155694');
+INSERT INTO `role_permission` VALUES (3064, '1', '1000000167185653');
+INSERT INTO `role_permission` VALUES (3065, '1', '1000000850255464');
+INSERT INTO `role_permission` VALUES (3066, '1', '1000000553415807');
+INSERT INTO `role_permission` VALUES (3067, '1', '1000002085828985');
+INSERT INTO `role_permission` VALUES (3068, '1', '1000000583815309');
+INSERT INTO `role_permission` VALUES (3069, '1', '1000000414556681');
+INSERT INTO `role_permission` VALUES (3070, '1', '1000001670195971');
+INSERT INTO `role_permission` VALUES (3071, '1', '1000000233644405');
+INSERT INTO `role_permission` VALUES (3072, '1', '1000000159347988');
+INSERT INTO `role_permission` VALUES (3073, '1', '1000001743618837');
+INSERT INTO `role_permission` VALUES (3074, '1', '1000000098066544');
+INSERT INTO `role_permission` VALUES (3075, '1', '1000001512619368');
+INSERT INTO `role_permission` VALUES (3076, '1', '1000000727959093');
+INSERT INTO `role_permission` VALUES (3077, '1', '1000000243343801');
+INSERT INTO `role_permission` VALUES (3078, '1', '1000000426716222');
+INSERT INTO `role_permission` VALUES (3079, '1', '1000000773560150');
+INSERT INTO `role_permission` VALUES (3080, '1', '1000000658745124');
+INSERT INTO `role_permission` VALUES (3081, '1', '1000000281400324');
+INSERT INTO `role_permission` VALUES (3082, '1', '1000000399266971');
+INSERT INTO `role_permission` VALUES (3083, '1', '1000000976625379');
+INSERT INTO `role_permission` VALUES (3084, '1', '1000002127467055');
+INSERT INTO `role_permission` VALUES (3085, '1', '1000001458372033');
+INSERT INTO `role_permission` VALUES (3086, '1', '1000001832967209');
+INSERT INTO `role_permission` VALUES (3087, '1', '1000000754923037');
+INSERT INTO `role_permission` VALUES (3088, '1', '1000000759248744');
+INSERT INTO `role_permission` VALUES (3089, '1', '1000000863853891');
+INSERT INTO `role_permission` VALUES (3090, '1', '1000001264798222');
+INSERT INTO `role_permission` VALUES (3091, '1', '1000000432183856');
+INSERT INTO `role_permission` VALUES (3092, '1', '1000000237721285');
+INSERT INTO `role_permission` VALUES (3093, '1', '1000001238193773');
+INSERT INTO `role_permission` VALUES (3094, '1', '1000001305005793');
+INSERT INTO `role_permission` VALUES (3095, '1', '1000001679037501');
+INSERT INTO `role_permission` VALUES (3096, '1', '1000001011730177');
+INSERT INTO `role_permission` VALUES (3097, '1', '1000001312374743');
+INSERT INTO `role_permission` VALUES (3098, '1', '1000001507480127');
+INSERT INTO `role_permission` VALUES (3099, '1', '1000000224901858');
+INSERT INTO `role_permission` VALUES (3100, '1', '1000001579533936');
+INSERT INTO `role_permission` VALUES (3101, '1', '1000000663968031');
+INSERT INTO `role_permission` VALUES (3102, '1', '1000000322655547');
+INSERT INTO `role_permission` VALUES (3103, '1', '1000001419287014');
+INSERT INTO `role_permission` VALUES (3104, '1', '1000002075182223');
+INSERT INTO `role_permission` VALUES (3105, '1', '2');
+INSERT INTO `role_permission` VALUES (3106, '1', '201');
+INSERT INTO `role_permission` VALUES (3107, '1', '20101');
+INSERT INTO `role_permission` VALUES (3108, '1', '20102');
+INSERT INTO `role_permission` VALUES (3109, '1', '20103');
+INSERT INTO `role_permission` VALUES (3110, '1', '20104');
+INSERT INTO `role_permission` VALUES (3111, '1', '20105');
+INSERT INTO `role_permission` VALUES (3112, '1', '20106');
+INSERT INTO `role_permission` VALUES (3113, '1', '202');
+INSERT INTO `role_permission` VALUES (3114, '1', '20201');
+INSERT INTO `role_permission` VALUES (3115, '1', '20202');
+INSERT INTO `role_permission` VALUES (3116, '1', '20203');
+INSERT INTO `role_permission` VALUES (3117, '1', '20204');
+INSERT INTO `role_permission` VALUES (3118, '1', '20205');
+INSERT INTO `role_permission` VALUES (3119, '1', '20206');
+INSERT INTO `role_permission` VALUES (3120, '1', '203');
+INSERT INTO `role_permission` VALUES (3121, '1', '20301');
+INSERT INTO `role_permission` VALUES (3122, '1', '20302');
+INSERT INTO `role_permission` VALUES (3123, '1', '20303');
+INSERT INTO `role_permission` VALUES (3124, '1', '20304');
+INSERT INTO `role_permission` VALUES (3125, '1', '4');
+INSERT INTO `role_permission` VALUES (3126, '1', '401');
+INSERT INTO `role_permission` VALUES (3127, '1', '1000001992372345');
+INSERT INTO `role_permission` VALUES (3128, '1', '1000002083579304');
+INSERT INTO `role_permission` VALUES (3129, '1', '1000000171409776');
+INSERT INTO `role_permission` VALUES (3130, '1', '1000000587822241');
+INSERT INTO `role_permission` VALUES (3131, '1', '1000000493635111');
+INSERT INTO `role_permission` VALUES (3132, '1', '1000000318760332');
+INSERT INTO `role_permission` VALUES (3133, '1', '3');
+INSERT INTO `role_permission` VALUES (3134, '1', '301');
+
+-- ----------------------------
+-- Table structure for site_info
+-- ----------------------------
+DROP TABLE IF EXISTS `site_info`;
+CREATE TABLE `site_info`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `site_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `site_desc` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `site_pic` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `create_time` datetime(0) NULL DEFAULT NULL,
+  `update_time` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of site_info
+-- ----------------------------
+INSERT INTO `site_info` VALUES (1, 'OnlineExam | C语言在线考试系统', '90后少年，热爱写bug，热爱编程，热爱学习，分享一些个人项目经验，共同学习，少走弯路。Just do it！', 'http://cdn.nbclass.com/blog/img/person.jpg', '2018-07-22 22:13:26', '2018-07-22 22:13:29');
 
 -- ----------------------------
 -- Table structure for subject
@@ -519,15 +502,14 @@ CREATE TABLE `subject`  (
   `update_time` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
   `status` int(4) NULL DEFAULT 0 COMMENT '课程状态,0表示正常,1表示弃用',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of subject
 -- ----------------------------
-INSERT INTO `subject` VALUES (1, '1', 'C语言程序设计', '计算机专业学生必修课程', 'www.github.com', 1, '超级管理员', '2019-01-17 13:18:34', '2019-01-18 11:25:21', 1);
-INSERT INTO `subject` VALUES (3, '1', 'MySql数据库', '数据库专业学生必修课程', 'www.github.com', 3, '超级管理员', '2019-01-17 14:54:14', '2019-01-24 09:38:52', 1);
-INSERT INTO `subject` VALUES (4, '1', 'Java程序设计', '软件工程专业学生必修课程', 'www.github.com', 2, '超级管理员', '2019-01-18 15:38:43', '2019-01-21 13:19:40', 1);
-INSERT INTO `subject` VALUES (5, '1', 'Python', '软件工程专业学生必修课程', 'www.github.com', 4, '超级管理员', '2019-01-28 11:21:27', '2019-01-28 11:21:27', 1);
+INSERT INTO `subject` VALUES (1, '1', 'C语言程序设计', '计算机专业学生必修课程', 'http://localhost:8081/index#subjects', 1, '超级管理员', '2019-01-18 19:23:42', '2019-01-18 19:23:42', 1);
+INSERT INTO `subject` VALUES (2, '1', 'Java程序设计', '软件工程专业学生必修课程', 'http://localhost:8081/index#subjects', 2, '超级管理员', '2019-01-18 19:25:09', '2019-01-18 19:25:09', 1);
+INSERT INTO `subject` VALUES (3, '1', '数据库', '软件工程专业学生必须课程', '1234545667.jpg', 3, '超级管理员', '2019-01-23 23:40:05', '2019-01-23 23:40:05', 1);
 
 -- ----------------------------
 -- Table structure for sys_config
@@ -548,12 +530,34 @@ CREATE TABLE `sys_config`  (
 -- ----------------------------
 INSERT INTO `sys_config` VALUES (1, 'CLOUD_STORAGE_CONFIG', '{\"type\":1,\"qiniuDomain\":\"http://cdn.nbclass.com\",\"qiniuPrefix\":\"img/exam\",\"qiniuAccessKey\":\"45Q8tlxdBnQrbrUGoAXbxE06GjmwrMvok2G2fvUS\",\"qiniuSecretKey\":\"cx6_yE44prxCOsPjoKh_z0pJywLhr87A7YWlbXb1\",\"qiniuBucketName\":\"exam\",\"aliyunDomain\":\"\",\"aliyunPrefix\":\"\",\"aliyunEndPoint\":\"\",\"aliyunAccessKeyId\":\"\",\"aliyunAccessKeySecret\":\"\",\"aliyunBucketName\":\"\",\"qcloudDomain\":\"\",\"qcloudPrefix\":\"\",\"qcloudSecretId\":\"\",\"qcloudSecretKey\":\"\",\"qcloudBucketName\":\"\",\"qcloudRegion\":\"\"}', 1, '云存储配置信息');
 INSERT INTO `sys_config` VALUES (5, 'SITE_NAME', 'C语言在线考试系统', 1, '网站名称');
-INSERT INTO `sys_config` VALUES (6, 'SITE_KWD', 'C语言在线考试系统', 1, '网站关键字');
-INSERT INTO `sys_config` VALUES (7, 'SITE_DESC', 'C语言在线考试系统', 1, '网站描述');
+INSERT INTO `sys_config` VALUES (6, 'SITE_KWD', '在线考试系统', 1, '网站关键字');
+INSERT INTO `sys_config` VALUES (7, 'SITE_DESC', '在线考试系统', 1, '网站描述');
 INSERT INTO `sys_config` VALUES (8, 'SITE_PERSON_PIC', 'http://cdn.nbclass.com/blog/img/person.jpg', 1, '站长头像');
-INSERT INTO `sys_config` VALUES (9, 'SITE_PERSON_NAME', 'C语言在线考试系统', 1, '站长名称');
-INSERT INTO `sys_config` VALUES (10, 'SITE_PERSON_DESC', '95后少年，热爱写bug，热爱编程，热爱学习，分享一些个人项目经验，共同学习，少走弯路。Just do it！', 1, '站长描述');
+INSERT INTO `sys_config` VALUES (9, 'SITE_PERSON_NAME', 'OnlineExam | 在线考试系统', 1, '站长名称');
+INSERT INTO `sys_config` VALUES (10, 'SITE_PERSON_DESC', '90后少年，热爱写bug，热爱编程，热爱学习，分享一些个人项目经验，共同学习，少走弯路。Just do it！', 1, '站长描述');
 INSERT INTO `sys_config` VALUES (11, 'BAIDU_PUSH_URL', 'http://data.zz.baidu.com/urls?site=www.nbclass.com&token=asdasd324234234', 1, '百度推送地址');
+
+-- ----------------------------
+-- Table structure for tag
+-- ----------------------------
+DROP TABLE IF EXISTS `tag`;
+CREATE TABLE `tag`  (
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '书签名',
+  `description` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述',
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '添加时间',
+  `update_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tag
+-- ----------------------------
+INSERT INTO `tag` VALUES (1, 'Linux', '111', '2018-01-14 21:35:31', '2018-07-25 18:53:34');
+INSERT INTO `tag` VALUES (2, 'Java', '222', '2018-01-14 21:35:45', '2018-07-25 18:53:38');
+INSERT INTO `tag` VALUES (3, 'Spring', NULL, '2018-01-14 21:35:52', '2018-01-14 21:35:52');
+INSERT INTO `tag` VALUES (4, 'Spring Boot', NULL, '2018-01-14 21:36:01', '2018-01-14 21:36:01');
+INSERT INTO `tag` VALUES (5, '其他', '其他', '2018-07-25 18:55:06', '2018-07-25 18:55:06');
 
 -- ----------------------------
 -- Table structure for user
@@ -576,14 +580,15 @@ CREATE TABLE `user`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `last_login_time` datetime(0) NULL DEFAULT NULL COMMENT '最后登录时间',
   PRIMARY KEY (`id`, `user_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, '1', 'admin', '872359cc44c637cc73b7cd55c06d95e4', '8cd50474d2a3c1e88298e91df8bf6f1c', '超级管理员', '888@qq.com', '18788889999', 1, 22, 'http://cdn.nbclass.com/blog/img/person.jpg', 1, '2018-05-23 21:22:06', '2018-07-17 23:04:46', '2019-02-26 13:47:16');
-INSERT INTO `user` VALUES (2, '1000000695368215', '40115208', '8fd1aa3c824288b4629445a75899d26e', '4cfe1aaa0c1d5c115d3b7e43dde9fc00', '郭洪奎', 'hungkuei@163.com', '15709620338', 1, 23, NULL, 1, '2019-01-13 00:01:40', '2019-01-13 00:01:40', '2019-01-13 00:01:40');
-INSERT INTO `user` VALUES (3, '1000001634620406', '40115209', '8b458d71d6228f227cf75af88763dbc8', '5e920b5d8cef0ce366237a6edd4e47e8', NULL, '1468584274@qq.com', '15709620338', 1, 23, NULL, 1, '2019-02-15 16:37:56', '2019-02-15 16:37:56', '2019-02-20 16:59:13');
+INSERT INTO `user` VALUES (1, '1', 'admin', '872359cc44c637cc73b7cd55c06d95e4', '8cd50474d2a3c1e88298e91df8bf6f1c', '超级管理员', '888@qq.com', '18788889999', 1, 22, 'http://cdn.nbclass.com/blog/img/person.jpg', 1, '2018-05-23 21:22:06', '2018-07-17 23:04:46', '2019-03-18 18:34:06');
+INSERT INTO `user` VALUES (3, '1000001795280200', '40115208', '66e7c92327cf7da04695c621d3bb86a8', 'deb10a46317ac7a41fb97d6ffe8d9165', '郭洪奎', 'hungkuei@163.com', '15709620338', 1, 24, NULL, 1, '2019-02-27 11:58:02', '2019-02-27 11:58:02', '2019-03-18 18:00:02');
+INSERT INTO `user` VALUES (4, '1000000318553137', '40115200', '67835e6eb98746c9edcde9c24b9c4af0', '05762c074117634fe628921e57ffdce0', '郭洪奎', 'hungkuei@163.com', '15709620338', 1, 24, NULL, 1, '2019-03-17 17:19:47', '2019-03-17 17:19:47', '2019-03-17 17:19:47');
+INSERT INTO `user` VALUES (5, '1000001728681140', 'dbsys', '3600692b048f55e5390379c9922599fa', 'e8bcbb9168a502b258bdccb7a1cd7688', '数据库管理员', '', '', 1, NULL, NULL, 1, '2019-03-17 17:20:45', '2019-03-17 17:20:45', '2019-03-17 17:20:45');
 
 -- ----------------------------
 -- Table structure for user_role
@@ -594,13 +599,15 @@ CREATE TABLE `user_role`  (
   `user_id` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户id',
   `role_id` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '角色id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_role
 -- ----------------------------
 INSERT INTO `user_role` VALUES (1, '1', '1');
 INSERT INTO `user_role` VALUES (2, '1000000695368215', '3');
-INSERT INTO `user_role` VALUES (3, '1000001634620406', '3');
+INSERT INTO `user_role` VALUES (3, '1000001795280200', '3');
+INSERT INTO `user_role` VALUES (4, '1000001728681140', '4');
+INSERT INTO `user_role` VALUES (5, '1000000318553137', '3');
 
 SET FOREIGN_KEY_CHECKS = 1;

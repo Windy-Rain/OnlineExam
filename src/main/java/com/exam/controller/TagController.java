@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.exam.model.BizTags;
-import com.exam.service.BizTagsService;
+import com.exam.model.Tag;
+import com.exam.service.TagService;
 import com.exam.util.PageUtil;
 import com.exam.util.ResultUtil;
 import com.exam.vo.base.PageResultVo;
@@ -24,23 +24,25 @@ import com.github.pagehelper.PageInfo;
 @Controller
 @RequestMapping("tag")
 public class TagController {
+	
     @Autowired
-    private BizTagsService tagsService;
+    private TagService tagService;
+    
     @PostMapping("list")
     @ResponseBody
-    public PageResultVo loadTags(BizTags bizTags, Integer limit, Integer offset){
+    public PageResultVo loadTags(Tag tag, Integer limit, Integer offset){
         PageHelper.startPage(PageUtil.getPageNo(limit, offset),limit);
-        List<BizTags> tagList= tagsService.selectTags(bizTags);
-        PageInfo<BizTags> pages = new PageInfo<>(tagList);
+        List<Tag> tagList= tagService.selectTags(tag);
+        PageInfo<Tag> pages = new PageInfo<>(tagList);
         return ResultUtil.table(tagList,pages.getTotal(),pages);
     }
     @PostMapping("/add")
     @ResponseBody
-    public ResponseVo add(BizTags bizTags){
+    public ResponseVo add(Tag tag){
         Date date = new Date();
-        bizTags.setCreateTime(date);
-        bizTags.setUpdateTime(date);
-        int i = tagsService.insert(bizTags);
+        tag.setCreateTime(date);
+        tag.setUpdateTime(date);
+        int i = tagService.insert(tag);
         if(i>0){
             return ResultUtil.success("新增标签成功");
         }else{
@@ -50,16 +52,16 @@ public class TagController {
 
     @GetMapping("/edit")
     public String edit(Model model, Integer id){
-        BizTags bizTags = tagsService.selectByPrimaryKey(id);
-        model.addAttribute("tag",bizTags);
+        Tag tag = tagService.selectByPrimaryKey(id);
+        model.addAttribute("tag",tag);
         return "tag/detail";
     }
 
     @PostMapping("/edit")
     @ResponseBody
-    public ResponseVo edit(BizTags bizTags){
-        bizTags.setUpdateTime(new Date());
-        int i = tagsService.updateNotNull(bizTags);
+    public ResponseVo edit(Tag tag){
+    	tag.setUpdateTime(new Date());
+        int i = tagService.updateNotNull(tag);
         if(i>0){
             return ResultUtil.success("编辑标签成功");
         }else{
@@ -69,7 +71,7 @@ public class TagController {
     @PostMapping("/delete")
     @ResponseBody
     public ResponseVo delete(Integer id){
-        int i = tagsService.delete(id);
+        int i = tagService.delete(id);
         if(i>0){
             return ResultUtil.success("删除标签成功");
         }else{
@@ -79,7 +81,7 @@ public class TagController {
     @PostMapping("/batch/delete")
     @ResponseBody
     public ResponseVo deleteBatch(@RequestParam("ids[]") Integer[]ids){
-        int i = tagsService.deleteBatch(ids);
+        int i = tagService.deleteBatch(ids);
         if(i>0){
             return ResultUtil.success("删除标签成功");
         }else{

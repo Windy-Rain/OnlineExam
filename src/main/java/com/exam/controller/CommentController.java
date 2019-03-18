@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.exam.model.BizComment;
+import com.exam.model.Comment;
 import com.exam.model.User;
-import com.exam.service.BizCommentService;
+import com.exam.service.CommentService;
 import com.exam.util.CoreConst;
 import com.exam.util.IpUtil;
 import com.exam.util.PageUtil;
@@ -32,17 +32,17 @@ import com.github.pagehelper.PageInfo;
 public class CommentController {
 
     @Autowired
-    private BizCommentService commentService;
+    private CommentService commentService;
 
     @PostMapping("list")
     public PageResultVo loadNotify(CommentConditionVo comment, Integer limit, Integer offset){
         PageHelper.startPage(PageUtil.getPageNo(limit, offset),limit);
-        List<BizComment> comments = commentService.selectComments(comment);
-        PageInfo<BizComment> pages = new PageInfo<>(comments);
+        List<Comment> comments = commentService.selectComments(comment);
+        PageInfo<Comment> pages = new PageInfo<>(comments);
         return ResultUtil.table(comments,pages.getTotal(),pages);
     }
     @PostMapping("/reply")
-    public ResponseVo edit(BizComment comment){
+    public ResponseVo edit(Comment comment){
         completeComment(comment);
         int i = commentService.insertSelective(comment);
         if(i>0){
@@ -72,11 +72,11 @@ public class CommentController {
     }
 
     @PostMapping("/audit")
-    public ResponseVo audit(BizComment bizComment, String replyContent){
+    public ResponseVo audit(Comment bizComment, String replyContent){
         try {
             commentService.updateNotNull(bizComment);
             if(StringUtils.isNotBlank(replyContent)){
-                BizComment replyComment = new BizComment();
+                Comment replyComment = new Comment();
                 replyComment.setPid(bizComment.getId());
                 replyComment.setSid(bizComment.getSid());
                 replyComment.setContent(replyContent);
@@ -89,7 +89,7 @@ public class CommentController {
         }
     }
 
-    private void completeComment(BizComment comment){
+    private void completeComment(Comment comment){
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         User user = (User)SecurityUtils.getSubject().getPrincipal();
         comment.setUserId(user.getUserId());

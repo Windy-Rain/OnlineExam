@@ -120,9 +120,9 @@
             class:'min-width-100',
             formatter : function(value,
                                  row, index) {
-                var edit = editFlag=="true" ? '<a class="table-btn table-btn-info" onclick="editTag('+row.id+')">编辑</a>' : '';
-                var del = deleteFlag=="true" ? '<a  class="table-btn table-btn-danger" onclick="deleteTag('+row.id+')">删除</a>' : '';
-                return edit + del;
+                var edit = editFlag=="true" ? '<a class="btn btn-primary btn-sm" onclick="editTag('+row.id+')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑</a>' : '';
+                var del = deleteFlag=="true" ? '<a  class="btn btn-danger btn-sm" onclick="deleteTag('+row.id+')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除</a>' : '';
+                return edit + " " + del;
             }
         }];
     var options={

@@ -3,10 +3,10 @@ package com.exam.component;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.exam.model.BizLink;
-import com.exam.model.BizTags;
-import com.exam.service.BizLinkService;
-import com.exam.service.BizTagsService;
+import com.exam.model.Link;
+import com.exam.model.Tag;
+import com.exam.service.LinkService;
+import com.exam.service.TagService;
 import com.exam.service.SiteInfoService;
 import com.exam.service.SysConfigService;
 import com.exam.util.CoreConst;
@@ -18,9 +18,9 @@ import com.exam.util.CoreConst;
 @Component("module")
 public class ModuleService {
     @Autowired
-    private BizTagsService bizTagsService;
+    private TagService bizTagsService;
     @Autowired
-    private BizLinkService bizLinkService;
+    private LinkService bizLinkService;
     @Autowired
     private SiteInfoService siteInfoService;
     @Autowired
@@ -29,9 +29,9 @@ public class ModuleService {
     public Object get(String moduleName){
         switch (moduleName){
             case "tagList":             //标签
-                return bizTagsService.selectTags(new BizTags());
+                return bizTagsService.selectTags(new Tag());
             case "linkList":            //友链
-                BizLink bizLink = new BizLink();
+                Link bizLink = new Link();
                 bizLink.setStatus(CoreConst.STATUS_VALID);
                 return bizLinkService.selectLinks(bizLink);
             case "siteInfo":            //网站信息统计

@@ -54,6 +54,8 @@
 	<div th:replace="home/fragments/footer :: copyrightExamWeb"></div>
 </div>
 <script type="text/javascript">
+	var headerMain = document.getElementById('headerMain');
+	headerMain.setAttribute("style","background:#4F94CD");
 	var totalPage,currentPage,offset=0;
 	$(function(){
 		requestPage(offset);

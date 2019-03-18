@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.exam.model.BizLink;
-import com.exam.service.BizLinkService;
+import com.exam.model.Link;
+import com.exam.service.LinkService;
 import com.exam.util.PageUtil;
 import com.exam.util.ResultUtil;
 import com.exam.vo.base.PageResultVo;
@@ -24,24 +24,25 @@ import com.github.pagehelper.PageInfo;
 @Controller
 @RequestMapping("link")
 public class LinksController {
+	
     @Autowired
-    private BizLinkService linkService;
+    private LinkService linkService;
 
     @PostMapping("list")
     @ResponseBody
-    public PageResultVo loadLinks(BizLink bizLink, Integer limit, Integer offset){
+    public PageResultVo loadLinks(Link link, Integer limit, Integer offset){
         PageHelper.startPage(PageUtil.getPageNo(limit, offset),limit);
-        List<BizLink> linkList = linkService.selectLinks(bizLink);
-        PageInfo<BizLink> pages = new PageInfo<>(linkList);
+        List<Link> linkList = linkService.selectLinks(link);
+        PageInfo<Link> pages = new PageInfo<>(linkList);
         return ResultUtil.table(linkList,pages.getTotal(),pages);
     }
     @PostMapping("/add")
     @ResponseBody
-    public ResponseVo add(BizLink bizLink){
+    public ResponseVo add(Link link){
         Date date = new Date();
-        bizLink.setCreateTime(date);
-        bizLink.setUpdateTime(date);
-        int i = linkService.insert(bizLink);
+        link.setCreateTime(date);
+        link.setUpdateTime(date);
+        int i = linkService.insert(link);
         if(i>0){
             return ResultUtil.success("新增友链成功");
         }else{
@@ -51,16 +52,16 @@ public class LinksController {
 
     @GetMapping("/edit")
     public String edit(Model model, Integer id){
-        BizLink bizLink = linkService.selectByPrimaryKey(id);
-        model.addAttribute("link",bizLink);
+        Link link = linkService.selectByPrimaryKey(id);
+        model.addAttribute("link",link);
         return "link/detail";
     }
 
     @PostMapping("/edit")
     @ResponseBody
-    public ResponseVo edit(BizLink bizLink){
-        bizLink.setUpdateTime(new Date());
-        int i = linkService.updateNotNull(bizLink);
+    public ResponseVo edit(Link link){
+    	link.setUpdateTime(new Date());
+        int i = linkService.updateNotNull(link);
         if(i>0){
             return ResultUtil.success("编辑友链成功");
         }else{

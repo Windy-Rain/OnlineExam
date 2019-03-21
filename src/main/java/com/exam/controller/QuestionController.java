@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSON;
 import com.exam.model.Question;
@@ -83,7 +84,11 @@ public class QuestionController {
     	return ResultUtil.success("编辑题目成功");
     }
     
-    
+    /**
+     * 删除
+     * @param id
+     * @return
+     */
     @PostMapping("/delete")
     @ResponseBody
     public ResponseVo delete(Integer id) {
@@ -94,7 +99,11 @@ public class QuestionController {
     		return ResultUtil.error("删除题目失败");
     	}
     }
-    
+    /**
+     * 批量删除
+     * @param ids
+     * @return
+     */
     @PostMapping("/batch/delete")
     @ResponseBody
     public ResponseVo deleteBatch(@RequestParam("ids[]") Integer[]ids) {
@@ -103,6 +112,22 @@ public class QuestionController {
     		return ResultUtil.success("批量删除题目成功");
     	}else {
     		return ResultUtil.error("批量删除题目失败");
+    	}
+    }
+    
+    /**
+     * 批量导入题库
+     * @param myfile
+     * @return
+     */
+    @PostMapping("/importExcel")
+    @ResponseBody
+    public ResponseVo importExcel(@RequestParam("myfile") MultipartFile myfile) {
+    	Integer nums = questionService.importExcel(myfile); 
+    	if(nums > 0) {
+    		return ResultUtil.success("成功导入"+ nums + "道题目");
+    	}else {
+    		return ResultUtil.error("导入失败");
     	}
     }
 }

@@ -3,6 +3,7 @@ package com.exam.service;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.exam.model.Question;
 import com.exam.vo.QuestionConditionVo;
@@ -38,5 +39,11 @@ public interface QuestionService extends BaseService<Question> {
 	int deleteBatch(Integer[] ids);
 
 	int totalNum();
+	
+	/**
+	 * 导入Excel表数据
+	 * @param questionList
+	 */
+	Integer importExcel(MultipartFile myFile);
 
 }

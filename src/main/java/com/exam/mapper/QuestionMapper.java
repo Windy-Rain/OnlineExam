@@ -35,7 +35,12 @@ public interface QuestionMapper extends MapperUtil<Question> {
 
 	@Select("select count(id) questionNums from question")
 	int countNum();
-
+	
+	/**
+	 * 批量插入问题
+	 * @param questionList
+	 */
+	void batchInsert(List<Question> questionList);
 	
 
 }

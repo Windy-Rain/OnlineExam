@@ -1,5 +1,6 @@
 package com.exam.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -18,16 +19,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.exam.model.Examination;
 import com.exam.model.Grade;
 import com.exam.model.Question;
+import com.exam.model.Subject;
 import com.exam.model.User;
 import com.exam.service.ExaminationService;
 import com.exam.service.GradeService;
+import com.exam.service.QuestionService;
+import com.exam.service.SubjectService;
 import com.exam.util.PageUtil;
 import com.exam.util.ResultUtil;
 import com.exam.vo.ExaminationConditionVo;
 import com.exam.vo.base.ResponseVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.github.pagehelper.util.StringUtil;
 
 @Controller
 public class ExamWebController {
@@ -36,6 +39,10 @@ public class ExamWebController {
 	private ExaminationService examService;
 	@Autowired
 	private GradeService gradeService;
+	@Autowired
+	private QuestionService questionService;
+	@Autowired
+	private SubjectService subjectService;
 	
 	@RequestMapping("/")
 	public String index(Model model) {
@@ -45,23 +52,52 @@ public class ExamWebController {
 			return "index/index";
 		}
 	}
-	
-	@GetMapping("/exam")
-	public String exam(Model model) {
-		if(SecurityUtils.getSubject().isAuthenticated()) {
-			return "redirect:/exam/examination";
-		}else {
-			return "redirect:/exam/login";
-		}
-	}	
-	
+
+	/**
+	 * 考试界面
+	 * @param model
+	 * @param examConditionVo
+	 * @return
+	 */
 	@GetMapping("/exam/examination")
 	public String toExam(Model model, ExaminationConditionVo examConditionVo) {
-		PageHelper.startPage(PageUtil.getPageNo(10, 0),10);
-		List<Examination> examList = examService.findByCondition(examConditionVo);
-		PageInfo<Examination> pages = new PageInfo<>(examList);
-		model.addAttribute("pageInfo", pages);
-		return "index/examination";
+		if(SecurityUtils.getSubject().isAuthenticated()) {
+			PageHelper.startPage(PageUtil.getPageNo(10, 0),10);
+			List<Examination> examList = examService.findByCondition(examConditionVo);
+			PageInfo<Examination> pages = new PageInfo<>(examList);
+			model.addAttribute("pageInfo", pages);
+			return "index/examination";
+		}else {
+			return "index/login";
+		}
+	}
+	
+	/**
+	 * 前端题库中心
+	 * @param model
+	 * @return
+	 */
+	
+	@GetMapping("/exam/questions")
+	public String toQuestion(Model model) {
+		if(SecurityUtils.getSubject().isAuthenticated()) {
+			Subject subject = new Subject();
+			List<Subject> subjectList = subjectService.select(subject);
+			Question question = new Question();
+			List<Question> questionList = questionService.select(question);
+			for(int i = 0; i < subjectList.size(); i++) {
+				List<Question>  questions = new ArrayList<>(); 
+				for(Question q : questionList) {
+					if(subjectList.get(i).getId().equals(q.getSubjectId())) {
+						questions.add(q);
+					}
+				}
+				
+			}
+			return "index/question";
+		}else {
+			return "index/login";
+		}
 	}
 	
 	@GetMapping("/exam/login")
@@ -143,5 +179,4 @@ public class ExamWebController {
 			return ResultUtil.error("提交考试失败！请联系管理员处理");
 		}
 	}
-	
 }

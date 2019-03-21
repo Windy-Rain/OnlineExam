@@ -1,103 +1,832 @@
-2019-03-18 19:10:48.945  INFO 5136 --- [main] com.exam.OnlineExamApplication           : Starting OnlineExamApplication on LAPTOP-7SEUEP84 with PID 5136 (E:\eclipse_workspace\OnlineExam\target\classes started by HungKuei_PC in E:\eclipse_workspace\OnlineExam)
-2019-03-18 19:10:48.949 DEBUG 5136 --- [main] com.exam.OnlineExamApplication           : Running with Spring Boot v2.0.2.RELEASE, Spring v5.0.6.RELEASE
-2019-03-18 19:10:48.951  INFO 5136 --- [main] com.exam.OnlineExamApplication           : No active profile set, falling back to default profiles: default
-2019-03-18 19:10:49.938 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\CommentMapper.class]
-2019-03-18 19:10:49.986 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\ExaminationMapper.class]
-2019-03-18 19:10:49.986 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\ExamQuestionMapper.class]
-2019-03-18 19:10:49.987 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\GradeMapper.class]
-2019-03-18 19:10:49.987 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\LinkMapper.class]
-2019-03-18 19:10:49.987 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\PermissionMapper.class]
-2019-03-18 19:10:49.987 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\QuestionMapper.class]
-2019-03-18 19:10:49.987 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\RoleMapper.class]
-2019-03-18 19:10:49.987 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\RolePermissionMapper.class]
-2019-03-18 19:10:49.987 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\SiteInfoMapper.class]
-2019-03-18 19:10:49.988 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\SubjectMapper.class]
-2019-03-18 19:10:49.988 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\SysConfigMapper.class]
-2019-03-18 19:10:49.988 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\TagMapper.class]
-2019-03-18 19:10:49.988 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\UserMapper.class]
-2019-03-18 19:10:49.988 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\UserRoleMapper.class]
-2019-03-18 19:10:49.989 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'commentMapper' and 'com.exam.mapper.CommentMapper' mapperInterface
-2019-03-18 19:10:49.989 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'commentMapper'.
-2019-03-18 19:10:49.989 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'examinationMapper' and 'com.exam.mapper.ExaminationMapper' mapperInterface
-2019-03-18 19:10:49.989 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'examinationMapper'.
-2019-03-18 19:10:49.989 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'examQuestionMapper' and 'com.exam.mapper.ExamQuestionMapper' mapperInterface
-2019-03-18 19:10:49.989 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'examQuestionMapper'.
-2019-03-18 19:10:49.989 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'gradeMapper' and 'com.exam.mapper.GradeMapper' mapperInterface
-2019-03-18 19:10:49.989 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'gradeMapper'.
-2019-03-18 19:10:49.990 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'linkMapper' and 'com.exam.mapper.LinkMapper' mapperInterface
-2019-03-18 19:10:49.990 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'linkMapper'.
-2019-03-18 19:10:49.990 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'permissionMapper' and 'com.exam.mapper.PermissionMapper' mapperInterface
-2019-03-18 19:10:49.990 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'permissionMapper'.
-2019-03-18 19:10:49.991 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'questionMapper' and 'com.exam.mapper.QuestionMapper' mapperInterface
-2019-03-18 19:10:49.991 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'questionMapper'.
-2019-03-18 19:10:49.991 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'roleMapper' and 'com.exam.mapper.RoleMapper' mapperInterface
-2019-03-18 19:10:49.991 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'roleMapper'.
-2019-03-18 19:10:49.992 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'rolePermissionMapper' and 'com.exam.mapper.RolePermissionMapper' mapperInterface
-2019-03-18 19:10:49.993 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'rolePermissionMapper'.
-2019-03-18 19:10:49.994 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'siteInfoMapper' and 'com.exam.mapper.SiteInfoMapper' mapperInterface
-2019-03-18 19:10:49.994 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'siteInfoMapper'.
-2019-03-18 19:10:49.994 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'subjectMapper' and 'com.exam.mapper.SubjectMapper' mapperInterface
-2019-03-18 19:10:49.994 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'subjectMapper'.
-2019-03-18 19:10:49.994 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'sysConfigMapper' and 'com.exam.mapper.SysConfigMapper' mapperInterface
-2019-03-18 19:10:49.995 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'sysConfigMapper'.
-2019-03-18 19:10:49.995 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'tagMapper' and 'com.exam.mapper.TagMapper' mapperInterface
-2019-03-18 19:10:49.995 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'tagMapper'.
-2019-03-18 19:10:49.995 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'userMapper' and 'com.exam.mapper.UserMapper' mapperInterface
-2019-03-18 19:10:49.995 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'userMapper'.
-2019-03-18 19:10:49.995 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'userRoleMapper' and 'com.exam.mapper.UserRoleMapper' mapperInterface
-2019-03-18 19:10:49.995 DEBUG 5136 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'userRoleMapper'.
-2019-03-18 19:10:53.328  INFO 5136 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
-2019-03-18 19:10:53.339 DEBUG 5136 --- [main] c.e.m.PermissionMapper.selectAllPerms    : ==>  Preparing: SELECT id, permission_id, name, description, url, perms, parent_id, type, order_num, icon, status, create_time, update_time FROM permission WHERE status=? ORDER BY order_num 
-2019-03-18 19:10:53.519 DEBUG 5136 --- [main] c.e.m.PermissionMapper.selectAllPerms    : ==> Parameters: 1(Integer)
-2019-03-18 19:10:53.566 DEBUG 5136 --- [main] c.e.m.PermissionMapper.selectAllPerms    : <==      Total: 77
-2019-03-18 19:10:53.957  INFO 5136 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2019-03-18 19:10:53.958  INFO 5136 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.31
-2019-03-18 19:10:53.981  INFO 5136 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.16] using APR version [1.6.3].
-2019-03-18 19:10:53.982  INFO 5136 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
-2019-03-18 19:10:53.982  INFO 5136 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
-2019-03-18 19:10:55.056  INFO 5136 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2m  2 Nov 2017]
-2019-03-18 19:10:55.242  INFO 5136 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2019-03-18 19:10:57.433  WARN 5136 --- [main] org.thymeleaf.templatemode.TemplateMode  : [THYMELEAF][main] Template Mode 'LEGACYHTML5' is deprecated. Using Template Mode 'HTML' instead.
-2019-03-18 19:10:58.268  INFO 5136 --- [main] com.exam.OnlineExamApplication           : Started OnlineExamApplication in 9.784 seconds (JVM running for 10.418)
-2019-03-18 19:12:47.694  INFO 5136 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
-2019-03-18 19:12:47.769  INFO 5136 --- [http-nio-8081-exec-1] a.s.s.m.AbstractValidatingSessionManager : Enabling session validation scheduler...
-2019-03-18 19:12:47.906 DEBUG 5136 --- [http-nio-8081-exec-1] com.exam.mapper.QuestionMapper.countNum  : ==>  Preparing: select count(id) questionNums from question 
-2019-03-18 19:12:47.909 DEBUG 5136 --- [http-nio-8081-exec-1] com.exam.mapper.QuestionMapper.countNum  : ==> Parameters: 
-2019-03-18 19:12:47.912 DEBUG 5136 --- [http-nio-8081-exec-1] com.exam.mapper.QuestionMapper.countNum  : <==      Total: 1
-2019-03-18 19:12:47.912 DEBUG 5136 --- [http-nio-8081-exec-1] com.exam.mapper.UserMapper.userNums      : ==>  Preparing: select count(id) userNums from user 
-2019-03-18 19:12:47.913 DEBUG 5136 --- [http-nio-8081-exec-1] com.exam.mapper.UserMapper.userNums      : ==> Parameters: 
-2019-03-18 19:12:47.919 DEBUG 5136 --- [http-nio-8081-exec-1] com.exam.mapper.UserMapper.userNums      : <==      Total: 1
-2019-03-18 19:12:50.183 DEBUG 5136 --- [http-nio-8081-exec-2] c.e.mapper.SubjectMapper.selectSubjects  : ==>  Preparing: SELECT s.* FROM subject s WHERE 1=1 AND s.`status` = ? ORDER BY s.sort ASC 
-2019-03-18 19:12:50.189 DEBUG 5136 --- [http-nio-8081-exec-2] c.e.mapper.SubjectMapper.selectSubjects  : ==> Parameters: 1(Integer)
-2019-03-18 19:12:50.193 DEBUG 5136 --- [http-nio-8081-exec-2] c.e.mapper.SubjectMapper.selectSubjects  : <==      Total: 3
-2019-03-18 19:12:50.548 DEBUG 5136 --- [http-nio-8081-exec-4] c.e.m.Q.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM (SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM question a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 GROUP BY a.id) table_count 
-2019-03-18 19:12:50.555 DEBUG 5136 --- [http-nio-8081-exec-4] c.e.m.Q.findByCondition_COUNT            : ==> Parameters: 
-2019-03-18 19:12:50.558 DEBUG 5136 --- [http-nio-8081-exec-4] c.e.m.Q.findByCondition_COUNT            : <==      Total: 1
-2019-03-18 19:12:50.559 DEBUG 5136 --- [http-nio-8081-exec-4] c.e.m.QuestionMapper.findByCondition     : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM question a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 GROUP BY a.id LIMIT ? 
-2019-03-18 19:12:50.562 DEBUG 5136 --- [http-nio-8081-exec-4] c.e.m.QuestionMapper.findByCondition     : ==> Parameters: 10(Integer)
-2019-03-18 19:12:50.572 DEBUG 5136 --- [http-nio-8081-exec-4] c.e.m.QuestionMapper.findByCondition     : <==      Total: 10
-2019-03-18 19:12:51.083 DEBUG 5136 --- [http-nio-8081-exec-5] com.exam.mapper.SubjectMapper.select     : ==>  Preparing: SELECT id,create_time,update_time,user_id,name,description,img_url,sort,author,status FROM subject WHERE status = ? 
-2019-03-18 19:12:51.084 DEBUG 5136 --- [http-nio-8081-exec-5] com.exam.mapper.SubjectMapper.select     : ==> Parameters: 1(Integer)
-2019-03-18 19:12:51.087 DEBUG 5136 --- [http-nio-8081-exec-5] com.exam.mapper.SubjectMapper.select     : <==      Total: 3
-2019-03-18 19:12:51.172 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.E.updateExamToStart                : ==>  Preparing: UPDATE examination SET status = 1 WHERE status = 0 AND start_time <= ? AND end_time > ? 
-2019-03-18 19:12:51.178 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.E.updateExamToStart                : ==> Parameters: 2019-03-18 19:12:51.171(Timestamp), 2019-03-18 19:12:51.171(Timestamp)
-2019-03-18 19:12:51.181 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.E.updateExamToStart                : <==    Updates: 0
-2019-03-18 19:12:51.181 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.ExaminationMapper.updateExamToEnd  : ==>  Preparing: UPDATE examination SET status = 2 WHERE status <= 2 AND end_time <= ? 
-2019-03-18 19:12:51.182 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.ExaminationMapper.updateExamToEnd  : ==> Parameters: 2019-03-18 19:12:51.181(Timestamp)
-2019-03-18 19:12:51.183 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.ExaminationMapper.updateExamToEnd  : <==    Updates: 4
-2019-03-18 19:12:51.194 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
-2019-03-18 19:12:51.195 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
-2019-03-18 19:12:51.196 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
-2019-03-18 19:12:51.198 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
-2019-03-18 19:12:51.200 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 10(Integer)
-2019-03-18 19:12:51.205 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
-2019-03-18 19:12:51.209 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
-2019-03-18 19:12:51.211 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
-2019-03-18 19:12:51.233 DEBUG 5136 --- [http-nio-8081-exec-3] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
-2019-03-18 19:12:51.951 DEBUG 5136 --- [http-nio-8081-exec-9] c.e.mapper.SubjectMapper.selectSubjects  : ==>  Preparing: SELECT s.* FROM subject s WHERE 1=1 AND s.`status` = ? ORDER BY s.sort ASC 
-2019-03-18 19:12:51.952 DEBUG 5136 --- [http-nio-8081-exec-9] c.e.mapper.SubjectMapper.selectSubjects  : ==> Parameters: 1(Integer)
-2019-03-18 19:12:51.954 DEBUG 5136 --- [http-nio-8081-exec-9] c.e.mapper.SubjectMapper.selectSubjects  : <==      Total: 3
-2019-03-18 19:12:55.041  INFO 5136 --- [http-nio-8081-exec-8] io.lettuce.core.EpollProvider            : Starting without optional epoll library
-2019-03-18 19:12:55.043  INFO 5136 --- [http-nio-8081-exec-8] io.lettuce.core.KqueueProvider           : Starting without optional kqueue library
-2019-03-18 19:12:55.802  INFO 5136 --- [http-nio-8081-exec-8] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
-2019-03-18 19:12:55.898  INFO 5136 --- [http-nio-8081-exec-8] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 09:05:39.065  INFO 10372 --- [main] com.exam.OnlineExamApplication           : Starting OnlineExamApplication on LAPTOP-7SEUEP84 with PID 10372 (E:\eclipse_workspace\OnlineExam\target\classes started by HungKuei_PC in E:\eclipse_workspace\OnlineExam)
+2019-03-20 09:05:39.122 DEBUG 10372 --- [main] com.exam.OnlineExamApplication           : Running with Spring Boot v2.0.2.RELEASE, Spring v5.0.6.RELEASE
+2019-03-20 09:05:39.127  INFO 10372 --- [main] com.exam.OnlineExamApplication           : No active profile set, falling back to default profiles: default
+2019-03-20 09:05:41.584 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\CommentMapper.class]
+2019-03-20 09:05:41.585 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\ExaminationMapper.class]
+2019-03-20 09:05:41.585 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\ExamQuestionMapper.class]
+2019-03-20 09:05:41.585 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\GradeMapper.class]
+2019-03-20 09:05:41.586 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\LinkMapper.class]
+2019-03-20 09:05:41.586 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\PermissionMapper.class]
+2019-03-20 09:05:41.586 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\QuestionMapper.class]
+2019-03-20 09:05:41.586 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\RoleMapper.class]
+2019-03-20 09:05:41.586 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\RolePermissionMapper.class]
+2019-03-20 09:05:41.586 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\SiteInfoMapper.class]
+2019-03-20 09:05:41.586 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\SubjectMapper.class]
+2019-03-20 09:05:41.586 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\SysConfigMapper.class]
+2019-03-20 09:05:41.587 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\TagMapper.class]
+2019-03-20 09:05:41.587 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\UserMapper.class]
+2019-03-20 09:05:41.587 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\UserRoleMapper.class]
+2019-03-20 09:05:41.588 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'commentMapper' and 'com.exam.mapper.CommentMapper' mapperInterface
+2019-03-20 09:05:41.588 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'commentMapper'.
+2019-03-20 09:05:41.588 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'examinationMapper' and 'com.exam.mapper.ExaminationMapper' mapperInterface
+2019-03-20 09:05:41.588 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'examinationMapper'.
+2019-03-20 09:05:41.588 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'examQuestionMapper' and 'com.exam.mapper.ExamQuestionMapper' mapperInterface
+2019-03-20 09:05:41.588 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'examQuestionMapper'.
+2019-03-20 09:05:41.589 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'gradeMapper' and 'com.exam.mapper.GradeMapper' mapperInterface
+2019-03-20 09:05:41.589 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'gradeMapper'.
+2019-03-20 09:05:41.589 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'linkMapper' and 'com.exam.mapper.LinkMapper' mapperInterface
+2019-03-20 09:05:41.589 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'linkMapper'.
+2019-03-20 09:05:41.589 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'permissionMapper' and 'com.exam.mapper.PermissionMapper' mapperInterface
+2019-03-20 09:05:41.589 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'permissionMapper'.
+2019-03-20 09:05:41.589 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'questionMapper' and 'com.exam.mapper.QuestionMapper' mapperInterface
+2019-03-20 09:05:41.589 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'questionMapper'.
+2019-03-20 09:05:41.589 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'roleMapper' and 'com.exam.mapper.RoleMapper' mapperInterface
+2019-03-20 09:05:41.590 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'roleMapper'.
+2019-03-20 09:05:41.590 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'rolePermissionMapper' and 'com.exam.mapper.RolePermissionMapper' mapperInterface
+2019-03-20 09:05:41.590 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'rolePermissionMapper'.
+2019-03-20 09:05:41.590 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'siteInfoMapper' and 'com.exam.mapper.SiteInfoMapper' mapperInterface
+2019-03-20 09:05:41.590 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'siteInfoMapper'.
+2019-03-20 09:05:41.590 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'subjectMapper' and 'com.exam.mapper.SubjectMapper' mapperInterface
+2019-03-20 09:05:41.591 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'subjectMapper'.
+2019-03-20 09:05:41.591 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'sysConfigMapper' and 'com.exam.mapper.SysConfigMapper' mapperInterface
+2019-03-20 09:05:41.591 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'sysConfigMapper'.
+2019-03-20 09:05:41.591 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'tagMapper' and 'com.exam.mapper.TagMapper' mapperInterface
+2019-03-20 09:05:41.591 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'tagMapper'.
+2019-03-20 09:05:41.591 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'userMapper' and 'com.exam.mapper.UserMapper' mapperInterface
+2019-03-20 09:05:41.591 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'userMapper'.
+2019-03-20 09:05:41.592 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'userRoleMapper' and 'com.exam.mapper.UserRoleMapper' mapperInterface
+2019-03-20 09:05:41.592 DEBUG 10372 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'userRoleMapper'.
+2019-03-20 09:05:46.592  INFO 10372 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-03-20 09:05:46.600 DEBUG 10372 --- [main] c.e.m.PermissionMapper.selectAllPerms    : ==>  Preparing: SELECT id, permission_id, name, description, url, perms, parent_id, type, order_num, icon, status, create_time, update_time FROM permission WHERE status=? ORDER BY order_num 
+2019-03-20 09:05:46.806 DEBUG 10372 --- [main] c.e.m.PermissionMapper.selectAllPerms    : ==> Parameters: 1(Integer)
+2019-03-20 09:05:46.937 DEBUG 10372 --- [main] c.e.m.PermissionMapper.selectAllPerms    : <==      Total: 77
+2019-03-20 09:05:47.519  INFO 10372 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-03-20 09:05:47.519  INFO 10372 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.31
+2019-03-20 09:05:47.529  INFO 10372 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.16] using APR version [1.6.3].
+2019-03-20 09:05:47.530  INFO 10372 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2019-03-20 09:05:47.530  INFO 10372 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2019-03-20 09:05:48.661  INFO 10372 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2m  2 Nov 2017]
+2019-03-20 09:05:48.844  INFO 10372 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-03-20 09:05:50.999  WARN 10372 --- [main] org.thymeleaf.templatemode.TemplateMode  : [THYMELEAF][main] Template Mode 'LEGACYHTML5' is deprecated. Using Template Mode 'HTML' instead.
+2019-03-20 09:05:51.733  INFO 10372 --- [main] com.exam.OnlineExamApplication           : Started OnlineExamApplication in 13.757 seconds (JVM running for 15.961)
+2019-03-20 09:06:00.604  INFO 10372 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-03-20 09:06:00.795  INFO 10372 --- [http-nio-8081-exec-1] a.s.s.m.AbstractValidatingSessionManager : Enabling session validation scheduler...
+2019-03-20 09:06:01.446  INFO 10372 --- [http-nio-8081-exec-1] io.lettuce.core.EpollProvider            : Starting without optional epoll library
+2019-03-20 09:06:01.449  INFO 10372 --- [http-nio-8081-exec-1] io.lettuce.core.KqueueProvider           : Starting without optional kqueue library
+2019-03-20 09:06:02.141  INFO 10372 --- [http-nio-8081-exec-1] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 09:06:02.352  INFO 10372 --- [http-nio-8081-exec-1] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 09:10:49.632  INFO 10372 --- [http-nio-8081-exec-8] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 09:10:49.722  INFO 10372 --- [http-nio-8081-exec-1] com.exam.controller.KaptchaController    : 生成验证码文本====dnma
+2019-03-20 09:10:54.918  INFO 10372 --- [http-nio-8081-exec-2] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 09:10:54.934  INFO 10372 --- [http-nio-8081-exec-2] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 09:37:06.254 DEBUG 10372 --- [http-nio-8081-exec-7] c.e.m.P.selectMenuByUserId               : ==>  Preparing: SELECT DISTINCT p.id, p.permission_id, p.name, p.description, p.url, p.parent_id, p.icon, p.order_num FROM permission p LEFT JOIN role_permission rp ON p.permission_id = rp.permission_id LEFT JOIN user_role ur on rp.role_id = ur.role_id WHERE ur.user_id = ? and p.type in(0,1) and p.status=1 ORDER BY p.order_num 
+2019-03-20 09:37:06.289 DEBUG 10372 --- [http-nio-8081-exec-7] c.e.m.P.selectMenuByUserId               : ==> Parameters: 1(String)
+2019-03-20 09:37:06.387 DEBUG 10372 --- [http-nio-8081-exec-7] c.e.m.P.selectMenuByUserId               : <==      Total: 22
+2019-03-20 09:37:06.579 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.mapper.RoleMapper.findRoleByUserId   : ==>  Preparing: SELECT r.role_id FROM role r LEFT JOIN user_role ur ON r.role_id = ur.role_id WHERE ur.user_id = ? 
+2019-03-20 09:37:06.581 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.mapper.RoleMapper.findRoleByUserId   : ==> Parameters: 1(String)
+2019-03-20 09:37:06.608 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.mapper.RoleMapper.findRoleByUserId   : <==      Total: 1
+2019-03-20 09:37:06.610 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.m.P.findPermsByUserId                : ==>  Preparing: SELECT DISTINCT p.perms FROM permission p LEFT JOIN role_permission rp ON p.permission_id = rp.permission_id LEFT JOIN user_role ur on rp.role_id = ur.role_id WHERE ur.user_id = ? and p.perms is not null and p.perms!='' and p.status=1 
+2019-03-20 09:37:06.614 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.m.P.findPermsByUserId                : ==> Parameters: 1(String)
+2019-03-20 09:37:06.621 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.m.P.findPermsByUserId                : <==      Total: 69
+2019-03-20 09:37:06.646 DEBUG 10372 --- [http-nio-8081-exec-8] com.exam.mapper.QuestionMapper.countNum  : ==>  Preparing: select count(id) questionNums from question 
+2019-03-20 09:37:06.649 DEBUG 10372 --- [http-nio-8081-exec-8] com.exam.mapper.QuestionMapper.countNum  : ==> Parameters: 
+2019-03-20 09:37:06.701 DEBUG 10372 --- [http-nio-8081-exec-8] com.exam.mapper.QuestionMapper.countNum  : <==      Total: 1
+2019-03-20 09:37:06.703 DEBUG 10372 --- [http-nio-8081-exec-8] com.exam.mapper.UserMapper.userNums      : ==>  Preparing: select count(id) userNums from user 
+2019-03-20 09:37:06.705 DEBUG 10372 --- [http-nio-8081-exec-8] com.exam.mapper.UserMapper.userNums      : ==> Parameters: 
+2019-03-20 09:37:06.714 DEBUG 10372 --- [http-nio-8081-exec-8] com.exam.mapper.UserMapper.userNums      : <==      Total: 1
+2019-03-20 09:37:16.846 DEBUG 10372 --- [http-nio-8081-exec-9] com.exam.mapper.QuestionMapper.countNum  : ==>  Preparing: select count(id) questionNums from question 
+2019-03-20 09:37:16.846 DEBUG 10372 --- [http-nio-8081-exec-9] com.exam.mapper.QuestionMapper.countNum  : ==> Parameters: 
+2019-03-20 09:37:16.847 DEBUG 10372 --- [http-nio-8081-exec-9] com.exam.mapper.QuestionMapper.countNum  : <==      Total: 1
+2019-03-20 09:37:16.848 DEBUG 10372 --- [http-nio-8081-exec-9] com.exam.mapper.UserMapper.userNums      : ==>  Preparing: select count(id) userNums from user 
+2019-03-20 09:37:16.849 DEBUG 10372 --- [http-nio-8081-exec-9] com.exam.mapper.UserMapper.userNums      : ==> Parameters: 
+2019-03-20 09:37:16.850 DEBUG 10372 --- [http-nio-8081-exec-9] com.exam.mapper.UserMapper.userNums      : <==      Total: 1
+2019-03-20 09:37:16.869 DEBUG 10372 --- [http-nio-8081-exec-1] com.exam.mapper.QuestionMapper.countNum  : ==>  Preparing: select count(id) questionNums from question 
+2019-03-20 09:37:16.870 DEBUG 10372 --- [http-nio-8081-exec-1] com.exam.mapper.QuestionMapper.countNum  : ==> Parameters: 
+2019-03-20 09:37:16.871 DEBUG 10372 --- [http-nio-8081-exec-1] com.exam.mapper.QuestionMapper.countNum  : <==      Total: 1
+2019-03-20 09:37:16.872 DEBUG 10372 --- [http-nio-8081-exec-1] com.exam.mapper.UserMapper.userNums      : ==>  Preparing: select count(id) userNums from user 
+2019-03-20 09:37:16.872 DEBUG 10372 --- [http-nio-8081-exec-1] com.exam.mapper.UserMapper.userNums      : ==> Parameters: 
+2019-03-20 09:37:16.873 DEBUG 10372 --- [http-nio-8081-exec-1] com.exam.mapper.UserMapper.userNums      : <==      Total: 1
+2019-03-20 09:37:23.273 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.mapper.SubjectMapper.selectSubjects  : ==>  Preparing: SELECT s.* FROM subject s WHERE 1=1 AND s.`status` = ? ORDER BY s.sort ASC 
+2019-03-20 09:37:23.275 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.mapper.SubjectMapper.selectSubjects  : ==> Parameters: 1(Integer)
+2019-03-20 09:37:23.313 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.mapper.SubjectMapper.selectSubjects  : <==      Total: 3
+2019-03-20 09:37:23.840 DEBUG 10372 --- [http-nio-8081-exec-3] c.e.m.Q.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM (SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM question a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 GROUP BY a.id) table_count 
+2019-03-20 09:37:23.845 DEBUG 10372 --- [http-nio-8081-exec-3] c.e.m.Q.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 09:37:23.879 DEBUG 10372 --- [http-nio-8081-exec-3] c.e.m.Q.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 09:37:23.880 DEBUG 10372 --- [http-nio-8081-exec-3] c.e.m.QuestionMapper.findByCondition     : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM question a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 GROUP BY a.id LIMIT ? 
+2019-03-20 09:37:23.883 DEBUG 10372 --- [http-nio-8081-exec-3] c.e.m.QuestionMapper.findByCondition     : ==> Parameters: 10(Integer)
+2019-03-20 09:37:23.902 DEBUG 10372 --- [http-nio-8081-exec-3] c.e.m.QuestionMapper.findByCondition     : <==      Total: 10
+2019-03-20 09:37:26.715 DEBUG 10372 --- [http-nio-8081-exec-6] com.exam.mapper.SubjectMapper.select     : ==>  Preparing: SELECT id,create_time,update_time,user_id,name,description,img_url,sort,author,status FROM subject WHERE status = ? 
+2019-03-20 09:37:26.717 DEBUG 10372 --- [http-nio-8081-exec-6] com.exam.mapper.SubjectMapper.select     : ==> Parameters: 1(Integer)
+2019-03-20 09:37:26.722 DEBUG 10372 --- [http-nio-8081-exec-6] com.exam.mapper.SubjectMapper.select     : <==      Total: 3
+2019-03-20 09:37:26.791 DEBUG 10372 --- [http-nio-8081-exec-5] c.e.m.E.updateExamToStart                : ==>  Preparing: UPDATE examination SET status = 1 WHERE status = 0 AND start_time <= ? AND end_time > ? 
+2019-03-20 09:37:26.798 DEBUG 10372 --- [http-nio-8081-exec-5] c.e.m.E.updateExamToStart                : ==> Parameters: 2019-03-20 09:37:26.788(Timestamp), 2019-03-20 09:37:26.788(Timestamp)
+2019-03-20 09:37:26.845 DEBUG 10372 --- [http-nio-8081-exec-5] c.e.m.E.updateExamToStart                : <==    Updates: 0
+2019-03-20 09:37:26.846 DEBUG 10372 --- [http-nio-8081-exec-5] c.e.m.ExaminationMapper.updateExamToEnd  : ==>  Preparing: UPDATE examination SET status = 2 WHERE status <= 2 AND end_time <= ? 
+2019-03-20 09:37:26.848 DEBUG 10372 --- [http-nio-8081-exec-5] c.e.m.ExaminationMapper.updateExamToEnd  : ==> Parameters: 2019-03-20 09:37:26.845(Timestamp)
+2019-03-20 09:37:26.850 DEBUG 10372 --- [http-nio-8081-exec-5] c.e.m.ExaminationMapper.updateExamToEnd  : <==    Updates: 4
+2019-03-20 09:37:26.856 DEBUG 10372 --- [http-nio-8081-exec-5] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-20 09:37:26.858 DEBUG 10372 --- [http-nio-8081-exec-5] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 09:37:26.859 DEBUG 10372 --- [http-nio-8081-exec-5] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 09:37:26.861 DEBUG 10372 --- [http-nio-8081-exec-5] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-20 09:37:26.862 DEBUG 10372 --- [http-nio-8081-exec-5] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 10(Integer)
+2019-03-20 09:37:26.869 DEBUG 10372 --- [http-nio-8081-exec-5] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-20 09:37:26.874 DEBUG 10372 --- [http-nio-8081-exec-5] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-20 09:37:26.876 DEBUG 10372 --- [http-nio-8081-exec-5] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-20 09:37:26.928 DEBUG 10372 --- [http-nio-8081-exec-5] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-20 09:37:28.796 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.mapper.SubjectMapper.selectSubjects  : ==>  Preparing: SELECT s.* FROM subject s WHERE 1=1 AND s.`status` = ? ORDER BY s.sort ASC 
+2019-03-20 09:37:28.796 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.mapper.SubjectMapper.selectSubjects  : ==> Parameters: 1(Integer)
+2019-03-20 09:37:28.798 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.mapper.SubjectMapper.selectSubjects  : <==      Total: 3
+2019-03-20 09:37:30.836 DEBUG 10372 --- [http-nio-8081-exec-10] c.e.mapper.SubjectMapper.selectSubjects  : ==>  Preparing: SELECT s.* FROM subject s WHERE 1=1 AND s.`status` = ? ORDER BY s.sort ASC 
+2019-03-20 09:37:30.836 DEBUG 10372 --- [http-nio-8081-exec-10] c.e.mapper.SubjectMapper.selectSubjects  : ==> Parameters: 1(Integer)
+2019-03-20 09:37:30.838 DEBUG 10372 --- [http-nio-8081-exec-10] c.e.mapper.SubjectMapper.selectSubjects  : <==      Total: 3
+2019-03-20 09:37:30.914 DEBUG 10372 --- [http-nio-8081-exec-9] c.e.m.Q.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM (SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM question a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 GROUP BY a.id) table_count 
+2019-03-20 09:37:30.914 DEBUG 10372 --- [http-nio-8081-exec-9] c.e.m.Q.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 09:37:30.917 DEBUG 10372 --- [http-nio-8081-exec-9] c.e.m.Q.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 09:37:30.917 DEBUG 10372 --- [http-nio-8081-exec-9] c.e.m.QuestionMapper.findByCondition     : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM question a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 GROUP BY a.id LIMIT ? 
+2019-03-20 09:37:30.919 DEBUG 10372 --- [http-nio-8081-exec-9] c.e.m.QuestionMapper.findByCondition     : ==> Parameters: 10(Integer)
+2019-03-20 09:37:30.923 DEBUG 10372 --- [http-nio-8081-exec-9] c.e.m.QuestionMapper.findByCondition     : <==      Total: 10
+2019-03-20 09:37:32.545 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.mapper.TagMapper.selectTags_COUNT    : ==>  Preparing: SELECT count(0) FROM tag WHERE 1 = 1 
+2019-03-20 09:37:32.546 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.mapper.TagMapper.selectTags_COUNT    : ==> Parameters: 
+2019-03-20 09:37:32.550 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.mapper.TagMapper.selectTags_COUNT    : <==      Total: 1
+2019-03-20 09:37:32.550 DEBUG 10372 --- [http-nio-8081-exec-2] com.exam.mapper.TagMapper.selectTags     : ==>  Preparing: select id, `name`, description, create_time, update_time FROM tag WHERE 1=1 LIMIT ? 
+2019-03-20 09:37:32.551 DEBUG 10372 --- [http-nio-8081-exec-2] com.exam.mapper.TagMapper.selectTags     : ==> Parameters: 10(Integer)
+2019-03-20 09:37:32.552 DEBUG 10372 --- [http-nio-8081-exec-2] com.exam.mapper.TagMapper.selectTags     : <==      Total: 5
+2019-03-20 09:37:35.395 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.m.GradeMapper.findByCondition_COUNT  : ==>  Preparing: SELECT count(0) FROM (SELECT a.*, user.username AS u_user_name, user.nickname AS u_nick_name, e.title AS e_exam_title FROM grade a INNER JOIN user ON a.user_id = user.user_id INNER JOIN examination e ON a.exam_id = e.id WHERE 1 = 1 GROUP BY a.id) table_count 
+2019-03-20 09:37:35.396 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.m.GradeMapper.findByCondition_COUNT  : ==> Parameters: 
+2019-03-20 09:37:35.493 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.m.GradeMapper.findByCondition_COUNT  : <==      Total: 1
+2019-03-20 09:37:35.494 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.mapper.GradeMapper.findByCondition   : ==>  Preparing: SELECT a.*, user.username as u_user_name, user.nickname as u_nick_name, e.title as e_exam_title FROM grade a INNER JOIN user ON a.user_id = user.user_id INNER JOIN examination e ON a.exam_id = e.id WHERE 1 = 1 GROUP BY a.id LIMIT ? 
+2019-03-20 09:37:35.496 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.mapper.GradeMapper.findByCondition   : ==> Parameters: 10(Integer)
+2019-03-20 09:37:35.500 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.mapper.GradeMapper.findByCondition   : <==      Total: 3
+2019-03-20 09:37:54.068 DEBUG 10372 --- [http-nio-8081-exec-5] com.exam.mapper.SubjectMapper.select     : ==>  Preparing: SELECT id,create_time,update_time,user_id,name,description,img_url,sort,author,status FROM subject WHERE status = ? 
+2019-03-20 09:37:54.069 DEBUG 10372 --- [http-nio-8081-exec-5] com.exam.mapper.SubjectMapper.select     : ==> Parameters: 1(Integer)
+2019-03-20 09:37:54.070 DEBUG 10372 --- [http-nio-8081-exec-5] com.exam.mapper.SubjectMapper.select     : <==      Total: 3
+2019-03-20 09:37:54.114 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.m.Q.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM (SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM question a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 GROUP BY a.id) table_count 
+2019-03-20 09:37:54.114 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.m.Q.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 09:37:54.116 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.m.Q.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 09:37:54.117 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.m.QuestionMapper.findByCondition     : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM question a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 GROUP BY a.id LIMIT ? 
+2019-03-20 09:37:54.117 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.m.QuestionMapper.findByCondition     : ==> Parameters: 10(Integer)
+2019-03-20 09:37:54.121 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.m.QuestionMapper.findByCondition     : <==      Total: 10
+2019-03-20 09:37:56.384 DEBUG 10372 --- [http-nio-8081-exec-7] c.e.mapper.SubjectMapper.selectSubjects  : ==>  Preparing: SELECT s.* FROM subject s WHERE 1=1 AND s.`status` = ? ORDER BY s.sort ASC 
+2019-03-20 09:37:56.385 DEBUG 10372 --- [http-nio-8081-exec-7] c.e.mapper.SubjectMapper.selectSubjects  : ==> Parameters: 1(Integer)
+2019-03-20 09:37:56.388 DEBUG 10372 --- [http-nio-8081-exec-7] c.e.mapper.SubjectMapper.selectSubjects  : <==      Total: 3
+2019-03-20 09:38:47.303 DEBUG 10372 --- [http-nio-8081-exec-10] c.e.m.GradeMapper.findByCondition_COUNT  : ==>  Preparing: SELECT count(0) FROM (SELECT a.*, user.username AS u_user_name, user.nickname AS u_nick_name, e.title AS e_exam_title FROM grade a INNER JOIN user ON a.user_id = user.user_id INNER JOIN examination e ON a.exam_id = e.id WHERE 1 = 1 GROUP BY a.id) table_count 
+2019-03-20 09:38:47.303 DEBUG 10372 --- [http-nio-8081-exec-10] c.e.m.GradeMapper.findByCondition_COUNT  : ==> Parameters: 
+2019-03-20 09:38:47.305 DEBUG 10372 --- [http-nio-8081-exec-10] c.e.m.GradeMapper.findByCondition_COUNT  : <==      Total: 1
+2019-03-20 09:38:47.305 DEBUG 10372 --- [http-nio-8081-exec-10] c.e.mapper.GradeMapper.findByCondition   : ==>  Preparing: SELECT a.*, user.username as u_user_name, user.nickname as u_nick_name, e.title as e_exam_title FROM grade a INNER JOIN user ON a.user_id = user.user_id INNER JOIN examination e ON a.exam_id = e.id WHERE 1 = 1 GROUP BY a.id LIMIT ? 
+2019-03-20 09:38:47.306 DEBUG 10372 --- [http-nio-8081-exec-10] c.e.mapper.GradeMapper.findByCondition   : ==> Parameters: 10(Integer)
+2019-03-20 09:38:47.310 DEBUG 10372 --- [http-nio-8081-exec-10] c.e.mapper.GradeMapper.findByCondition   : <==      Total: 3
+2019-03-20 09:38:48.963 DEBUG 10372 --- [http-nio-8081-exec-1] c.e.mapper.TagMapper.selectTags_COUNT    : ==>  Preparing: SELECT count(0) FROM tag WHERE 1 = 1 
+2019-03-20 09:38:48.963 DEBUG 10372 --- [http-nio-8081-exec-1] c.e.mapper.TagMapper.selectTags_COUNT    : ==> Parameters: 
+2019-03-20 09:38:48.964 DEBUG 10372 --- [http-nio-8081-exec-1] c.e.mapper.TagMapper.selectTags_COUNT    : <==      Total: 1
+2019-03-20 09:38:48.966 DEBUG 10372 --- [http-nio-8081-exec-1] com.exam.mapper.TagMapper.selectTags     : ==>  Preparing: select id, `name`, description, create_time, update_time FROM tag WHERE 1=1 LIMIT ? 
+2019-03-20 09:38:48.966 DEBUG 10372 --- [http-nio-8081-exec-1] com.exam.mapper.TagMapper.selectTags     : ==> Parameters: 10(Integer)
+2019-03-20 09:38:48.968 DEBUG 10372 --- [http-nio-8081-exec-1] com.exam.mapper.TagMapper.selectTags     : <==      Total: 5
+2019-03-20 09:38:51.341 DEBUG 10372 --- [http-nio-8081-exec-3] c.e.m.GradeMapper.findByCondition_COUNT  : ==>  Preparing: SELECT count(0) FROM (SELECT a.*, user.username AS u_user_name, user.nickname AS u_nick_name, e.title AS e_exam_title FROM grade a INNER JOIN user ON a.user_id = user.user_id INNER JOIN examination e ON a.exam_id = e.id WHERE 1 = 1 GROUP BY a.id) table_count 
+2019-03-20 09:38:51.342 DEBUG 10372 --- [http-nio-8081-exec-3] c.e.m.GradeMapper.findByCondition_COUNT  : ==> Parameters: 
+2019-03-20 09:38:51.343 DEBUG 10372 --- [http-nio-8081-exec-3] c.e.m.GradeMapper.findByCondition_COUNT  : <==      Total: 1
+2019-03-20 09:38:51.344 DEBUG 10372 --- [http-nio-8081-exec-3] c.e.mapper.GradeMapper.findByCondition   : ==>  Preparing: SELECT a.*, user.username as u_user_name, user.nickname as u_nick_name, e.title as e_exam_title FROM grade a INNER JOIN user ON a.user_id = user.user_id INNER JOIN examination e ON a.exam_id = e.id WHERE 1 = 1 GROUP BY a.id LIMIT ? 
+2019-03-20 09:38:51.344 DEBUG 10372 --- [http-nio-8081-exec-3] c.e.mapper.GradeMapper.findByCondition   : ==> Parameters: 10(Integer)
+2019-03-20 09:38:51.346 DEBUG 10372 --- [http-nio-8081-exec-3] c.e.mapper.GradeMapper.findByCondition   : <==      Total: 3
+2019-03-20 09:38:53.535 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.m.GradeMapper.selectByPrimaryKey     : ==>  Preparing: SELECT id,create_time,update_time,user_id,exam_id,result,auto_result,manul_result,auto_json,manul_json,answer_json,status FROM grade WHERE id = ? 
+2019-03-20 09:38:53.537 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.m.GradeMapper.selectByPrimaryKey     : ==> Parameters: 19(Integer)
+2019-03-20 09:38:53.538 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.m.GradeMapper.selectByPrimaryKey     : <==      Total: 1
+2019-03-20 09:38:58.719 DEBUG 10372 --- [http-nio-8081-exec-5] com.exam.mapper.GradeMapper.selectById   : ==>  Preparing: SELECT a.* FROM grade a WHERE a.id = ? 
+2019-03-20 09:38:58.720 DEBUG 10372 --- [http-nio-8081-exec-5] com.exam.mapper.GradeMapper.selectById   : ==> Parameters: 19(Integer)
+2019-03-20 09:38:58.721 DEBUG 10372 --- [http-nio-8081-exec-5] com.exam.mapper.GradeMapper.selectById   : <==      Total: 1
+2019-03-20 09:38:58.723 DEBUG 10372 --- [http-nio-8081-exec-5] c.e.m.G.updateByPrimaryKeySelective      : ==>  Preparing: UPDATE grade SET result = ?,manul_result = ?,manul_json = ?,status = ? WHERE id = ? 
+2019-03-20 09:38:58.724 DEBUG 10372 --- [http-nio-8081-exec-5] c.e.m.G.updateByPrimaryKeySelective      : ==> Parameters: 25(Integer), 10(Integer), C语言的表达式 (-10< x <10)不能够表达x在区间（-10,10），因为在C语言里面，逻辑运算符的运行顺序是从左至右的顺序，而 (-10< x <10)这种形式，-10会与输入的数据比较，输出正确与否，即0或1。正确的表达式如下：（x >-10 && x < 10）~_~10，12，120~_~(String), 1(Integer), 19(Integer)
+2019-03-20 09:38:58.836 DEBUG 10372 --- [http-nio-8081-exec-5] c.e.m.G.updateByPrimaryKeySelective      : <==    Updates: 1
+2019-03-20 09:38:58.864 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.m.GradeMapper.findByCondition_COUNT  : ==>  Preparing: SELECT count(0) FROM (SELECT a.*, user.username AS u_user_name, user.nickname AS u_nick_name, e.title AS e_exam_title FROM grade a INNER JOIN user ON a.user_id = user.user_id INNER JOIN examination e ON a.exam_id = e.id WHERE 1 = 1 GROUP BY a.id) table_count 
+2019-03-20 09:38:58.864 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.m.GradeMapper.findByCondition_COUNT  : ==> Parameters: 
+2019-03-20 09:38:58.866 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.m.GradeMapper.findByCondition_COUNT  : <==      Total: 1
+2019-03-20 09:38:58.867 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.mapper.GradeMapper.findByCondition   : ==>  Preparing: SELECT a.*, user.username as u_user_name, user.nickname as u_nick_name, e.title as e_exam_title FROM grade a INNER JOIN user ON a.user_id = user.user_id INNER JOIN examination e ON a.exam_id = e.id WHERE 1 = 1 GROUP BY a.id LIMIT ? 
+2019-03-20 09:38:58.868 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.mapper.GradeMapper.findByCondition   : ==> Parameters: 10(Integer)
+2019-03-20 09:38:58.871 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.mapper.GradeMapper.findByCondition   : <==      Total: 3
+2019-03-20 09:39:15.277 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.mapper.TagMapper.selectTags_COUNT    : ==>  Preparing: SELECT count(0) FROM tag WHERE 1 = 1 
+2019-03-20 09:39:15.278 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.mapper.TagMapper.selectTags_COUNT    : ==> Parameters: 
+2019-03-20 09:39:15.279 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.mapper.TagMapper.selectTags_COUNT    : <==      Total: 1
+2019-03-20 09:39:15.280 DEBUG 10372 --- [http-nio-8081-exec-8] com.exam.mapper.TagMapper.selectTags     : ==>  Preparing: select id, `name`, description, create_time, update_time FROM tag WHERE 1=1 LIMIT ? 
+2019-03-20 09:39:15.280 DEBUG 10372 --- [http-nio-8081-exec-8] com.exam.mapper.TagMapper.selectTags     : ==> Parameters: 10(Integer)
+2019-03-20 09:39:15.281 DEBUG 10372 --- [http-nio-8081-exec-8] com.exam.mapper.TagMapper.selectTags     : <==      Total: 5
+2019-03-20 09:39:20.410 DEBUG 10372 --- [http-nio-8081-exec-10] c.e.mapper.SubjectMapper.selectSubjects  : ==>  Preparing: SELECT s.* FROM subject s WHERE 1=1 AND s.`status` = ? ORDER BY s.sort ASC 
+2019-03-20 09:39:20.410 DEBUG 10372 --- [http-nio-8081-exec-10] c.e.mapper.SubjectMapper.selectSubjects  : ==> Parameters: 1(Integer)
+2019-03-20 09:39:20.411 DEBUG 10372 --- [http-nio-8081-exec-10] c.e.mapper.SubjectMapper.selectSubjects  : <==      Total: 3
+2019-03-20 09:39:20.487 DEBUG 10372 --- [http-nio-8081-exec-9] c.e.m.Q.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM (SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM question a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 GROUP BY a.id) table_count 
+2019-03-20 09:39:20.488 DEBUG 10372 --- [http-nio-8081-exec-9] c.e.m.Q.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 09:39:20.490 DEBUG 10372 --- [http-nio-8081-exec-9] c.e.m.Q.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 09:39:20.490 DEBUG 10372 --- [http-nio-8081-exec-9] c.e.m.QuestionMapper.findByCondition     : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM question a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 GROUP BY a.id LIMIT ? 
+2019-03-20 09:39:20.491 DEBUG 10372 --- [http-nio-8081-exec-9] c.e.m.QuestionMapper.findByCondition     : ==> Parameters: 10(Integer)
+2019-03-20 09:39:20.495 DEBUG 10372 --- [http-nio-8081-exec-9] c.e.m.QuestionMapper.findByCondition     : <==      Total: 10
+2019-03-20 09:39:22.342 DEBUG 10372 --- [http-nio-8081-exec-1] com.exam.mapper.SubjectMapper.select     : ==>  Preparing: SELECT id,create_time,update_time,user_id,name,description,img_url,sort,author,status FROM subject WHERE status = ? 
+2019-03-20 09:39:22.343 DEBUG 10372 --- [http-nio-8081-exec-1] com.exam.mapper.SubjectMapper.select     : ==> Parameters: 1(Integer)
+2019-03-20 09:39:22.344 DEBUG 10372 --- [http-nio-8081-exec-1] com.exam.mapper.SubjectMapper.select     : <==      Total: 3
+2019-03-20 09:39:22.386 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.m.E.updateExamToStart                : ==>  Preparing: UPDATE examination SET status = 1 WHERE status = 0 AND start_time <= ? AND end_time > ? 
+2019-03-20 09:39:22.387 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.m.E.updateExamToStart                : ==> Parameters: 2019-03-20 09:39:22.386(Timestamp), 2019-03-20 09:39:22.386(Timestamp)
+2019-03-20 09:39:22.388 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.m.E.updateExamToStart                : <==    Updates: 0
+2019-03-20 09:39:22.388 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.m.ExaminationMapper.updateExamToEnd  : ==>  Preparing: UPDATE examination SET status = 2 WHERE status <= 2 AND end_time <= ? 
+2019-03-20 09:39:22.389 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.m.ExaminationMapper.updateExamToEnd  : ==> Parameters: 2019-03-20 09:39:22.388(Timestamp)
+2019-03-20 09:39:22.391 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.m.ExaminationMapper.updateExamToEnd  : <==    Updates: 4
+2019-03-20 09:39:22.393 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-20 09:39:22.393 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 09:39:22.394 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 09:39:22.395 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-20 09:39:22.395 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 10(Integer)
+2019-03-20 09:39:22.397 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-20 09:39:22.398 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-20 09:39:22.399 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-20 09:39:22.414 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-20 09:39:23.377 DEBUG 10372 --- [http-nio-8081-exec-3] c.e.mapper.SubjectMapper.selectSubjects  : ==>  Preparing: SELECT s.* FROM subject s WHERE 1=1 AND s.`status` = ? ORDER BY s.sort ASC 
+2019-03-20 09:39:23.378 DEBUG 10372 --- [http-nio-8081-exec-3] c.e.mapper.SubjectMapper.selectSubjects  : ==> Parameters: 1(Integer)
+2019-03-20 09:39:23.379 DEBUG 10372 --- [http-nio-8081-exec-3] c.e.mapper.SubjectMapper.selectSubjects  : <==      Total: 3
+2019-03-20 09:39:23.456 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.m.Q.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM (SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM question a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 GROUP BY a.id) table_count 
+2019-03-20 09:39:23.456 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.m.Q.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 09:39:23.458 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.m.Q.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 09:39:23.459 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.m.QuestionMapper.findByCondition     : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM question a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 GROUP BY a.id LIMIT ? 
+2019-03-20 09:39:23.460 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.m.QuestionMapper.findByCondition     : ==> Parameters: 10(Integer)
+2019-03-20 09:39:23.463 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.m.QuestionMapper.findByCondition     : <==      Total: 10
+2019-03-20 09:39:25.819 DEBUG 10372 --- [http-nio-8081-exec-5] com.exam.mapper.SubjectMapper.select     : ==>  Preparing: SELECT id,create_time,update_time,user_id,name,description,img_url,sort,author,status FROM subject WHERE status = ? 
+2019-03-20 09:39:25.820 DEBUG 10372 --- [http-nio-8081-exec-5] com.exam.mapper.SubjectMapper.select     : ==> Parameters: 1(Integer)
+2019-03-20 09:39:25.821 DEBUG 10372 --- [http-nio-8081-exec-5] com.exam.mapper.SubjectMapper.select     : <==      Total: 3
+2019-03-20 09:39:25.865 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.m.E.updateExamToStart                : ==>  Preparing: UPDATE examination SET status = 1 WHERE status = 0 AND start_time <= ? AND end_time > ? 
+2019-03-20 09:39:25.865 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.m.E.updateExamToStart                : ==> Parameters: 2019-03-20 09:39:25.864(Timestamp), 2019-03-20 09:39:25.864(Timestamp)
+2019-03-20 09:39:25.866 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.m.E.updateExamToStart                : <==    Updates: 0
+2019-03-20 09:39:25.867 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.m.ExaminationMapper.updateExamToEnd  : ==>  Preparing: UPDATE examination SET status = 2 WHERE status <= 2 AND end_time <= ? 
+2019-03-20 09:39:25.867 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.m.ExaminationMapper.updateExamToEnd  : ==> Parameters: 2019-03-20 09:39:25.866(Timestamp)
+2019-03-20 09:39:25.868 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.m.ExaminationMapper.updateExamToEnd  : <==    Updates: 4
+2019-03-20 09:39:25.869 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-20 09:39:25.870 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 09:39:25.871 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 09:39:25.871 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-20 09:39:25.872 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 10(Integer)
+2019-03-20 09:39:25.873 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-20 09:39:25.874 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-20 09:39:25.875 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-20 09:39:25.885 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-20 09:39:26.766 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.mapper.SubjectMapper.selectSubjects  : ==>  Preparing: SELECT s.* FROM subject s WHERE 1=1 AND s.`status` = ? ORDER BY s.sort ASC 
+2019-03-20 09:39:26.767 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.mapper.SubjectMapper.selectSubjects  : ==> Parameters: 1(Integer)
+2019-03-20 09:39:26.768 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.mapper.SubjectMapper.selectSubjects  : <==      Total: 3
+2019-03-20 09:39:28.286 DEBUG 10372 --- [http-nio-8081-exec-10] com.exam.mapper.SubjectMapper.select     : ==>  Preparing: SELECT id,create_time,update_time,user_id,name,description,img_url,sort,author,status FROM subject WHERE status = ? 
+2019-03-20 09:39:28.287 DEBUG 10372 --- [http-nio-8081-exec-10] com.exam.mapper.SubjectMapper.select     : ==> Parameters: 1(Integer)
+2019-03-20 09:39:28.288 DEBUG 10372 --- [http-nio-8081-exec-10] com.exam.mapper.SubjectMapper.select     : <==      Total: 3
+2019-03-20 09:39:28.322 DEBUG 10372 --- [http-nio-8081-exec-9] c.e.m.Q.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM (SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM question a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 GROUP BY a.id) table_count 
+2019-03-20 09:39:28.322 DEBUG 10372 --- [http-nio-8081-exec-9] c.e.m.Q.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 09:39:28.325 DEBUG 10372 --- [http-nio-8081-exec-9] c.e.m.Q.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 09:39:28.326 DEBUG 10372 --- [http-nio-8081-exec-9] c.e.m.QuestionMapper.findByCondition     : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM question a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 GROUP BY a.id LIMIT ? 
+2019-03-20 09:39:28.326 DEBUG 10372 --- [http-nio-8081-exec-9] c.e.m.QuestionMapper.findByCondition     : ==> Parameters: 10(Integer)
+2019-03-20 09:39:28.329 DEBUG 10372 --- [http-nio-8081-exec-9] c.e.m.QuestionMapper.findByCondition     : <==      Total: 10
+2019-03-20 09:39:29.392 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.m.GradeMapper.findByCondition_COUNT  : ==>  Preparing: SELECT count(0) FROM (SELECT a.*, user.username AS u_user_name, user.nickname AS u_nick_name, e.title AS e_exam_title FROM grade a INNER JOIN user ON a.user_id = user.user_id INNER JOIN examination e ON a.exam_id = e.id WHERE 1 = 1 GROUP BY a.id) table_count 
+2019-03-20 09:39:29.393 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.m.GradeMapper.findByCondition_COUNT  : ==> Parameters: 
+2019-03-20 09:39:29.394 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.m.GradeMapper.findByCondition_COUNT  : <==      Total: 1
+2019-03-20 09:39:29.395 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.mapper.GradeMapper.findByCondition   : ==>  Preparing: SELECT a.*, user.username as u_user_name, user.nickname as u_nick_name, e.title as e_exam_title FROM grade a INNER JOIN user ON a.user_id = user.user_id INNER JOIN examination e ON a.exam_id = e.id WHERE 1 = 1 GROUP BY a.id LIMIT ? 
+2019-03-20 09:39:29.396 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.mapper.GradeMapper.findByCondition   : ==> Parameters: 10(Integer)
+2019-03-20 09:39:29.400 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.mapper.GradeMapper.findByCondition   : <==      Total: 3
+2019-03-20 09:39:30.635 DEBUG 10372 --- [http-nio-8081-exec-3] com.exam.mapper.SubjectMapper.select     : ==>  Preparing: SELECT id,create_time,update_time,user_id,name,description,img_url,sort,author,status FROM subject WHERE status = ? 
+2019-03-20 09:39:30.636 DEBUG 10372 --- [http-nio-8081-exec-3] com.exam.mapper.SubjectMapper.select     : ==> Parameters: 1(Integer)
+2019-03-20 09:39:30.637 DEBUG 10372 --- [http-nio-8081-exec-3] com.exam.mapper.SubjectMapper.select     : <==      Total: 3
+2019-03-20 09:39:30.670 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.m.Q.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM (SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM question a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 GROUP BY a.id) table_count 
+2019-03-20 09:39:30.670 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.m.Q.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 09:39:30.673 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.m.Q.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 09:39:30.674 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.m.QuestionMapper.findByCondition     : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM question a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 GROUP BY a.id LIMIT ? 
+2019-03-20 09:39:30.674 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.m.QuestionMapper.findByCondition     : ==> Parameters: 10(Integer)
+2019-03-20 09:39:30.677 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.m.QuestionMapper.findByCondition     : <==      Total: 10
+2019-03-20 09:39:32.822 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.mapper.SubjectMapper.selectSubjects  : ==>  Preparing: SELECT s.* FROM subject s WHERE 1=1 AND s.`status` = ? ORDER BY s.sort ASC 
+2019-03-20 09:39:32.823 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.mapper.SubjectMapper.selectSubjects  : ==> Parameters: 1(Integer)
+2019-03-20 09:39:32.824 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.mapper.SubjectMapper.selectSubjects  : <==      Total: 3
+2019-03-20 09:39:33.547 DEBUG 10372 --- [http-nio-8081-exec-7] com.exam.mapper.SubjectMapper.select     : ==>  Preparing: SELECT id,create_time,update_time,user_id,name,description,img_url,sort,author,status FROM subject WHERE status = ? 
+2019-03-20 09:39:33.548 DEBUG 10372 --- [http-nio-8081-exec-7] com.exam.mapper.SubjectMapper.select     : ==> Parameters: 1(Integer)
+2019-03-20 09:39:33.549 DEBUG 10372 --- [http-nio-8081-exec-7] com.exam.mapper.SubjectMapper.select     : <==      Total: 3
+2019-03-20 09:39:33.583 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.m.E.updateExamToStart                : ==>  Preparing: UPDATE examination SET status = 1 WHERE status = 0 AND start_time <= ? AND end_time > ? 
+2019-03-20 09:39:33.584 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.m.E.updateExamToStart                : ==> Parameters: 2019-03-20 09:39:33.583(Timestamp), 2019-03-20 09:39:33.583(Timestamp)
+2019-03-20 09:39:33.585 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.m.E.updateExamToStart                : <==    Updates: 0
+2019-03-20 09:39:33.586 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.updateExamToEnd  : ==>  Preparing: UPDATE examination SET status = 2 WHERE status <= 2 AND end_time <= ? 
+2019-03-20 09:39:33.586 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.updateExamToEnd  : ==> Parameters: 2019-03-20 09:39:33.586(Timestamp)
+2019-03-20 09:39:33.587 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.updateExamToEnd  : <==    Updates: 4
+2019-03-20 09:39:33.589 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-20 09:39:33.589 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 09:39:33.590 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 09:39:33.591 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-20 09:39:33.592 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 10(Integer)
+2019-03-20 09:39:33.594 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-20 09:39:33.595 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-20 09:39:33.597 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-20 09:39:33.603 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-20 09:39:34.177 DEBUG 10372 --- [http-nio-8081-exec-9] c.e.mapper.SubjectMapper.selectSubjects  : ==>  Preparing: SELECT s.* FROM subject s WHERE 1=1 AND s.`status` = ? ORDER BY s.sort ASC 
+2019-03-20 09:39:34.178 DEBUG 10372 --- [http-nio-8081-exec-9] c.e.mapper.SubjectMapper.selectSubjects  : ==> Parameters: 1(Integer)
+2019-03-20 09:39:34.179 DEBUG 10372 --- [http-nio-8081-exec-9] c.e.mapper.SubjectMapper.selectSubjects  : <==      Total: 3
+2019-03-20 09:39:34.835 DEBUG 10372 --- [http-nio-8081-exec-1] com.exam.mapper.SubjectMapper.select     : ==>  Preparing: SELECT id,create_time,update_time,user_id,name,description,img_url,sort,author,status FROM subject WHERE status = ? 
+2019-03-20 09:39:34.836 DEBUG 10372 --- [http-nio-8081-exec-1] com.exam.mapper.SubjectMapper.select     : ==> Parameters: 1(Integer)
+2019-03-20 09:39:34.839 DEBUG 10372 --- [http-nio-8081-exec-1] com.exam.mapper.SubjectMapper.select     : <==      Total: 3
+2019-03-20 09:39:34.876 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.m.Q.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM (SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM question a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 GROUP BY a.id) table_count 
+2019-03-20 09:39:34.877 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.m.Q.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 09:39:34.878 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.m.Q.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 09:39:34.880 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.m.QuestionMapper.findByCondition     : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM question a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 GROUP BY a.id LIMIT ? 
+2019-03-20 09:39:34.880 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.m.QuestionMapper.findByCondition     : ==> Parameters: 10(Integer)
+2019-03-20 09:39:34.884 DEBUG 10372 --- [http-nio-8081-exec-2] c.e.m.QuestionMapper.findByCondition     : <==      Total: 10
+2019-03-20 09:39:36.125 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.m.GradeMapper.findByCondition_COUNT  : ==>  Preparing: SELECT count(0) FROM (SELECT a.*, user.username AS u_user_name, user.nickname AS u_nick_name, e.title AS e_exam_title FROM grade a INNER JOIN user ON a.user_id = user.user_id INNER JOIN examination e ON a.exam_id = e.id WHERE 1 = 1 GROUP BY a.id) table_count 
+2019-03-20 09:39:36.126 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.m.GradeMapper.findByCondition_COUNT  : ==> Parameters: 
+2019-03-20 09:39:36.128 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.m.GradeMapper.findByCondition_COUNT  : <==      Total: 1
+2019-03-20 09:39:36.129 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.mapper.GradeMapper.findByCondition   : ==>  Preparing: SELECT a.*, user.username as u_user_name, user.nickname as u_nick_name, e.title as e_exam_title FROM grade a INNER JOIN user ON a.user_id = user.user_id INNER JOIN examination e ON a.exam_id = e.id WHERE 1 = 1 GROUP BY a.id LIMIT ? 
+2019-03-20 09:39:36.129 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.mapper.GradeMapper.findByCondition   : ==> Parameters: 10(Integer)
+2019-03-20 09:39:36.133 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.mapper.GradeMapper.findByCondition   : <==      Total: 3
+2019-03-20 09:39:37.353 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.mapper.TagMapper.selectTags_COUNT    : ==>  Preparing: SELECT count(0) FROM tag WHERE 1 = 1 
+2019-03-20 09:39:37.353 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.mapper.TagMapper.selectTags_COUNT    : ==> Parameters: 
+2019-03-20 09:39:37.354 DEBUG 10372 --- [http-nio-8081-exec-4] c.e.mapper.TagMapper.selectTags_COUNT    : <==      Total: 1
+2019-03-20 09:39:37.355 DEBUG 10372 --- [http-nio-8081-exec-4] com.exam.mapper.TagMapper.selectTags     : ==>  Preparing: select id, `name`, description, create_time, update_time FROM tag WHERE 1=1 LIMIT ? 
+2019-03-20 09:39:37.355 DEBUG 10372 --- [http-nio-8081-exec-4] com.exam.mapper.TagMapper.selectTags     : ==> Parameters: 10(Integer)
+2019-03-20 09:39:37.356 DEBUG 10372 --- [http-nio-8081-exec-4] com.exam.mapper.TagMapper.selectTags     : <==      Total: 5
+2019-03-20 09:39:44.082 DEBUG 10372 --- [http-nio-8081-exec-7] c.e.mapper.SubjectMapper.selectSubjects  : ==>  Preparing: SELECT s.* FROM subject s WHERE 1=1 AND s.`status` = ? ORDER BY s.sort ASC 
+2019-03-20 09:39:44.083 DEBUG 10372 --- [http-nio-8081-exec-7] c.e.mapper.SubjectMapper.selectSubjects  : ==> Parameters: 1(Integer)
+2019-03-20 09:39:44.084 DEBUG 10372 --- [http-nio-8081-exec-7] c.e.mapper.SubjectMapper.selectSubjects  : <==      Total: 3
+2019-03-20 09:39:44.153 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.m.Q.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM (SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM question a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 GROUP BY a.id) table_count 
+2019-03-20 09:39:44.154 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.m.Q.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 09:39:44.155 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.m.Q.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 09:39:44.156 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.m.QuestionMapper.findByCondition     : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM question a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 GROUP BY a.id LIMIT ? 
+2019-03-20 09:39:44.157 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.m.QuestionMapper.findByCondition     : ==> Parameters: 10(Integer)
+2019-03-20 09:39:44.159 DEBUG 10372 --- [http-nio-8081-exec-8] c.e.m.QuestionMapper.findByCondition     : <==      Total: 10
+2019-03-20 09:40:05.466 DEBUG 10372 --- [http-nio-8081-exec-10] c.e.m.Q.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM (SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM question a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 AND a.subject_id = ? GROUP BY a.id) table_count 
+2019-03-20 09:40:05.467 DEBUG 10372 --- [http-nio-8081-exec-10] c.e.m.Q.findByCondition_COUNT            : ==> Parameters: 1(Integer)
+2019-03-20 09:40:05.469 DEBUG 10372 --- [http-nio-8081-exec-10] c.e.m.Q.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 09:40:05.469 DEBUG 10372 --- [http-nio-8081-exec-10] c.e.m.QuestionMapper.findByCondition     : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM question a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 AND a.subject_id = ? GROUP BY a.id LIMIT ? 
+2019-03-20 09:40:05.471 DEBUG 10372 --- [http-nio-8081-exec-10] c.e.m.QuestionMapper.findByCondition     : ==> Parameters: 1(Integer), 10(Integer)
+2019-03-20 09:40:05.473 DEBUG 10372 --- [http-nio-8081-exec-10] c.e.m.QuestionMapper.findByCondition     : <==      Total: 10
+2019-03-20 09:40:54.979  INFO 10372 --- [http-nio-8081-exec-9] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 09:40:55.020  INFO 10372 --- [http-nio-8081-exec-1] com.exam.controller.KaptchaController    : 生成验证码文本====cfc7
+2019-03-20 09:43:50.438 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.mapper.UserMapper.selectByUsername   : ==>  Preparing: SELECT id, user_id, username, password, salt, nickname, email, phone, sex, age, img, status, create_time, update_time, last_login_time FROM user WHERE username = ? 
+2019-03-20 09:43:50.440 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.mapper.UserMapper.selectByUsername   : ==> Parameters: 40115200(String)
+2019-03-20 09:43:50.442 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.mapper.UserMapper.selectByUsername   : <==      Total: 1
+2019-03-20 09:43:50.455 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.m.UserMapper.updateLastLoginTime     : ==>  Preparing: update user SET last_login_time = now() where id = ? 
+2019-03-20 09:43:50.461 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.m.UserMapper.updateLastLoginTime     : ==> Parameters: 4(Integer)
+2019-03-20 09:43:50.814 DEBUG 10372 --- [http-nio-8081-exec-6] c.e.m.UserMapper.updateLastLoginTime     : <==    Updates: 1
+2019-03-20 09:43:51.871 DEBUG 10372 --- [http-nio-8081-exec-5] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-20 09:43:51.872 DEBUG 10372 --- [http-nio-8081-exec-5] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 09:43:51.873 DEBUG 10372 --- [http-nio-8081-exec-5] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 09:43:51.873 DEBUG 10372 --- [http-nio-8081-exec-5] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-20 09:43:51.874 DEBUG 10372 --- [http-nio-8081-exec-5] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 10(Integer)
+2019-03-20 09:43:51.877 DEBUG 10372 --- [http-nio-8081-exec-5] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-20 09:43:51.878 DEBUG 10372 --- [http-nio-8081-exec-5] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-20 09:43:51.879 DEBUG 10372 --- [http-nio-8081-exec-5] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-20 09:43:51.886 DEBUG 10372 --- [http-nio-8081-exec-5] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-20 09:43:51.892  INFO 10372 --- [http-nio-8081-exec-5] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 09:43:51.902  INFO 10372 --- [http-nio-8081-exec-5] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 09:43:52.016 DEBUG 10372 --- [http-nio-8081-exec-7] c.e.m.E.updateExamToStart                : ==>  Preparing: UPDATE examination SET status = 1 WHERE status = 0 AND start_time <= ? AND end_time > ? 
+2019-03-20 09:43:52.017 DEBUG 10372 --- [http-nio-8081-exec-7] c.e.m.E.updateExamToStart                : ==> Parameters: 2019-03-20 09:43:52.016(Timestamp), 2019-03-20 09:43:52.016(Timestamp)
+2019-03-20 09:43:52.018 DEBUG 10372 --- [http-nio-8081-exec-7] c.e.m.E.updateExamToStart                : <==    Updates: 0
+2019-03-20 09:43:52.018 DEBUG 10372 --- [http-nio-8081-exec-7] c.e.m.ExaminationMapper.updateExamToEnd  : ==>  Preparing: UPDATE examination SET status = 2 WHERE status <= 2 AND end_time <= ? 
+2019-03-20 09:43:52.019 DEBUG 10372 --- [http-nio-8081-exec-7] c.e.m.ExaminationMapper.updateExamToEnd  : ==> Parameters: 2019-03-20 09:43:52.018(Timestamp)
+2019-03-20 09:43:52.019 DEBUG 10372 --- [http-nio-8081-exec-7] c.e.m.ExaminationMapper.updateExamToEnd  : <==    Updates: 4
+2019-03-20 09:43:52.021 DEBUG 10372 --- [http-nio-8081-exec-7] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-20 09:43:52.021 DEBUG 10372 --- [http-nio-8081-exec-7] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 09:43:52.022 DEBUG 10372 --- [http-nio-8081-exec-7] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 09:43:52.022 DEBUG 10372 --- [http-nio-8081-exec-7] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-20 09:43:52.023 DEBUG 10372 --- [http-nio-8081-exec-7] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 5(Integer)
+2019-03-20 09:43:52.024 DEBUG 10372 --- [http-nio-8081-exec-7] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-20 09:43:52.025 DEBUG 10372 --- [http-nio-8081-exec-7] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-20 09:43:52.026 DEBUG 10372 --- [http-nio-8081-exec-7] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-20 09:43:52.033 DEBUG 10372 --- [http-nio-8081-exec-7] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-20 09:43:56.174 DEBUG 10372 --- [http-nio-8081-exec-8] c.exam.mapper.GradeMapper.validateExam   : ==>  Preparing: select g.* from grade g where g.exam_id=? and user_id=? 
+2019-03-20 09:43:56.175 DEBUG 10372 --- [http-nio-8081-exec-8] c.exam.mapper.GradeMapper.validateExam   : ==> Parameters: 9(Integer), 1000000318553137(String)
+2019-03-20 09:43:56.176 DEBUG 10372 --- [http-nio-8081-exec-8] c.exam.mapper.GradeMapper.validateExam   : <==      Total: 0
+2019-03-20 09:43:59.211 DEBUG 10372 --- [http-nio-8081-exec-10] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? ) 
+2019-03-20 09:43:59.215 DEBUG 10372 --- [http-nio-8081-exec-10] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer)
+2019-03-20 09:43:59.225 DEBUG 10372 --- [http-nio-8081-exec-10] c.e.m.E.listQuestionsByExamId            : <==      Total: 15
+2019-03-20 09:43:59.231  INFO 10372 --- [http-nio-8081-exec-10] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 09:43:59.252  INFO 10372 --- [http-nio-8081-exec-10] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:22:14.080  INFO 4772 --- [main] com.exam.OnlineExamApplication           : Starting OnlineExamApplication on LAPTOP-7SEUEP84 with PID 4772 (E:\eclipse_workspace\OnlineExam\target\classes started by HungKuei_PC in E:\eclipse_workspace\OnlineExam)
+2019-03-20 16:22:14.090 DEBUG 4772 --- [main] com.exam.OnlineExamApplication           : Running with Spring Boot v2.0.2.RELEASE, Spring v5.0.6.RELEASE
+2019-03-20 16:22:14.092  INFO 4772 --- [main] com.exam.OnlineExamApplication           : No active profile set, falling back to default profiles: default
+2019-03-20 16:22:15.310 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\CommentMapper.class]
+2019-03-20 16:22:15.310 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\ExaminationMapper.class]
+2019-03-20 16:22:15.311 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\ExamQuestionMapper.class]
+2019-03-20 16:22:15.311 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\GradeMapper.class]
+2019-03-20 16:22:15.311 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\LinkMapper.class]
+2019-03-20 16:22:15.311 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\PermissionMapper.class]
+2019-03-20 16:22:15.311 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\QuestionMapper.class]
+2019-03-20 16:22:15.311 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\RoleMapper.class]
+2019-03-20 16:22:15.312 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\RolePermissionMapper.class]
+2019-03-20 16:22:15.312 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\SiteInfoMapper.class]
+2019-03-20 16:22:15.313 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\SubjectMapper.class]
+2019-03-20 16:22:15.314 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\SysConfigMapper.class]
+2019-03-20 16:22:15.314 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\TagMapper.class]
+2019-03-20 16:22:15.315 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\UserMapper.class]
+2019-03-20 16:22:15.316 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\UserRoleMapper.class]
+2019-03-20 16:22:15.317 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'commentMapper' and 'com.exam.mapper.CommentMapper' mapperInterface
+2019-03-20 16:22:15.317 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'commentMapper'.
+2019-03-20 16:22:15.317 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'examinationMapper' and 'com.exam.mapper.ExaminationMapper' mapperInterface
+2019-03-20 16:22:15.317 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'examinationMapper'.
+2019-03-20 16:22:15.317 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'examQuestionMapper' and 'com.exam.mapper.ExamQuestionMapper' mapperInterface
+2019-03-20 16:22:15.318 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'examQuestionMapper'.
+2019-03-20 16:22:15.318 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'gradeMapper' and 'com.exam.mapper.GradeMapper' mapperInterface
+2019-03-20 16:22:15.318 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'gradeMapper'.
+2019-03-20 16:22:15.318 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'linkMapper' and 'com.exam.mapper.LinkMapper' mapperInterface
+2019-03-20 16:22:15.318 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'linkMapper'.
+2019-03-20 16:22:15.318 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'permissionMapper' and 'com.exam.mapper.PermissionMapper' mapperInterface
+2019-03-20 16:22:15.318 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'permissionMapper'.
+2019-03-20 16:22:15.318 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'questionMapper' and 'com.exam.mapper.QuestionMapper' mapperInterface
+2019-03-20 16:22:15.318 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'questionMapper'.
+2019-03-20 16:22:15.319 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'roleMapper' and 'com.exam.mapper.RoleMapper' mapperInterface
+2019-03-20 16:22:15.319 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'roleMapper'.
+2019-03-20 16:22:15.319 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'rolePermissionMapper' and 'com.exam.mapper.RolePermissionMapper' mapperInterface
+2019-03-20 16:22:15.320 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'rolePermissionMapper'.
+2019-03-20 16:22:15.320 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'siteInfoMapper' and 'com.exam.mapper.SiteInfoMapper' mapperInterface
+2019-03-20 16:22:15.321 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'siteInfoMapper'.
+2019-03-20 16:22:15.323 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'subjectMapper' and 'com.exam.mapper.SubjectMapper' mapperInterface
+2019-03-20 16:22:15.324 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'subjectMapper'.
+2019-03-20 16:22:15.324 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'sysConfigMapper' and 'com.exam.mapper.SysConfigMapper' mapperInterface
+2019-03-20 16:22:15.324 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'sysConfigMapper'.
+2019-03-20 16:22:15.324 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'tagMapper' and 'com.exam.mapper.TagMapper' mapperInterface
+2019-03-20 16:22:15.324 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'tagMapper'.
+2019-03-20 16:22:15.324 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'userMapper' and 'com.exam.mapper.UserMapper' mapperInterface
+2019-03-20 16:22:15.325 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'userMapper'.
+2019-03-20 16:22:15.325 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'userRoleMapper' and 'com.exam.mapper.UserRoleMapper' mapperInterface
+2019-03-20 16:22:15.325 DEBUG 4772 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'userRoleMapper'.
+2019-03-20 16:22:19.468  INFO 4772 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-03-20 16:22:19.475 DEBUG 4772 --- [main] c.e.m.PermissionMapper.selectAllPerms    : ==>  Preparing: SELECT id, permission_id, name, description, url, perms, parent_id, type, order_num, icon, status, create_time, update_time FROM permission WHERE status=? ORDER BY order_num 
+2019-03-20 16:22:19.692 DEBUG 4772 --- [main] c.e.m.PermissionMapper.selectAllPerms    : ==> Parameters: 1(Integer)
+2019-03-20 16:22:19.826 DEBUG 4772 --- [main] c.e.m.PermissionMapper.selectAllPerms    : <==      Total: 77
+2019-03-20 16:22:20.501  INFO 4772 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-03-20 16:22:20.501  INFO 4772 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.31
+2019-03-20 16:22:20.515  INFO 4772 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.16] using APR version [1.6.3].
+2019-03-20 16:22:20.517  INFO 4772 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2019-03-20 16:22:20.517  INFO 4772 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2019-03-20 16:22:21.667  INFO 4772 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2m  2 Nov 2017]
+2019-03-20 16:22:21.829  INFO 4772 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-03-20 16:22:24.334  WARN 4772 --- [main] org.thymeleaf.templatemode.TemplateMode  : [THYMELEAF][main] Template Mode 'LEGACYHTML5' is deprecated. Using Template Mode 'HTML' instead.
+2019-03-20 16:22:25.348  INFO 4772 --- [main] com.exam.OnlineExamApplication           : Started OnlineExamApplication in 11.751 seconds (JVM running for 12.614)
+2019-03-20 16:22:33.059  INFO 4772 --- [http-nio-8081-exec-10] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-03-20 16:22:33.169  INFO 4772 --- [http-nio-8081-exec-10] a.s.s.m.AbstractValidatingSessionManager : Enabling session validation scheduler...
+2019-03-20 16:22:34.035  INFO 4772 --- [http-nio-8081-exec-10] io.lettuce.core.EpollProvider            : Starting without optional epoll library
+2019-03-20 16:22:34.037  INFO 4772 --- [http-nio-8081-exec-10] io.lettuce.core.KqueueProvider           : Starting without optional kqueue library
+2019-03-20 16:22:34.874  INFO 4772 --- [http-nio-8081-exec-10] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:22:35.059  INFO 4772 --- [http-nio-8081-exec-10] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:22:38.416  INFO 4772 --- [http-nio-8081-exec-9] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:22:38.503  INFO 4772 --- [http-nio-8081-exec-3] com.exam.controller.KaptchaController    : 生成验证码文本====dx2n
+2019-03-20 16:23:13.183 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.mapper.UserMapper.selectByUsername   : ==>  Preparing: SELECT id, user_id, username, password, salt, nickname, email, phone, sex, age, img, status, create_time, update_time, last_login_time FROM user WHERE username = ? 
+2019-03-20 16:23:13.185 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.mapper.UserMapper.selectByUsername   : ==> Parameters: admin(String)
+2019-03-20 16:23:13.304 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.mapper.UserMapper.selectByUsername   : <==      Total: 1
+2019-03-20 16:23:13.314 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.UserMapper.updateLastLoginTime     : ==>  Preparing: update user SET last_login_time = now() where id = ? 
+2019-03-20 16:23:13.318 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.UserMapper.updateLastLoginTime     : ==> Parameters: 1(Integer)
+2019-03-20 16:23:13.450 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.UserMapper.updateLastLoginTime     : <==    Updates: 1
+2019-03-20 16:23:14.648 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-20 16:23:14.653 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 16:23:14.743 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 16:23:14.744 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-20 16:23:14.746 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 10(Integer)
+2019-03-20 16:23:14.771 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-20 16:23:14.773 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-20 16:23:14.776 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-20 16:23:14.926 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-20 16:23:14.933  INFO 4772 --- [http-nio-8081-exec-10] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:23:14.950  INFO 4772 --- [http-nio-8081-exec-10] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:23:15.105 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.E.updateExamToStart                : ==>  Preparing: UPDATE examination SET status = 1 WHERE status = 0 AND start_time <= ? AND end_time > ? 
+2019-03-20 16:23:15.109 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.E.updateExamToStart                : ==> Parameters: 2019-03-20 16:23:15.098(Timestamp), 2019-03-20 16:23:15.098(Timestamp)
+2019-03-20 16:23:15.111 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.E.updateExamToStart                : <==    Updates: 0
+2019-03-20 16:23:15.111 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.ExaminationMapper.updateExamToEnd  : ==>  Preparing: UPDATE examination SET status = 2 WHERE status <= 2 AND end_time <= ? 
+2019-03-20 16:23:15.112 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.ExaminationMapper.updateExamToEnd  : ==> Parameters: 2019-03-20 16:23:15.111(Timestamp)
+2019-03-20 16:23:15.144 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.ExaminationMapper.updateExamToEnd  : <==    Updates: 5
+2019-03-20 16:23:15.162 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-20 16:23:15.162 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 16:23:15.164 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 16:23:15.165 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-20 16:23:15.166 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 5(Integer)
+2019-03-20 16:23:15.168 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-20 16:23:15.169 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-20 16:23:15.171 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-20 16:23:15.183 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-20 16:23:19.386 DEBUG 4772 --- [http-nio-8081-exec-9] com.exam.mapper.SubjectMapper.select     : ==>  Preparing: SELECT id,create_time,update_time,user_id,name,description,img_url,sort,author,status FROM subject 
+2019-03-20 16:23:19.387 DEBUG 4772 --- [http-nio-8081-exec-9] com.exam.mapper.SubjectMapper.select     : ==> Parameters: 
+2019-03-20 16:23:19.389 DEBUG 4772 --- [http-nio-8081-exec-9] com.exam.mapper.SubjectMapper.select     : <==      Total: 3
+2019-03-20 16:24:11.048 DEBUG 4772 --- [http-nio-8081-exec-9] com.exam.mapper.QuestionMapper.select    : ==>  Preparing: SELECT id,create_time,update_time,title,content,question_type,option_a,option_b,option_c,option_d,option_e,option_f,answer,parse,score,difficulty,subject_id,status FROM question 
+2019-03-20 16:24:11.082 DEBUG 4772 --- [http-nio-8081-exec-9] com.exam.mapper.QuestionMapper.select    : ==> Parameters: 
+2019-03-20 16:24:11.750 DEBUG 4772 --- [http-nio-8081-exec-9] com.exam.mapper.QuestionMapper.select    : <==      Total: 27
+2019-03-20 16:32:13.986  INFO 4772 --- [http-nio-8081-exec-9] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:32:14.000  INFO 4772 --- [http-nio-8081-exec-9] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:32:33.587 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-20 16:32:33.587 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 16:32:33.589 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 16:32:33.590 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-20 16:32:33.591 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 10(Integer)
+2019-03-20 16:32:33.594 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-20 16:32:33.596 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-20 16:32:33.598 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-20 16:32:33.609 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-20 16:32:33.613  INFO 4772 --- [http-nio-8081-exec-1] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:32:33.631  INFO 4772 --- [http-nio-8081-exec-1] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:32:33.735 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.updateExamToStart                : ==>  Preparing: UPDATE examination SET status = 1 WHERE status = 0 AND start_time <= ? AND end_time > ? 
+2019-03-20 16:32:33.736 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.updateExamToStart                : ==> Parameters: 2019-03-20 16:32:33.734(Timestamp), 2019-03-20 16:32:33.734(Timestamp)
+2019-03-20 16:32:33.739 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.updateExamToStart                : <==    Updates: 0
+2019-03-20 16:32:33.740 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.ExaminationMapper.updateExamToEnd  : ==>  Preparing: UPDATE examination SET status = 2 WHERE status <= 2 AND end_time <= ? 
+2019-03-20 16:32:33.741 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.ExaminationMapper.updateExamToEnd  : ==> Parameters: 2019-03-20 16:32:33.739(Timestamp)
+2019-03-20 16:32:33.741 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.ExaminationMapper.updateExamToEnd  : <==    Updates: 5
+2019-03-20 16:32:33.751 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-20 16:32:33.752 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 16:32:33.753 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 16:32:33.753 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-20 16:32:33.754 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 5(Integer)
+2019-03-20 16:32:33.759 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-20 16:32:33.760 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-20 16:32:33.761 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-20 16:32:33.769 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-20 16:32:34.363 DEBUG 4772 --- [http-nio-8081-exec-7] com.exam.mapper.SubjectMapper.select     : ==>  Preparing: SELECT id,create_time,update_time,user_id,name,description,img_url,sort,author,status FROM subject 
+2019-03-20 16:32:34.364 DEBUG 4772 --- [http-nio-8081-exec-7] com.exam.mapper.SubjectMapper.select     : ==> Parameters: 
+2019-03-20 16:32:34.365 DEBUG 4772 --- [http-nio-8081-exec-7] com.exam.mapper.SubjectMapper.select     : <==      Total: 3
+2019-03-20 16:32:34.366 DEBUG 4772 --- [http-nio-8081-exec-7] com.exam.mapper.QuestionMapper.select    : ==>  Preparing: SELECT id,create_time,update_time,title,content,question_type,option_a,option_b,option_c,option_d,option_e,option_f,answer,parse,score,difficulty,subject_id,status FROM question 
+2019-03-20 16:32:34.366 DEBUG 4772 --- [http-nio-8081-exec-7] com.exam.mapper.QuestionMapper.select    : ==> Parameters: 
+2019-03-20 16:32:34.369 DEBUG 4772 --- [http-nio-8081-exec-7] com.exam.mapper.QuestionMapper.select    : <==      Total: 27
+2019-03-20 16:32:34.372  INFO 4772 --- [http-nio-8081-exec-7] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:32:34.382  INFO 4772 --- [http-nio-8081-exec-7] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:32:35.313 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-20 16:32:35.313 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 16:32:35.314 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 16:32:35.315 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-20 16:32:35.315 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 10(Integer)
+2019-03-20 16:32:35.319 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-20 16:32:35.320 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-20 16:32:35.321 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-20 16:32:35.425 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-20 16:32:35.434  INFO 4772 --- [http-nio-8081-exec-6] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:32:35.448  INFO 4772 --- [http-nio-8081-exec-6] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:32:35.586 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.E.updateExamToStart                : ==>  Preparing: UPDATE examination SET status = 1 WHERE status = 0 AND start_time <= ? AND end_time > ? 
+2019-03-20 16:32:35.587 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.E.updateExamToStart                : ==> Parameters: 2019-03-20 16:32:35.586(Timestamp), 2019-03-20 16:32:35.586(Timestamp)
+2019-03-20 16:32:35.589 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.E.updateExamToStart                : <==    Updates: 0
+2019-03-20 16:32:35.590 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.updateExamToEnd  : ==>  Preparing: UPDATE examination SET status = 2 WHERE status <= 2 AND end_time <= ? 
+2019-03-20 16:32:35.590 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.updateExamToEnd  : ==> Parameters: 2019-03-20 16:32:35.589(Timestamp)
+2019-03-20 16:32:35.592 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.updateExamToEnd  : <==    Updates: 5
+2019-03-20 16:32:35.603 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-20 16:32:35.603 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 16:32:35.604 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 16:32:35.605 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-20 16:32:35.606 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 5(Integer)
+2019-03-20 16:32:35.608 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-20 16:32:35.608 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-20 16:32:35.609 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-20 16:32:35.615 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-20 16:32:36.036  INFO 4772 --- [http-nio-8081-exec-4] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:32:36.044  INFO 4772 --- [http-nio-8081-exec-4] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:32:36.635 DEBUG 4772 --- [http-nio-8081-exec-5] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-20 16:32:36.636 DEBUG 4772 --- [http-nio-8081-exec-5] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 16:32:36.636 DEBUG 4772 --- [http-nio-8081-exec-5] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 16:32:36.637 DEBUG 4772 --- [http-nio-8081-exec-5] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-20 16:32:36.638 DEBUG 4772 --- [http-nio-8081-exec-5] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 10(Integer)
+2019-03-20 16:32:36.640 DEBUG 4772 --- [http-nio-8081-exec-5] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-20 16:32:36.641 DEBUG 4772 --- [http-nio-8081-exec-5] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-20 16:32:36.642 DEBUG 4772 --- [http-nio-8081-exec-5] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-20 16:32:36.646 DEBUG 4772 --- [http-nio-8081-exec-5] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-20 16:32:36.651  INFO 4772 --- [http-nio-8081-exec-5] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:32:36.659  INFO 4772 --- [http-nio-8081-exec-5] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:32:36.743 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.E.updateExamToStart                : ==>  Preparing: UPDATE examination SET status = 1 WHERE status = 0 AND start_time <= ? AND end_time > ? 
+2019-03-20 16:32:36.744 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.E.updateExamToStart                : ==> Parameters: 2019-03-20 16:32:36.742(Timestamp), 2019-03-20 16:32:36.742(Timestamp)
+2019-03-20 16:32:36.745 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.E.updateExamToStart                : <==    Updates: 0
+2019-03-20 16:32:36.746 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.ExaminationMapper.updateExamToEnd  : ==>  Preparing: UPDATE examination SET status = 2 WHERE status <= 2 AND end_time <= ? 
+2019-03-20 16:32:36.746 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.ExaminationMapper.updateExamToEnd  : ==> Parameters: 2019-03-20 16:32:36.745(Timestamp)
+2019-03-20 16:32:36.747 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.ExaminationMapper.updateExamToEnd  : <==    Updates: 5
+2019-03-20 16:32:36.754 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-20 16:32:36.754 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 16:32:36.755 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 16:32:36.757 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-20 16:32:36.758 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 5(Integer)
+2019-03-20 16:32:36.760 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-20 16:32:36.760 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-20 16:32:36.761 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-20 16:32:36.767 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-20 16:32:37.265 DEBUG 4772 --- [http-nio-8081-exec-3] com.exam.mapper.SubjectMapper.select     : ==>  Preparing: SELECT id,create_time,update_time,user_id,name,description,img_url,sort,author,status FROM subject 
+2019-03-20 16:32:37.266 DEBUG 4772 --- [http-nio-8081-exec-3] com.exam.mapper.SubjectMapper.select     : ==> Parameters: 
+2019-03-20 16:32:37.267 DEBUG 4772 --- [http-nio-8081-exec-3] com.exam.mapper.SubjectMapper.select     : <==      Total: 3
+2019-03-20 16:32:37.268 DEBUG 4772 --- [http-nio-8081-exec-3] com.exam.mapper.QuestionMapper.select    : ==>  Preparing: SELECT id,create_time,update_time,title,content,question_type,option_a,option_b,option_c,option_d,option_e,option_f,answer,parse,score,difficulty,subject_id,status FROM question 
+2019-03-20 16:32:37.269 DEBUG 4772 --- [http-nio-8081-exec-3] com.exam.mapper.QuestionMapper.select    : ==> Parameters: 
+2019-03-20 16:32:37.271 DEBUG 4772 --- [http-nio-8081-exec-3] com.exam.mapper.QuestionMapper.select    : <==      Total: 27
+2019-03-20 16:32:37.277  INFO 4772 --- [http-nio-8081-exec-3] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:32:37.283  INFO 4772 --- [http-nio-8081-exec-3] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:32:37.844  INFO 4772 --- [http-nio-8081-exec-9] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:32:37.851  INFO 4772 --- [http-nio-8081-exec-9] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:32:39.948 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-20 16:32:39.948 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 16:32:39.949 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 16:32:39.950 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-20 16:32:39.950 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 10(Integer)
+2019-03-20 16:32:39.952 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-20 16:32:39.952 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-20 16:32:39.954 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-20 16:32:39.961 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-20 16:32:39.964  INFO 4772 --- [http-nio-8081-exec-1] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:32:39.975  INFO 4772 --- [http-nio-8081-exec-1] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:32:40.092 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.updateExamToStart                : ==>  Preparing: UPDATE examination SET status = 1 WHERE status = 0 AND start_time <= ? AND end_time > ? 
+2019-03-20 16:32:40.093 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.updateExamToStart                : ==> Parameters: 2019-03-20 16:32:40.092(Timestamp), 2019-03-20 16:32:40.092(Timestamp)
+2019-03-20 16:32:40.095 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.updateExamToStart                : <==    Updates: 0
+2019-03-20 16:32:40.095 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.ExaminationMapper.updateExamToEnd  : ==>  Preparing: UPDATE examination SET status = 2 WHERE status <= 2 AND end_time <= ? 
+2019-03-20 16:32:40.096 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.ExaminationMapper.updateExamToEnd  : ==> Parameters: 2019-03-20 16:32:40.095(Timestamp)
+2019-03-20 16:32:40.097 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.ExaminationMapper.updateExamToEnd  : <==    Updates: 5
+2019-03-20 16:32:40.103 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-20 16:32:40.103 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 16:32:40.104 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 16:32:40.105 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-20 16:32:40.105 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 5(Integer)
+2019-03-20 16:32:40.107 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-20 16:32:40.108 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-20 16:32:40.109 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-20 16:32:40.113 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-20 16:32:40.643 DEBUG 4772 --- [http-nio-8081-exec-7] com.exam.mapper.SubjectMapper.select     : ==>  Preparing: SELECT id,create_time,update_time,user_id,name,description,img_url,sort,author,status FROM subject 
+2019-03-20 16:32:40.643 DEBUG 4772 --- [http-nio-8081-exec-7] com.exam.mapper.SubjectMapper.select     : ==> Parameters: 
+2019-03-20 16:32:40.644 DEBUG 4772 --- [http-nio-8081-exec-7] com.exam.mapper.SubjectMapper.select     : <==      Total: 3
+2019-03-20 16:32:40.645 DEBUG 4772 --- [http-nio-8081-exec-7] com.exam.mapper.QuestionMapper.select    : ==>  Preparing: SELECT id,create_time,update_time,title,content,question_type,option_a,option_b,option_c,option_d,option_e,option_f,answer,parse,score,difficulty,subject_id,status FROM question 
+2019-03-20 16:32:40.645 DEBUG 4772 --- [http-nio-8081-exec-7] com.exam.mapper.QuestionMapper.select    : ==> Parameters: 
+2019-03-20 16:32:40.647 DEBUG 4772 --- [http-nio-8081-exec-7] com.exam.mapper.QuestionMapper.select    : <==      Total: 27
+2019-03-20 16:32:40.650  INFO 4772 --- [http-nio-8081-exec-7] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:32:40.656  INFO 4772 --- [http-nio-8081-exec-7] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:33:05.062 DEBUG 4772 --- [http-nio-8081-exec-8] com.exam.mapper.SubjectMapper.select     : ==>  Preparing: SELECT id,create_time,update_time,user_id,name,description,img_url,sort,author,status FROM subject 
+2019-03-20 16:33:05.062 DEBUG 4772 --- [http-nio-8081-exec-8] com.exam.mapper.SubjectMapper.select     : ==> Parameters: 
+2019-03-20 16:33:05.064 DEBUG 4772 --- [http-nio-8081-exec-8] com.exam.mapper.SubjectMapper.select     : <==      Total: 3
+2019-03-20 16:33:05.065 DEBUG 4772 --- [http-nio-8081-exec-8] com.exam.mapper.QuestionMapper.select    : ==>  Preparing: SELECT id,create_time,update_time,title,content,question_type,option_a,option_b,option_c,option_d,option_e,option_f,answer,parse,score,difficulty,subject_id,status FROM question 
+2019-03-20 16:33:05.065 DEBUG 4772 --- [http-nio-8081-exec-8] com.exam.mapper.QuestionMapper.select    : ==> Parameters: 
+2019-03-20 16:33:05.068 DEBUG 4772 --- [http-nio-8081-exec-8] com.exam.mapper.QuestionMapper.select    : <==      Total: 27
+2019-03-20 16:33:05.071  INFO 4772 --- [http-nio-8081-exec-8] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:33:05.078  INFO 4772 --- [http-nio-8081-exec-8] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:33:06.482 DEBUG 4772 --- [http-nio-8081-exec-5] com.exam.mapper.SubjectMapper.select     : ==>  Preparing: SELECT id,create_time,update_time,user_id,name,description,img_url,sort,author,status FROM subject 
+2019-03-20 16:33:06.483 DEBUG 4772 --- [http-nio-8081-exec-5] com.exam.mapper.SubjectMapper.select     : ==> Parameters: 
+2019-03-20 16:33:06.484 DEBUG 4772 --- [http-nio-8081-exec-5] com.exam.mapper.SubjectMapper.select     : <==      Total: 3
+2019-03-20 16:33:06.485 DEBUG 4772 --- [http-nio-8081-exec-5] com.exam.mapper.QuestionMapper.select    : ==>  Preparing: SELECT id,create_time,update_time,title,content,question_type,option_a,option_b,option_c,option_d,option_e,option_f,answer,parse,score,difficulty,subject_id,status FROM question 
+2019-03-20 16:33:06.486 DEBUG 4772 --- [http-nio-8081-exec-5] com.exam.mapper.QuestionMapper.select    : ==> Parameters: 
+2019-03-20 16:33:06.488 DEBUG 4772 --- [http-nio-8081-exec-5] com.exam.mapper.QuestionMapper.select    : <==      Total: 27
+2019-03-20 16:33:06.490  INFO 4772 --- [http-nio-8081-exec-5] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:33:06.498  INFO 4772 --- [http-nio-8081-exec-5] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:33:07.100 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-20 16:33:07.100 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 16:33:07.101 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 16:33:07.102 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-20 16:33:07.102 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 10(Integer)
+2019-03-20 16:33:07.105 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-20 16:33:07.105 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-20 16:33:07.106 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-20 16:33:07.110 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-20 16:33:07.114  INFO 4772 --- [http-nio-8081-exec-2] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:33:07.121  INFO 4772 --- [http-nio-8081-exec-2] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:33:07.225 DEBUG 4772 --- [http-nio-8081-exec-3] c.e.m.E.updateExamToStart                : ==>  Preparing: UPDATE examination SET status = 1 WHERE status = 0 AND start_time <= ? AND end_time > ? 
+2019-03-20 16:33:07.226 DEBUG 4772 --- [http-nio-8081-exec-3] c.e.m.E.updateExamToStart                : ==> Parameters: 2019-03-20 16:33:07.224(Timestamp), 2019-03-20 16:33:07.224(Timestamp)
+2019-03-20 16:33:07.228 DEBUG 4772 --- [http-nio-8081-exec-3] c.e.m.E.updateExamToStart                : <==    Updates: 0
+2019-03-20 16:33:07.228 DEBUG 4772 --- [http-nio-8081-exec-3] c.e.m.ExaminationMapper.updateExamToEnd  : ==>  Preparing: UPDATE examination SET status = 2 WHERE status <= 2 AND end_time <= ? 
+2019-03-20 16:33:07.229 DEBUG 4772 --- [http-nio-8081-exec-3] c.e.m.ExaminationMapper.updateExamToEnd  : ==> Parameters: 2019-03-20 16:33:07.228(Timestamp)
+2019-03-20 16:33:07.231 DEBUG 4772 --- [http-nio-8081-exec-3] c.e.m.ExaminationMapper.updateExamToEnd  : <==    Updates: 5
+2019-03-20 16:33:07.239 DEBUG 4772 --- [http-nio-8081-exec-3] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-20 16:33:07.239 DEBUG 4772 --- [http-nio-8081-exec-3] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 16:33:07.240 DEBUG 4772 --- [http-nio-8081-exec-3] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 16:33:07.241 DEBUG 4772 --- [http-nio-8081-exec-3] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-20 16:33:07.242 DEBUG 4772 --- [http-nio-8081-exec-3] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 5(Integer)
+2019-03-20 16:33:07.243 DEBUG 4772 --- [http-nio-8081-exec-3] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-20 16:33:07.244 DEBUG 4772 --- [http-nio-8081-exec-3] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-20 16:33:07.245 DEBUG 4772 --- [http-nio-8081-exec-3] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-20 16:33:07.250 DEBUG 4772 --- [http-nio-8081-exec-3] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-20 16:33:07.786 DEBUG 4772 --- [http-nio-8081-exec-9] com.exam.mapper.SubjectMapper.select     : ==>  Preparing: SELECT id,create_time,update_time,user_id,name,description,img_url,sort,author,status FROM subject 
+2019-03-20 16:33:07.787 DEBUG 4772 --- [http-nio-8081-exec-9] com.exam.mapper.SubjectMapper.select     : ==> Parameters: 
+2019-03-20 16:33:07.788 DEBUG 4772 --- [http-nio-8081-exec-9] com.exam.mapper.SubjectMapper.select     : <==      Total: 3
+2019-03-20 16:33:07.789 DEBUG 4772 --- [http-nio-8081-exec-9] com.exam.mapper.QuestionMapper.select    : ==>  Preparing: SELECT id,create_time,update_time,title,content,question_type,option_a,option_b,option_c,option_d,option_e,option_f,answer,parse,score,difficulty,subject_id,status FROM question 
+2019-03-20 16:33:07.789 DEBUG 4772 --- [http-nio-8081-exec-9] com.exam.mapper.QuestionMapper.select    : ==> Parameters: 
+2019-03-20 16:33:07.791 DEBUG 4772 --- [http-nio-8081-exec-9] com.exam.mapper.QuestionMapper.select    : <==      Total: 27
+2019-03-20 16:33:07.794  INFO 4772 --- [http-nio-8081-exec-9] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:33:07.800  INFO 4772 --- [http-nio-8081-exec-9] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:33:08.657 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-20 16:33:08.657 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 16:33:08.658 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 16:33:08.658 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-20 16:33:08.659 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 10(Integer)
+2019-03-20 16:33:08.660 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-20 16:33:08.661 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-20 16:33:08.662 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-20 16:33:08.675 DEBUG 4772 --- [http-nio-8081-exec-1] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-20 16:33:08.678  INFO 4772 --- [http-nio-8081-exec-1] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:33:08.685  INFO 4772 --- [http-nio-8081-exec-1] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:33:08.784 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.updateExamToStart                : ==>  Preparing: UPDATE examination SET status = 1 WHERE status = 0 AND start_time <= ? AND end_time > ? 
+2019-03-20 16:33:08.784 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.updateExamToStart                : ==> Parameters: 2019-03-20 16:33:08.783(Timestamp), 2019-03-20 16:33:08.783(Timestamp)
+2019-03-20 16:33:08.786 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.updateExamToStart                : <==    Updates: 0
+2019-03-20 16:33:08.786 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.ExaminationMapper.updateExamToEnd  : ==>  Preparing: UPDATE examination SET status = 2 WHERE status <= 2 AND end_time <= ? 
+2019-03-20 16:33:08.787 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.ExaminationMapper.updateExamToEnd  : ==> Parameters: 2019-03-20 16:33:08.786(Timestamp)
+2019-03-20 16:33:08.787 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.ExaminationMapper.updateExamToEnd  : <==    Updates: 5
+2019-03-20 16:33:08.794 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-20 16:33:08.795 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 16:33:08.796 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 16:33:08.798 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-20 16:33:08.799 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 5(Integer)
+2019-03-20 16:33:08.800 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-20 16:33:08.801 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-20 16:33:08.802 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-20 16:33:08.805 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-20 16:33:09.185  INFO 4772 --- [http-nio-8081-exec-7] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:33:09.190  INFO 4772 --- [http-nio-8081-exec-7] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:33:10.018 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-20 16:33:10.018 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 16:33:10.019 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 16:33:10.020 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-20 16:33:10.020 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 10(Integer)
+2019-03-20 16:33:10.021 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-20 16:33:10.022 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-20 16:33:10.022 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-20 16:33:10.025 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-20 16:33:10.028  INFO 4772 --- [http-nio-8081-exec-6] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:33:10.033  INFO 4772 --- [http-nio-8081-exec-6] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:33:10.115 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.E.updateExamToStart                : ==>  Preparing: UPDATE examination SET status = 1 WHERE status = 0 AND start_time <= ? AND end_time > ? 
+2019-03-20 16:33:10.116 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.E.updateExamToStart                : ==> Parameters: 2019-03-20 16:33:10.114(Timestamp), 2019-03-20 16:33:10.114(Timestamp)
+2019-03-20 16:33:10.116 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.E.updateExamToStart                : <==    Updates: 0
+2019-03-20 16:33:10.117 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.updateExamToEnd  : ==>  Preparing: UPDATE examination SET status = 2 WHERE status <= 2 AND end_time <= ? 
+2019-03-20 16:33:10.117 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.updateExamToEnd  : ==> Parameters: 2019-03-20 16:33:10.117(Timestamp)
+2019-03-20 16:33:10.118 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.updateExamToEnd  : <==    Updates: 5
+2019-03-20 16:33:10.135 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-20 16:33:10.135 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 16:33:10.136 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 16:33:10.138 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-20 16:33:10.138 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 5(Integer)
+2019-03-20 16:33:10.139 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-20 16:33:10.140 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-20 16:33:10.141 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-20 16:33:10.144 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-20 16:33:10.593 DEBUG 4772 --- [http-nio-8081-exec-4] com.exam.mapper.SubjectMapper.select     : ==>  Preparing: SELECT id,create_time,update_time,user_id,name,description,img_url,sort,author,status FROM subject 
+2019-03-20 16:33:10.593 DEBUG 4772 --- [http-nio-8081-exec-4] com.exam.mapper.SubjectMapper.select     : ==> Parameters: 
+2019-03-20 16:33:10.594 DEBUG 4772 --- [http-nio-8081-exec-4] com.exam.mapper.SubjectMapper.select     : <==      Total: 3
+2019-03-20 16:33:10.595 DEBUG 4772 --- [http-nio-8081-exec-4] com.exam.mapper.QuestionMapper.select    : ==>  Preparing: SELECT id,create_time,update_time,title,content,question_type,option_a,option_b,option_c,option_d,option_e,option_f,answer,parse,score,difficulty,subject_id,status FROM question 
+2019-03-20 16:33:10.596 DEBUG 4772 --- [http-nio-8081-exec-4] com.exam.mapper.QuestionMapper.select    : ==> Parameters: 
+2019-03-20 16:33:10.598 DEBUG 4772 --- [http-nio-8081-exec-4] com.exam.mapper.QuestionMapper.select    : <==      Total: 27
+2019-03-20 16:33:10.601  INFO 4772 --- [http-nio-8081-exec-4] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:33:10.606  INFO 4772 --- [http-nio-8081-exec-4] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:33:12.502 DEBUG 4772 --- [http-nio-8081-exec-5] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-20 16:33:12.502 DEBUG 4772 --- [http-nio-8081-exec-5] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 16:33:12.503 DEBUG 4772 --- [http-nio-8081-exec-5] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 16:33:12.503 DEBUG 4772 --- [http-nio-8081-exec-5] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-20 16:33:12.504 DEBUG 4772 --- [http-nio-8081-exec-5] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 10(Integer)
+2019-03-20 16:33:12.505 DEBUG 4772 --- [http-nio-8081-exec-5] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-20 16:33:12.505 DEBUG 4772 --- [http-nio-8081-exec-5] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-20 16:33:12.506 DEBUG 4772 --- [http-nio-8081-exec-5] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-20 16:33:12.509 DEBUG 4772 --- [http-nio-8081-exec-5] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-20 16:33:12.513  INFO 4772 --- [http-nio-8081-exec-5] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:33:12.519  INFO 4772 --- [http-nio-8081-exec-5] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:33:12.619 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.E.updateExamToStart                : ==>  Preparing: UPDATE examination SET status = 1 WHERE status = 0 AND start_time <= ? AND end_time > ? 
+2019-03-20 16:33:12.620 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.E.updateExamToStart                : ==> Parameters: 2019-03-20 16:33:12.619(Timestamp), 2019-03-20 16:33:12.619(Timestamp)
+2019-03-20 16:33:12.621 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.E.updateExamToStart                : <==    Updates: 0
+2019-03-20 16:33:12.621 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.ExaminationMapper.updateExamToEnd  : ==>  Preparing: UPDATE examination SET status = 2 WHERE status <= 2 AND end_time <= ? 
+2019-03-20 16:33:12.622 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.ExaminationMapper.updateExamToEnd  : ==> Parameters: 2019-03-20 16:33:12.621(Timestamp)
+2019-03-20 16:33:12.623 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.ExaminationMapper.updateExamToEnd  : <==    Updates: 5
+2019-03-20 16:33:12.633 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-20 16:33:12.633 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 16:33:12.634 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 16:33:12.634 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-20 16:33:12.635 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 5(Integer)
+2019-03-20 16:33:12.636 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-20 16:33:12.637 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-20 16:33:12.638 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-20 16:33:12.641 DEBUG 4772 --- [http-nio-8081-exec-2] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-20 16:33:14.114 DEBUG 4772 --- [http-nio-8081-exec-3] com.exam.mapper.SubjectMapper.select     : ==>  Preparing: SELECT id,create_time,update_time,user_id,name,description,img_url,sort,author,status FROM subject 
+2019-03-20 16:33:14.114 DEBUG 4772 --- [http-nio-8081-exec-3] com.exam.mapper.SubjectMapper.select     : ==> Parameters: 
+2019-03-20 16:33:14.115 DEBUG 4772 --- [http-nio-8081-exec-3] com.exam.mapper.SubjectMapper.select     : <==      Total: 3
+2019-03-20 16:33:14.116 DEBUG 4772 --- [http-nio-8081-exec-3] com.exam.mapper.QuestionMapper.select    : ==>  Preparing: SELECT id,create_time,update_time,title,content,question_type,option_a,option_b,option_c,option_d,option_e,option_f,answer,parse,score,difficulty,subject_id,status FROM question 
+2019-03-20 16:33:14.116 DEBUG 4772 --- [http-nio-8081-exec-3] com.exam.mapper.QuestionMapper.select    : ==> Parameters: 
+2019-03-20 16:33:14.118 DEBUG 4772 --- [http-nio-8081-exec-3] com.exam.mapper.QuestionMapper.select    : <==      Total: 27
+2019-03-20 16:33:14.120  INFO 4772 --- [http-nio-8081-exec-3] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:33:14.128  INFO 4772 --- [http-nio-8081-exec-3] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:33:16.160 DEBUG 4772 --- [http-nio-8081-exec-9] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-20 16:33:16.161 DEBUG 4772 --- [http-nio-8081-exec-9] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 16:33:16.161 DEBUG 4772 --- [http-nio-8081-exec-9] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 16:33:16.162 DEBUG 4772 --- [http-nio-8081-exec-9] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-20 16:33:16.163 DEBUG 4772 --- [http-nio-8081-exec-9] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 10(Integer)
+2019-03-20 16:33:16.164 DEBUG 4772 --- [http-nio-8081-exec-9] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-20 16:33:16.165 DEBUG 4772 --- [http-nio-8081-exec-9] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-20 16:33:16.166 DEBUG 4772 --- [http-nio-8081-exec-9] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-20 16:33:16.169 DEBUG 4772 --- [http-nio-8081-exec-9] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-20 16:33:16.172  INFO 4772 --- [http-nio-8081-exec-9] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:33:16.179  INFO 4772 --- [http-nio-8081-exec-9] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:33:16.300 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.updateExamToStart                : ==>  Preparing: UPDATE examination SET status = 1 WHERE status = 0 AND start_time <= ? AND end_time > ? 
+2019-03-20 16:33:16.300 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.updateExamToStart                : ==> Parameters: 2019-03-20 16:33:16.299(Timestamp), 2019-03-20 16:33:16.299(Timestamp)
+2019-03-20 16:33:16.301 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.updateExamToStart                : <==    Updates: 0
+2019-03-20 16:33:16.301 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.ExaminationMapper.updateExamToEnd  : ==>  Preparing: UPDATE examination SET status = 2 WHERE status <= 2 AND end_time <= ? 
+2019-03-20 16:33:16.302 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.ExaminationMapper.updateExamToEnd  : ==> Parameters: 2019-03-20 16:33:16.301(Timestamp)
+2019-03-20 16:33:16.303 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.ExaminationMapper.updateExamToEnd  : <==    Updates: 5
+2019-03-20 16:33:16.310 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-20 16:33:16.310 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 16:33:16.312 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 16:33:16.312 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-20 16:33:16.313 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 5(Integer)
+2019-03-20 16:33:16.314 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-20 16:33:16.315 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-20 16:33:16.316 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-20 16:33:16.319 DEBUG 4772 --- [http-nio-8081-exec-10] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-20 16:33:17.351  INFO 4772 --- [http-nio-8081-exec-7] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:33:17.357  INFO 4772 --- [http-nio-8081-exec-7] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:33:20.483 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-20 16:33:20.483 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 16:33:20.484 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 16:33:20.484 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-20 16:33:20.484 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 10(Integer)
+2019-03-20 16:33:20.485 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-20 16:33:20.486 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-20 16:33:20.487 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-20 16:33:20.490 DEBUG 4772 --- [http-nio-8081-exec-6] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-20 16:33:20.492  INFO 4772 --- [http-nio-8081-exec-6] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:33:20.497  INFO 4772 --- [http-nio-8081-exec-6] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:33:20.570 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.E.updateExamToStart                : ==>  Preparing: UPDATE examination SET status = 1 WHERE status = 0 AND start_time <= ? AND end_time > ? 
+2019-03-20 16:33:20.571 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.E.updateExamToStart                : ==> Parameters: 2019-03-20 16:33:20.57(Timestamp), 2019-03-20 16:33:20.57(Timestamp)
+2019-03-20 16:33:20.571 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.E.updateExamToStart                : <==    Updates: 0
+2019-03-20 16:33:20.572 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.updateExamToEnd  : ==>  Preparing: UPDATE examination SET status = 2 WHERE status <= 2 AND end_time <= ? 
+2019-03-20 16:33:20.572 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.updateExamToEnd  : ==> Parameters: 2019-03-20 16:33:20.572(Timestamp)
+2019-03-20 16:33:20.573 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.updateExamToEnd  : <==    Updates: 5
+2019-03-20 16:33:20.591 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-03-20 16:33:20.591 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-03-20 16:33:20.592 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-03-20 16:33:20.593 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-03-20 16:33:20.594 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 5(Integer)
+2019-03-20 16:33:20.595 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-03-20 16:33:20.596 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-03-20 16:33:20.597 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-03-20 16:33:20.599 DEBUG 4772 --- [http-nio-8081-exec-8] c.e.m.E.listQuestionsByExamId            : <==      Total: 27
+2019-03-20 16:33:25.586 DEBUG 4772 --- [http-nio-8081-exec-4] com.exam.mapper.SubjectMapper.select     : ==>  Preparing: SELECT id,create_time,update_time,user_id,name,description,img_url,sort,author,status FROM subject 
+2019-03-20 16:33:25.586 DEBUG 4772 --- [http-nio-8081-exec-4] com.exam.mapper.SubjectMapper.select     : ==> Parameters: 
+2019-03-20 16:33:25.587 DEBUG 4772 --- [http-nio-8081-exec-4] com.exam.mapper.SubjectMapper.select     : <==      Total: 3
+2019-03-20 16:33:25.588 DEBUG 4772 --- [http-nio-8081-exec-4] com.exam.mapper.QuestionMapper.select    : ==>  Preparing: SELECT id,create_time,update_time,title,content,question_type,option_a,option_b,option_c,option_d,option_e,option_f,answer,parse,score,difficulty,subject_id,status FROM question 
+2019-03-20 16:33:25.588 DEBUG 4772 --- [http-nio-8081-exec-4] com.exam.mapper.QuestionMapper.select    : ==> Parameters: 
+2019-03-20 16:33:25.589 DEBUG 4772 --- [http-nio-8081-exec-4] com.exam.mapper.QuestionMapper.select    : <==      Total: 27
+2019-03-20 16:33:25.592  INFO 4772 --- [http-nio-8081-exec-4] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-03-20 16:33:25.598  INFO 4772 --- [http-nio-8081-exec-4] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据

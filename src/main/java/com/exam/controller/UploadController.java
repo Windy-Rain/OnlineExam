@@ -54,18 +54,9 @@ public class UploadController{
             String md5 = MD5.getMessageDigest(file.getBytes());
             String filePath = String.format("%1$s/%2$s%3$s", dir, md5, suffix);
             ResponseVo responseVo = QiNiuYunUtil.writeFile(cloudStorageConfig,filePath,file.getBytes());
-            /*String fileName = String.format("%1$s%2$s", md5, suffix);*/
             String qiniuDomain = cloudStorageConfig.getQiniuDomain();
             String url = String.format("%1$s/%2$s", qiniuDomain, filePath);
             if(responseVo.getStatus().equals(CoreConst.SUCCESS_CODE)){
-              /*  File sysFile = new File();
-                sysFile.setName(originalFilename);
-                sysFile.setSize(file.getSize()+"");
-                sysFile.setType(suffix);
-                sysFile.setUrl(url);
-                sysFile.setRelUrl(filePath);
-                sysFile.setCreateTime(new Date());
-                fileService.insertFile(sysFile);*/
                 return  new UploadResponse(url,originalFilename, suffix, url, CoreConst.SUCCESS_CODE);
             }else{
                 return  new UploadResponse(originalFilename,  CoreConst.FAIL_CODE,responseVo.getMsg());

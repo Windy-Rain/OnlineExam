@@ -47,8 +47,13 @@
 		ORDER BY s.sort ASC
     </select>
     
-    <delete id="deleteSubjectById" parameterType="int">
-        DELETE FROM subject
-        where id = #{id}
+    <delete id="deleteBatch" parameterType="map">
+    	DELETE FROM
+    	subject
+    	WHERE
+    	id in
+    	<foreach collection="array" item="item" index="index" open="(" separator=", " close=")">
+    		#{item}
+    	</foreach>
     </delete>
 </mapper>

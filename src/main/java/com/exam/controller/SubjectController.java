@@ -13,12 +13,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.exam.model.Question;
 import com.exam.model.Subject;
 import com.exam.model.User;
 import com.exam.service.SubjectService;
 import com.exam.util.CoreConst;
+import com.exam.util.PageUtil;
 import com.exam.util.ResultUtil;
+import com.exam.vo.base.PageResultVo;
 import com.exam.vo.base.ResponseVo;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("subject")
@@ -29,11 +34,11 @@ public class SubjectController {
 	
 	@PostMapping("list")
 	@ResponseBody
-	public List<Subject> loadSubject(){
-		Subject subject = new Subject();
-		subject.setStatus(CoreConst.STATUS_VALID);
-		List<Subject> subjectList = subjectService.selectSubjects(subject);
-		return subjectList;
+	public PageResultVo loadSubject(Integer limit, Integer offset){
+		PageHelper.startPage(PageUtil.getPageNo(limit, offset),limit);
+		List<Subject> subjectList = subjectService.selectAll();
+		PageInfo<Subject> pages = new PageInfo<>(subjectList);
+		return ResultUtil.table(subjectList, pages.getTotal(), pages);
 	}
 	
 	/**
@@ -86,11 +91,17 @@ public class SubjectController {
 	@PostMapping("/delete")
 	@ResponseBody
 	public ResponseVo delete(Integer id) {
-		int i = subjectService.delete(id);
-		if(i > 0) {
-			return ResultUtil.success("删除课目成功！");
+		//验证该课程是否存在题目
+		Question question = subjectService.validateBySubjectIds(new Integer[] {id});
+		if(question.getCounts() > 0) {
+			return ResultUtil.error("无法删除，题库中存在该课程的题目！");
 		}else {
-			return ResultUtil.error("删除课目失败！");
+			int i = subjectService.deleteBatch(new Integer[] {id});
+			if(i > 0) {
+				return ResultUtil.success("删除课目成功！");
+			}else {
+				return ResultUtil.error("删除课目失败！");
+			}
 		}
 	}
 	
@@ -102,11 +113,17 @@ public class SubjectController {
 	@PostMapping("/batch/delete")
 	@ResponseBody
 	public ResponseVo deleteBatch(@RequestParam("ids[]") Integer[]ids) {
-		int i = subjectService.deleteBatch(ids);
-		if(i > 0) {
-			return ResultUtil.success("批量删除课程成功！");
+		//验证该课程是否存在题目
+		Question question = subjectService.validateBySubjectIds(ids);
+		if(question.getCounts() > 0) {
+			return ResultUtil.error("无法删除，题库中存在该课程的题目！");
 		}else {
-			return ResultUtil.error("批量删除课程失败！");
+			int i = subjectService.deleteBatch(ids);
+			if(i > 0) {
+				return ResultUtil.success("批量删除课程成功！");
+			}else {
+				return ResultUtil.error("批量删除课程失败！");
+			}
 		}
 	}
 }

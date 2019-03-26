@@ -24,6 +24,8 @@ public class Question extends BaseVo {
 	@Transient
 	private String stuAnswer;
 	@Transient
+	private Integer counts;
+	@Transient
     Subject subject;
 	public String getTitle() {
 		return title;
@@ -127,5 +129,10 @@ public class Question extends BaseVo {
 	public void setSubject(Subject subject) {
 		this.subject = subject;
 	}
-	
+	public Integer getCounts() {
+		return counts;
+	}
+	public void setCounts(Integer counts) {
+		this.counts = counts;
+	}
 }

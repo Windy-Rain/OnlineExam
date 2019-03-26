@@ -48,17 +48,24 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label  class="col-sm-3 control-label">课程封面 <span class="red">*</span>:</label>
-                            <div class="col-sm-8">
-                                <input name="imgUrl" class="form-control" require="">
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label  class="col-sm-3 control-label">排序 <span class="red">*</span>:</label>
                             <div class="col-sm-8">
                                 <input name="sort" class="form-control" require="" plusinteger="">
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">课程封面 :</label>
+                            <div class="col-sm-8" style="position: relative">
+                                <input type="text" class="form-control" name="imgUrl" id="imgUrl" placeholder="封面图地址（建议800*300）">
+                                <div class="jax-upload-btn" style="position: absolute;right:20px;top: 0">
+                                    <i class="fa fa-cloud-upload upload-img-btn"></i>
+                                </div>
+                        	</div>
+                    	</div>
+                    	<div id="upload-content" class="upload-content form-group" style="padding-left:0">
+                    		<label class="col-sm-3 control-label"></label>
+                    		
+                    	</div>
                     </div>
                     <div class="box-footer">
                         <div class="pull-right">
@@ -90,55 +97,63 @@
 <script>
     var editFlag = "[[${@perms.hasPerm('subject:edit')}]]";
     var deleteFlag = "[[${@perms.hasPerm('subject:delete')}]]";
-    var Menu = {
-        id: "table",
-        table: null,
-        layerIndex: -1
-    };
-    Menu.initColumn = function () {
-        var columns = [ 
-        	{
-                field: 'name',
-                title: '课程名称',
-                align : "left",
-            },{
-                field: 'description',
-                title: '课程描述',
-                align: "left",
-            },{
-				field: 'imgUrl',
-				title: '课程封面',
-				align: 'left',
-            },
-            {
-                field: 'sort',
-                title: '排序',
-                align : "center",
-            },
-            {
-                field : 'operation',
-                title : '操作',
-                align : "center",
-                formatter : function(row, index) {
-                    var edit = editFlag=="true" ? '<a class="btn btn-primary btn-sm" onclick="editSubject('+row.id+')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑</a>' : '';
-                    var del = deleteFlag=="true" ? '<a class="btn btn-danger btn-sm" onclick="deleteSubject('+row.id+')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除</a>' : '';
-                    return edit + " " + del;
-                }
-            }];
-        return columns;
-    };
+    var columns = [ 
+    	{checkbox: true },
+    	{
+            field: 'id',
+            title: '课程ID',
+            align : "center",
+        },{
+            field: 'name',
+            title: '课程名称',
+            align : "center",
+        },{
+            field: 'description',
+            title: '课程描述',
+            align: "center",
+        },{
+            field: 'imgUrl',
+            title: '课程封面',
+            align : "center",
+            class:"theme-pre",
+            formatter : function(value, row, index) {
+                return '<img src="'+value+'"/>'
+            }
+        },{
+            field: 'sort',
+            title: '排序',
+            align : "center",
+        },
+        {
+            field : 'operation',
+            title : '操作',
+            align : "center",
+            formatter : function(value, row, index) {
+                var edit = editFlag=="true" ? '<a class="btn btn-primary btn-sm" onclick="editSubject('+row.id+')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑</a>' : '';
+                var del = deleteFlag=="true" ? '<a class="btn btn-danger btn-sm" onclick="deleteSubject('+row.id+')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除</a>' : '';
+                return edit + " " + del;
+            }
+        }];
+    var options={
+            id:"#table",
+            url: '/subject/list',
+            columns:columns,
+            toolbar: '#toolbar',
+            showRefresh: true,
+            queryParams : queryParams
+        }
+        Core.initTable(options);
 
-    /*加载列表*/
-    $(function () {
-        var colunms = Menu.initColumn();
-        var table = new TreeTable(Menu.id, "/subject/list", colunms,"id");
-        table.setExpandColumn(1);
-        table.setIdField("id");
-        table.setCodeField("id");
-        table.setStriped(false);
-        table.init();
-        Menu.table = table;
-    });
+    /*查询参数*/
+    function queryParams(params) {
+        var temp = { //这里的键的名字和控制器的变量名必须一致，这边改动，控制器也需要改成一样的
+            limit : params.limit, //页面大小
+            offset : params.offset, //页码
+            name : $("#name").val(),
+            description : $("#description").val()
+        };
+        return temp;
+    }
 
     /*编辑*/
     function editSubject(id) {
@@ -151,7 +166,7 @@
         Core.confirm("确定删除该课程？",function () {
             Core.postAjax("/subject/delete",{"id":id},function (data) {
                 if(data.status==200){
-                    Menu.table.refresh();
+                	Core.refreshTable("#table");
                 }
                 layer.msg(data.msg);
             })
@@ -172,7 +187,7 @@
                     Core.unmask("#saveSubject");
                     if(data.status==200){
                         $("#subjectModal").modal("hide");
-                        Menu.table.refresh();
+                        Core.refreshTable("#table");
                     }
                     layer.msg(data.msg);
                 })
@@ -198,4 +213,30 @@
 	        }
 	    });
     });
+    
+    $(function () {
+        /*上传图片*/
+        $(".upload-img-btn").click(function(){
+            if($("#upload-content").find(".upload-img-div").size()==0){
+                var imgHtml = '<div class="col-md-8 upload-div upload-img-div">'+
+                        '<div class="upload-item">'+
+                        '<p class="upload-title">封面图</p>'+
+                        '<p class="upload-file"><i class="fa fa-cloud-upload fz-70"></i></p>'+
+                        '<p class="upload-btns">'+
+                        '<a type="button" class="btn btn-sm btn-block btn-info imgUploader">上传</a>'+
+                        '</p>'+
+                        '</div>'+
+                        '</div>'
+                $("#upload-content").append(imgHtml);
+                $(".imgUploader").upload({
+                    server : '[[@{/upload/upload}]]',
+                    swf: '/img/Uploader.swf',
+                    imgAccept:true
+                }, function(url, picker) {
+                    $("#imgUrl").val(url);
+                    echoGtUploadResMethd(url,picker);
+                });
+            }
+        })
+    })
 </script>

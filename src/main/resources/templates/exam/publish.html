@@ -106,7 +106,9 @@
 <script>
     /*去tm的thymeleaf，只能祭出jq了？*/
     var subjects = "[[${subjects}]]";
+    console.log(subjects);
     var subjectsObj = JSON.parse(subjects.replace(/&quot;/g, '"'));
+    console.log(subjectsObj);
     var html='<option value="">请选择</option>';
     $.each(subjectsObj,function (i,item) {
     	if(item!=null){

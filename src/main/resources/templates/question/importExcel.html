@@ -1,0 +1,72 @@
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8" />
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+        <li><a href="#">考试管理</a></li>
+        <li class="active">题库录入</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Form Element sizes -->
+<div class="box box-success">
+	<div class="box-header with-border">
+		<h3 class="box-title">批量导入Excel表中题目到题库</h3>
+	</div>
+	<div class="box-body" id="excelForm">
+		<div class="form-group" style="height:200px">
+			<input id="myfile" name="myfile" type="file">
+		</div>
+	</div>
+	<div class="box-footer">
+		<button class="btn btn-primary" onclick="importExcel()">导入</button>
+	</div>
+</div>
+</section>
+<script>
+    /*去tm的thymeleaf，只能祭出jq了？*/
+
+    function importExcel() {
+    	var formData = new FormData();
+		formData.append("myfile", document.getElementById("myfile").files[0]);
+		alert(formData);
+		console.log(formData);
+    	if(validExcel()){
+	        Core.confirm("确认批量导入题目？",function () {
+	        	$.ajax({
+	                url: 'index?#/question/importExcel',
+	                type: 'POST',
+	                data: formData,
+	                async: false,
+	                cache: false,
+	                contentType: false,
+	                processData: false,
+	                success: function (data) {
+	                	layer.msg(data.msg);
+	                },
+	                error: function (data) {
+	                	layer.msg(data.msg);
+	                }
+	           })
+	        })
+    	}
+    }
+    
+   	/*  验证文件类型 */
+    function validExcel(){
+		//得到上传文件的值
+		 var fileName=document.getElementById("myfile").value;
+		 //返回String对象中子字符串最后出现的位置.
+		 var seat=fileName.lastIndexOf(".");
+		 //返回位于String对象中指定位置的子字符串并转换为小写.
+		 var extension=fileName.substring(seat).toLowerCase();
+		 //判断允许上传的文件格式
+		 if(extension==".xls" || extension==".xlsx"){
+			 return true;
+		 }else{
+			layer.msg("不支持"+extension+"文件的上传!");
+		 	return false;
+		 }
+    }
+</script>

@@ -41,6 +41,13 @@ public interface QuestionMapper extends MapperUtil<Question> {
 	 * @param questionList
 	 */
 	void batchInsert(List<Question> questionList);
+
+	/**
+	 * 验证该课程是否有子数据
+	 * @param ids
+	 * @return
+	 */
+	Question validateBySubjectIds(Integer[] ids);
 	
 
 }

@@ -60,12 +60,17 @@
         <div id="toolbar" class="btn-group">
             <shiro:hasPermission name="question:add">
             <button id="btn_add" type="button" class="btn btn-primary">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>题目录入
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 自定义题目
+            </button>
+            </shiro:hasPermission>
+            <shiro:hasPermission name="question:importExcel">
+            <button id="btn_import_excel" type="button" class="btn btn-success">
+                <span class="glyphicon glyphicon-print" aria-hidden="true"></span> 批量导入题库
             </button>
             </shiro:hasPermission>
             <shiro:hasPermission name="question:batchDelete">
             <button id="btn_batch_delete" type="button" class="btn btn-danger">
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>批量删除
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 批量删除
             </button>
             </shiro:hasPermission>
         </div>
@@ -215,8 +220,11 @@
         });
         /*新增*/
         $("#btn_add").click(function(){
-            window.location.href="#question/add"
+            window.location.href="#question/add";
         });
+        $("#btn_import_excel").click(function(){
+        	window.location.href="#question/importExcel";
+        })
         /*批量删除*/
         $("#btn_batch_delete").click(function(){
             var checkedRows= Core.selectMutiData("#table");

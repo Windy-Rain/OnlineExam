@@ -26,6 +26,9 @@
 			<result property="description" jdbcType="VARCHAR" column="s_subject_description"/>
 		</association>
     </resultMap>
+    <resultMap id="VlidateResultMap" type="com.exam.model.Question" >
+        <id column="num" property="counts" jdbcType="INTEGER" />
+    </resultMap>
     <sql id="Base_Column_List" >
         id,title,content,question_type,option_a,option_b,option_c,option_d,option_e,option_f,
         answer,parse,score,difficulty,subject_id,exam_id,create_time,update_time,status
@@ -80,6 +83,18 @@
     	</foreach>
     </insert>
     
+	<select id="validateBySubjectIds" parameterType="map" resultMap="VlidateResultMap">
+		SELECT
+		COUNT(question.id) AS num
+		FROM
+		question
+		WHERE
+		question.subject_id in
+		<foreach collection="array" item="item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+		
+	</select>    
     <delete id="deleteBatch" parameterType="map">
     	DELETE FROM
     	question

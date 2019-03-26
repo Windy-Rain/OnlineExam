@@ -1,6 +1,7 @@
 package com.exam.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.shiro.SecurityUtils;
@@ -104,6 +105,7 @@ public class ExaminationController {
 	@PostMapping("/edit")
 	@ResponseBody
 	public ResponseVo edit(Examination examination, Integer[]question) {
+		examination.setStatus(0);
 		examService.updateNotNull(examination);
 		examQuestionService.removeByExamId(examination.getId());
 		examQuestionService.insertList(examination.getId(),question);

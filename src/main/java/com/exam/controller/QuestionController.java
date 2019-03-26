@@ -120,6 +120,11 @@ public class QuestionController {
      * @param myfile
      * @return
      */
+    @GetMapping("/importExcel")
+    public String importExcel() {
+    	return "question/importExcel";
+    }
+    
     @PostMapping("/importExcel")
     @ResponseBody
     public ResponseVo importExcel(@RequestParam("myfile") MultipartFile myfile) {

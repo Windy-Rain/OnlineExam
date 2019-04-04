@@ -64,7 +64,6 @@
                     	</div>
                     	<div id="upload-content" class="upload-content form-group" style="padding-left:0">
                     		<label class="col-sm-3 control-label"></label>
-                    		
                     	</div>
                     </div>
                     <div class="box-footer">
@@ -229,7 +228,7 @@
                         '</div>'
                 $("#upload-content").append(imgHtml);
                 $(".imgUploader").upload({
-                    server : '[[@{/upload/upload}]]',
+                    server : '[[@{/upload/input}]]',
                     swf: '/img/Uploader.swf',
                     imgAccept:true
                 }, function(url, picker) {

@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.exam.model.Question;
 import com.exam.vo.QuestionConditionVo;
+import com.exam.vo.base.ResponseVo;
 
 public interface QuestionService extends BaseService<Question> {
 	
@@ -44,6 +45,6 @@ public interface QuestionService extends BaseService<Question> {
 	 * 导入Excel表数据
 	 * @param questionList
 	 */
-	Integer importExcel(MultipartFile myFile);
+	ResponseVo importExcel(MultipartFile file);
 
 }

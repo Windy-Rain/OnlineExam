@@ -64,7 +64,7 @@
             </button>
             </shiro:hasPermission>
             <shiro:hasPermission name="question:importExcel">
-            <button id="btn_import_excel" type="button" class="btn btn-success">
+            <button id="btn_import_excel" type="button" class="btn btn-success" data-toggle="modal" data-target="#importExcelModal">
                 <span class="glyphicon glyphicon-print" aria-hidden="true"></span> 批量导入题库
             </button>
             </shiro:hasPermission>
@@ -77,6 +77,40 @@
         <table id="table" style="table-layout:fixed"></table>
     </div>
 </section>
+
+<!-- 导入Excel表模态框 -->
+<div id="importExcelModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog"  role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">批量导入Excel表中题目到题库</h4>
+            </div>
+            <div class="modal-body">
+				<div class="box-body">
+    				<div class="form-group">
+                        <label class="col-sm-3 control-label">Excel表格路径 :</label>
+                        <div class="col-sm-8" style="position: relative">
+                            <input type="text" class="form-control" id="excelUrl" placeholder="excel路径（文件大小不得超过2M）">
+                            <div class="jax-upload-btn" style="position: absolute;right:20px;top: 0">
+                                <i class="fa fa-cloud-upload upload-file-btn"></i>
+                            </div>
+                       	</div>
+                   	</div>
+                   	<div id="upload-content" class="upload-content form-group" style="padding-left:0">
+                   		<label class="col-sm-3 control-label"></label>
+                   	</div>
+          		</div>
+          		<div class="box-footer">
+              		<div class="pull-right">
+		                  <button type="button" id="saveExcel" class="btn btn-success">确定</button>
+		                  <button type="button" data-dismiss="modal" class="btn btn-default">取消</button>
+              		</div>
+          		</div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
     var editFlag = "[[${@perms.hasPerm('question:edit')}]]";
@@ -213,7 +247,8 @@
             })
         })
     }
-    $(function () {
+    
+     $(function () {
         /*查询*/
         $("#btn_query").click(function(){
             Core.refreshTable("#table");
@@ -222,9 +257,21 @@
         $("#btn_add").click(function(){
             window.location.href="#question/add";
         });
+        /*导入excel*/
         $("#btn_import_excel").click(function(){
-        	window.location.href="#question/importExcel";
+            Core.clearError("#importExcelModal");
+        });
+       /*  刷新题库 */
+        $("#saveExcel").click(function(){
+        	if($("#excelUrl").val() != ""){
+        		$("#importExcelModal").modal("hide");
+                Core.refreshTable("#table");
+        	}else{
+        		layer.msg("请上传数据");
+        	}
+        	
         })
+        
         /*批量删除*/
         $("#btn_batch_delete").click(function(){
             var checkedRows= Core.selectMutiData("#table");
@@ -244,5 +291,30 @@
             }
         });
     });
-
+     
+     $(function () {
+         /*导入excel中数据*/
+         $(".upload-file-btn").click(function(){
+             if($("#upload-content").find(".upload-file-div").size()==0){
+                 var imgHtml = '<div class="col-md-8 upload-div upload-file-div">'+
+                         '<div class="upload-item">'+
+                         '<p class="upload-file"><i class="fa fa-cloud-upload fz-70"></i></p>'+
+                         '<p class="upload-btns">'+
+                         '<a type="button" class="btn btn-sm btn-block btn-success excelUploader">上传</a>'+
+                         '</p>'+
+                         '</div>'+
+                         '</div>'
+                 $("#upload-content").append(imgHtml);
+                 $(".excelUploader").upload({
+                     server : '[[@{/upload/importExcel}]]',
+                     swf: '/img/Uploader.swf',
+                     imgAccept:'xls,xlsx'
+                 }, function(url, picker) {
+                     $("#excelUrl").val(url);
+                     echoGtUploadResMethd(url,picker);
+                 });
+             }
+         })
+     })
+    
 </script>

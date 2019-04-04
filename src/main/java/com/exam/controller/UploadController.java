@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.exam.enmus.SysConfigKey;
 import com.exam.exception.UploadFileNotFoundException;
+import com.exam.service.QuestionService;
 import com.exam.service.SysConfigService;
 import com.exam.util.CoreConst;
 import com.exam.util.MD5;
@@ -36,6 +37,9 @@ public class UploadController{
 
     @Autowired
     private SysConfigService sysConfigService;
+    @Autowired
+    private QuestionService questionService;
+    
     @ResponseBody
     @PostMapping(value = "/upload")
     public UploadResponse upload(@RequestParam(value = "file", required = false) MultipartFile file) throws Exception{
@@ -45,8 +49,6 @@ public class UploadController{
         try {
             String originalFilename = file.getOriginalFilename();
             String suffix = originalFilename.substring(originalFilename.lastIndexOf(".")).toLowerCase();
-            SimpleDateFormat fmt = new SimpleDateFormat("yyyy/MM/dd");
-            /*String dir = fmt.format(new Date());*/
             String value = sysConfigService.selectAll().get(SysConfigKey.CLOUD_STORAGE_CONFIG.getValue());
             Gson gson = new Gson();
             CloudStorageConfigVo cloudStorageConfig = gson.fromJson(value,CloudStorageConfigVo.class);
@@ -65,6 +67,29 @@ public class UploadController{
             logger.error(String.format("UploadController.upload%s", e));
             throw e;
         }
+    }
+    
+    @ResponseBody
+    @PostMapping(value = "/importExcel")
+    public UploadResponse importExcel(@RequestParam(value = "file", required = false) MultipartFile file) throws IOException {
+    	if (file == null || file.isEmpty()) {
+            throw new UploadFileNotFoundException(UploadResponse.Error.FILENOTFOUND);
+        }
+    	try {
+    		ResponseVo responseVo = questionService.importExcel(file);
+    		String originalFilename = file.getOriginalFilename();
+    		String suffix = originalFilename.substring(originalFilename.lastIndexOf(".")).toLowerCase();
+    		String md5 = MD5.getMessageDigest(file.getBytes());
+    		String url = String.format("%1$s/%2$s", md5, suffix);
+    		if(responseVo.getStatus().equals(CoreConst.SUCCESS_CODE)){
+    			return  new UploadResponse(url,originalFilename, suffix, url, CoreConst.SUCCESS_CODE);
+    		}else {
+    			return  new UploadResponse(originalFilename, CoreConst.FAIL_CODE,responseVo.getMsg());
+    		}
+		} catch (Exception e) {
+            logger.error(String.format("UploadController.upload%s", e));
+            throw e;
+		}
     }
     @ResponseBody
     @PostMapping("/upload2QiniuForMd")

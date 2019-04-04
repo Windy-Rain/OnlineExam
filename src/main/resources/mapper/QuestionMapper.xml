@@ -74,12 +74,15 @@
     </select>
     
     <insert id="batchInsert" parameterType="java.util.List">
+    	<selectKey resultType ="java.lang.Integer" keyProperty= "id" order= "AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey >
     	INSERT INTO question (title,content,question_type,option_a,option_b,option_c,option_d,
         answer,parse,score,difficulty,subject_id,status)
     	VALUES
-    	<foreach collection="List" item="item" index="index" separator=",">
-    		(#{item.title},#{item.content},#{item.title},#{item.question_type},#{item.option_a},#{item.option_b},#{item.option_c},#{item.option_d},#{item.answer},
-    		#{item.parse},#{item.score},#{item.difficulty},#{item.subject_id},#{item.status})
+    	<foreach collection="list" item="item" index="index" separator=",">
+    		(#{item.title},#{item.content},#{item.questionType},#{item.optionA},#{item.optionB},#{item.optionC},#{item.optionD},#{item.answer},
+    		#{item.parse},#{item.score},#{item.difficulty},#{item.subjectId},#{item.status})
     	</foreach>
     </insert>
     

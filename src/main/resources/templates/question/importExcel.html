@@ -15,9 +15,15 @@
 		<h3 class="box-title">批量导入Excel表中题目到题库</h3>
 	</div>
 	<div class="box-body" id="excelForm">
-		<div class="form-group" style="height:200px">
-			<input id="myfile" name="myfile" type="file">
-		</div>
+		<div class="col-md-8 upload-div upload-img-div">
+           <div class="upload-item">
+              <p class="upload-title">Excel表</p>
+              <p class="upload-file"><i class="fa fa-cloud-upload fz-70"></i></p>
+              <p class="upload-btns">
+              <a type="button" class="btn btn-sm btn-block btn-info imgUploader">上传</a>
+              </p>
+           </div>
+       </div>
 	</div>
 	<div class="box-footer">
 		<button class="btn btn-primary" onclick="importExcel()">导入</button>

@@ -25,7 +25,9 @@ import com.exam.exception.ExcelException;
 import com.exam.mapper.QuestionMapper;
 import com.exam.model.Question;
 import com.exam.service.QuestionService;
+import com.exam.util.ResultUtil;
 import com.exam.vo.QuestionConditionVo;
+import com.exam.vo.base.ResponseVo;
 import com.github.pagehelper.util.StringUtil;
 
 @Service
@@ -72,7 +74,7 @@ public class QuestionServiceImpl extends BaseServiceImpl<Question> implements Qu
 	}
 
 	@Override
-	public Integer importExcel(MultipartFile myFile) {
+	public ResponseVo importExcel(MultipartFile myFile) {
 		List<Question> questions = new ArrayList<>();
 		Workbook workbook = null;
 		//获取文件名
@@ -120,19 +122,19 @@ public class QuestionServiceImpl extends BaseServiceImpl<Question> implements Qu
 				question.setOptionA(option_a);
 				//选项B
 				String option_b = getCellValue(row.getCell(4));
-				question.setOptionA(option_b);
+				question.setOptionB(option_b);
 				//选项C
 				String option_c = getCellValue(row.getCell(5));
-				question.setOptionA(option_c);
+				question.setOptionC(option_c);
 				//选项D
 				String option_d = getCellValue(row.getCell(6));
-				question.setOptionA(option_d);
+				question.setOptionD(option_d);
 				//答案
 				String answer = getCellValue(row.getCell(7));
 				question.setAnswer(answer);
 				//解析
 				String parse = getCellValue(row.getCell(8));
-				question.setAnswer(parse);
+				question.setParse(parse);
 				//分值
 				String score = getCellValue(row.getCell(9));
 				if(!StringUtil.isEmpty(score)) {
@@ -143,25 +145,29 @@ public class QuestionServiceImpl extends BaseServiceImpl<Question> implements Qu
 				String difficulty = getCellValue(row.getCell(10));
 				if(!StringUtil.isEmpty(difficulty)) {
 					Integer new_difficulty = Integer.parseInt(difficulty);
-					question.setScore(new_difficulty);
+					question.setDifficulty(new_difficulty);
 				}
 				//课程ID
 				String subject_id = getCellValue(row.getCell(11));
 				if(!StringUtil.isEmpty(subject_id)) {
 					Integer new_subject_id = Integer.parseInt(subject_id);
-					question.setScore(new_subject_id);
+					question.setSubjectId(new_subject_id);
 				}
 				//状态
 				String status = getCellValue(row.getCell(12));
 				if(!StringUtil.isEmpty(status)) {
 					Integer new_status = Integer.parseInt(status);
-					question.setScore(new_status);
+					question.setStatus(new_status);
 				}
 				questions.add(question);
 			}
 		}
-		questionMapper.batchInsert(questions); //批量插入
-		return rows;
+		int i = questionMapper.batchInsert(questions); //批量插入
+		if(i > 0) {
+			return ResultUtil.success("成功导入"+ rows + "道题目");
+		}else {
+			return ResultUtil.error("导入失败");
+		}
 	}
 	
 	public String getCellValue(Cell cell) {

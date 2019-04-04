@@ -115,24 +115,4 @@ public class QuestionController {
     	}
     }
     
-    /**
-     * 批量导入题库
-     * @param myfile
-     * @return
-     */
-    @GetMapping("/importExcel")
-    public String importExcel() {
-    	return "question/importExcel";
-    }
-    
-    @PostMapping("/importExcel")
-    @ResponseBody
-    public ResponseVo importExcel(@RequestParam("myfile") MultipartFile myfile) {
-    	Integer nums = questionService.importExcel(myfile); 
-    	if(nums > 0) {
-    		return ResultUtil.success("成功导入"+ nums + "道题目");
-    	}else {
-    		return ResultUtil.error("导入失败");
-    	}
-    }
 }

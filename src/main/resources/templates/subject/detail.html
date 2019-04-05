@@ -15,16 +15,22 @@
             </div>
         </div>
         <div class="form-group">
-            <label  class="col-sm-3 control-label">课程封面<span class="red">*</span>:</label>
-            <div class="col-sm-8">
-                <input th:value="${subject.imgUrl}" name="imgUrl" class="form-control" require="">
-            </div>
-        </div>
-        <div class="form-group">
             <label  class="col-sm-3 control-label">排序 <span class="red">*</span>:</label>
             <div class="col-sm-8">
                 <input th:value="${subject.sort}" name="sort" class="form-control" require="" plusinteger="">
             </div>
+        </div>
+        <div class="form-group">
+            <label  class="col-sm-3 control-label">课程封面 :</label>
+            <div class="col-sm-8" style="position: relative">
+                <input type="text" class="form-control" th:value="${subject.imgUrl}" name="imgUrl" id="imgUpdateUrl" placeholder="封面图地址（建议800*300）">
+                <div class="jax-upload-btn" style="position: absolute;right:20px;top: 0">
+                    <i class="fa fa-cloud-upload update-img-btn"></i>
+                </div>
+         	</div>
+        </div>
+        <div id="update-content" class="upload-content form-group" style="padding-left:0">
+            <label class="col-sm-3 control-label"></label>
         </div>
     </div>
     <div class="box-footer">
@@ -43,12 +49,37 @@
                     if (data.status == 200) {
                         Core.unmask("#saveDetailSubject");
                         $("#subjectDetailModal").modal("hide");
-                        Menu.table.refresh();
-                        //Core.refreshTable("#table",true);
+                        Core.refreshTable("#table");
                     }
                     layer.msg(data.msg);
                 })
             }
         });
     });
+    
+    $(function () {
+        /*更新课程封面*/
+        $(".update-img-btn").click(function(){
+            if($("#update-content").find(".update-img-div").size()==0){
+                var imgHtml = '<div class="col-md-8 upload-div update-img-div">'+
+                        '<div class="upload-item">'+
+                        '<p class="upload-title">封面图</p>'+
+                        '<p class="upload-file"><i class="fa fa-cloud-upload fz-70"></i></p>'+
+                        '<p class="upload-btns">'+
+                        '<a type="button" class="btn btn-sm btn-block btn-info imgUpdate">上传</a>'+
+                        '</p>'+
+                        '</div>'+
+                        '</div>'
+                $("#update-content").append(imgHtml);
+                $(".imgUpdate").upload({
+                    server : '[[@{/upload/upload}]]',
+                    swf: '/img/Uploader.swf',
+                    imgAccept:true
+                }, function(url, picker) {
+                    $("#imgUpdateUrl").val(url);
+                    echoGtUploadResMethd(url,picker);
+                });
+            }
+        })
+    })
 </script>

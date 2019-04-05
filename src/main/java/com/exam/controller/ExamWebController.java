@@ -82,18 +82,12 @@ public class ExamWebController {
 	public String toQuestion(Model model) {
 		if(SecurityUtils.getSubject().isAuthenticated()) {
 			Subject subject = new Subject();
-			List<Subject> subjectList = subjectService.select(subject);
-			Question question = new Question();
-			List<Question> questionList = questionService.select(question);
-			for(int i = 0; i < subjectList.size(); i++) {
-				List<Question>  questions = new ArrayList<>(); 
-				for(Question q : questionList) {
-					if(subjectList.get(i).getId().equals(q.getSubjectId())) {
-						questions.add(q);
-					}
-				}
-				
+			List<Subject> subjects = subjectService.select(subject);
+			for(Subject s : subjects) {
+				int num = questionService.countBySubjectId(s.getId());
+				s.setNums(num);
 			}
+			model.addAttribute("subjects", subjects);
 			return "index/question";
 		}else {
 			return "index/login";

@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.exam.service.QuestionService;
+import com.exam.service.SubjectService;
 import com.exam.service.UserService;
 
 
@@ -18,14 +19,19 @@ public class RenderController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private SubjectService subjectService;
+	
 
     /*工作台*/
     @GetMapping("/workdest")
     public String workdest(Model model){
     	int questionNums = questionService.totalNum();
     	int userNums = userService.userNums();
+    	int subjectNums = subjectService.totalNum();
     	model.addAttribute("questionNums", questionNums);
     	model.addAttribute("userNums", userNums);
+    	model.addAttribute("subjectNums", subjectNums);
         return "manager/workdest";
     }
 

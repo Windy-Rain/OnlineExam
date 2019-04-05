@@ -20,4 +20,7 @@ public interface SubjectService extends BaseService<Subject> {
      */
 	Question validateBySubjectIds(Integer[] ids);
 
+	int totalNum();
+
+
 }

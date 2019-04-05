@@ -1,5 +1,7 @@
 package com.exam.model;
 
+import javax.persistence.Transient;
+
 import com.exam.vo.base.BaseVo;
 
 public class Subject extends BaseVo {
@@ -11,6 +13,9 @@ public class Subject extends BaseVo {
     private Integer sort;
     private String author;
 	private Integer status;
+	
+	@Transient
+	private Integer nums;
 	
 	public String getUserId() {
 		return userId;
@@ -54,6 +59,10 @@ public class Subject extends BaseVo {
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-	
-	
+	public Integer getNums() {
+		return nums;
+	}
+	public void setNums(Integer nums) {
+		this.nums = nums;
+	}
 }

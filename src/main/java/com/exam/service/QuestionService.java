@@ -47,4 +47,7 @@ public interface QuestionService extends BaseService<Question> {
 	 */
 	ResponseVo importExcel(MultipartFile file);
 
+	
+	int countBySubjectId(Integer subjectId);
+
 }

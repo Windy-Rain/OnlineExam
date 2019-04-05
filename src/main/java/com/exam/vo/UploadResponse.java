@@ -73,6 +73,14 @@ public class UploadResponse {
         this.url=url;
         this.status=status;
     }
+    
+    public UploadResponse(String originalFileName, String type, String url, Integer status, String msg) {
+    	this.originalFileName = originalFileName;
+    	this.type = type;
+    	this.url = url;
+    	this.status = status;
+    	this.msg = msg;
+    }
 
     public UploadResponse(String originalFileName, Integer status , String msg){
         this.originalFileName =originalFileName;

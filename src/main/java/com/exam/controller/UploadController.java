@@ -82,7 +82,7 @@ public class UploadController{
     		String md5 = MD5.getMessageDigest(file.getBytes());
     		String url = String.format("%1$s/%2$s", md5, suffix);
     		if(responseVo.getStatus().equals(CoreConst.SUCCESS_CODE)){
-    			return  new UploadResponse(url,originalFilename, suffix, url, CoreConst.SUCCESS_CODE);
+    			return  new UploadResponse(originalFilename, suffix, url, CoreConst.SUCCESS_CODE, responseVo.getMsg());
     		}else {
     			return  new UploadResponse(originalFilename, CoreConst.FAIL_CODE,responseVo.getMsg());
     		}

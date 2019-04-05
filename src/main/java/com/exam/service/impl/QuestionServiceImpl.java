@@ -74,20 +74,20 @@ public class QuestionServiceImpl extends BaseServiceImpl<Question> implements Qu
 	}
 
 	@Override
-	public ResponseVo importExcel(MultipartFile myFile) {
+	public ResponseVo importExcel(MultipartFile file) {
 		List<Question> questions = new ArrayList<>();
 		Workbook workbook = null;
 		//获取文件名
-		String fileName = myFile.getOriginalFilename();
+		String fileName = file.getOriginalFilename();
 		if(fileName.endsWith(XLS)) {
 			try {
-				workbook = new HSSFWorkbook(myFile.getInputStream()); //2003版本
+				workbook = new HSSFWorkbook(file.getInputStream()); //2003版本
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}else if(fileName.endsWith(XLSX)) {
 			try {
-				workbook = new XSSFWorkbook(myFile.getInputStream()); //2007版本
+				workbook = new XSSFWorkbook(file.getInputStream()); //2007版本
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -208,4 +208,9 @@ public class QuestionServiceImpl extends BaseServiceImpl<Question> implements Qu
         }
         return value.trim();
     }
+
+	@Override
+	public int countBySubjectId(Integer subjectId) {
+		return questionMapper.countBySubjectId(subjectId);
+	}
 }

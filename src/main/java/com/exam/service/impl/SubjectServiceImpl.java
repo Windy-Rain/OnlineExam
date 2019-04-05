@@ -39,4 +39,9 @@ public class SubjectServiceImpl extends BaseServiceImpl<Subject> implements Subj
 		return questionMapper.validateBySubjectIds(ids);
 	}
 
+	@Override
+	public int totalNum() {
+		return subjectMapper.totalNum();
+	}
+
 }

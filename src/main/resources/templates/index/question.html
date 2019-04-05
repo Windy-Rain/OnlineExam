@@ -18,7 +18,47 @@
 <div id="header" class="nav-header" style="background:#4F94CD">
 	<div th:replace="home/fragments/navbar :: navbar"></div>
 </div>
-<div class="exam-content">
+<div class="exam-content" style="padding-bottom:5em">
+	<div class="ui header container" style="padding-top:10px;padding-left:10px">
+	    <div class="ui large breadcrumb">
+	        <a class="section" th:href="@{/}"><i class="home icon"></i>首页</a>
+	        <i class="right chevron icon divider"></i>
+	        <div class="active section">题库中心</div>
+	    </div>
+	</div>
+	<div class="ui problemSet container">
+	    <div class="ui secondary pointing menu">
+	        <a class="active item"><i class="book icon"></i>所有课程</a>
+	    </div>
+	    <div class="ui four column stackable grid">
+	        <div class="column" th:each="subject:${subjects}">
+	            <div class="ui fluid card">
+	                <a href="javascript:void(0)" class="image">
+	                    <img th:src="${subject.imgUrl}" style="max-height: 240px;" />
+	                </a>
+	                <div class="content">
+	                    <div class="header">
+	                        <a th:text="${subject.name}">计算机组成原理</a>
+	                    </div>
+	                    <p class="description" th:text="${subject.description}"></p>
+	                    <p class="meta">
+	                        <i class="user icon"></i>
+	                        <a th:text="${subject.author}" href="javascript:void(0)">admin</a>
+	                    </p>
+	                </div>
+	                <div class="extra content">
+	                    <span class="right floated">
+	                        <span>
+	                        <i class="globe icon"></i>私有题库
+	                        </span>
+	                    </span>
+	                    <i class="file text outline icon"></i>
+	                    <span th:text="${subject.nums}">20</span>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
 </div>
 <div class="footer" style="background:#4F94CD">
     <div th:replace="home/fragments/footer :: copyrightExamWeb"></div>

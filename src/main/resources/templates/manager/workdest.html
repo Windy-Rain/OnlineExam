@@ -13,7 +13,7 @@
 			<!-- small box -->
 			<div class="small-box bg-aqua">
 				<div class="inner">
-					<h3>150</h3>
+					<h3>15</h3>
 
 					<p>新留言</p>
 				</div>
@@ -29,14 +29,14 @@
 			<!-- small box -->
 			<div class="small-box bg-green">
 				<div class="inner">
-					<h3>
+					<h3 th:text="${subjectNums}">
 						53<sup style="font-size: 20px">%</sup>
 					</h3>
 
-					<p>成绩合格率</p>
+					<p>总课程数</p>
 				</div>
 				<div class="icon">
-					<i class="ion ion-pie-graph"></i>
+					<i class="icon ion-compose"></i>
 				</div>
 				<a href="#" class="small-box-footer">更多 <i
 					class="fa fa-arrow-circle-right"></i></a>
@@ -49,7 +49,7 @@
 				<div class="inner">
 					<h3 th:text="${userNums}"></h3>
 
-					<p>考生人数</p>
+					<p>用户量</p>
 				</div>
 				<div class="icon">
 					<i class="ion ion-person-add"></i>

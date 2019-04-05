@@ -87,26 +87,28 @@
                 <h4 class="modal-title">批量导入Excel表中题目到题库</h4>
             </div>
             <div class="modal-body">
-				<div class="box-body">
-    				<div class="form-group">
-                        <label class="col-sm-3 control-label">Excel表格路径 :</label>
-                        <div class="col-sm-8" style="position: relative">
-                            <input type="text" class="form-control" id="excelUrl" placeholder="excel路径（文件大小不得超过2M）">
-                            <div class="jax-upload-btn" style="position: absolute;right:20px;top: 0">
-                                <i class="fa fa-cloud-upload upload-file-btn"></i>
-                            </div>
-                       	</div>
-                   	</div>
-                   	<div id="upload-content" class="upload-content form-group" style="padding-left:0">
-                   		<label class="col-sm-3 control-label"></label>
-                   	</div>
-          		</div>
-          		<div class="box-footer">
-              		<div class="pull-right">
-		                  <button type="button" id="saveExcel" class="btn btn-success">确定</button>
-		                  <button type="button" data-dismiss="modal" class="btn btn-default">取消</button>
-              		</div>
-          		</div>
+            	<form class="form-horizontal">
+					<div class="box-body">
+	    				<div class="form-group">
+	                        <label class="col-sm-3 control-label">Excel表格路径 :</label>
+	                        <div class="col-sm-8" style="position: relative">
+	                            <input type="text" class="form-control" id="excelUrl" placeholder="excel路径（文件大小不得超过2M）">
+	                            <div class="jax-upload-btn" style="position: absolute;right:20px;top: 0">
+	                                <i class="fa fa-cloud-upload upload-file-btn"></i>
+	                            </div>
+	                       	</div>
+	                   	</div>
+	                   	<div id="upload-content" class="upload-content form-group" style="padding-left:0">
+	                   		<label class="col-sm-3 control-label"></label>
+	                   	</div>
+	          		</div>
+	          		<div class="box-footer">
+	              		<div class="pull-right">
+			                  <button type="button" id="saveExcel" class="btn btn-success">确定</button>
+			                  <button type="button" data-dismiss="modal" class="btn btn-default">取消</button>
+	              		</div>
+	          		</div>
+	          	</form>
             </div>
         </div>
     </div>
@@ -298,9 +300,9 @@
              if($("#upload-content").find(".upload-file-div").size()==0){
                  var imgHtml = '<div class="col-md-8 upload-div upload-file-div">'+
                          '<div class="upload-item">'+
-                         '<p class="upload-file"><i class="fa fa-cloud-upload fz-70"></i></p>'+
+                         '<p class="upload-file"><i class="fa fa-folder-open fz-70"></i></p>'+
                          '<p class="upload-btns">'+
-                         '<a type="button" class="btn btn-sm btn-block btn-success excelUploader">上传</a>'+
+                         '<a type="button" class="btn btn-sm btn-block btn-success excelUploader">请选择Excel表格</a>'+
                          '</p>'+
                          '</div>'+
                          '</div>'
@@ -309,8 +311,9 @@
                      server : '[[@{/upload/importExcel}]]',
                      swf: '/img/Uploader.swf',
                      imgAccept:'xls,xlsx'
-                 }, function(url, picker) {
+                 }, function(url,picker) {
                      $("#excelUrl").val(url);
+                     layer.msg("导入成功");
                      echoGtUploadResMethd(url,picker);
                  });
              }

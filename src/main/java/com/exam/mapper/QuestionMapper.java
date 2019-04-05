@@ -48,6 +48,8 @@ public interface QuestionMapper extends MapperUtil<Question> {
 	 * @return
 	 */
 	Question validateBySubjectIds(Integer[] ids);
-	
+
+	@Select("select count(id) nums from question where question.subject_id=#{subjectId}")
+	int countBySubjectId(Integer subjectId);
 
 }

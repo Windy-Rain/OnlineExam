@@ -7,7 +7,7 @@
 		<result property="sid" jdbcType="INTEGER" column="sid"/>
 		<result property="userId" jdbcType="VARCHAR" column="user_id"/>
 		<result property="pid" jdbcType="INTEGER" column="pid"/>
-		<result property="qq" jdbcType="VARCHAR" column="qq"/>
+		<result property="username" jdbcType="VARCHAR" column="username"/>
 		<result property="nickname" jdbcType="VARCHAR" column="nickname"/>
 		<result property="avatar" jdbcType="VARCHAR" column="avatar"/>
 		<result property="email" jdbcType="VARCHAR" column="email"/>
@@ -39,7 +39,7 @@
 		sid,
 		user_id,
 		pid,
-		qq,
+		username,
 		nickname,
 		avatar,
 		email,
@@ -80,8 +80,8 @@
 		<if test="pid != null">
 			AND t.pid = #{pid}
 		</if>
-		<if test="qq != null">
-			AND t.qq = #{qq}
+		<if test="username != null">
+			AND t.username = #{username}
 		</if>
 		<if test="status != null">
 			AND t.status = #{status}

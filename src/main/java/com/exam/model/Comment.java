@@ -8,7 +8,7 @@ public class Comment extends BaseVo {
     private String userId;
     private Integer sid;
     private Integer pid;
-    private String qq;
+    private String username;
     private String nickname;
     private String avatar;
     private String email;
@@ -55,12 +55,12 @@ public class Comment extends BaseVo {
         this.pid = pid;
     }
 
-    public String getQq() {
-        return qq;
+    public String getUsername() {
+        return username;
     }
 
-    public void setQq(String qq) {
-        this.qq = qq;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getNickname() {

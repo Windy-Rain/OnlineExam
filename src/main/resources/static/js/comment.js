@@ -1,16 +1,4 @@
 $(function () {
-    var zblogNickName=Core.getCookie("zblog-username");
-    var zblogQQ=Core.getCookie("zblog-qq");
-    var zblogEmail=Core.getCookie("zblog-email");
-    if(zblogNickName!=""){
-        $("#user-name-content").show();
-        $("#user-name").text(zblogNickName);
-        $("#nickname").val(zblogNickName);
-        $("#qq").val(zblogQQ);
-        $("#email").val(zblogEmail);
-    }else{
-        $("#user-info").show();
-    }
     var simplemde = new SimpleMDE({
         element: document.getElementById("comment-textarea"),
         toolbar: [],
@@ -22,22 +10,9 @@ $(function () {
         tabSize: 4,
         status:false
     });
-    $("#qq").blur(function(){
-        var qq=$("#qq").val();
-        var nickname=$("#nickname").val();
-        if(nickname.length==0&&qq.length > 0){
-            if(!isNaN(qq)){
-                Core.getQqInfo(qq,function (data) {
-                    $("#nickname").val(data.nickname);
-                });
-            }else{
-                layer.msg("qq格式不正确！")
-            }
-        }
-    });
 
     function init(pageNumber) {
-        Core.postAjax("/blog/api/comments",{"sid":sid,"pageNumber": (pageNumber==null? 1 : pageNumber),"status":1},function (data) {
+        Core.postAjax("/exam/comment",{"sid":sid,"pageNumber": (pageNumber==null? 1 : pageNumber),"status":1},function (data) {
             var commentOne="";
             if(data.list.length==0){
                 commentOne+='<div class="no-comment">暂无评论，快来占领宝座</div>';
@@ -109,17 +84,6 @@ $(function () {
                             '<form id="reply-comment-form" class="form-horizontal mt-10">'+
                             '   <input name="sid" type="hidden" value="'+sid+'"  />'+
                             '   <input id="replyId" name="pid" type="hidden" value="'+replyId+'"  />'+
-                            '   <div class="form-group" style="display: '+(zblogNickName==""?"block":"none")+'">'+
-                            '       <div class="col-sm-4">'+
-                            '           <input id="reply-nickname" value="'+zblogNickName+'"  type="text" class="form-control" name="nickname" placeholder="昵称(必填)" />'+
-                            '       </div>'+
-                            '       <div class="col-sm-4">'+
-                            '           <input id="reply-qq" value="'+zblogQQ+'" type="text" class="form-control" name="qq" placeholder="QQ（可获取头像和昵称）" />'+
-                            '       </div>'+
-                            '       <div class="col-sm-4">'+
-                            '           <input id="reply-email" value="'+zblogEmail+'" type="text" class="form-control" name="email" placeholder="邮箱" />'+
-                            '       </div>'+
-                            '   </div>'+
                             '   <div class="form-group">'+
                             '       <div class="col-xs-12">'+
                             '           <textarea name="content" id="reply-comment-textarea"></textarea>'+
@@ -141,38 +105,14 @@ $(function () {
                             tabSize: 4,
                             status:false
                         });
-
-                        $("#reply-qq").blur(function(){
-                            var qq=$("#reply-qq").val();
-                            var nickname=$("#reply-nickname").val();
-                            if(nickname.length==0&&qq.length > 0){
-                                if(!isNaN(qq)){
-                                    Core.getQqInfo(qq,function (data) {
-                                        $("#reply-nickname").val(data.nickname);
-                                    });
-                                }else{
-                                    layer.msg("qq格式不正确！")
-                                }
-                            }
-                        });
                     }
-                    $(this).hide();
-                    $(this).next().show();
                     $("#submitReplyCommentBtn").on('click',function () {
-                        if($("#reply-nickname").val()==""){
-                            layer.msg("请输入昵称")
-                            return;
-                        }else if(replySimplemde.value()==""){
+                        if(replySimplemde.value()==""){
                             layer.msg("说点什么吧")
                             return;
                         }
                         $("#reply-comment-textarea").val(replySimplemde.markdown(replySimplemde.value()));
-                        Core.postAjax("/blog/api/comment/save",$("#reply-comment-form").serialize(),function (data) {
-                            if(Core.getCookie("zblog-username")==""){
-                                Core.setCookie("zblog-username",$("#reply-nickname").val(),30);
-                                Core.setCookie("zblog-qq",$("#reply-qq").val(),30);
-                                Core.setCookie("zblog-email",$("#reply-email").val(),30);
-                            }
+                        Core.postAjax("/exam/comment/save",$("#reply-comment-form").serialize(),function (data) {
                             layer.msg(data.msg, {
                                 offset: '30%',
                                 time: 800
@@ -192,7 +132,7 @@ $(function () {
                 
                 $(".comment-support").click(function () {
                     $thisLove = $(this);
-                    Core.postAjax("/blog/api/love",{"bizId":$(this).attr("biz-id"),"bizType":2},function (data) {
+                    Core.postAjax("/exam/love",{"bizId":$(this).attr("biz-id"),"bizType":2},function (data) {
                         if(data.status==200){
                             $thisLove.text(parseInt($thisLove.text())+1);
                         }
@@ -206,40 +146,21 @@ $(function () {
     
     /*提交评论*/
     $("#submitCommentBtn").click(function () {
-        if($("#nickname").val()==""){
-            layer.msg("请输入昵称")
-            return;
-        }else if(simplemde.value()==""){
+        if(simplemde.value()==""){
             layer.msg("说点什么吧")
             return;
         }
         $("#comment-textarea").val(simplemde.markdown(simplemde.value()));
-        Core.postAjax("/blog/api/comment/save",$("#comment-form").serialize(),function (data) {
+        Core.postAjax("/exam/comment/save",$("#comment-form").serialize(),function (data) {
             layer.msg(data.msg, {
                 offset: '30%',
                 time: 800
             }, function () {
                 if(data.status==200){
-                    if(zblogNickName!=$("#nickname").val()||zblogQQ!=$("#qq").val()||zblogEmail!=$("#email").val()){
-                        Core.setCookie("zblog-username",$("#nickname").val(),30);
-                        Core.setCookie("zblog-qq",$("#qq").val(),30);
-                        Core.setCookie("zblog-email",$("#email").val(),30);
-                    }
                     location.reload();
                 }
             });
         })
-    })
-    /*点击用户名*/
-    $("#user-name").click(function () {
-        if($("#user-info").hasClass("user-show")){
-            $("#user-info").slideUp();
-            $("#user-info").removeClass("user-show");
-        }else{
-            $("#user-info").slideDown();
-            $("#user-info").addClass("user-show");
-        }
-
     })
 })
 

@@ -1,10 +1,13 @@
 package com.exam.controller;
 
-import java.util.ArrayList;
+import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,17 +19,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.exam.model.Comment;
 import com.exam.model.Examination;
 import com.exam.model.Grade;
 import com.exam.model.Question;
 import com.exam.model.Subject;
 import com.exam.model.User;
+import com.exam.service.CommentService;
 import com.exam.service.ExaminationService;
 import com.exam.service.GradeService;
 import com.exam.service.QuestionService;
 import com.exam.service.SubjectService;
+import com.exam.util.IpUtil;
 import com.exam.util.PageUtil;
 import com.exam.util.ResultUtil;
+import com.exam.util.XssKillerUtil;
+import com.exam.vo.CommentConditionVo;
 import com.exam.vo.ExaminationConditionVo;
 import com.exam.vo.base.ResponseVo;
 import com.github.pagehelper.PageHelper;
@@ -43,6 +51,8 @@ public class ExamWebController {
 	private QuestionService questionService;
 	@Autowired
 	private SubjectService subjectService;
+	@Autowired
+	private CommentService commentService;
 	
 	@RequestMapping("/")
 	public String index(Model model) {
@@ -91,6 +101,56 @@ public class ExamWebController {
 			return "index/question";
 		}else {
 			return "index/login";
+		}
+	}
+	
+	/**
+	 * 留言板
+	 * @return
+	 */
+	@GetMapping("/exam/comment")
+	public String toComment() {
+		if(SecurityUtils.getSubject().isAuthenticated()) {
+			
+			return "index/comment";
+		}else {
+			return "index/login";
+		}
+		
+	}
+	@PostMapping("/exam/comment")
+	@ResponseBody
+	public PageInfo<Comment> getComments(CommentConditionVo vo){
+		PageHelper.startPage(vo.getPageNumber(), vo.getPageSize());
+		List<Comment> comments = commentService.selectComments(vo);
+		PageInfo<Comment> pages = new PageInfo<>(comments);
+		return pages;
+	}
+	
+	@PostMapping("/exam/comment/save")
+	@ResponseBody
+	public ResponseVo saveComment(HttpServletRequest request, Comment comment) throws UnsupportedEncodingException{
+		String content = comment.getContent();
+		if(!XssKillerUtil.isValid(content)) {
+			return ResultUtil.error("内容不合法");
+		}
+		content = XssKillerUtil.clean(content.trim()).replaceAll("(<p><br></P>)|(<p></p>)", "");
+		Date date = new Date();
+		User user = (User)SecurityUtils.getSubject().getPrincipal();
+		comment.setUserId(user.getUserId());
+		comment.setUsername(user.getUsername());
+		comment.setNickname(user.getNickname());
+		comment.setAvatar(user.getImg());
+		comment.setEmail(user.getEmail());
+		comment.setContent(content);
+		comment.setIp(IpUtil.getIpAddr(request));
+		comment.setCreateTime(date);
+		comment.setUpdateTime(date);
+		int i = commentService.insertSelective(comment);
+		if(i > 0) {
+			return ResultUtil.success("留言已提交成功，系统正在审核");
+		}else {
+			return ResultUtil.error("留言提交失败");
 		}
 	}
 	

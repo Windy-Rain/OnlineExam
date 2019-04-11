@@ -46,6 +46,12 @@ public class RenderController {
     public String roleList() {
         return "role/list";
     }
+    
+    /*学院管理入口*/
+    @GetMapping("/institutes")
+    public String instituteList() {
+    	return "institute/list";
+    }
 
     /*权限列表入口*/
     @GetMapping("/permissions")
@@ -55,5 +61,7 @@ public class RenderController {
 
     /*在线用户入口*/
     @GetMapping("/online/users")
-    public String onlineUsers(){return "onlineUsers/list";}
+    public String onlineUsers(){
+    	return "onlineUsers/list";
+    }
 }

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.exam.mapper.InstituteMapper">
+	<resultMap id="BaseResultMap" type="com.exam.model.Institute" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="institute_name" property="instituteName" jdbcType="VARCHAR" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="institute_logo" property="instituteLogo" jdbcType="VARCHAR" />
+        <result column="sort" property="sort" jdbcType="INTEGER" />
+        <result column="author" property="author" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+    </resultMap>
+    <resultMap id="VlidateResultMap" type="com.exam.model.Classes" >
+        <id column="num" property="counts" jdbcType="INTEGER" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    	id,institute_name,description,institute_logo,sort,author,create_time,update_time,status
+    </sql>
+    
+    <select id="selectById" parameterType="int" resultMap="BaseResultMap">
+    	SELECT
+    	*
+    	FROM institute
+    	WHERE id = #{id}
+    </select>
+    
+    <select id="validateByInsIds" parameterType="map" resultMap="VlidateResultMap">
+		SELECT
+		COUNT(classes.id) AS num
+		FROM
+		classes
+		WHERE
+		classes.ins_id in
+		<foreach collection="array" item="item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	
+	<delete id="deleteBatch" parameterType="map">
+		DELETE FROM
+		institute
+		WHERE
+		id in
+		<foreach collection="array" item="item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+    
+    
+</mapper>

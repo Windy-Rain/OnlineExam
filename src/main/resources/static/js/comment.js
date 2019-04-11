@@ -15,7 +15,7 @@ $(function () {
         Core.postAjax("/exam/comment",{"sid":sid,"pageNumber": (pageNumber==null? 1 : pageNumber),"status":1},function (data) {
             var commentOne="";
             if(data.list.length==0){
-                commentOne+='<div class="no-comment">暂无评论，快来占领宝座</div>';
+                commentOne+='<div class="no-comment">暂无留言，快来占领宝座</div>';
                 $("#comment-ul").append(commentOne);
             }else{
                 $.each(data.list,function (index,value) {
@@ -47,7 +47,7 @@ $(function () {
                         '			<div class="comment-footer">'+
                         '				<span class="reply mr-5" reply-id="'+value.id+'">回复</span>'+
                         '				<span class="cancel-reply mr-5" style="display: none;">取消回复</span>'+
-                        '				<span class="comment-support pointer fa fa-thumbs-o-up" biz-id="'+value.id+'">'+value.loveCount+'</span>'+
+                        '				<span class="comment-support pointer fa fa-thumbs-o-up" sup-id="'+value.id+'">'+value.loveCount+'</span>'+
                         '			</div>'+
                         '		</div>'+
                         '	</div> '+
@@ -106,6 +106,8 @@ $(function () {
                             status:false
                         });
                     }
+                    $(this).hide();
+                    $(this).next().show();
                     $("#submitReplyCommentBtn").on('click',function () {
                         if(replySimplemde.value()==""){
                             layer.msg("说点什么吧")
@@ -132,7 +134,7 @@ $(function () {
                 
                 $(".comment-support").click(function () {
                     $thisLove = $(this);
-                    Core.postAjax("/exam/love",{"bizId":$(this).attr("biz-id"),"bizType":2},function (data) {
+                    Core.postAjax("/exam/love",{"supId":$(this).attr("sup-id"),"loveType":2},function (data) {
                         if(data.status==200){
                             $thisLove.text(parseInt($thisLove.text())+1);
                         }

@@ -23,7 +23,7 @@
 <div class="exam-content">
 	<div class="ui header container">
 	    <div class="ui large breadcrumb" th:each="exam:${data['exam']}">
-	        <a class="section" href="/exam"><i class="home icon"></i>在线考试列表</a>
+	        <a class="section" href="/exam/examination"><i class="home icon"></i>在线考试列表</a>
 	        <i class="right chevron icon divider"></i>
 	        <div class="section" th:value="${exam.id}" th:text="${exam.title}"></div>
 	    </div>

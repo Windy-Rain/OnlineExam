@@ -1,0 +1,85 @@
+<meta charset="utf-8">
+<form class="form-horizontal" id="instituteDetailForm">
+    <input name="id" type="hidden" th:value="${institute.id}">
+    <div class="box-body">
+        <div class="form-group">
+            <label  class="col-sm-3 control-label">学院名称 <span class="red">*</span>:</label>
+            <div class="col-sm-8">
+                <input th:value="${institute.instituteName}" name="instituteName" class="form-control" require="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label  class="col-sm-3 control-label">学院简介 <span class="red">*</span>:</label>
+            <div class="col-sm-8">
+                <input th:value="${institute.description}" name="description" class="form-control" require="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label  class="col-sm-3 control-label">排序 <span class="red">*</span>:</label>
+            <div class="col-sm-8">
+                <input th:value="${institute.sort}" name="sort" class="form-control" require="" plusinteger="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label  class="col-sm-3 control-label">学院标志 :</label>
+            <div class="col-sm-8" style="position: relative">
+                <input type="text" class="form-control" th:value="${institute.instituteLogo}" name="instituteLogo" id="imgUpdateUrl" placeholder="标志图地址（建议800*300）">
+                <div class="jax-upload-btn" style="position: absolute;right:20px;top: 0">
+                    <i class="fa fa-cloud-upload update-img-btn"></i>
+                </div>
+         	</div>
+        </div>
+        <div id="update-content" class="upload-content form-group" style="padding-left:0">
+            <label class="col-sm-3 control-label"></label>
+        </div>
+    </div>
+    <div class="box-footer">
+        <div class="pull-right">
+            <button type="button" id="saveDetailInstitute" class="btn btn-info">确定</button>
+            <button type="button" data-dismiss="modal" class="btn btn-default">取消</button>
+        </div>
+    </div>
+</form>
+<script>
+    $(function () {
+        $("#saveDetailInstitute").on('click', function () {
+            if (doValidForm("#instituteDetailForm")) {
+                Core.mask("#saveDetailInstitute");
+                Core.postAjax("/institute/edit",$("#instituteDetailForm").serialize(),function (data) {
+                    if (data.status == 200) {
+                        Core.unmask("#saveDetailInstitute");
+                        $("#instituteDetailModal").modal("hide");
+                        Core.refreshTable("#table");
+                    }
+                    layer.msg(data.msg);
+                })
+            }
+        });
+    });
+    
+    $(function () {
+        /*更新课程封面*/
+        $(".update-img-btn").click(function(){
+            if($("#update-content").find(".update-img-div").size()==0){
+                var imgHtml = '<div class="col-md-8 upload-div update-img-div">'+
+                        '<div class="upload-item">'+
+                        '<p class="upload-title">学院标志图</p>'+
+                        '<p class="upload-file"><i class="fa fa-cloud-upload fz-70"></i></p>'+
+                        '<p class="upload-btns">'+
+                        '<a type="button" class="btn btn-sm btn-block btn-info imgUpdate">上传</a>'+
+                        '</p>'+
+                        '</div>'+
+                        '</div>'
+                $("#update-content").append(imgHtml);
+                $(".imgUpdate").upload({
+                    server : '[[@{/upload/upload}]]',
+                    swf: '/img/Uploader.swf',
+                    imgAccept:true
+                }, function(url, picker) {
+                    $("#imgUpdateUrl").val(url);
+                    echoGtUploadResMethd(url,picker);
+                });
+            }
+        })
+    })
+</script>

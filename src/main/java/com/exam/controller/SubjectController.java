@@ -64,6 +64,12 @@ public class SubjectController {
 		}
 	}
 	
+	/**
+	 * 编辑课程信息
+	 * @param model
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/edit")
 	public String edit(Model model, Integer id) {
 		Subject subject = subjectService.selectById(id);

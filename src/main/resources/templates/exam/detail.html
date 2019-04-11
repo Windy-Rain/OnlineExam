@@ -271,8 +271,6 @@
                 score -= v.score;
             });
         }
-           console.log(overAllIds);
-           console.log(score);
            $("#totalScore").val(score);
     }
     
@@ -295,11 +293,9 @@
                 $('#startExamTime').val(startTime);
                 $('#endExamTime').val(endTime);
                 $("#question").val(overAllIds);
-                alert($("#examForm").serialize());
                 Core.postAjax("/exam/edit", $("#examForm").serialize(), function (data) {
                     if(data.status=200){
                     	$("#examForm")[0].reset(); //清空表单
-                       // Core.load("#table","exam/add");
                     } 
                     layer.msg(data.msg)
                 })

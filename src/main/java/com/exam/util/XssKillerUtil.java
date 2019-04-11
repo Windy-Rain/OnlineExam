@@ -46,7 +46,7 @@ public class XssKillerUtil {
     }
 
     /**
-     * xss白名单验证（Jsoup工具，效率较自己实现的那个有些差劲，见com.zyd.blog.util.XssKillerTest.test1()）
+     * xss白名单验证（Jsoup工具，效率较自己实现的那个有些差劲，
      *
      * @param xssStr
      * @return

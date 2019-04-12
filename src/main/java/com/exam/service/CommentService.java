@@ -11,4 +11,6 @@ public interface CommentService extends BaseService<Comment> {
 
     int deleteBatch(Integer[]ids);
 
+	int totalNum(Integer status);
+
 }

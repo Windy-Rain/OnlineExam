@@ -25,4 +25,9 @@ public class CommentServiceImpl extends BaseServiceImpl<Comment> implements Comm
     public int deleteBatch(Integer[] ids) {
         return commentMapper.deleteBatch(ids);
     }
+
+	@Override
+	public int totalNum(Integer status) {
+		return commentMapper.totalNum(status);
+	}
 }

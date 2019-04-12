@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.exam.mapper.ClassesMapper">
+	<resultMap id="BaseResultMap" type="com.exam.model.Classes" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="ins_id" property="insId" jdbcType="INTEGER"/>
+        <result column="class_name" property="className" jdbcType="VARCHAR" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="sort" property="sort" jdbcType="INTEGER" />
+        <result column="author" property="author" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <association property="institute" javaType="com.exam.model.Institute" >
+        	<result property="id" jdbcType="INTEGER" column="institute_id"/>
+			<result property="instituteName" jdbcType="VARCHAR" column="institute_name"/>
+			<result property="description" jdbcType="VARCHAR" column="institute_description"/>	
+        </association>
+    </resultMap>
+    <resultMap id="VlidateResultMap" type="com.exam.model.Classes" >
+        <id column="num" property="counts" jdbcType="INTEGER" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    	id,ins_id,class_name,description,sort,author,create_time,update_time,status
+    </sql>
+    
+    <select id="findByCondition" parameterType="com.exam.vo.ClassesConditionVo" resultMap="BaseResultMap">
+    	SELECT
+    	c.*,
+    	institute.id AS institute_id,
+    	institute.institute_name,
+    	institute.description
+    	FROM 
+    	classes c
+    	INNER JOIN institute ON c.ins_id = institute.id
+    	WHERE 1 = 1
+    	<if test="insId != null">
+    		AND c.ins_id = #{insId}
+    	</if>
+    	<if test="status != null">
+			AND	a.status = #{status}
+		</if>
+		<if test="className != null and className != '' ">
+			AND
+			c.class_name LIKE CONCAT('%',#{className, jdbcType=VARCHAR},'%')
+		</if>
+		order by c.id desc
+    </select>
+    
+    <select id="selectById" parameterType="map" resultMap="BaseResultMap">
+    	SELECT
+    	*,
+    	institute.id AS institute_id,
+    	institute.institute_name,
+    	institute.description
+    	FROM 
+    	classes
+    	INNER JOIN institute ON classes.ins_id = institute.id   	 
+    	WHERE id = #{id}
+    </select>
+    
+    <select id="validateByClassIds" parameterType="map" resultType="int">
+    	SELECT
+    	COUNT(user.id)
+    	FROM user
+    	WHERE
+    	user.class_id in
+    	<foreach collection="array" item="item" index="index" open="(" separator="," close=")">
+    		#{item}
+    	</foreach>
+    </select>
+    
+    <delete id="deleteBatch" parameterType="map">
+    	DELETE FROM
+    	classes
+    	WHERE
+    	id in
+    	<foreach collection="array" item="item" index="index" open="(" separator="," close=")">
+    		#{item}
+    	</foreach>
+    </delete>
+</mapper>

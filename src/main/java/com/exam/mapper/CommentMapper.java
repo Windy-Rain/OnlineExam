@@ -2,6 +2,8 @@ package com.exam.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Select;
+
 import com.exam.model.Comment;
 import com.exam.util.MapperUtil;
 import com.exam.vo.CommentConditionVo;
@@ -23,4 +25,7 @@ public interface CommentMapper extends MapperUtil<Comment> {
      * @return
      */
     int deleteBatch(Integer[] ids);
+
+    @Select("select count(id) nums FROM comment WHERE status = #{status}")
+	int totalNum(Integer status);
 }

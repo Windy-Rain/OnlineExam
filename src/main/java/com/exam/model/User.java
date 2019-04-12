@@ -24,9 +24,20 @@ public class User implements Serializable{
     /**
      * 用户名
      */
+    
+    /**
+     * 班级id
+     */
+    private Integer classId;
+    
     private String username;
 
     private String password;
+    
+    /**
+     * 年级
+     */
+    private String grade;
 
     /**
      * 加密盐值
@@ -126,7 +137,15 @@ public class User implements Serializable{
         this.userId = userId == null ? null : userId.trim();
     }
 
-    /**
+    public Integer getClassId() {
+		return classId;
+	}
+
+	public void setClassId(Integer classId) {
+		this.classId = classId;
+	}
+
+	/**
      * 获取用户名
      *
      * @return username - 用户名
@@ -157,8 +176,16 @@ public class User implements Serializable{
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
     }
+    
+    public String getGrade() {
+		return grade;
+	}
 
-    /**
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+
+	/**
      *
      * 重写获取盐值方法，自定义realm使用
      * Gets credentials salt.

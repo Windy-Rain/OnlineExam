@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.exam.model.Classes;
 import com.exam.model.Role;
 import com.exam.model.User;
+import com.exam.service.ClassesService;
 import com.exam.service.RoleService;
 import com.exam.service.UserService;
 import com.exam.shiro.ShiroRealm;
@@ -30,6 +32,7 @@ import com.exam.util.PasswordHelper;
 import com.exam.util.ResultUtil;
 import com.exam.util.UUIDUtil;
 import com.exam.vo.ChangePasswordVo;
+import com.exam.vo.UserConditionVo;
 import com.exam.vo.base.PageResultVo;
 import com.exam.vo.base.ResponseVo;
 import com.github.pagehelper.PageHelper;
@@ -45,13 +48,16 @@ public class UserController {
     private UserService userService;
     @Autowired
     private RoleService roleService;
+    
+    @Autowired
+    private ClassesService classesService;
 
     /**用户列表数据*/
     @PostMapping("/list")
     @ResponseBody
-    public PageResultVo loadUsers(User user, Integer limit, Integer offset){
+    public PageResultVo loadUsers(UserConditionVo userConditionVo, Integer limit, Integer offset){
         PageHelper.startPage(PageUtil.getPageNo(limit, offset),limit);
-        List<User> userList = userService.selectUsers(user);
+        List<User> userList = userService.findByCondition(userConditionVo);
         PageInfo<User> pages = new PageInfo<>(userList);
         return ResultUtil.table(userList,pages.getTotal(),pages);
     }
@@ -91,7 +97,11 @@ public class UserController {
     @GetMapping("/edit")
     public String userDetail(Model model, String userId){
         User user = userService.selectByUserId(userId);
+        List<Classes> classes = classesService.selectAll();
+        List<String> grades = userService.selectGradeList();
         model.addAttribute("user", user);
+        model.addAttribute("classes", classes);
+        model.addAttribute("grades", grades);
         return "user/userDetail";
     }
 

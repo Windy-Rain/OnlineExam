@@ -8,10 +8,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.exam.model.Classes;
+import com.exam.model.Institute;
 import com.exam.model.Subject;
+import com.exam.service.ClassesService;
 import com.exam.service.GradeService;
+import com.exam.service.InstituteService;
 import com.exam.service.SubjectService;
 import com.exam.service.SysConfigService;
+import com.exam.service.UserService;
 import com.exam.util.CoreConst;
 
 
@@ -21,6 +26,12 @@ public class AdminRenderController {
     private SysConfigService sysConfigService;
     @Autowired
     private SubjectService subjectService;
+    @Autowired
+    private InstituteService instituteService;
+    @Autowired
+    private ClassesService classesService;
+    @Autowired
+    private UserService userService;
     
     
     /*网站基本信息*/
@@ -54,7 +65,13 @@ public class AdminRenderController {
     	Subject subject = new Subject();
     	subject.setStatus(CoreConst.STATUS_VALID);
     	List<Subject> subjects = subjectService.select(subject);
+    	List<Institute> institutes = instituteService.selectAll();
+    	List<Classes> classes = classesService.selectAll();
+    	List<String> grades = userService.selectGradeList();
     	model.addAttribute("subjects", subjects);
+    	model.addAttribute("institutes", institutes);
+    	model.addAttribute("classes", classes);
+    	model.addAttribute("grades", grades);
     	return "exam/list";
     }
     

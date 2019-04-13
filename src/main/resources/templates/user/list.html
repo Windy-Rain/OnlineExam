@@ -10,27 +10,62 @@
 <section class="content">
     <div class="jax-box">
         <form id="formSearch" class="form-horizontal form-search">
-            <div class="form-group">
+            <div class="form-group" style="padding:10px">
                 <div class="col-md-4 col-sm-6">
-                    <label class="control-label  col-xs-4" for="username">学号/教工号/管理:</label>
+                    <label class="control-label  col-xs-4" for="username">账号:</label>
                     <div class="col-xs-8">
-                        <input type="text" class="form-control" id="username">
+                        <input type="text" class="form-control" id="username" placeholder="学号/教工号/管理员账号">
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6">
-                    <label class="control-label  col-xs-4" for="email">邮箱:</label>
+                    <label class="control-label  col-xs-4" for="nickname">姓名:</label>
                     <div class="col-xs-8">
-                        <input type="text" class="form-control" id="email">
+                        <input type="text" class="form-control" id="nickname" placeholder="用户真实姓名">
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6">
-                    <label class="control-label  col-xs-4" for="phone">电话:</label>
+                <div class="col-md-4 col-sm-6">
+                    <label class="control-label  col-xs-4" for="grade">年级:</label>
                     <div class="col-xs-8">
-                        <input type="text" class="form-control" id="phone">
+                        <select class="form-control" id="grade">
+                            <option  value="">请选择</option>
+                            <option th:each="grade:${grades}" th:value="${grade}" th:text="${grade}"></option>
+                        </select>
                     </div>
                 </div>
+            </div>
+            <div class="form-group" style="padding:10px">
+                <div class="col-md-4 col-sm-6">
+                    <label class="control-label  col-xs-4" for="insId">所在学院:</label>
+                    <div class="col-xs-8">
+                        <select class="form-control" id="insId">
+                            <option  value="">请选择</option>
+                            <option th:each="institute:${institutes}" th:value="${institute.id}" th:text="${institute.instituteName}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <label class="control-label  col-xs-4" for="classId">所在班级:</label>
+                    <div class="col-xs-8">
+                        <select class="form-control" id="classId">
+                            <option  value="">请选择</option>
+                            <option th:each="class:${classes}" th:value="${class.id}" th:text="${class.className}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <label class="control-label  col-xs-4">状态:</label>
+                    <div class="col-xs-8">
+                        <select id="status" class="form-control">
+                            <option value="">请选择</option>
+                            <option value="1">有效</option>
+                            <option value="2">禁用</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" style="padding:10px">
                 <shiro:hasPermission name="user:list">
-                <div class="col-md-1 col-sm-6 " style="text-align:left;">
+                <div class="col-md-1 col-sm-6 pull-right">
                     <button type="button" id="btn_query" class="btn btn-info">查询</button>
                 </div>
                 </shiro:hasPermission>
@@ -77,28 +112,30 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label  class="col-sm-3 control-label">年级<span style="color: red">*</span>:</label>
+                            <div class="col-sm-8">
+                                <input name="grade" class="form-control" require="必填项"  placeholder="入学年份">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label  class="col-sm-3 control-label">所在班级<span class="red">*</span>:</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" name="classId" id="classId" require="必填项">
+		                            <option  value="">请选择</option>
+		                            <option th:each="class:${classes}" th:value="${class.id}" th:text="${class.className}"></option>
+                        		</select>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label  class="col-sm-3 control-label">登录密码 <span style="color: red">*</span>:</label>
                             <div class="col-sm-8">
-                                <input name="password" type="password" class="form-control"  min="3" require="必填项"  placeholder="请输入密码包含大写、小写、特殊字符与数字">
+                                <input name="password" type="password" class="form-control"  min="6" require="必填项"  placeholder="请输入密码包含大写、小写、特殊字符与数字">
                             </div>
                         </div>
                         <div class="form-group">
                             <label  class="col-sm-3 control-label">确认密码 <span style="color: red">*</span>:</label>
                             <div class="col-sm-8">
-                                <input name="confirmPassword" type="password" class="form-control"  min="3" require="必填项"  placeholder="">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label  class="col-sm-3 control-label">邮箱 :</label>
-                            <div class="col-sm-8">
-                                <input name="email" class="form-control" placeholder="">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label  class="col-sm-3 control-label">电话 :</label>
-
-                            <div class="col-sm-8">
-                                <input name="phone" class="form-control" placeholder="">
+                                <input name="confirmPassword" type="password" class="form-control"  min="6" require="必填项"  placeholder="">
                             </div>
                         </div>
                         <div class="form-group">
@@ -115,6 +152,19 @@
                             <label  class="col-sm-3 control-label">年龄 :</label>
                             <div class="col-sm-8">
                                 <input name="age" class="form-control" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label  class="col-sm-3 control-label">邮箱 :</label>
+                            <div class="col-sm-8">
+                                <input name="email" class="form-control" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label  class="col-sm-3 control-label">电话 :</label>
+
+                            <div class="col-sm-8">
+                                <input name="phone" class="form-control" placeholder="">
                             </div>
                         </div>
                     </div>
@@ -185,12 +235,23 @@
             title: '真实姓名',
             align : "center"
         },{
-            field: 'email',
-            title: '邮箱',
-            align : "center"
-        }, {
-            field: 'phone',
-            title: '电话',
+            field: 'institute',
+            title: '所在学院',
+            align : "center",
+            formatter: function (value) {
+                return value.instituteName;
+            }
+        },{
+            field: 'classes',
+            title: '所在班级',
+            align : "center",
+            formatter: function (value) {
+                return value.className;
+            }
+        }
+        ,{
+            field: 'grade',
+            title: '年级',
             align : "center",
         },{
             field: 'roles',
@@ -243,8 +304,11 @@
             limit : params.limit, //页面大小
             offset : params.offset, //页码
             username : $("#username").val(),
-            email: $("#email").val(),
-            phone: $("#phone").val()
+            nickname : $("#nickname").val(),
+            grade : $("#grade").val(),
+            insId : $("#insId").val(),
+            classId: $("#classId").val(),
+            status: $("#status").val(),
         };
         return temp;
     }

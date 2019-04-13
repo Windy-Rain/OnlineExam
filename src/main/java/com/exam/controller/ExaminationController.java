@@ -15,15 +15,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
+import com.exam.model.Classes;
 import com.exam.model.ExamQuestion;
 import com.exam.model.Examination;
 import com.exam.model.Question;
 import com.exam.model.Subject;
 import com.exam.model.User;
+import com.exam.service.ClassesService;
 import com.exam.service.ExamQuestionService;
 import com.exam.service.ExaminationService;
 import com.exam.service.QuestionService;
 import com.exam.service.SubjectService;
+import com.exam.service.UserService;
 import com.exam.util.CoreConst;
 import com.exam.util.PageUtil;
 import com.exam.util.ResultUtil;
@@ -44,10 +47,13 @@ public class ExaminationController {
 	private SubjectService subjectService;
 	
 	@Autowired
-	private QuestionService questionService;
+	private UserService userService;
 	
 	@Autowired
 	private ExamQuestionService examQuestionService;
+	
+	@Autowired
+	private ClassesService classesService;
 
 	@PostMapping("list")
 	@ResponseBody
@@ -65,7 +71,11 @@ public class ExaminationController {
 		Subject subject = new Subject();
 		subject.setStatus(CoreConst.STATUS_VALID);
 		List<Subject> subjects = subjectService.selectSubjects(subject);
+		List<String> grades = userService.selectGradeList();
+		List<Classes> classes = classesService.selectAll();
 		model.addAttribute("subjects", JSON.toJSONString(subjects));
+		model.addAttribute("classes", classes);
+		model.addAttribute("grades", grades);
 		return "exam/publish";
 	}
 	

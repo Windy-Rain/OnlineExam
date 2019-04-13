@@ -227,6 +227,9 @@ public class ExamWebController {
 			grade.setManulJson(manulJson);
 			grade.setManulResult(0);
 			grade.setStatus(0);
+			Date date = new Date();
+			grade.setCreateTime(date);
+			grade.setUpdateTime(date);
 			gradeService.insertSelective(grade);
 			return ResultUtil.success("提交考试成功！");
 		} catch (Exception e) {

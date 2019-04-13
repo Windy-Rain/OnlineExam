@@ -10,11 +10,40 @@
 <section class="content">
     <div class="jax-box">
         <form id="formSearch" class="form-horizontal form-search">
-            <div class="form-group">
+            <div class="form-group" style="padding:10px">
                 <div class="col-md-4 col-sm-6">
                     <label class="control-label  col-xs-4" for="keywords">考试标题:</label>
                     <div class="col-xs-8">
                         <input type="text" class="form-control" id="keywords">
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <label class="control-label  col-xs-4" for="grade">年级:</label>
+                    <div class="col-xs-8">
+                        <select class="form-control" id="grade">
+                            <option  value="">请选择</option>
+                            <option th:each="grade:${grades}" th:value="${grade}" th:text="${grade}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <label class="control-label  col-xs-4" for="insId">考试学院:</label>
+                    <div class="col-xs-8">
+                        <select class="form-control" id="insId">
+                            <option  value="">请选择</option>
+                            <option th:each="institute:${institutes}" th:value="${institute.id}" th:text="${institute.instituteName}"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" style="padding:10px">
+            	<div class="col-md-4 col-sm-6">
+                    <label class="control-label  col-xs-4" for="classId">考试班级:</label>
+                    <div class="col-xs-8">
+                        <select class="form-control" id="classId">
+                            <option  value="">请选择</option>
+                            <option th:each="class:${classes}" th:value="${class.id}" th:text="${class.className}"></option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6">
@@ -26,7 +55,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-4 col-sm-6">
                     <label class="control-label  col-xs-4">状态:</label>
                     <div class="col-xs-8">
                         <select id="status" class="form-control">
@@ -37,8 +66,10 @@
                         </select>
                     </div>
                 </div>
+                </div>
+            <div class="form-group" style="padding:10px">
                 <shiro:hasPermission name="exam:list">
-                    <div class="col-md-1 col-sm-6 " style="text-align:left;">
+                    <div class="col-md-1 col-sm-6 pull-right">
                         <button type="button" id="btn_query" class="btn btn-info">查询</button>
                     </div>
                 </shiro:hasPermission>
@@ -138,6 +169,9 @@
             limit : params.limit, //页面大小
             offset : params.offset, //页码
             keywords : $("#keywords").val(),
+            grade : $("#grade").val(),
+            insId : $("#insId").val(),
+            classId : $("#classId").val(),
             subjectId : $("#subjectId").val(),
             status : $("#status").val(),
         };

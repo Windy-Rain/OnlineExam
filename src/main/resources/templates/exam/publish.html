@@ -15,21 +15,43 @@
 					id="question" type="hidden" name="question">
 				<div class="col-lg-4 exam-extra">
 					<div class="form-group">
+						<div class="col-xs-12">
+							<label class="control-label label-four">考试标题:</label>
+							<div class="ml80">
+								<input type="text" class="form-control" id="title" name="title"
+									placeholder="请输入考试标题" require="">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<label class="control-label label-four">考试年级:</label>
+							<div class="ml80">
+								<select class="form-control" name="grade" require="必填项">
+		                            <option  value="">请选择</option>
+		                            <option th:each="grade:${grades}" th:value="${grade}" th:text="${grade}"></option>
+                        		</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<label class="control-label label-four">考试班级:</label>
+							<div class="ml80">
+								<select class="form-control" name="classId" require="必填项">
+		                            <option  value="">请选择</option>
+		                            <option th:each="class:${classes}" th:value="${class.id}" th:text="${class.className}"></option>
+                        		</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
 						<div class="col-xs-12 ">
 							<label class="control-label label-four">考试课程:</label>
 							<div class="ml80">
 								<select id="subject-select" class="form-control"
 									name="subjectId" require="">
 								</select>
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-xs-12">
-							<label class="control-label label-four">考试标题:</label>
-							<div class="ml80">
-								<input type="text" class="form-control" id="title" name="title"
-									placeholder="请输入考试标题" require="">
 							</div>
 						</div>
 					</div>

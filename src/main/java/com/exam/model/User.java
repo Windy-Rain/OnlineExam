@@ -104,6 +104,12 @@ public class User implements Serializable{
      */
     @Transient
     private List<Role> roles;
+    
+    @Transient
+    private Institute institute;
+    
+    @Transient
+    private Classes classes;
 
     /**
      * @return id
@@ -390,4 +396,20 @@ public class User implements Serializable{
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
+
+	public Institute getInstitute() {
+		return institute;
+	}
+
+	public void setInstitute(Institute institute) {
+		this.institute = institute;
+	}
+
+	public Classes getClasses() {
+		return classes;
+	}
+
+	public void setClasses(Classes classes) {
+		this.classes = classes;
+	}
 }

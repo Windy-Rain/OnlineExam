@@ -1,12 +1,12 @@
 package com.exam.vo;
 
-import java.util.List;
-
 import com.exam.vo.base.BaseConditionVo;
 
-public class ExaminationConditionVo extends BaseConditionVo {
+public class UserConditionVo extends BaseConditionVo {
 	
-	private String keywords;
+	private String username;
+	
+	private String nickname;
 	
 	private String grade;
 	
@@ -14,16 +14,22 @@ public class ExaminationConditionVo extends BaseConditionVo {
 	
 	private Integer classId;
 	
-	private Integer subjectId;
-	
 	private Integer status;
-	
-	public String getKeywords() {
-		return keywords;
+
+	public String getUsername() {
+		return username;
 	}
 
-	public void setKeywords(String keywords) {
-		this.keywords = keywords;
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 	public String getGrade() {
@@ -50,14 +56,6 @@ public class ExaminationConditionVo extends BaseConditionVo {
 		this.classId = classId;
 	}
 
-	public Integer getSubjectId() {
-		return subjectId;
-	}
-
-	public void setSubjectId(Integer subjectId) {
-		this.subjectId = subjectId;
-	}
-	
 	public Integer getStatus() {
 		return status;
 	}

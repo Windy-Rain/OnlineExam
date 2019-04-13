@@ -27,12 +27,13 @@ import com.exam.model.User;
 import com.exam.model.UserRole;
 import com.exam.service.UserService;
 import com.exam.util.ResultUtil;
+import com.exam.vo.UserConditionVo;
 import com.exam.vo.UserOnlineVo;
 import com.exam.vo.base.ResponseVo;
 
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
 
 
     @Autowired
@@ -203,6 +204,16 @@ public class UserServiceImpl implements UserService {
 	public int userNums() {
 		int userNums = userMapper.userNums();
 		return userNums;
+	}
+
+	@Override
+	public List<User> findByCondition(UserConditionVo vo) {
+		return userMapper.findByCondition(vo);
+	}
+
+	@Override
+	public List<String> selectGradeList() {
+		return userMapper.selectGradeList();
 	}
 
 

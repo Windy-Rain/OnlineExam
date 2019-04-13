@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.exam.model.Classes;
 import com.exam.model.Institute;
+import com.exam.service.ClassesService;
 import com.exam.service.CommentService;
 import com.exam.service.InstituteService;
 import com.exam.service.QuestionService;
@@ -34,6 +36,9 @@ public class RenderController {
 	@Autowired
 	private CommentService commentService;
 	
+	@Autowired
+	private ClassesService classesService;
+	
 
     /*工作台*/
     @GetMapping("/workdest")
@@ -51,7 +56,13 @@ public class RenderController {
 
     /**用户列表入口*/
     @GetMapping("/users")
-    public String userList(){
+    public String userList(Model model){
+    	List<Institute> institutes = instituteService.selectAll();
+    	List<Classes> classes = classesService.selectAll();
+    	List<String> grades = userService.selectGradeList();
+    	model.addAttribute("institutes",institutes);
+    	model.addAttribute("classes", classes);
+    	model.addAttribute("grades", grades);
         return "user/list";
     }
 
@@ -68,6 +79,7 @@ public class RenderController {
     }
     
     /*班级管理入口*/
+    @GetMapping("/classes")
     public String classesList(Model model) {
     	List<Institute> institutes = instituteService.selectAll();
     	model.addAttribute("institutes",institutes);

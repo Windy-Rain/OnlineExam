@@ -6,9 +6,18 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Select;
 
 import com.exam.model.User;
+import com.exam.service.GradeService;
 import com.exam.util.MapperUtil;
+import com.exam.vo.UserConditionVo;
 
 public interface UserMapper extends MapperUtil<User> {
+	
+	/**
+	 * 分页条件查询，关联学院，班级，角色
+	 * @param vo
+	 * @return
+	 */
+	List<User> findByCondition(UserConditionVo vo);
     /**
      * 根据user参数查询用户列表
      * @param user
@@ -63,6 +72,13 @@ public interface UserMapper extends MapperUtil<User> {
      * @return list
      */
     List<User> findByRoleIds(List<String> roleIds);
+    
+    /**
+     * 年级汇总
+     * @return
+     */
+    //@Select("select distinct grade from user")
+    List<String> selectGradeList();
     
     @Select("select count(id) userNums from user")
     int userNums();

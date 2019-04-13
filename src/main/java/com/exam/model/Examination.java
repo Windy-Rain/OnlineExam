@@ -13,7 +13,9 @@ public class Examination extends BaseVo {
 	private String title;
 	private String userId;
     private String author;
+    private String grade;
 	private Integer totalScore;
+	private Integer classId;
 	private Integer subjectId;
 	private Date startTime;
 	private Date endTime;
@@ -21,8 +23,14 @@ public class Examination extends BaseVo {
 	
 	@Transient
 	List<Question> questions;
+	
 	@Transient
-	Subject subject;
+	private Institute institute;
+	
+	@Transient
+	private Classes classes;
+	@Transient
+	private Subject subject;
 	
 	public String getTitle() {
 		return title;
@@ -42,6 +50,12 @@ public class Examination extends BaseVo {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
 	public Integer getTotalScore() {
 		return totalScore;
 	}
@@ -50,6 +64,12 @@ public class Examination extends BaseVo {
 	}
 	public Integer getSubjectId() {
 		return subjectId;
+	}
+	public Integer getClassId() {
+		return classId;
+	}
+	public void setClassId(Integer classId) {
+		this.classId = classId;
 	}
 	public void setSubjectId(Integer subjectId) {
 		this.subjectId = subjectId;
@@ -77,6 +97,18 @@ public class Examination extends BaseVo {
 	}
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
+	}
+	public Institute getInstitute() {
+		return institute;
+	}
+	public void setInstitute(Institute institute) {
+		this.institute = institute;
+	}
+	public Classes getClasses() {
+		return classes;
+	}
+	public void setClasses(Classes classes) {
+		this.classes = classes;
 	}
 	public Subject getSubject() {
 		return subject;

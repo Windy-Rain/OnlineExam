@@ -1,0 +1,56 @@
+<meta charset="utf-8">
+<form class="form-horizontal" id="classesDetailForm">
+    <input name="id" type="hidden" th:value="${classes.id}">
+    <div class="box-body">
+        <div class="form-group">
+            <label  class="col-sm-3 control-label">班级名称 <span class="red">*</span>:</label>
+            <div class="col-sm-8">
+                <input th:value="${classes.className}" name="className" class="form-control" require="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label  class="col-sm-3 control-label">所属学院<span class="red">*</span>:</label>
+            <div class="col-sm-8">
+                <select class="form-control" name="insId">
+              <option  value="">请选择</option>
+              <option th:each="institute:${institutes}" th:selected="(${classes.insId} == ${institute.id})" th:value="${institute.id}" th:text="${institute.instituteName}"></option>
+        		</select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label  class="col-sm-3 control-label">班级介绍 <span class="red">*</span>:</label>
+            <div class="col-sm-8">
+                <input th:value="${classes.description}" name="description" class="form-control" require="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label  class="col-sm-3 control-label">排序 <span class="red">*</span>:</label>
+            <div class="col-sm-8">
+                <input th:value="${classes.sort}" name="sort" class="form-control" require="" plusinteger="">
+            </div>
+        </div>
+    </div>
+    <div class="box-footer">
+        <div class="pull-right">
+            <button type="button" id="saveDetailClasses" class="btn btn-info">确定</button>
+            <button type="button" data-dismiss="modal" class="btn btn-default">取消</button>
+        </div>
+    </div>
+</form>
+<script>
+    $(function () {
+        $("#saveDetailClasses").on('click', function () {
+            if (doValidForm("#classesDetailForm")) {
+                Core.mask("#saveDetailClasses");
+                Core.postAjax("/classes/edit",$("#classesDetailForm").serialize(),function (data) {
+                    if (data.status == 200) {
+                        Core.unmask("#saveDetailClasses");
+                        $("#classesDetailModal").modal("hide");
+                        Core.refreshTable("#table");
+                    }
+                    layer.msg(data.msg);
+                })
+            }
+        });
+    });
+</script>

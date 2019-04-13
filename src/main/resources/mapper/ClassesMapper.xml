@@ -29,7 +29,7 @@
     	c.*,
     	institute.id AS institute_id,
     	institute.institute_name,
-    	institute.description
+    	institute.description AS institute_description
     	FROM 
     	classes c
     	INNER JOIN institute ON c.ins_id = institute.id
@@ -38,25 +38,25 @@
     		AND c.ins_id = #{insId}
     	</if>
     	<if test="status != null">
-			AND	a.status = #{status}
+			AND	c.status = #{status}
 		</if>
 		<if test="className != null and className != '' ">
 			AND
 			c.class_name LIKE CONCAT('%',#{className, jdbcType=VARCHAR},'%')
 		</if>
-		order by c.id desc
+		order by c.sort asc
     </select>
     
     <select id="selectById" parameterType="map" resultMap="BaseResultMap">
     	SELECT
-    	*,
+    	c.*,
     	institute.id AS institute_id,
     	institute.institute_name,
     	institute.description
     	FROM 
-    	classes
-    	INNER JOIN institute ON classes.ins_id = institute.id   	 
-    	WHERE id = #{id}
+    	classes c
+    	INNER JOIN institute ON c.ins_id = institute.id   	 
+    	WHERE c.id = #{id}
     </select>
     
     <select id="validateByClassIds" parameterType="map" resultType="int">

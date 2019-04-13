@@ -4,10 +4,18 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.exam.model.User;
+import com.exam.vo.UserConditionVo;
 import com.exam.vo.UserOnlineVo;
 import com.exam.vo.base.ResponseVo;
 
-public interface UserService {
+public interface UserService extends BaseService<User> {
+	
+	/**
+	 * 分页条件查询，关联学院，班级，角色
+	 * @param vo
+	 * @return
+	 */
+	List<User> findByCondition(UserConditionVo vo);
 
     /**
      * 根据用户名查询用户
@@ -78,6 +86,12 @@ public interface UserService {
 
 
     void kickout(Serializable sessionId, String username);
+    
+    /**
+     * 年级List
+     * @return
+     */
+    List<String> selectGradeList();
     
     int userNums();
 

@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.exam.model.Classes;
+import com.exam.model.Institute;
 import com.exam.model.User;
 import com.exam.service.ClassesService;
+import com.exam.service.InstituteService;
 import com.exam.util.CoreConst;
 import com.exam.util.PageUtil;
 import com.exam.util.ResultUtil;
@@ -31,6 +33,9 @@ public class ClassesController {
 	
 	@Autowired
 	private ClassesService classesService;
+	
+	@Autowired
+	private InstituteService instituteService;
 	
 	@PostMapping("list")
 	@ResponseBody
@@ -73,6 +78,8 @@ public class ClassesController {
 	@GetMapping("/edit")
 	public String edit(Model model,Integer id) {
 		Classes classes = classesService.selectById(id);
+		List<Institute> institutes = instituteService.selectAll();
+    	model.addAttribute("institutes",institutes);
 		model.addAttribute("classes", classes);
 		return "classes/detail";
 	}

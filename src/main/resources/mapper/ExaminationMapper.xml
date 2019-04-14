@@ -75,7 +75,10 @@
     	INNER JOIN subject ON a.subject_id = subject.id
     	WHERE 1 = 1
     	<if test="grade != null and grade != ''">
-			AND	u.grade = #{grade}
+			AND	a.grade = #{grade}
+		</if>
+		<if test="author != null and author != ''">
+			AND	a.author = #{author}
 		</if>
     	<if test="insId !=null">
             AND c.ins_id = #{insId}

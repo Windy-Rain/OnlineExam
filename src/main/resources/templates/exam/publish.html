@@ -11,15 +11,14 @@
 	<div class="jax-box">
 		<div class="box-body">
 			<form id="examForm" class="form-horizontal">
-				<input id="status" type="hidden" name="status"> <input
-					id="question" type="hidden" name="question">
+				<input id="status" type="hidden" name="status">
+				<input id="question" type="hidden" name="question">
 				<div class="col-lg-4 exam-extra">
 					<div class="form-group">
 						<div class="col-xs-12">
 							<label class="control-label label-four">考试标题:</label>
 							<div class="ml80">
-								<input type="text" class="form-control" id="title" name="title"
-									placeholder="请输入考试标题" require="">
+								<input type="text" class="form-control" id="title" name="title" placeholder="请输入考试标题" require="">
 							</div>
 						</div>
 					</div>
@@ -49,8 +48,9 @@
 						<div class="col-xs-12 ">
 							<label class="control-label label-four">考试课程:</label>
 							<div class="ml80">
-								<select id="subject-select" class="form-control"
-									name="subjectId" require="">
+								<select id="subject-select" onchange="selectValue();" class="form-control" name="subjectId" require="">
+									<option value="">请选择</option>
+									<option th:each="subject:${subjects}" th:value="${subject.id}" th:text="${subject.name}"></option>
 								</select>
 							</div>
 						</div>
@@ -59,8 +59,7 @@
 						<div class="col-xs-12">
 							<label class="control-label label-four">考试分值:</label>
 							<div class="ml80">
-								<input type="text" class="form-control" id="totalScore"
-									name="totalScore" readonly>
+								<input type="text" class="form-control" id="totalScore" name="totalScore" readonly>
 							</div>
 						</div>
 					</div>
@@ -68,10 +67,11 @@
 						<div class="col-xs-12">
 							<label class="control-label label-four">出卷方式:</label>
 							<div class="question radio icheck ml80" require="">
-								<label> <input class="minimal" type="radio" name="type"
-									checked value="0"> 从题库中导入
-								</label> <label> <input class="minimal" type="radio" name="type"
-									value="1"> 自动随机组卷
+								<label> 
+									<input class="minimal" type="radio" name="type" checked value="0">从题库中导入
+								</label> 
+								<label> 
+									<input class="minimal" type="radio" name="type" value="1">自动随机组卷
 								</label>
 							</div>
 						</div>
@@ -80,9 +80,7 @@
 						<div class="col-xs-12">
 							<label class="control-label label-four">开始时间:</label>
 							<div class="ml80">
-								<input type="text" class="form-control" name="startTime"
-									id="startExamTime" placeholder="请选择开始考试时间" readonly="readonly"
-									require="" />
+								<input type="text" class="form-control" name="startTime" id="startExamTime" placeholder="请选择开始考试时间" readonly="readonly" require=""/>
 							</div>
 						</div>
 					</div>
@@ -90,37 +88,30 @@
 						<div class="col-xs-12">
 							<label class="control-label label-four">结束时间:</label>
 							<div class="ml80">
-								<input type="text" class="form-control" name="endTime"
-									id="endExamTime" placeholder="请选择结束考试时间" readonly="readonly"
-									require="" />
+								<input type="text" class="form-control" name="endTime" id="endExamTime" placeholder="请选择结束考试时间" readonly="readonly" require=""/>
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-xs-12">
-							<a id="btn_query" class="btn btn-success col-xs-12 btn-style">
-								<span class="glyphicon glyphicon-duplicate"></span> 添加题目
+							<a class="btn btn-primary col-xs-12 btn-style" style="height: 100px" onclick="saveExam(0)"> 
+								<span class="glyphicon glyphicon-blackboard"></span> 发布考试
 							</a>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-xs-12">
-							<a class="btn btn-primary col-xs-12 btn-style" style="height: 100px" onclick="saveExam(0)"> <span class="glyphicon glyphicon-blackboard"></span> 发布考试</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-8 form-editor">
 					<div id="manual">
-						<div class="col-xs-12 callout callout-info"
-							style="margin-bottom: 0 !important;">
-							<h4>
-								<i class="fa fa-info"></i> 题库：
-							</h4>
-							This page has been enhanced for printing. Click the print button
-							at the bottom of the invoice to test.
-						</div>
 						<div class="form-group">
 							<div class="col-xs-12">
+								<div id="toolbar">
+						            <button id="btn_sort" type="button" class="btn btn-primary">
+						                	按题目类型排序
+						            </button>
+						            <button id="btn_sort" type="button" class="btn btn-danger">
+						              		按难度排序
+						            </button>
+						        </div>
 								<table id="table" style="table-layout: fixed"></table>
 							</div>
 						</div>
@@ -151,21 +142,7 @@
 	</div>
 </section>
 <script>
-	/*去tm的thymeleaf，只能祭出jq了？*/
 	$("#automatic").hide();
-	var subjects = "[[${subjects}]]";
-	console.log(subjects);
-	var subjectsObj = JSON.parse(subjects.replace(/&quot;/g, '"'));
-	console.log(subjectsObj);
-	var html = '<option value="">请选择</option>';
-	$.each(subjectsObj, function(i, item) {
-		if (item != null) {
-			html += '<option value="'+item.id+'">' + item.name + '</option>';
-		} else {
-			html = '<option value="">请添加课程</option>';
-		}
-	});
-	$("#subject-select").html(html);
 	//日期时间控件
 	$('#startExamTime').datetimepicker({
 		language : 'zh-CN',
@@ -177,12 +154,10 @@
 		startDate : new Date(),
 		todayBtn : true,
 		format : "yyyy-mm-dd hh:ii:ss", //时间格式
-	}).on(
-			"click",
-			function() {
-				$("#startExamTime").datetimepicker("setEndDate",
-						$("#endExamTime").val())
-			});
+	}).on("click",function() {
+		$("#startExamTime").datetimepicker("setEndDate", $("#endExamTime").val())
+		});
+	
 	$('#endExamTime').datetimepicker({
 		language : 'zh-CN',
 		autoclose : 1,
@@ -192,13 +167,15 @@
 		showMeridian : 1,
 		todayBtn : true,
 		format : "yyyy-mm-dd hh:ii:ss", //时间格式
-	}).on(
-			"click",
-			function() {
-				$("#endExamTime").datetimepicker("setStartDate",
-						$("#startExamTime").val())
-			});
-
+	}).on("click",function() {
+		$("#endExamTime").datetimepicker("setStartDate", $("#startExamTime").val())
+		});
+	
+	function selectValue(){
+		var subjectId = $("#subject-select").val();
+		Core.refreshTable("#table");
+	}
+	
 	$('[type="radio"].minimal').on('ifChecked', function(event) {
 		var checkVal = $("input[class=minimal]:checked").val();
 		if (checkVal == 0) {
@@ -240,7 +217,6 @@
 				"white-space" : "nowrap",
 			}
 		},
-	//align : "center"
 	}, {
 		field : 'questionType',
 		title : '题目类型',
@@ -289,9 +265,8 @@
 		id : "#table",
 		url : '/question/list',
 		columns : columns,
-		//toolbar: '#toolbar',
-		//showRefresh: true,
-		pageList : [ 10, 20, 30, 40 ],
+		toolbar: '#toolbar',
+        showRefresh: true,
 		queryParams : queryParams
 	}
 	Core.initTable(options);
@@ -307,13 +282,11 @@
 		return temp;
 	}
 
-	$('#table')
-			.on(
-					'uncheck.bs.table check.bs.table check-all.bs.table uncheck-all.bs.table',
-					function(e, rows) {
-						var datas = $.isArray(rows) ? rows : [ rows ]; // 点击时获取选中的行或取消选中的行
-						examine(e.type, datas); // 保存到全局 Array() 里
-					});
+	$('#table').on('uncheck.bs.table check.bs.table check-all.bs.table uncheck-all.bs.table',
+		function(e, rows) {
+				var datas = $.isArray(rows) ? rows : [ rows ]; // 点击时获取选中的行或取消选中的行
+				examine(e.type, datas); // 保存到全局 Array() 里
+				});
 
 	function examine(type, datas) {
 		if (type.indexOf('uncheck') == -1) {
@@ -328,8 +301,6 @@
 				score -= v.score;
 			});
 		}
-		console.log(overAllIds);
-		console.log(score);
 		$("#totalScore").val(score);
 	}
 
@@ -337,10 +308,6 @@
 		/*新增*/
 		$("#add_btn").click(function() {
 			window.location.href = "#exam/questions"
-		});
-		/*查询*/
-		$("#btn_query").click(function() {
-			Core.refreshTable("#table");
 		});
 	})
 

@@ -8,6 +8,8 @@ public class ExaminationConditionVo extends BaseConditionVo {
 	
 	private String keywords;
 	
+	private String author;
+	
 	private String grade;
 	
 	private Integer insId;
@@ -24,6 +26,14 @@ public class ExaminationConditionVo extends BaseConditionVo {
 
 	public void setKeywords(String keywords) {
 		this.keywords = keywords;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 
 	public String getGrade() {

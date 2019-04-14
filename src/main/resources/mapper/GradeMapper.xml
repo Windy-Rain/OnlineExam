@@ -45,6 +45,9 @@
     	<if test="stuId != null and stuId != ''">
     		AND user.username = #{stuId}
     	</if>
+    	<if test="author != null and author != ''">
+    		AND e.author = #{author}
+    	</if>
     	<if test="status != null">
     		AND a.status = #{status}
     	</if>

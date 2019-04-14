@@ -186,7 +186,7 @@ var Core = (function () {
             contentType: tableOptions.contentType, //用post请求，这个是必须条件，必须加上，get可以不用，亲测
             dataType: tableOptions.dataType,
             method: tableOptions.method, //请求方式（*）
-            //            toolbar: '#toolbar',        //工具按钮用哪个容器
+            //toolbar: '#toolbar',        //工具按钮用哪个容器
             undefinedText: tableOptions.undefinedText, /*为undefiend时显示的字*/
             striped: tableOptions.striped, //是否显示行间隔色
             cache: tableOptions.cache, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -195,7 +195,7 @@ var Core = (function () {
             sortOrder: tableOptions.sortOrder, //排序方式
             sortName: tableOptions.sortName, //排序方式
             toolbar: tableOptions.toolbar,
-            //            search: true,             //是否使用客户端搜索
+            //search: true,             //是否使用客户端搜索
             queryParams: tableOptions.queryParams,//传递参数（*）
             responseHandler: tableOptions.responseHandler,
             queryParamsType: tableOptions.queryParamsType,

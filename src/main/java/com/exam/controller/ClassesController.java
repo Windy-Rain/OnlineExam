@@ -59,7 +59,7 @@ public class ClassesController {
 		Date date = new Date();
 		classes.setCreateTime(date);
 		classes.setUpdateTime(date);
-		classes.setStatus(CoreConst.STATUS_VALID);
+		classes.setStatus(CoreConst.STATUS_INVALID);
 		
 		int i = classesService.insert(classes);
 		if(i > 0) {

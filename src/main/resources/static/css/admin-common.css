@@ -249,9 +249,10 @@ body .demo-class .layui-layer-btn .layui-layer-btn1 {
 	margin-bottom: 10px;
 }
 
-/*.jax-table .fixed-table-toolbar .bs-bars, .fixed-table-toolbar .columns, .fixed-table-toolbar .search {
+/* .jax-table .fixed-table-toolbar .bs-bars, .fixed-table-toolbar .columns, .fixed-table-toolbar .search {
     margin-top: 0px!important;
-}*/
+} */
+
 .nav-tabs-custom>.nav-tabs>li.active.danger {
 	border-top-color: #dd4b39
 }
@@ -659,4 +660,24 @@ thead .zb-radio input[type="radio"]:checked+label:after {
 
 .jax-box-table .treegrid-selected {
 	background-color: #f2f8ff !important;
+}
+
+.error-content .error-img-content{
+    margin-top: 56px;
+    padding-top: 100px;
+    margin-bottom: 70px;
+    text-align: center;
+}
+.error-content .error-text{
+    font-size: 16px;
+    color: #666;
+    text-align: center;
+}
+.error-content .error-btn-content{
+    margin-top: 70px;
+    padding-bottom: 30px;
+    text-align: center;
+}
+.error-content .error-btn-content a{
+    color: #fff;
 }

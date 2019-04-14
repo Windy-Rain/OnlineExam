@@ -60,6 +60,10 @@ public class ExaminationController {
 	public PageResultVo loadExam(ExaminationConditionVo examConditionVo,Integer limit, Integer offset) {
 		examService.updateExamToStart();
 		examService.updateExamToEnd();
+		User user = (User)SecurityUtils.getSubject().getPrincipal();
+		if(!user.getNickname().equals("超级管理员")) {
+			examConditionVo.setAuthor(user.getNickname());
+		}
 		PageHelper.startPage(PageUtil.getPageNo(limit, offset),limit);
 		List<Examination> examList = examService.findByCondition(examConditionVo);
 		PageInfo<Examination> pages = new PageInfo<>(examList);
@@ -73,7 +77,7 @@ public class ExaminationController {
 		List<Subject> subjects = subjectService.selectSubjects(subject);
 		List<String> grades = userService.selectGradeList();
 		List<Classes> classes = classesService.selectAll();
-		model.addAttribute("subjects", JSON.toJSONString(subjects));
+		model.addAttribute("subjects", subjects);
 		model.addAttribute("classes", classes);
 		model.addAttribute("grades", grades);
 		return "exam/publish";
@@ -102,7 +106,11 @@ public class ExaminationController {
 		Subject subject = new Subject();
 		subject.setStatus(CoreConst.STATUS_VALID);
 		List<Subject> subjects = subjectService.selectSubjects(subject);
-		model.addAttribute("subjects", JSON.toJSONString(subjects));
+		List<String> grades = userService.selectGradeList();
+		List<Classes> classes = classesService.selectAll();
+		model.addAttribute("subjects", subjects);
+		model.addAttribute("classes", classes);
+		model.addAttribute("grades", grades);
 		List<ExamQuestion> examQuestions = examQuestionService.selectByExamId(id);
 		List<Integer> questionIds = new ArrayList<>();
 		for(ExamQuestion examQuestion : examQuestions) {

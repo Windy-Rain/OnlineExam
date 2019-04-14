@@ -2,6 +2,7 @@ package com.exam.controller;
 
 import java.util.List;
 
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,6 +42,10 @@ public class GradeController {
 	@ResponseBody
 	public PageResultVo loadGrade(GradeConditionVo gradeConditionVo, Integer limit, Integer offset) {
 		PageHelper.startPage(PageUtil.getPageNo(limit, offset),limit);
+		User user = (User)SecurityUtils.getSubject().getPrincipal();
+		if(!user.getNickname().equals("超级管理员")) {
+			gradeConditionVo.setAuthor(user.getNickname());
+		}
 		List<Grade> gradeList = gradeService.findByCondition(gradeConditionVo);
 		PageInfo<Grade> pages = new PageInfo<>(gradeList);
 		return ResultUtil.table(gradeList, pages.getTotal(), pages);

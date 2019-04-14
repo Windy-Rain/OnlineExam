@@ -8,6 +8,8 @@ public class GradeConditionVo extends BaseConditionVo {
 	
 	private String name;
 	
+	private String author;
+	
 	private String stuId;
 	
 	private Integer status;
@@ -26,6 +28,14 @@ public class GradeConditionVo extends BaseConditionVo {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 
 	public String getStuId() {

@@ -33,6 +33,7 @@ public class CommentController {
 
     @Autowired
     private CommentService commentService;
+    
 
     @PostMapping("list")
     public PageResultVo loadNotify(CommentConditionVo comment, Integer limit, Integer offset){
@@ -51,6 +52,8 @@ public class CommentController {
             return ResultUtil.error("回复评论失败");
         }
     }
+   
+    
     @PostMapping("/delete")
     public ResponseVo delete(Integer id){
         Integer[]ids={id};

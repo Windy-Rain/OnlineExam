@@ -22,12 +22,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.exam.model.Comment;
 import com.exam.model.Examination;
 import com.exam.model.Grade;
+import com.exam.model.Love;
 import com.exam.model.Question;
 import com.exam.model.Subject;
 import com.exam.model.User;
 import com.exam.service.CommentService;
 import com.exam.service.ExaminationService;
 import com.exam.service.GradeService;
+import com.exam.service.LoveService;
 import com.exam.service.QuestionService;
 import com.exam.service.SubjectService;
 import com.exam.util.IpUtil;
@@ -36,6 +38,7 @@ import com.exam.util.ResultUtil;
 import com.exam.util.XssKillerUtil;
 import com.exam.vo.CommentConditionVo;
 import com.exam.vo.ExaminationConditionVo;
+import com.exam.vo.LoveConditionVo;
 import com.exam.vo.base.ResponseVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -53,6 +56,8 @@ public class ExamWebController {
 	private SubjectService subjectService;
 	@Autowired
 	private CommentService commentService;
+	@Autowired
+	private LoveService loveService;
 	
 	@RequestMapping("/")
 	public String index(Model model) {
@@ -153,6 +158,32 @@ public class ExamWebController {
 			return ResultUtil.error("留言提交失败");
 		}
 	}
+	
+	@PostMapping("/exam/love")
+	@ResponseBody
+    public ResponseVo love(HttpServletRequest request, LoveConditionVo vo, Integer supId,Integer loveType) {
+    	Date date = new Date();
+    	String ip = IpUtil.getIpAddr(request);
+    	User user = (User)SecurityUtils.getSubject().getPrincipal();
+    	vo.setSupId(supId);
+    	vo.setLoveType(loveType);
+    	vo.setUserId(user.getUserId());
+    	vo.setUserIp(ip);
+    	Love loves = loveService.findByCondition(vo);
+    	if(loves == null) {
+    		Love love = new Love();
+    		love.setSupId(supId);
+    		love.setLoveType(loveType);
+    		love.setUserId(user.getUserId());
+    		love.setUserIp(ip);
+    		love.setCreateTime(date);
+    		love.setUpdateTime(date);
+    		loveService.insert(love);
+    		return ResultUtil.success("点赞成功");
+    	}else {
+    		return ResultUtil.error("您已经点过赞了");
+		}
+    }
 	
 	@GetMapping("/exam/login")
 	public String login(Model model) {

@@ -18,9 +18,9 @@ import com.exam.util.CoreConst;
 @Component("module")
 public class ModuleService {
     @Autowired
-    private TagService bizTagsService;
+    private TagService tagService;
     @Autowired
-    private LinkService bizLinkService;
+    private LinkService linkService;
     @Autowired
     private SiteInfoService siteInfoService;
     @Autowired
@@ -29,11 +29,11 @@ public class ModuleService {
     public Object get(String moduleName){
         switch (moduleName){
             case "tagList":             //标签
-                return bizTagsService.selectTags(new Tag());
+                return tagService.selectTags(new Tag());
             case "linkList":            //友链
                 Link bizLink = new Link();
                 bizLink.setStatus(CoreConst.STATUS_VALID);
-                return bizLinkService.selectLinks(bizLink);
+                return linkService.selectLinks(bizLink);
             case "siteInfo":            //网站信息统计
                 return siteInfoService.getSiteInfo();
             case "sysConfig":           //网站基本信息配置

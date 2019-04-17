@@ -65,10 +65,21 @@
 		t.*,
 		f.id AS parent_id,
 		f.nickname AS parent_nickname,
-		f.content AS parent_content
+		f.content AS parent_content,
+		IFNULL(love.love_count,0) AS love_count
 		FROM
 		comment t
 		LEFT JOIN comment f ON t.pid = f.id
+		LEFT JOIN (
+		SELECT
+		l.sup_id,
+		count(1) AS love_count
+		FROM
+		love l
+		WHERE l.love_type=2
+		GROUP BY
+		l.sup_id
+		) love ON t.id = love.sup_id
 		WHERE
 		1 = 1
 		<if test="userId != null">

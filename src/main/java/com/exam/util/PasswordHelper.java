@@ -30,6 +30,6 @@ public class PasswordHelper {
 		user.setPassword("123456");
 		user.setSalt("sadasd");
 		encryptPassword(user);
-		System.out.println(user);
+		System.out.println(getPassword(user));
 	}
 }

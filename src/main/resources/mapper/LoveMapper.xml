@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.exam.mapper.LoveMapper">
+	<resultMap id="BaseResultMap" type="com.exam.model.Love">
+		<result property="id" jdbcType="INTEGER" column="id"/>
+		<result property="supId" jdbcType="INTEGER" column="sup_id"/>
+		<result property="loveType" jdbcType="INTEGER" column="love_type"/>
+		<result property="userId" jdbcType="VARCHAR" column="user_id"/>
+		<result property="userIp" jdbcType="VARCHAR" column="user_ip"/>
+		<result property="createTime" jdbcType="TIMESTAMP" column="create_time"/>
+		<result property="updateTime" jdbcType="TIMESTAMP" column="update_time"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, sup_id, love_type, user_id, user_ip, create_time, update_time
+	</sql>
+	
+	<select id="findByCondition" parameterType="com.exam.vo.LoveConditionVo" resultMap="BaseResultMap">
+		SELECT
+		*
+		FROM
+		love
+		WHERE 1 = 1
+    	<if test="supId != null">
+    		AND love.sup_id = #{supId}
+    	</if>
+    	<if test="userId != null">
+			AND	love.user_id = #{userId}
+		</if>
+		<if test="loveType != null">
+			AND	love.love_type = #{loveType}
+		</if>
+		<if test="userIp != null and userIp != ''">
+			AND	love.user_ip = #{userIp}
+		</if>
+	</select>
+</mapper>

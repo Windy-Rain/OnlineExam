@@ -85,4 +85,9 @@ public class ExaminationServiceImpl extends BaseServiceImpl<Examination> impleme
 		return examMapper.updateExamToEnd(new Date()) > 0;
 	}
 
+	@Override
+	public List<Examination> selectAllByStatus(Integer status) {
+		return examMapper.selectAllByStatus(status);
+	}
+
 }

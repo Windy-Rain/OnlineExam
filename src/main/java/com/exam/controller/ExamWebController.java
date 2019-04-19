@@ -32,13 +32,17 @@ import com.exam.service.GradeService;
 import com.exam.service.LoveService;
 import com.exam.service.QuestionService;
 import com.exam.service.SubjectService;
+import com.exam.service.UserService;
+import com.exam.util.CoreConst;
 import com.exam.util.IpUtil;
 import com.exam.util.PageUtil;
 import com.exam.util.ResultUtil;
 import com.exam.util.XssKillerUtil;
 import com.exam.vo.CommentConditionVo;
 import com.exam.vo.ExaminationConditionVo;
+import com.exam.vo.GradeConditionVo;
 import com.exam.vo.LoveConditionVo;
+import com.exam.vo.UserConditionVo;
 import com.exam.vo.base.ResponseVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -58,6 +62,8 @@ public class ExamWebController {
 	private CommentService commentService;
 	@Autowired
 	private LoveService loveService;
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping("/")
 	public String index(Model model) {
@@ -110,13 +116,56 @@ public class ExamWebController {
 	}
 	
 	/**
+	 * 成绩查询
+	 * @return
+	 */
+	@GetMapping("/exam/queryScore")
+	public String queryScore(Model model) {
+		if(SecurityUtils.getSubject().isAuthenticated()) {
+			List<Examination> examList = examService.selectAllByStatus(CoreConst.EXAM_END);
+			model.addAttribute("exams", examList);
+			return "index/queryScore";
+		}else {
+			return "index/login";
+		}
+	}
+	
+	@PostMapping("/exam/queryScore")
+	@ResponseBody
+	public ResponseVo queryScore(GradeConditionVo vo) {
+		if(vo.getExamId() == null) {
+			return ResultUtil.error("请选择要查询的考试科目");
+		}
+		if(vo.getStuId() == "") {
+			return ResultUtil.error("请输入学号");
+		}
+		if(vo.getName() == "") {
+			return ResultUtil.error("请输入姓名");
+		}
+		UserConditionVo userConditionVo = new UserConditionVo();
+		userConditionVo.setUsername(vo.getStuId());
+		userConditionVo.setNickname(vo.getName());
+		List<User> users = userService.findByCondition(userConditionVo);
+		if(users.isEmpty()) {
+			return ResultUtil.error("学号或姓名不正确，请重新输入");
+		}
+		vo.setStatus(CoreConst.STATUS_VALID);
+		List<Grade> grades = gradeService.findByCondition(vo);
+		if(grades != null && !grades.isEmpty()) {
+			return ResultUtil.success("查询成功", grades);
+		}else {
+			return ResultUtil.error("系统没有该同学的成绩记录，请确认学号和姓名");
+		}
+		
+	}
+	
+	/**
 	 * 留言板
 	 * @return
 	 */
 	@GetMapping("/exam/comment")
 	public String toComment() {
 		if(SecurityUtils.getSubject().isAuthenticated()) {
-			
 			return "index/comment";
 		}else {
 			return "index/login";

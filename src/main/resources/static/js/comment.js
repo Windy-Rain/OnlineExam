@@ -137,6 +137,8 @@ $(function () {
                     Core.postAjax("/exam/love",{"supId":$(this).attr("sup-id"),"loveType":2},function (data) {
                         if(data.status==200){
                             $thisLove.text(parseInt($thisLove.text())+1);
+                        }else{
+                        	layer.msg(data.msg);
                         }
                     });
                 })

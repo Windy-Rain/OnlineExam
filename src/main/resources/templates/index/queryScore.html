@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title th:text="${@module.get('sysConfig').SITE_NAME}"></title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<link rel="stylesheet" th:href="@{/libs/bootstrap/bootstrap.min.css}"/>
+	<link rel="stylesheet" th:href="@{/libs/semantic-ui/semantic.min.css}" />
+	<link rel="stylesheet" th:href="@{/libs/adminlte/css/AdminLTE.min.css}"/>
+	<link rel="stylesheet" th:href="@{/css/exam-common.css}"/>
+	<script th:src="@{/libs/jquery/jquery.min.js}"></script>
+	<script th:src="@{/libs/jquery/jquery.countdown.min.js}"></script>
+	<script th:src="@{/libs/bootstrap/bootstrap.min.js}"></script>
+    <script th:src="@{/libs/semantic-ui/semantic.min.js}"></script>
+    <script th:src="@{/libs/layer/layer.js}"></script>
+    <script th:src="@{/js/core.js}"></script>
+    <script th:src="@{/js/examination.js}"></script>
+</head>
+<body>
+<div id="header" class="nav-header" style="background:#4F94CD; height:8%">
+	<div th:replace="home/fragments/navbar :: navbar"></div>
+</div>
+<div class="exam-content" style="height:75%;margin:0">
+	<div class="container">
+		<div class="row col-sm-12 row-padding">
+            <p class="lead text-primary text-center font-p">宁夏理工学院(OE)在线考试教学辅助系统成绩查询</p>
+        </div>
+        <form class="form-horizontal" id="queryScoreForm">            
+             <div class="row col-sm-12 padding-row">
+                 <label class="col-sm-5 control-label font-label">考试科目:</label>
+                 <div class="col-sm-3">
+                     <select class="form-control" name="examId" id="examId" require="">
+		                 <option value="">请选择考试科目</option>
+		                 <option th:each="exam:${exams}" th:value="${exam.id}" th:text="${exam.title}"></option>
+             		 </select>
+                 </div>
+             </div>
+             <div class="row col-sm-12 padding-row">
+                 <label  class="col-sm-5 control-label font-label">考生学号:</label>
+                 <div class="col-sm-3">
+                     <input name="stuId" class="form-control" placeholder="请输入正确的学号" require="">
+                 </div>
+             </div>
+             <div class="row col-sm-12 padding-row">
+                 <label  class="col-sm-5 control-label font-label">考生姓名:</label>
+                 <div class="col-sm-3">
+                     <input name="name" class="form-control" placeholder="请输入姓名" require="">
+                 </div>
+             </div>
+             <div class="row col-sm-12 padding-row">
+             	<label class="col-sm-5 control-label"></label>
+                <div class="col-sm-3">
+                    <button type="button" id="btn_query" class="btn btn-primary btn-padding">查 询</button>
+                    <button type="button" id="btn_requery" class="btn btn-primary btn-padding margin-left">重 填</button>
+                    <button type="button" id="btn_back" class="btn btn-primary btn-padding margin-left">返 回</button>
+                </div>
+             </div>
+        </form>
+        <!-- 显示表格数据 -->
+		<div class="row col-sm-12" id="grade_table">
+			<div class="table-responsive">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>考试科目</th>
+							<th>学号</th>
+							<th>姓名</th>
+							<th>选择题得分</th>
+							<th>问答题得分</th>
+							<th>最终得分</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+			<div class="row col-sm-12">
+				<label class="col-sm-5 control-label"></label>
+				<div class="col-sm-3">
+					<button type="button" id="back_query" class="btn btn-primary btn-padding">返 回</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="footer" style="background:#4F94CD; height:17%">
+	<div th:replace="home/fragments/footer :: copyrightExamWeb"></div>
+</div>
+<script type="text/javascript">
+	$("#grade_table").hide();
+	var headerMain = document.getElementById('headerMain');
+	headerMain.setAttribute("style","background:#4F94CD");
+
+	$(function () {
+		/*返回*/
+        $("#back_query").click(function(){
+        	window.location.href="/exam/queryScore";
+        });
+        /* 返回上一页 */
+        $("#btn_back").click(function(){
+        	window.history.back(-1);
+        });
+        /* 重置表单 */
+        $("#btn_requery").click(function(){
+        	$("#queryScoreForm")[0].reset();
+        });
+        /*查询*/
+        $("#btn_query").click(function(){
+            Core.mask("#btn_query");
+            Core.postAjax("/exam/queryScore",$("#queryScoreForm").serialize(),function (data) {
+                Core.unmask("#btn_query");
+                if(data.status==200){
+                    $("#queryScoreForm").hide();
+                    $("#grade_table").show();
+                    console.log(data.data);
+                    build_grade_table(data);
+                }else{
+                	layer.msg(data.msg);
+                }
+            })
+        });
+    })
+    function build_grade_table(data){
+			$("#grade_table tbody").empty();
+			var grade = data.data
+			$.each(grade, function(index, items){
+				console.log(items.examination.title);
+				var examTitleTd = $("<td></td>").append(items.examination.title);
+				var stuIdTd = $("<td></td>").append(items.user.username);
+				var nameTd = $("<td></td>").append(items.user.nickname);
+				var autoScoreTd = $("<td></td>").append(items.autoResult);
+				var manulScoreTd = $("<td></td>").append(items.manulResult);
+				var resultTd = $("<td></td>").append(items.result);
+				
+				$("<tr></tr>").append(examTitleTd)
+					.append(stuIdTd)
+					.append(nameTd)
+					.append(autoScoreTd)
+					.append(manulScoreTd)
+					.append(resultTd)
+					.appendTo("#grade_table tbody");
+				});
+			}
+</script>
+</body>
+</html>

@@ -39,6 +39,11 @@ public interface ExaminationService extends BaseService<Examination> {
 	
 	
 	int deleteBatch(Integer[] ids);
+	
+	/*
+	 * 获取已经结束的考试
+	 */
+	List<Examination> selectAllByStatus(Integer status);
 
 	boolean updateExamToStart();
 

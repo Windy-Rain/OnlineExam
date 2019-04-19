@@ -135,37 +135,43 @@
         {
             field: 'nickname',
             title: '作者',
-            align : "center",
+            align: "center",
+            width: '8%',
             formatter : function(value,row) {
                return value;
             }
         },{
             field: 'username',
             title: '账号',
-            align : "center"
+            align: "center",
+            width: '5%',
         },{
             field: 'email',
             title: '邮箱',
-            align : "center"
+            align : "center",
+            width: '10%',
         },{
             field: 'ip',
-            title: 'ip',
+            title: 'IP地址',
             align : "center",
+            width: '10%',
         },{
             field: 'sid',
-            title: '考试/留言板',
+            title: '留言来源',
             align : "center",
+            width: '7%',
             formatter : function(value,row) {
                 if(value==-1){
-                    return '<span class="red">留言板</span>'
+                    return '<span class="color-2c93fd">留言板</span>'
                 }else{
                     return '<span class="color-2c93fd">社区</span>';
                 }
             }
         },{
             field: 'content',
-            title: '内容',
-            align : "left",
+            title: '留言内容',
+            align: "left",
+            width: '25%',
             formatter : function(value,row) {
                 var rtn=value;
                 if(row.parent!=null){
@@ -175,22 +181,24 @@
             }
         },{
             field: 'support',
-            title: '赞/踩',
+            title: '点赞',
             align : "center",
+            width: '5%',
             formatter : function(value,row) {
-                return row.loveCount+'/'+row.oppose
+                return row.loveCount
             }
         },{
             field: 'status',
             title: '状态',
-            align : "center",
+            align: "center",
+            width: '10%',
             formatter : function(value) {
                if(value==0){
-                   return '待审核'
+                   return '<span class="label label-warning">待审核</span>'
                }else if(value==1){
-                   return '审核通过'
+                   return '<span class="label label-success">审核通过</span>'
                }else if(value==2){
-                   return '审核失败'
+                   return '<span class="label label-danger">未通过审核</span>'
                }
             }
         },
@@ -198,13 +206,13 @@
             field : 'operation',
             title : '操作',
             align : "center",
-            class:'min-width-150',
-            formatter : function(value,
-                                 row, index) {
+            width : '15%',
+            /* class:'min-width-150', */
+            formatter : function(value, row, index) {
+            	var audit = auditFlag=="true"&&row.status==0 ? '<a class="btn btn-primary btn-sm" onclick="auditComment('+row.id+','+row.sid+')"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 审核</a>' : '';
                 var reply = replyFlag=="true"&&row.status==1 ? '<a class="btn btn-success btn-sm" onclick="replyComment('+row.id+','+row.sid+')"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> 回复</a>' : '';
-                var audit = auditFlag=="true"&&row.status==0 ? '<a class="btn btn-primary btn-sm" onclick="auditComment('+row.id+','+row.sid+')"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 审核</a>' : '';
                 var del = deleteFlag=="true" ? '<a  class="btn btn-danger btn-sm" onclick="deleteComment('+row.id+')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除</a>' : '';
-                return reply +" "+ audit +" "+ del;
+                return audit +" "+ reply +" "+ del;
             }
         }];
     var options={

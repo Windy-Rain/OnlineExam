@@ -145,6 +145,15 @@
     	e.id = #{id}
     </select>
     
+    <select id="selectAllByStatus" parameterType="int" resultMap="BaseResultMap">
+    	SELECT
+    	*
+    	FROM
+    	examination 
+    	WHERE
+    	examination.status = #{status}
+    </select>
+    
     <update id="updateExamToStart">
         UPDATE examination
         SET

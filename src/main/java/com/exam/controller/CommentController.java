@@ -42,6 +42,8 @@ public class CommentController {
         PageInfo<Comment> pages = new PageInfo<>(comments);
         return ResultUtil.table(comments,pages.getTotal(),pages);
     }
+    
+    
     @PostMapping("/reply")
     public ResponseVo edit(Comment comment){
         completeComment(comment);

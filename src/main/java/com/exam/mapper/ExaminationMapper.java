@@ -32,5 +32,7 @@ public interface ExaminationMapper extends MapperUtil<Examination> {
 	int updateExamToStart(@Param("currentTime") Date currentTime);
 
 	int updateExamToEnd(@Param("currentTime") Date currentTime);
+	
+	List<Examination> selectAllByStatus(Integer status);
 
 }

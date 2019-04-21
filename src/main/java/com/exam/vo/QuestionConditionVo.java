@@ -6,6 +6,7 @@ public class QuestionConditionVo extends BaseConditionVo {
 	
 	private Integer subjectId;
 	private Integer questionType;
+	private String orderBy;
 	private Integer status;
 	private String keywords;
 	
@@ -21,6 +22,12 @@ public class QuestionConditionVo extends BaseConditionVo {
 	}
 	public void setQuestionType(Integer questionType) {
 		this.questionType = questionType;
+	}
+	public String getOrderBy() {
+		return orderBy;
+	}
+	public void setOrderBy(String orderBy) {
+		this.orderBy = orderBy;
 	}
 	public Integer getStatus() {
 		return status;

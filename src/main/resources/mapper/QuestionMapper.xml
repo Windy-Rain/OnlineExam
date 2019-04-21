@@ -58,6 +58,9 @@
     		a.title LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%')
     	</if>
     	GROUP BY a.id
+    	<if test="orderBy != null and orderBy != ''">
+    		ORDER BY ${orderBy} ASC
+    	</if>
     </select>
     
     <select id="selectById" parameterType="int" resultMap="BaseResultMap">

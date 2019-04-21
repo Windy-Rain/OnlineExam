@@ -1,12 +1,12 @@
 package com.exam.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Select;
 
 import com.exam.model.User;
-import com.exam.service.GradeService;
 import com.exam.util.MapperUtil;
 import com.exam.vo.UserConditionVo;
 
@@ -77,8 +77,13 @@ public interface UserMapper extends MapperUtil<User> {
      * 年级汇总
      * @return
      */
-    //@Select("select distinct grade from user")
     List<String> selectGradeList();
+    
+    /**
+     * 学院及学员人数统计
+     */
+    List<HashMap<String, Object>> academyPassNumSta();
+    
     
     @Select("select count(id) userNums from user")
     int userNums();

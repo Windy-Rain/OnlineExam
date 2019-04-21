@@ -13,6 +13,7 @@
 			<form id="examForm" class="form-horizontal">
 				<input id="status" type="hidden" name="status">
 				<input id="question" type="hidden" name="question">
+				<input id="orderBy" type="hidden">
 				<div class="col-lg-4 exam-extra">
 					<div class="form-group">
 						<div class="col-xs-12">
@@ -104,13 +105,10 @@
 					<div id="manual">
 						<div class="form-group">
 							<div class="col-xs-12">
-								<div id="toolbar">
-						            <button id="btn_sort" type="button" class="btn btn-primary">
-						                	按题目类型排序
-						            </button>
-						            <button id="btn_sort" type="button" class="btn btn-danger">
-						              		按难度排序
-						            </button>
+								<div id="toolbar" class="btn-group">
+									<button id="orderType" type="button" class="btn btn-default">按题目类型排序</button>
+                      				<button id="orderDifficult" type="button" class="btn btn-default">按难度排序</button>
+                      				<button id="orderScore" type="button" class="btn btn-default">按题目分值排序</button>
 						        </div>
 								<table id="table" style="table-layout: fixed"></table>
 							</div>
@@ -275,7 +273,7 @@
 		var temp = { //这里的键的名字和控制器的变量名必须一致，这边改动，控制器也需要改成一样的
 			limit : params.limit, //页面大小
 			offset : params.offset, //页码
-			keywords : $("#keywords").val(),
+			orderBy : $("#orderBy").val(),
 			subjectId : $("#subject-select").val(),
 
 		};
@@ -305,9 +303,18 @@
 	}
 
 	$(function() {
-		/*新增*/
-		$("#add_btn").click(function() {
-			window.location.href = "#exam/questions"
+		/*排序*/
+		$("#orderType").click(function() {
+			$("#orderBy").val('a.question_type');
+			Core.refreshTable("#table");
+		});
+		$("#orderDifficult").click(function() {
+			$("#orderBy").val('a.difficulty');
+			Core.refreshTable("#table");
+		});
+		$("#orderScore").click(function() {
+			$("#orderBy").val('a.score');
+			Core.refreshTable("#table");
 		});
 	})
 

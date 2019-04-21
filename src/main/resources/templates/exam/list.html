@@ -12,7 +12,7 @@
         <form id="formSearch" class="form-horizontal form-search">
             <div class="form-group" style="padding:10px">
                 <div class="col-md-4 col-sm-6">
-                    <label class="control-label  col-xs-4" for="keywords">考试标题:</label>
+                    <label class="control-label  col-xs-4" for="keywords">试卷名称:</label>
                     <div class="col-xs-8">
                         <input type="text" class="form-control" id="keywords">
                     </div>
@@ -66,13 +66,17 @@
                         </select>
                     </div>
                 </div>
-                </div>
+            </div>
             <div class="form-group" style="padding:10px">
-                <shiro:hasPermission name="exam:list">
-                    <div class="col-md-1 col-sm-6 pull-right">
-                        <button type="button" id="btn_query" class="btn btn-info">查询</button>
-                    </div>
-                </shiro:hasPermission>
+                <div class="col-md-12">
+                	<label class="control-label col-xs-4"></label>
+                	<div class="col-xs-8">
+	                	<shiro:hasPermission name="exam:list">
+	                    	<button type="button" id="btn_query" class="btn btn-primary pull-right">查 询</button>
+	                    </shiro:hasPermission>
+	                	<button type="button" id="btn_requery" class="btn btn-primary pull-right" style="margin-right:5px">重 填</button>
+                	</div>
+                </div>
             </div>
         </form>
     </div>
@@ -198,6 +202,11 @@
         $("#btn_query").click(function(){
             Core.refreshTable("#table");
         });
+        /* 重置表单 */
+        $("#btn_requery").click(function(){
+        	$("#formSearch")[0].reset();
+        });
+        /* 发布考试 */
        $("#btn_add").click(function(){
             window.location.href="#exam/add"
         });

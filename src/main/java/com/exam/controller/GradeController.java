@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.yaml.snakeyaml.error.Mark;
 
 import com.exam.model.Examination;
 import com.exam.model.Grade;
@@ -19,6 +18,7 @@ import com.exam.model.User;
 import com.exam.service.ExaminationService;
 import com.exam.service.GradeService;
 import com.exam.service.UserService;
+import com.exam.util.CoreConst;
 import com.exam.util.PageUtil;
 import com.exam.util.ResultUtil;
 import com.exam.vo.GradeConditionVo;
@@ -68,8 +68,24 @@ public class GradeController {
 	public ResponseVo mark(Grade grade) {
 		try {
 			Grade obj = gradeService.selectById(grade.getId());
-			grade.setResult(obj.getResult()+grade.getManulResult());
-			grade.setStatus(1);
+			grade.setResult(obj.getAutoResult()+grade.getManulResult());
+			if(grade.getResult() == 0) {
+				grade.setStatus(CoreConst.EXAM_END);
+			}
+			System.out.println(grade.getResult());
+			System.out.println(obj.getExamination().getTotalScore());
+			int userScore = grade.getResult();
+			int examScore = obj.getExamination().getTotalScore();
+			float score = (float)userScore/examScore;
+			if(score < 0.6) {
+				grade.setStatus(CoreConst.EXAM_END);
+			}else if(score >= 0.9) {
+				grade.setStatus(CoreConst.EXAM_FINE);
+			}else if(score >= 0.8) {
+				grade.setStatus(CoreConst.EXAM_GOOD);
+			}else if(score >= 0.6) {
+				grade.setStatus(CoreConst.EXAM_PASS);
+			}
 			gradeService.updateNotNull(grade);
 			return ResultUtil.success("批阅成功");
 		} catch (Exception e) {

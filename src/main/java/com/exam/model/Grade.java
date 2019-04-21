@@ -20,6 +20,13 @@ public class Grade extends BaseVo {
 	private User user;
 	
 	@Transient
+	private Institute institute;
+	@Transient
+	private Classes classes;
+	@Transient
+	private Subject subject;
+	
+	@Transient
 	private Examination examination;
 	
 	public String getUserId() {
@@ -81,6 +88,24 @@ public class Grade extends BaseVo {
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	public Institute getInstitute() {
+		return institute;
+	}
+	public void setInstitute(Institute institute) {
+		this.institute = institute;
+	}
+	public Classes getClasses() {
+		return classes;
+	}
+	public void setClasses(Classes classes) {
+		this.classes = classes;
+	}
+	public Subject getSubject() {
+		return subject;
+	}
+	public void setSubject(Subject subject) {
+		this.subject = subject;
 	}
 	public Examination getExamination() {
 		return examination;

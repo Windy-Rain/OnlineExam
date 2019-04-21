@@ -216,5 +216,9 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		return userMapper.selectGradeList();
 	}
 
+	@Override
+	public List<HashMap<String, Object>> academyPassNumSta() {
+		return userMapper.academyPassNumSta();
+	}
 
 }

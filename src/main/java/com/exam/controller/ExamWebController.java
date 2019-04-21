@@ -81,12 +81,8 @@ public class ExamWebController {
 	 * @return
 	 */
 	@GetMapping("/exam/examination")
-	public String toExam(Model model, ExaminationConditionVo examConditionVo) {
+	public String toExam() {
 		if(SecurityUtils.getSubject().isAuthenticated()) {
-			PageHelper.startPage(PageUtil.getPageNo(10, 0),10);
-			List<Examination> examList = examService.findByCondition(examConditionVo);
-			PageInfo<Examination> pages = new PageInfo<>(examList);
-			model.addAttribute("pageInfo", pages);
 			return "index/examination";
 		}else {
 			return "index/login";

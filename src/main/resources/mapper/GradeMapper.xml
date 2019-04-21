@@ -17,9 +17,21 @@
         <association property="user" javaType="com.exam.model.User">
 			<result property="username" jdbcType="VARCHAR" column="u_user_name"/>
 			<result property="nickname" jdbcType="VARCHAR" column="u_nick_name"/>
+			<result property="grade" jdbcType="VARCHAR" column="u_grade"/>
 		</association>
+		<association property="institute" javaType="com.exam.model.Institute" >
+			<result property="instituteName" jdbcType="VARCHAR" column="institute_name"/>
+        </association>
+        <association property="classes" javaType="com.exam.model.Classes" >
+			<result property="className" jdbcType="VARCHAR" column="class_name"/>
+        </association>
+        <association property="subject" javaType="com.exam.model.Subject" >
+			<result property="name" jdbcType="VARCHAR" column="s_subject_name"/>
+        </association>
 		<association property="examination" javaType="com.exam.model.Examination">
-			<result property="title" jdbcType="VARCHAR" column="e_exam_title"/>
+			<result property="title" jdbcType="VARCHAR" column="exam_title"/>
+			<result property="totalScore" jdbcType="VARCHAR" column="exam_total_score"/>
+			<result property="classId" jdbcType="VARCHAR" column="exam_class_id"/>
 		</association>
     </resultMap>
     
@@ -31,25 +43,45 @@
     <select id="findByCondition" parameterType="com.exam.vo.GradeConditionVo" resultMap="BaseResultMap">
     	SELECT
     	a.*,
-    	user.username as u_user_name,
-    	user.nickname as u_nick_name,
-    	e.title as e_exam_title
+    	u.username as u_user_name,
+    	u.nickname as u_nick_name,
+    	u.grade as u_grade,
+    	i.institute_name,
+    	c.class_name,
+    	e.title as exam_title,
+    	e.total_score as exam_total_score,
+    	subject.`name` AS s_subject_name
     	FROM
     	grade a
-    	INNER JOIN user ON a.user_id = user.user_id
+    	INNER JOIN user u ON a.user_id = u.user_id
+    	INNER JOIN classes c ON u.class_id = c.id
+    	INNER JOIN institute i ON c.ins_id = i.id
     	INNER JOIN examination e ON a.exam_id = e.id
+    	INNER JOIN subject ON e.subject_id = subject.id
     	WHERE 1 = 1
     	<if test="name != null and name != ''">
-    		AND user.nickname = #{name}
+    		AND u.nickname = #{name}
     	</if>
     	<if test="stuId != null and stuId != ''">
-    		AND user.username = #{stuId}
+    		AND u.username = #{stuId}
     	</if>
     	<if test="examId != null and examId != ''">
     		AND a.exam_id = #{examId}
     	</if>
     	<if test="author != null and author != ''">
     		AND e.author = #{author}
+    	</if>
+    	<if test="grade != null and grade != ''">
+    		AND u.grade = #{grade}
+    	</if>
+    	<if test="insId != null">
+    		AND c.ins_id = #{insId}
+    	</if>
+    	<if test="insId != null">
+    		AND u.class_id = #{classId}
+    	</if>
+    	<if test="subjectId != null">
+    		AND e.subject_id = #{subjectId}
     	</if>
     	<if test="status != null">
     		AND a.status = #{status}
@@ -63,9 +95,12 @@
     
     <select id="selectById" parameterType="int" resultMap="BaseResultMap">
     	SELECT
-    	a.*
+    	a.*,
+    	e.title as exam_title,
+    	e.total_score as exam_total_score
     	FROM
     	grade a
+    	INNER JOIN examination e ON a.exam_id = e.id
     	WHERE
     	a.id = #{id}
     </select>

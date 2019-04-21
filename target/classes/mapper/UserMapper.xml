@@ -141,5 +141,17 @@
             #{item}
         </foreach>
     </select>
+    
+    <select id="academyPassNumSta" resultType="HashMap">
+    	SELECT
+    	COUNT(u.user_id) AS num,
+    	i.institute_name
+    	from
+    	USER u
+		INNER JOIN classes c ON u.class_id = c.id
+		INNER JOIN institute i ON c.ins_id = i.id 
+		GROUP BY
+		i.id
+    </select>
 
 </mapper>

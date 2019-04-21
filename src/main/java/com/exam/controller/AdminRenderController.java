@@ -87,7 +87,15 @@ public class AdminRenderController {
     
     /*成绩*/
     @GetMapping("/grades")
-    public String Grade() {
+    public String Grade(Model model) {
+    	List<String> grades = userService.selectGradeList();
+    	List<Institute> institutes = instituteService.selectAll();
+    	List<Classes> classes = classesService.selectAll();
+    	List<Subject> subjects = subjectService.selectAll();
+    	model.addAttribute("grades", grades);
+    	model.addAttribute("institutes", institutes);
+    	model.addAttribute("classes", classes);
+    	model.addAttribute("subjects", subjects);
     	return "grade/list";
     }
     

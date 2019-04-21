@@ -1,6 +1,7 @@
 package com.exam.service;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 
 import com.exam.model.User;
@@ -92,6 +93,11 @@ public interface UserService extends BaseService<User> {
      * @return
      */
     List<String> selectGradeList();
+    
+    /**
+     * 学院及学员人数统计
+     */
+    List<HashMap<String, Object>> academyPassNumSta();
     
     int userNums();
 

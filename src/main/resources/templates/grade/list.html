@@ -10,40 +10,87 @@
 <section class="content">
     <div class="jax-box">
         <form id="formSearch" class="form-horizontal form-search">
-            <div class="form-group">
-                <div class="col-md-3 col-sm-6">
+            <div class="form-group" style="padding:10px">
+                <div class="col-md-4 col-sm-6">
                     <label class="control-label  col-xs-4">考试名称:</label>
                     <div class="col-xs-8">
                         <input type="text" class="form-control" id="keywords">
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6">
-                    <label class="control-label  col-xs-4">考生姓名:</label>
-                    <div class="col-xs-8">
-                        <input type="text" class="form-control" id="name">
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-4 col-sm-6">
                     <label class="control-label  col-xs-4">考生学号:</label>
                     <div class="col-xs-8">
                         <input type="text" class="form-control" id="stuId">
                     </div>
                 </div>
-                <div class="col-md-2 col-sm-6">
+                <div class="col-md-4 col-sm-6">
+                    <label class="control-label  col-xs-4">考生姓名:</label>
+                    <div class="col-xs-8">
+                        <input type="text" class="form-control" id="name">
+                    </div>
+                </div>
+           	</div>
+            <div class="form-group" style="padding:10px">
+            	<div class="col-md-4 col-sm-6">
+                    <label class="control-label  col-xs-4" for="grade">年级:</label>
+                    <div class="col-xs-8">
+                        <select class="form-control" id="grade">
+                            <option  value="">请选择</option>
+                            <option th:each="grade:${grades}" th:value="${grade}" th:text="${grade}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <label class="control-label  col-xs-4" for="insId">考试学院:</label>
+                    <div class="col-xs-8">
+                        <select class="form-control" id="insId">
+                            <option  value="">请选择</option>
+                            <option th:each="institute:${institutes}" th:value="${institute.id}" th:text="${institute.instituteName}"></option>
+                        </select>
+                    </div>
+                </div>
+            	<div class="col-md-4 col-sm-6">
+                    <label class="control-label  col-xs-4" for="classId">考试班级:</label>
+                    <div class="col-xs-8">
+                        <select class="form-control" id="classId">
+                            <option  value="">请选择</option>
+                            <option th:each="class:${classes}" th:value="${class.id}" th:text="${class.className}"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" style="padding:10px">
+            	<div class="col-md-4 col-sm-6">
+                    <label class="control-label  col-xs-4" for="subject">考试课程:</label>
+                    <div class="col-xs-8">
+                        <select class="form-control" id="subjectId">
+                            <option  value="">请选择</option>
+                            <option th:each="subject:${subjects}" th:value="${subject.id}" th:text="${subject.name}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
                     <label class="control-label  col-xs-4">状态:</label>
                     <div class="col-xs-8">
                         <select id="status" class="form-control">
                             <option value="">请选择</option>
                             <option value="0">未批阅</option>
-                            <option value="1">已批阅</option>
+                            <option value="1">及格</option>
+                            <option value="2">不及格</option>
+                            <option value="3">良好</option>
+                            <option value="4">优秀</option>
                         </select>
                     </div>
                 </div>
-                <shiro:hasPermission name="grade:list">
-                    <div class="col-md-1 col-sm-6 " style="text-align:left;">
-                        <button type="button" id="btn_query" class="btn btn-info">查询</button>
-                    </div>
-                </shiro:hasPermission>
+	            <div class="col-md-4 col-sm-6">
+	            	<label class="control-label col-xs-4"></label>
+	            	<div class="col-xs-8">
+	                	<shiro:hasPermission name="exam:list">
+	                    	<button type="button" id="btn_query" class="btn btn-primary pull-right">查 询</button>
+	                    </shiro:hasPermission>
+	                    <button type="button" id="btn_requery" class="btn btn-primary pull-right" style="margin-right:5px">重 填</button>
+	                </div>
+                </div>
             </div>
         </form>
     </div>
@@ -100,7 +147,7 @@
         },{
             field: 'examination',
             title: '考试名称',
-            width : '25%',
+            width : '24%',
             align : "center",
            	formatter: function (value) {
                    return value.title;
@@ -109,18 +156,26 @@
             field: 'user',
             title: '考生学号',
             align : "center",
-            width : '10%',
+            width : '8%',
             formatter: function (value) {
                 return value.username;
             }
         },{
             field: 'user',
             title: '考生姓名',
-            width : '10%',
+            width : '8%',
             align : "center",
            	formatter: function (value) {
                    return value.nickname;
             }
+        },{
+            field: 'examination',
+            title: '总分',
+            width : '5%',
+            align : "center",
+           	formatter: function (value) {
+                   return value.totalScore;
+               }
         },{
             field: 'autoResult',
             title: '选择题得分',
@@ -145,8 +200,14 @@
             	var statusName = '';
                 if(status == 0){
              	   statusName = '<span class="label label-warning">未批阅</span>';
-                }else{
-             	   statusName = '<span class="label label-success">已批阅</span>';
+                }else if(status == 1){
+             	   statusName = '<span class="label label-success">及格</span>';
+                }else if(status == 2){
+             	   statusName = '<span class="label label-danger">不及格</span>';
+                }else if(status == 3){
+             	   statusName = '<span class="label label-primary">良好</span>';
+                }else if(status == 4){
+             	   statusName = '<span class="label label-info">优秀</span>';
                 }
                 return statusName;
             }
@@ -159,7 +220,7 @@
             formatter : function(value,
                                  row, index) {
                 var mark = markFlag=="true"&&row.status==0 ? '<a class="btn btn btn-info btn-sm" onclick="markGrade('+row.id+')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 批阅</a>' : '';
-                var detail = detailFlag=="true"&&row.status==1 ? '<a class="btn btn-primary btn-sm" onclick="detailGrade('+row.id+')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 查看</a>' : '';
+                var detail = detailFlag=="true"&&row.status!=0 ? '<a class="btn btn-primary btn-sm" onclick="detailGrade('+row.id+')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 查看</a>' : '';
                 var del = deleteFlag=="true" ? '<a class="btn btn-danger btn-sm" onclick="deleteGrade('+row.id+')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除</a>' : '';
                 return mark + " " + detail + " " + del;
             }
@@ -182,7 +243,12 @@
             keywords : $("#keywords").val(),
             name : $("#name").val(),
             stuId : $("#stuId").val(),
+            grade : $("#grade").val(),
+            insId : $("#insId").val(),
+            classId : $("#classId").val(),
+            subjectId : $("#subjectId").val(),
             status : $("#status").val(),
+            
         };
         return temp;
     }
@@ -218,6 +284,10 @@
         /*查询*/
         $("#btn_query").click(function(){
             Core.refreshTable("#table");
+        });
+        /* 重置表单 */
+        $("#btn_requery").click(function(){
+        	$("#formSearch")[0].reset();
         });
         /*批量删除*/
         $("#btn_batch_delete").click(function(){

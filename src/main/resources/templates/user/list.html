@@ -12,13 +12,13 @@
         <form id="formSearch" class="form-horizontal form-search">
             <div class="form-group" style="padding:10px">
                 <div class="col-md-4 col-sm-6">
-                    <label class="control-label  col-xs-4" for="username">账号:</label>
+                    <label class="control-label  col-xs-4" for="username">登录账号:</label>
                     <div class="col-xs-8">
                         <input type="text" class="form-control" id="username" placeholder="学号/教工号/管理员账号">
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6">
-                    <label class="control-label  col-xs-4" for="nickname">姓名:</label>
+                    <label class="control-label  col-xs-4" for="nickname">用户姓名:</label>
                     <div class="col-xs-8">
                         <input type="text" class="form-control" id="nickname" placeholder="用户真实姓名">
                     </div>
@@ -64,11 +64,15 @@
                 </div>
             </div>
             <div class="form-group" style="padding:10px">
-                <shiro:hasPermission name="user:list">
-                <div class="col-md-1 col-sm-6 pull-right">
-                    <button type="button" id="btn_query" class="btn btn-info">查询</button>
+                <div class="col-md-12">
+                	<label class="control-label col-xs-4"></label>
+                	<div class="col-xs-8">
+	                	<shiro:hasPermission name="user:list">
+	                    	<button type="button" id="btn_query" class="btn btn-primary pull-right">查 询</button>
+	                    </shiro:hasPermission>
+	                	<button type="button" id="btn_requery" class="btn btn-primary pull-right" style="margin-right:5px">重 填</button>
+                	</div>
                 </div>
-                </shiro:hasPermission>
             </div>
         </form>
     </div>
@@ -397,6 +401,10 @@
         /*查询*/
         $("#btn_query").click(function(){
             Core.refreshTable("#table");
+        });
+        /* 重置表单 */
+        $("#btn_requery").click(function(){
+        	$("#formSearch")[0].reset();
         });
         /*新增*/
         $("#btn_add").click(function(){

@@ -62,7 +62,11 @@ public class ExaminationController {
 		examService.updateExamToEnd();
 		User user = (User)SecurityUtils.getSubject().getPrincipal();
 		if(!user.getNickname().equals("超级管理员")) {
-			examConditionVo.setAuthor(user.getNickname());
+			if(user.getClassId() != null) {
+				examConditionVo.setClassId(user.getClassId());
+			}else {
+				examConditionVo.setAuthor(user.getNickname());
+			}
 		}
 		PageHelper.startPage(PageUtil.getPageNo(limit, offset),limit);
 		List<Examination> examList = examService.findByCondition(examConditionVo);

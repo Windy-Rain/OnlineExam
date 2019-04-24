@@ -19,7 +19,7 @@
 </head>
 <body>
 <div id="header" class="nav-header" style="background:#4F94CD; height:8%">
-	<div th:replace="home/fragments/navbar :: navbar"></div>
+	<div th:replace="home/fragments/navbar :: navbar(activeUri='score')"></div>
 </div>
 <div class="exam-content" style="height:75%;margin:0">
 	<div class="container">
@@ -88,8 +88,6 @@
 </div>
 <script type="text/javascript">
 	$("#grade_table").hide();
-	var headerMain = document.getElementById('headerMain');
-	headerMain.setAttribute("style","background:#4F94CD");
 
 	$(function () {
 		/*返回*/

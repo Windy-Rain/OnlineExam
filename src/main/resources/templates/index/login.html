@@ -13,6 +13,7 @@
 <link rel="stylesheet" th:href="@{/libs/validate/validate.css}" />
 <link rel="stylesheet" th:href="@{/libs/iCheck/square/blue.css}" />
 <link rel="stylesheet" th:href="@{/css/login.css}" />
+<link rel="stylesheet" th:href="@{/css/exam-common.css}" />
 <link rel="stylesheet" th:href="@{/css/web-common.css}" />
 <script type="text/javascript" th:src="@{/libs/jquery/jquery.min.js}"></script>
 <script type="text/javascript" th:src="@{/libs/bootstrap/bootstrap.min.js}"></script>
@@ -78,10 +79,6 @@
   });
 </script>
 <script>
-	var headerMain = document.getElementById('headerMain');
-	headerMain.setAttribute("style","background:#4F94CD");
-	headerMain.removeChild(document.getElementById('login'));
-	
 	$(function () {
 	    $(".vcode-img").on('click', function () {
 	        $(this).attr('src', '/verificationCode?' + Math.floor(Math.random() * 100));

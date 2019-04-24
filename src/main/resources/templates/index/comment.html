@@ -26,7 +26,7 @@
 </head>
 <body style="background: #f1f1f1;">
 <div id="header" class="nav-header" style="background:#4F94CD">
-	<div th:replace="home/fragments/navbar :: navbar"></div>
+	<div th:replace="home/fragments/navbar :: navbar(activeUri='comment')"></div>
 </div>
 <div class="exam-container exam-content">
 	<div class="exam-main comment">
@@ -72,8 +72,4 @@
 </script>
 <script  th:src="@{/js/comment.js}"></script>
 </body>
-<script type="text/javascript">
-	var headerMain = document.getElementById('headerMain');
-	headerMain.setAttribute("style","background:#4F94CD");
-</script>
 </html>

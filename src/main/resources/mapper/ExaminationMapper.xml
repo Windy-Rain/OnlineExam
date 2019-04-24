@@ -154,6 +154,18 @@
     	examination.status = #{status}
     </select>
     
+    <select id="recAddExamSta" resultType="HashMap">
+    	select 
+		e.title,
+		e.status,
+		e.create_time,
+		u.nickname,
+		u.img
+		from examination e
+		INNER JOIN user u ON e.user_id = u.user_id
+		order by e.create_time desc limit 4
+    </select>
+    
     <update id="updateExamToStart">
         UPDATE examination
         SET

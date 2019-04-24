@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title th:text="${@module.get('sysConfig').SITE_NAME}"></title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<link rel="stylesheet" th:href="@{/libs/bootstrap/bootstrap.min.css}"/>
+	<link rel="stylesheet" th:href="@{/libs/semantic-ui/semantic.min.css}" />
+	<link rel="stylesheet" th:href="@{/libs/adminlte/css/AdminLTE.min.css}"/>
+	<link rel="stylesheet" th:href="@{/css/exam-common.css}"/>
+	<script th:src="@{/libs/jquery/jquery.min.js}"></script>
+	<script th:src="@{/libs/jquery/jquery.countdown.min.js}"></script>
+	<script th:src="@{/libs/bootstrap/bootstrap.min.js}"></script>
+    <script th:src="@{/libs/semantic-ui/semantic.min.js}"></script>
+    <script th:src="@{/libs/layer/layer.js}"></script>
+    <script th:src="@{/js/core.js}"></script>
+    <script th:src="@{/js/examination.js}"></script>
+</head>
+<body>
+<div id="header" class="nav-header" style="background:#4F94CD; height:8%">
+	<div th:replace="home/fragments/navbar :: navbar"></div>
+</div>
+<div class="exam-content" style="height:75%;margin:0">
+	<div class="ui main container">
+	    <div class="ui grid">
+	        <div class="four wide column">
+	            <div class="row">
+	                <div class="ui card">
+	                    <div class="blurring dimmable image">
+	                        <div class="ui dimmer">
+	                            <div class="content">
+	                                <div class="center">
+	                                    <a th:href="@{/account/profile}" data-inverted="" data-tooltip="更换头像" data-position="bottom center"><i class="huge photo icon"></i></a>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <img th:src="@{${user.img}}" />
+	                    </div>
+	                    <div class="content">
+	                        <div class="header" th:text="${user.nickname}"></div>
+	                        <div class="meta">
+	                            <div class="group">
+	                                <i class="student icon"></i>信息学院
+	                            </div>
+	                        </div>
+	                        <div class="description" th:text="${user.phone}"></div>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="row" style="margin-top: 1em;">
+	                <div class="ui card">
+	                    <div class="content">
+	                        <a th:href="@{/account/password}">
+	                            <i class="edit icon"></i>更改密码
+	                        </a>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	        <div class="twelve wide column">
+	            <div class="ui segment">
+	                <h4 class="ui dividing header">基本信息</h4>
+	                <form class="ui form attached fluid segment" id="updateAccountForm">
+	                    <div class="ui hidden negative message" id="updateAccountErrorMessage">
+	                    </div>
+	                    <div class="field">
+	                        <label><i class="user icon"></i>姓名</label>
+	                        <input id="nickname" name="nickname" readonly="" placeholder="请输入姓名"
+	                               type="text" th:value="${user.nickname}" />
+	                    </div>
+	                    <div class="field">
+	                        <label><i class="student icon"></i>学号</label>
+	                        <input id="username" name="username" readonly="" placeholder="请输入学号"
+	                               type="text" th:value="${user.username}" />
+	                    </div>
+	                    <div class="field">
+	                        <label><i class="mobile icon"></i>手机号码</label>
+	                        <input id="phone" name="phone" placeholder="请输入手机号码" type="text"
+	                               th:value="${user.phone}" />
+	                    </div>
+	                    <div class="field">
+	                        <label><i class="mail outline icon"></i>邮箱</label>
+	                        <input id="email" name="email" placeholder="请输入邮箱地址" type="text"
+	                               th:value="${user.email}" />
+	                    </div>
+	                    <div class="field">
+	                        <label><i class="upload icon"></i>上传头像</label>
+	                        <div class="ui three column grid">
+	                            <div class="column">
+	                                <div class="ui fluid card">
+	                                    <div class="image">
+	                                        <img id="avatarImgPreview" class="ui tiny image" th:src="@{${user.img}}" />
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <input type="file" id="myfile" name="myfile" value="" onchange="profilePage.uploadAvatar()"/>
+	                        <input type="hidden" id="myAvatarImgUrl" name="myAvatarImgUrl" value="" />
+	                    </div>
+	                    <div class="field">
+	                        <label><i class="smile icon"></i>自我描述</label>
+	                        <textarea  id="myDescription" name="myDescription" rows="6"
+	                                   th:text="${user.phone}"></textarea>
+	                    </div>
+	                    <div class="ui primary button" id="updateAccountButton">保存</div>
+	                </form>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+<div class="footer" style="background:#4F94CD; height:17%">
+	<div th:replace="home/fragments/footer :: copyrightExamWeb"></div>
+</div>
+<script type="text/javascript">
+</script>
+</body>
+</html>

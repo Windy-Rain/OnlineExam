@@ -1,9 +1,11 @@
 package com.exam.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.exam.model.Grade;
 import com.exam.vo.GradeConditionVo;
+import com.exam.vo.StatisticConditionVo;
 
 public interface GradeService extends BaseService<Grade> {
 	
@@ -38,6 +40,11 @@ public interface GradeService extends BaseService<Grade> {
 	 * @return
 	 */
 	Grade validateExam(Integer id, String userId);
-
-
+	
+	/**
+	 * 参加考试人数统计
+	 * @return
+	 */
+	List<HashMap<String, Object>> examUserNumsAnalysis(StatisticConditionVo vo);
+	
 }

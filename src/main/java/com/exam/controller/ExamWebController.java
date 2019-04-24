@@ -239,6 +239,23 @@ public class ExamWebController {
 		}
 	}
 	
+	/**
+	 * 个人主页
+	 * @param model
+	 * @param userId
+	 * @return
+	 */
+	@GetMapping("/exam/personInfo")
+	public String personal(Model model, String userId) {
+		if(SecurityUtils.getSubject().isAuthenticated()) {
+			User user = userService.selectByUserId(userId);
+			model.addAttribute("user", user);
+			return "index/personInfo";
+		}else {
+			return "index/login";
+		}
+	}
+	
 	@GetMapping("/exam/startexam")
 	public String startToExam(Model model, Integer id) {
 		User user = (User)SecurityUtils.getSubject().getPrincipal();

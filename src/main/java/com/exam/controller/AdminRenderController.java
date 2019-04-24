@@ -18,6 +18,7 @@ import com.exam.service.SubjectService;
 import com.exam.service.SysConfigService;
 import com.exam.service.UserService;
 import com.exam.util.CoreConst;
+import com.mysql.fabric.xmlrpc.base.Data;
 
 
 @Controller
@@ -97,6 +98,19 @@ public class AdminRenderController {
     	model.addAttribute("classes", classes);
     	model.addAttribute("subjects", subjects);
     	return "grade/list";
+    }
+    
+    @GetMapping("/datas")
+    public String data(Model model) {
+    	List<String> grades = userService.selectGradeList();
+    	List<Institute> institutes = instituteService.selectAll();
+    	List<Classes> classes = classesService.selectAll();
+    	List<Subject> subjects = subjectService.selectAll();
+    	model.addAttribute("grades", grades);
+    	model.addAttribute("institutes", institutes);
+    	model.addAttribute("classes", classes);
+    	model.addAttribute("subjects", subjects);
+    	return "statistics/list";
     }
     
     /*评论*/

@@ -16,7 +16,7 @@
 </head>
 <body>
 <div id="header" class="nav-header" style="background:#4F94CD">
-	<div th:replace="home/fragments/navbar :: navbar"></div>
+	<div th:replace="home/fragments/navbar :: navbar(activeUri='question')"></div>
 </div>
 <div class="exam-content" style="padding-bottom:2em;margin-top: 70px">
 	<div class="ui header container" style="padding-top:10px;padding-left:10px">
@@ -65,8 +65,4 @@
 </div>
 <div class="return_top"><a class=" fa fa-arrow-up"></a></div>
 </body>
-<script type="text/javascript">
-	var headerMain = document.getElementById('headerMain');
-	headerMain.setAttribute("style","background:#4F94CD");
-</script>
 </html>

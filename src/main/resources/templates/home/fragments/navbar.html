@@ -1,19 +1,19 @@
 <meta charset="utf-8">
 <div th:fragment="navbar">
-	<div class="ui fixed inverted menu" id="headerMain">
+	<div class="ui fixed inverted menu" id="headerMain" style="background:#4F94CD">
 	    <a th:href="@{/}" class="header item">
 	        <img class="ui" th:src="@{/img/logo.png}" width="156" height="32" alt="" />
 	    </a>
-	    <a th:href="@{/exam/examination}" class="item">
+	    <a th:href="@{/exam/examination}" class="item" th:class="${activeUri=='examiantion'?'item active':'item'}">
 	        <i class="desktop icon"></i>在线考试
 	    </a>
-	    <a th:href="@{/exam/questions}" class="item">
+	    <a th:href="@{/exam/questions}" class="item" th:class="${activeUri=='question'?'item active':'item'}">
 	        <i class="list layout icon"></i>题库中心
 	    </a>
-	    <a th:href="@{/exam/queryScore}" class="item">
+	    <a th:href="@{/exam/queryScore}" class="item" th:class="${activeUri=='score'?'item active':'item'}">
 	        <i class="paper plane icon"></i>成绩查询
 	    </a>
-	    <a th:href="@{/exam/comment}" class="item">
+	    <a th:href="@{/exam/comment}" class="item" th:class="${activeUri=='comment'?'item active':'item'}">
 	        <i class="talk icon"></i>留言板
 	    </a>
 	    <shiro:notAuthenticated>
@@ -57,7 +57,9 @@
 			})
 			/* 我的信息 */
 			$("#myInfo").on('click', function(){
-				alert("正在开发中...")
+				var userId = $("#userId").text();
+				console.log(userId);
+				window.location.href="/exam/personInfo?userId="+userId;
 			})
 		});
 	</script>

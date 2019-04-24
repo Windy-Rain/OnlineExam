@@ -1,0 +1,164 @@
+<meta charset="utf-8">
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+        <li><a href="#">考试管理</a></li>
+        <li class="active">数据统计</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+	<div class="jax-box">
+        <form id="formSearch" class="form-horizontal form-search">
+            <div class="form-group" style="padding:10px">
+                <div class="col-md-4 col-sm-6">
+                    <label class="control-label  col-xs-4">考试名称:</label>
+                    <div class="col-xs-8">
+                        <input type="text" class="form-control" id="title">
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <label class="control-label  col-xs-4" for="grade">年级:</label>
+                    <div class="col-xs-8">
+                        <select class="form-control" id="grade">
+                            <option  value="">请选择</option>
+                            <option th:each="grade:${grades}" th:value="${grade}" th:text="${grade}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <label class="control-label  col-xs-4" for="insId">考试学院:</label>
+                    <div class="col-xs-8">
+                        <select class="form-control" id="insId">
+                            <option  value="">请选择</option>
+                            <option th:each="institute:${institutes}" th:value="${institute.id}" th:text="${institute.instituteName}"></option>
+                        </select>
+                    </div>
+                </div>
+           	</div>
+           	<div class="form-group" style="padding:10px">
+           		<div class="col-md-4 col-sm-6">
+                    <label class="control-label  col-xs-4" for="classId">考试班级:</label>
+                    <div class="col-xs-8">
+                        <select class="form-control" id="classId">
+                            <option  value="">请选择</option>
+                            <option th:each="class:${classes}" th:value="${class.id}" th:text="${class.className}"></option>
+                        </select>
+                    </div>
+                </div>
+            	<div class="col-md-4 col-sm-6">
+                    <label class="control-label  col-xs-4" for="subject">考试课程:</label>
+                    <div class="col-xs-8">
+                        <select class="form-control" id="subjectId">
+                            <option  value="">请选择</option>
+                            <option th:each="subject:${subjects}" th:value="${subject.id}" th:text="${subject.name}"></option>
+                        </select>
+                    </div>
+                </div>
+	            <div class="col-md-4 col-sm-6">
+	            	<label class="control-label col-xs-4"></label>
+	            	<div class="col-xs-8">
+	                	<shiro:hasPermission name="datas:list">
+	                    	<button type="button" id="btn_query" class="btn btn-primary pull-right">查 询</button>
+	                    </shiro:hasPermission>
+	                    <button type="button" id="btn_requery" class="btn btn-primary pull-right" style="margin-right:5px">重 填</button>
+	                </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="jax-box jax-box-table">
+        <table id="table"></table>
+    </div>
+</section>
+
+<script>
+    var columns = [ 
+    	{
+            field : 'title',
+            title : '试卷名称',
+            align : "left",
+            width : '27%',
+        },{
+            field : 'totalNums',
+            title : '参考人数',
+            align : "center",
+            width : '8%',
+        },{
+            field : 'passNums',
+            title : '及格人数(60-79分)',
+            align : "center",
+            width : '10%',
+        },{
+            field : 'noPassNums',
+            title : '未及格人数(60分以下)',
+            align : "center",
+            width : '10%',
+        },{
+            field : 'goodNums',
+            title : '良好人数(80-89分)',
+            align : "center",
+            width : '10%',
+        },{
+            field : 'fineNums',
+            title : '优秀人数(90-100分)',
+            align : "center",
+            width : '10%',
+        },{
+            field : 'totalPassNums',
+            title : '及格总人数',
+            align : "center",
+            width : '10%',
+            formatter: function(value, row, index){
+                return row.passNums+row.goodNums+row.fineNums;//行合计
+            },
+        },{
+            field : 'passRate',
+            title : '及格率',
+            align : "center",
+            width : '15%',
+            formatter: function(value, row, index){
+            	 var res = 100*parseInt(row.passNums+row.goodNums+row.fineNums)/parseInt(row.totalNums);
+            	 var pressHtml = "<div class='progress progress-striped active'>"+
+            	 					"<div class='progress-bar progress-bar-success' role='progressbar'"+
+            	 					"aria-valuenow='50' aria-valuemin='0' aria-valuemax='100' style='width:"+res.toFixed(2)+"%'>"
+            	 					+res.toFixed(2)+"%"+"</div>"+
+            	 				"</div>";
+                return pressHtml;//及格率
+            },
+        }];
+    var options={
+            id:"#table",
+            url: '/data/list',
+            columns:columns,
+            toolbar: '#toolbar',
+            showRefresh: true,
+            queryParams : queryParams
+        }
+        Core.initTable(options);
+
+    /*查询参数*/
+    function queryParams(params) {
+        var temp = { //这里的键的名字和控制器的变量名必须一致，这边改动，控制器也需要改成一样的
+            limit : params.limit, //页面大小
+            offset : params.offset, //页码
+            title : $("#title").val(),
+            grade : $("#grade").val(),
+            insId : $("#insId").val(),
+            classId : $("#classId").val(),
+            subjectId : $("#subjectId").val(),
+        };
+        return temp;
+    }
+    
+    $(function () {
+    	/*查询*/
+        $("#btn_query").click(function(){
+            Core.refreshTable("#table");
+        });
+        /* 重置表单 */
+        $("#btn_requery").click(function(){
+        	$("#formSearch")[0].reset();
+        });
+    })
+</script>

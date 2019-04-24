@@ -11,6 +11,7 @@ import com.exam.model.Classes;
 import com.exam.model.Institute;
 import com.exam.service.ClassesService;
 import com.exam.service.CommentService;
+import com.exam.service.ExaminationService;
 import com.exam.service.InstituteService;
 import com.exam.service.QuestionService;
 import com.exam.service.SubjectService;
@@ -39,10 +40,15 @@ public class RenderController {
 	@Autowired
 	private ClassesService classesService;
 	
+	@Autowired
+	private ExaminationService examService;
+	
 
     /*工作台*/
     @GetMapping("/workdest")
     public String workdest(Model model){
+    	examService.updateExamToStart();
+		examService.updateExamToEnd();
     	int questionNums = questionService.totalNum();
     	int userNums = userService.userNums();
     	int subjectNums = subjectService.totalNum();

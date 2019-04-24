@@ -1,6 +1,7 @@
 package com.exam.mapper;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -34,5 +35,7 @@ public interface ExaminationMapper extends MapperUtil<Examination> {
 	int updateExamToEnd(@Param("currentTime") Date currentTime);
 	
 	List<Examination> selectAllByStatus(Integer status);
+	
+	List<HashMap<String, Object>> recAddExamSta();
 
 }

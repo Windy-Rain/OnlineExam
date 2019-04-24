@@ -67,6 +67,27 @@
 	</div>
 	<div class="row">
 		<div class="col-md-6">
+			<div class="box box-primary">
+				<div class="box-header with-border">
+					<h3 class="box-title">最近发布的考试</h3>
+					<div class="box-tools pull-right">
+						<button type="button" class="btn btn-box-tool" data-widget="collapse">
+							<i class="fa fa-minus"></i>
+						</button>
+						<button type="button" class="btn btn-box-tool" data-widget="remove">
+							<i class="fa fa-times"></i>
+						</button>
+					</div>
+				</div>
+				<div class="box-body">
+					<ul class="products-list product-list-in-box" id="examList"></ul>
+				</div>
+				<div class="box-footer text-center">
+              		<a href="/index#exams" class="uppercase">查 看 更 多 考 试</a>
+            	</div>
+			</div>
+		</div>
+		<div class="col-md-6">
 			<div class="box box-danger">
 				<div class="box-header with-border">
 					<h3 class="box-title">学院和学生人数统计</h3>
@@ -80,27 +101,7 @@
 					</div>
 				</div>
 				<div class="box-body">
-					<div id="pieChart" style="width:100%;height:300px"></div>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-6">
-			<div class="box box-success">
-				<div class="box-header with-border">
-					<h3 class="box-title">学院及格人数统计图</h3>
-					<div class="box-tools pull-right">
-						<button type="button" class="btn btn-box-tool" data-widget="collapse">
-							<i class="fa fa-minus"></i>
-						</button>
-						<button type="button" class="btn btn-box-tool" data-widget="remove">
-							<i class="fa fa-times"></i>
-						</button>
-					</div>
-				</div>
-				<div class="box-body">
-					<div class="chart">
-						<div id="barChart" style="width:100%;height:300px"></div>
-					</div>
+					<div id="pieChart" style="width:100%;height:325px"></div>
 				</div>
 			</div>
 		</div>
@@ -109,6 +110,24 @@
 
 <script type="text/javascript">
 	$(function () {
+		Core.postAjax("/api/uns","",function (data) {
+            if(data.status==200){
+            	console.log(data.data);
+            	//build_exam_li(data);
+            }else{
+            	layer.msg(data.msg);
+            }
+        })
+        
+		Core.postAjax("/api/aes","",function (data) {
+            if(data.status==200){
+            	//console.log(data.data);
+            	build_exam_li(data);
+            }else{
+            	layer.msg(data.msg);
+            }
+        })
+        
 		Core.postAjax("/api/aps","",function (data) {
             if(data.status==200){
                 getData(data);
@@ -163,81 +182,26 @@
 	      	//使用刚指定的配置项和数据显示图表。
 	        myChart.setOption(option);
 		}
-		
-		
-		var barChart = echarts.init(document.getElementById('barChart'));
-        var data = genData(10);
-
-        options = {
-
-            tooltip : {
-                trigger: 'item',
-                formatter: "{a} <br/>{b} : {c} ({d}%)"
-            },
-            legend: {
-                type: 'scroll',
-                left: 'left',
-                orient: 'vertical',
-                right: 10,
-                top: 10,
-                bottom: 20,
-                data: data.legendData,
-                selected: data.selected
-            },
-            series : [
-                {
-                    name: '姓名',
-                    type: 'pie',
-                    radius : '70%',
-                    center: ['60%', '50%'],
-                    data: data.seriesData,
-                    itemStyle: {
-                        emphasis: {
-                            shadowBlur: 10,
-                            shadowOffsetX: 0,
-                            shadowColor: 'rgba(0, 0, 0, 0.5)'
-                        }
-                    }
-                }
-            ]
-        };
-
-
-        function genData(count) {
-            var nameList = [
-                '赵', '钱', '孙', '李', '周', '吴', '郑', '王', '冯', '陈',
-            ];
-            var legendData = [];
-            var seriesData = [];
-            var selected = {};
-            for (var i = 0; i < 10; i++) {
-                name = Math.random() > 0.65
-                    ? makeWord(4, 1) + '·' + makeWord(3, 0)
-                    : makeWord(2, 1);
-                legendData.push(name); 
-                seriesData.push({
-                    name: name,
-                    value: Math.round(Math.random() * 100000)
-                });
-                selected[name] = i < 6;
-            }
-
-            return {
-                legendData: legendData,
-                seriesData: seriesData,
-                selected: selected
-            };
-
-            function makeWord(max, min) {
-                var nameLen = Math.ceil(Math.random() * max + min);
-                var name = [];
-                for (var i = 0; i < nameLen; i++) {
-                    name.push(nameList[Math.round(Math.random() * nameList.length - 1)]);
-                }
-                return name.join('');
-            }
-        }
-     	//使用刚指定的配置项和数据显示图表。
-        barChart.setOption(options);
 	})
+	
+	function build_exam_li(data){
+		var exams = data.data;
+		if(!exams.length == 0){
+			$.each(exams, function(index, items){
+				var statusSpan;
+				var imgDiv = $("<div class='product-img'></div>").append("<img src='"+items.img+"'/>");
+				if(items.status == 0){
+					statusSpan = $("<span>未开始</span>").addClass("label label-warning pull-right");
+				}else if(items.status == 1){
+					statusSpan = $("<span>进行中</span>").addClass("label label-success pull-right");
+				}else{
+					statusSpan = $("<span>已结束</span>").addClass("label label-danger pull-right");
+				}
+				var titleA = $("<a href='/index#exams' class='product-title'></a>").append(items.title).append(statusSpan);
+				var desSpan = $("<span style='padding-top:5px'>"+items.nickname+"于"+items.create_time+"发布考试啦!</span>").addClass("product-description");
+				var infoDiv = $("<div class='product-info'></div>").append(titleA).append(desSpan);
+				$("<li class='item'></li>").append(imgDiv).append(infoDiv).appendTo("#examList");
+			})
+		}
+	}
 </script>

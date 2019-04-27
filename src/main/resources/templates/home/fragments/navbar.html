@@ -23,12 +23,13 @@
 	    </shiro:notAuthenticated>
 	    <shiro:authenticated>
 		    <div class="ui simple dropdown right item">
-		        <img class="ui avatar image" th:src="@{/img/person.jpg}"/>
+		        <img class="ui avatar image" id="imgSrc"/>
+		        <span id="userImg" style="display: none"><shiro:principal property="img" /></span>
 		        <span id="userId" style="display: none"><shiro:principal property="userId" /></span>
 		        <span><shiro:principal property="nickname"/></span><i class="dropdown icon"></i>
 		        <div class="menu">
 		            <a class="item" id="myInfo">
-		                <i class="user icon"></i>我的主页
+		                <i class="edit icon"></i>编辑个人资料
 		            </a>
 		            <a class="item" id="logoutBtn">
 		                <i class="sign out icon"></i>退出
@@ -38,6 +39,7 @@
 	    </shiro:authenticated>
 	</div>
 	<script type="text/javascript">
+		$("#imgSrc").attr("src",$("#userImg").text());
 		$(function(){
 			/* 登录 */
 			$("#login").on('click', function(){

@@ -4,7 +4,8 @@
 		<section class="sidebar">
 			<div class="user-panel">
 				<div class="pull-left image">
-					<img th:src="@{/img/person.jpg}" class="img-circle" alt="User Image">
+					<span id="userImg" style="display: none"><shiro:principal property="img" /></span>
+					<img class="img-circle" id="imgUrl" alt="User Image">
 				</div>
 				<div class="pull-left info">
 					<p><shiro:principal property="nickname" /></p>
@@ -26,4 +27,7 @@
 			<div id="menu"></div>
 		</section>
 	</aside>
+	<script>
+   		$("#imgUrl").attr("src",$("#userImg").text());
+	</script>
 </div>

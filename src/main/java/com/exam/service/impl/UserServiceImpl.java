@@ -1,8 +1,10 @@
 package com.exam.service.impl;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -10,6 +12,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.DefaultSessionKey;
@@ -20,13 +27,19 @@ import org.crazycake.shiro.RedisCacheManager;
 import org.crazycake.shiro.RedisSessionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.exam.enmus.ResponseStatus;
+import com.exam.exception.ExcelException;
 import com.exam.mapper.UserMapper;
 import com.exam.mapper.UserRoleMapper;
 import com.exam.model.User;
 import com.exam.model.UserRole;
 import com.exam.service.UserService;
+import com.exam.util.CoreConst;
+import com.exam.util.PasswordHelper;
 import com.exam.util.ResultUtil;
+import com.exam.util.UUIDUtil;
 import com.exam.vo.UserConditionVo;
 import com.exam.vo.UserOnlineVo;
 import com.exam.vo.base.ResponseVo;
@@ -34,6 +47,9 @@ import com.exam.vo.base.ResponseVo;
 
 @Service
 public class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
+	
+	private final static String XLS = "xls";
+	private final static String XLSX = "xlsx";
 
 
     @Autowired
@@ -49,6 +65,8 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
     private UserMapper userMapper;
     @Autowired
     private UserRoleMapper userRoleMapper;
+    @Autowired
+    private QuestionServiceImpl questionServiceImpl;
 
     @Override
     public User selectByUsername(String username) {
@@ -221,4 +239,84 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		return userMapper.academyPassNumSta();
 	}
 
+	@Override
+	public ResponseVo importUserExcel(MultipartFile file) {
+		List<User> users = new ArrayList<>();
+		Workbook workbook = null;
+		//获取文件名
+		String fileName = file.getOriginalFilename();
+		if(fileName.endsWith(XLS)) {
+			try {
+				workbook = new HSSFWorkbook(file.getInputStream()); //2003版
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}else if(fileName.endsWith(XLSX)) {
+			try {
+				workbook = new XSSFWorkbook(file.getInputStream()); //2007版
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}else {
+			new ExcelException(ResponseStatus.FILE_IS_NOT_EXCEL); //文件不是excel文件
+		}
+		
+		Sheet sheet = workbook.getSheet("sheet1");
+		int rows = sheet.getLastRowNum();
+		if(rows == 0) {
+			new ExcelException(ResponseStatus.DATA_IS_NULL); //Excel为空，请上传有数据的Excel
+		}
+		
+		for(int i = 1; i <= rows+1; i++) {
+			Row row = sheet.getRow(i);
+			if(row != null) {
+				User user = new User();
+				//学号
+				String username = questionServiceImpl.getCellValue(row.getCell(0));
+				User user2 = selectByUsername(username);
+				if(user2 == null) {
+					user.setUsername(username);
+					String nickname = questionServiceImpl.getCellValue(row.getCell(1));
+					user.setNickname(nickname);
+					String grade = questionServiceImpl.getCellValue(row.getCell(2));
+					user.setGrade(grade);
+					String classId = questionServiceImpl.getCellValue(row.getCell(3));
+					if(!classId.isEmpty()) {
+						Integer class_id = Integer.parseInt(classId);
+						user.setClassId(class_id);
+					}
+					String sex = questionServiceImpl.getCellValue(row.getCell(4));
+					if(!sex.isEmpty()) {
+						Integer new_sex = Integer.parseInt(sex);
+						user.setSex(new_sex);
+					}
+					String age = questionServiceImpl.getCellValue(row.getCell(5));
+					if(!age.isEmpty()) {
+						Integer new_age = Integer.parseInt(age);
+						user.setAge(new_age);
+					}
+					String phone = questionServiceImpl.getCellValue(row.getCell(6));
+					user.setPhone(phone);
+					String email = questionServiceImpl.getCellValue(row.getCell(7));
+					user.setEmail(email);
+					String description = questionServiceImpl.getCellValue(row.getCell(8));
+					user.setDescription(description);
+					user.setUserId(UUIDUtil.getUniqueIdByUUId());
+					user.setImg(CoreConst.DEFAULT_IMG);
+					user.setStatus(CoreConst.STATUS_VALID);
+					user.setPassword(CoreConst.DEFAULT_PASSWORD);
+					PasswordHelper.encryptPassword(user);
+					users.add(user);
+				}else {
+					rows--;
+				}
+			}
+		}
+		int j = userMapper.batchInsert(users); //批量插入
+		if(j > 0) {
+			return ResultUtil.success("成功导入"+ rows + "名用户");
+		}else {
+			return ResultUtil.error("导入失败");
+		}
+	}
 }

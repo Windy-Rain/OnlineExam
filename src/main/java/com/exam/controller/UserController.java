@@ -65,20 +65,26 @@ public class UserController {
     /**新增用户*/
     @PostMapping("/add")
     @ResponseBody
-    public ResponseVo add(User userForm, String confirmPassword){
+    public ResponseVo add(User userForm, String confirmPassword, Integer passwordType){
         String username = userForm.getUsername();
         User user = userService.selectByUsername(username);
         if (null != user) {
-            return ResultUtil.error("用户名已存在");
+            return ResultUtil.error("该学号已存在");
         }
-        String password = userForm.getPassword();
-        //判断两次输入密码是否相等
-        if (confirmPassword != null && password != null) {
-            if (!confirmPassword.equals(password)) {
-                return ResultUtil.error("两次密码不一致");
-            }
+        if(passwordType == 0) {
+        	String password = userForm.getPassword();
+        	//判断两次输入密码是否相等
+        	if (confirmPassword != null && password != null) {
+        		if (!confirmPassword.equals(password)) {
+        			return ResultUtil.error("两次密码不一致");
+        		}
+        	}
+        	
+        }else {
+        	userForm.setPassword(CoreConst.DEFAULT_PASSWORD);
         }
         userForm.setUserId(UUIDUtil.getUniqueIdByUUId());
+        userForm.setImg(CoreConst.DEFAULT_IMG);
         userForm.setStatus(CoreConst.STATUS_VALID);
         Date date = new Date();
         userForm.setCreateTime(date);

@@ -8,11 +8,15 @@
 	<link rel="stylesheet" th:href="@{/libs/bootstrap/bootstrap.min.css}"/>
 	<link rel="stylesheet" th:href="@{/libs/semantic-ui/semantic.min.css}" />
 	<link rel="stylesheet" th:href="@{/libs/adminlte/css/AdminLTE.min.css}"/>
+	<link rel="stylesheet" th:href="@{/libs/upload/css/webuploader.css}"/>
 	<link rel="stylesheet" th:href="@{/css/exam-common.css}"/>
 	<script th:src="@{/libs/jquery/jquery.min.js}"></script>
 	<script th:src="@{/libs/jquery/jquery.countdown.min.js}"></script>
 	<script th:src="@{/libs/bootstrap/bootstrap.min.js}"></script>
     <script th:src="@{/libs/semantic-ui/semantic.min.js}"></script>
+    <script th:src="@{/libs/upload/js/webuploader.js}"></script>
+    <script th:src="@{/libs/upload/js/jax.uploader.js}"></script>
+    <script th:src="@{/libs/upload/js/uploadCall.js}"></script>
     <script th:src="@{/libs/layer/layer.js}"></script>
     <script th:src="@{/js/core.js}"></script>
     <script th:src="@{/js/examination.js}"></script>
@@ -21,89 +25,103 @@
 <div id="header" class="nav-header" style="background:#4F94CD; height:8%">
 	<div th:replace="home/fragments/navbar :: navbar"></div>
 </div>
-<div class="exam-content" style="height:75%;margin:0">
+<div class="exam-content" style="min-height:75%;padding-bottom:2em;margin-top:10px">
+	<div class="ui header container" style="padding-top:10px;padding-left:0px">
+	    <div class="ui large breadcrumb">
+	        <a class="section" th:href="@{/}"><i class="home icon"></i>首页</a>
+	        <i class="right chevron icon divider"></i>
+	        <div class="active section">编辑个人资料</div>
+	    </div>
+	</div>
 	<div class="ui main container">
-	    <div class="ui grid">
+	    <div class="ui grid content">
 	        <div class="four wide column">
 	            <div class="row">
 	                <div class="ui card">
-	                    <div class="blurring dimmable image">
-	                        <div class="ui dimmer">
-	                            <div class="content">
-	                                <div class="center">
-	                                    <a th:href="@{/account/profile}" data-inverted="" data-tooltip="更换头像" data-position="bottom center"><i class="huge photo icon"></i></a>
-	                                </div>
-	                            </div>
+	                	<div class="image">
+      						<img th:src="${user.img}">
+    					</div>
+    					<div class="content" style="min-height:100px">
+    						<div class="header">
+    							<span th:text="${user.nickname}"></span>
+    						</div>
+	                        <div class="meta" style="padding-top:5px">
+                                <span th:text="${user.grade}+'级'"></span>
+                                <span th:text="${user.institute.instituteName}"></span>
+                                <span th:text="${user.classes.className+'班'}"></span>
 	                        </div>
-	                        <img th:src="@{${user.img}}" />
-	                    </div>
-	                    <div class="content">
-	                        <div class="header" th:text="${user.nickname}"></div>
-	                        <div class="meta">
-	                            <div class="group">
-	                                <i class="student icon"></i>信息学院
-	                            </div>
-	                        </div>
-	                        <div class="description" th:text="${user.phone}"></div>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="row" style="margin-top: 1em;">
-	                <div class="ui card">
-	                    <div class="content">
-	                        <a th:href="@{/account/password}">
-	                            <i class="edit icon"></i>更改密码
-	                        </a>
+	                        <div class="description" th:text="${user.description}"></div>
 	                    </div>
 	                </div>
 	            </div>
 	        </div>
 	        <div class="twelve wide column">
 	            <div class="ui segment">
-	                <h4 class="ui dividing header">基本信息</h4>
-	                <form class="ui form attached fluid segment" id="updateAccountForm">
-	                    <div class="ui hidden negative message" id="updateAccountErrorMessage">
-	                    </div>
-	                    <div class="field">
-	                        <label><i class="user icon"></i>姓名</label>
-	                        <input id="nickname" name="nickname" readonly="" placeholder="请输入姓名"
-	                               type="text" th:value="${user.nickname}" />
-	                    </div>
-	                    <div class="field">
-	                        <label><i class="student icon"></i>学号</label>
-	                        <input id="username" name="username" readonly="" placeholder="请输入学号"
-	                               type="text" th:value="${user.username}" />
-	                    </div>
-	                    <div class="field">
-	                        <label><i class="mobile icon"></i>手机号码</label>
-	                        <input id="phone" name="phone" placeholder="请输入手机号码" type="text"
-	                               th:value="${user.phone}" />
-	                    </div>
-	                    <div class="field">
-	                        <label><i class="mail outline icon"></i>邮箱</label>
-	                        <input id="email" name="email" placeholder="请输入邮箱地址" type="text"
-	                               th:value="${user.email}" />
-	                    </div>
-	                    <div class="field">
-	                        <label><i class="upload icon"></i>上传头像</label>
-	                        <div class="ui three column grid">
-	                            <div class="column">
-	                                <div class="ui fluid card">
-	                                    <div class="image">
-	                                        <img id="avatarImgPreview" class="ui tiny image" th:src="@{${user.img}}" />
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        </div>
-	                        <input type="file" id="myfile" name="myfile" value="" onchange="profilePage.uploadAvatar()"/>
-	                        <input type="hidden" id="myAvatarImgUrl" name="myAvatarImgUrl" value="" />
-	                    </div>
-	                    <div class="field">
-	                        <label><i class="smile icon"></i>自我描述</label>
-	                        <textarea  id="myDescription" name="myDescription" rows="6"
-	                                   th:text="${user.phone}"></textarea>
-	                    </div>
-	                    <div class="ui primary button" id="updateAccountButton">保存</div>
+	                <h4 class="ui dividing header">编辑个人资料</h4>
+	                <form class="ui form" id="updateUserInfoForm">
+	                    <input type="hidden" class="form-control" name="userId" th:value="${user.userId}">
+	                    <div class="two fields">
+		                    <div class="field">
+		                        <label><i class="user icon"></i>姓名</label>
+		                        <input name="nickname" readonly="" placeholder="请输入姓名" type="text" th:value="${user.nickname}"/>
+		                    </div>
+		                    <div class="field">
+		                        <label><i class="venus mars icon"></i>性别</label>
+		                        <select class="ui fluid dropdown" name="sex">
+		                        	<option value="">请选择</option>
+		                        	<option value="1" th:selected="(${user.sex} == 1)">男</option>
+		                        	<option value="0" th:selected="(${user.sex} == 0)">女</option>
+		                        </select>
+		                    </div>
+		                </div>
+		                <div class="two fields">
+		                	<div class="field">
+		                        <label><i class="student icon"></i>学号</label>
+		                        <input name="username" placeholder="请输入学号" type="text" th:value="${user.username}" />
+		                	</div>
+		                	<div class="field">
+		                        <label><i class="student icon"></i>年级</label>
+		                        <input name="grade" placeholder="请输入年级" type="text" th:value="${user.grade}" />
+		                	</div>
+		                </div>
+		                <div class="two fields">
+		                    <div class="field">
+		                        <label><i class="student icon"></i>班级</label>
+		                        <select class="ui fluid dropdown" name="classId">
+		                        	<option value="">请选择</option>
+		                        	<option th:each="class:${classes}" th:selected="(${user.classId} == ${class.id})" th:value="${class.id}" th:text="${class.className}"></option>
+		                        </select>
+		                    </div>
+		                    <div class="field">
+		                        <label><i class="hourglass start icon"></i>年龄</label>
+		                        <input name="age" placeholder="请输入年龄" type="text" th:value="${user.age}" />
+		                    </div>
+		                </div>
+		                <div class="two fields">
+		                    <div class="field">
+		                        <label><i class="mobile icon"></i>手机号码</label>
+		                        <input name="phone" placeholder="请输入手机号码" type="text" th:value="${user.phone}" />
+		                    </div>
+		                    <div class="field">
+		                        <label><i class="mail outline icon"></i>邮箱</label>
+		                        <input name="email" placeholder="请输入邮箱地址" type="text" th:value="${user.email}"/>
+		                    </div>
+		                </div>
+		                <div class="two fields">
+		                    <div class="field">
+		                        <label><i class="upload icon"></i>更换头像</label>
+		                        <div id="upload-content"></div>
+		                        <div class="ui icon input" style="margin-top:5px">
+			                        <input type="text" name="img" id="imgUrl" th:value="${user.img}" placeholder="头像地址（建议400*400）">
+			                        <i class="cloud upload link icon upload-img-btn"></i>
+			                    </div>
+		                    </div>
+		                    <div class="field">
+		                        <label><i class="smile icon"></i>自我描述</label>
+		                        <textarea name="description" rows="9" th:text="${user.description}"></textarea>
+	                    	</div>
+	                   	</div>
+	                   	<button class="ui primary button" id="updateUserInfoBtn">保存</button>
 	                </form>
 	            </div>
 	        </div>
@@ -114,6 +132,43 @@
 	<div th:replace="home/fragments/footer :: copyrightExamWeb"></div>
 </div>
 <script type="text/javascript">
+	$(function () {
+        /*上传图片*/
+        $(".upload-img-btn").click(function(){
+            if($("#upload-content").find(".upload-img-div").size()==0){
+                var imgHtml = '<div class="col-md-8 upload-img-div" style="margin-left:60px">'+
+                        '<div class="upload-item">'+
+                        '<p class="upload-title">头像</p>'+
+                        '<p class="upload-file" style="height:60px;"><i style="line-height: 60px" class="huge image icon"></i></p>'+
+                        '<p class="upload-btns">'+
+                        '<a type="button" class="btn btn-sm btn-block btn-primary imgUploader">更换头像</a>'+
+                        '</p>'+
+                        '</div>'+
+                        '</div>'
+                $("#upload-content").append(imgHtml);
+                $(".imgUploader").upload({
+                    server : '[[@{/upload/upload}]]',
+                    swf: '/img/Uploader.swf',
+                    imgAccept:true
+                }, function(url, picker) {
+                    $("#imgUrl").val(url);
+                    echoGtUploadResMethd(url,picker);
+                });
+            }
+        })
+    })
+    
+	/*保存*/
+    $("#updateUserInfoBtn").click(function(){
+        Core.postAjax("/user/edit",$("#updateUserInfoForm").serialize(),function (data) {
+            if(data.status==200){
+	           	setTimeout(function(){
+	           		window.location.reload();
+	           	},3000);
+            }
+            layer.msg(data.msg);
+        })
+    });
 </script>
 </body>
 </html>

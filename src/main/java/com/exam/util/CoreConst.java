@@ -10,6 +10,8 @@ public class CoreConst {
 	public static final Integer EXAM_GOOD = 3;
 	public static final Integer EXAM_FINE = 4;
 	public static final Integer PAGE_SIZE = 10;
+	public static final String DEFAULT_PASSWORD = "123456";
+	public static final String DEFAULT_IMG = "/img/user-default.png";
 	public static Integer TOP_MENU_ID = 0;
 	public static String TOP_MENU_NAME = "顶层菜单";
 }

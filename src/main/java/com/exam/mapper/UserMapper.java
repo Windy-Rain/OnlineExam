@@ -87,4 +87,10 @@ public interface UserMapper extends MapperUtil<User> {
     
     @Select("select count(id) userNums from user")
     int userNums();
+    /**
+     * 批量导入用户
+     * @param users
+     * @return
+     */
+	int batchInsert(List<User> users);
 }

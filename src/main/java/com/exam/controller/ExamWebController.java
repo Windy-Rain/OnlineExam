@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.exam.model.Classes;
 import com.exam.model.Comment;
 import com.exam.model.Examination;
 import com.exam.model.Grade;
@@ -26,6 +27,7 @@ import com.exam.model.Love;
 import com.exam.model.Question;
 import com.exam.model.Subject;
 import com.exam.model.User;
+import com.exam.service.ClassesService;
 import com.exam.service.CommentService;
 import com.exam.service.ExaminationService;
 import com.exam.service.GradeService;
@@ -64,6 +66,8 @@ public class ExamWebController {
 	private LoveService loveService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+    private ClassesService classesService;
 	
 	@RequestMapping("/")
 	public String index(Model model) {
@@ -248,7 +252,9 @@ public class ExamWebController {
 	@GetMapping("/exam/personInfo")
 	public String personal(Model model, String userId) {
 		if(SecurityUtils.getSubject().isAuthenticated()) {
+			List<Classes> classes = classesService.selectAll();
 			User user = userService.selectByUserId(userId);
+			model.addAttribute("classes", classes);
 			model.addAttribute("user", user);
 			return "index/personInfo";
 		}else {

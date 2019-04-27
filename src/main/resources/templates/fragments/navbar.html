@@ -29,9 +29,10 @@
                     </li>
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img th:src="@{/img/person.jpg}" class="user-image" alt="User Image">
+                            <img class="user-image" id="imgSrc" alt="User Image">
                             <span><shiro:principal property="nickname" /></span>
                             <span id="userId" style="display: none"><shiro:principal property="userId" /></span>
+                            <span id="userImg" style="display: none"><shiro:principal property="img" /></span>
                         </a>
                         <ul class="dropdown-menu dropdown-left">
                             <li><a id="userInfoBtn" href="#">个人信息</a></li>
@@ -106,6 +107,7 @@
         </div><!-- /.modal-dialog -->
     </div>
     <script>
+    	$("#imgSrc").attr("src",$("#userImg").text());
         $(function () {
             //修改信息
             $("#userInfoBtn").on('click', function () {

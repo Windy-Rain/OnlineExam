@@ -21,6 +21,7 @@ import com.exam.enmus.SysConfigKey;
 import com.exam.exception.UploadFileNotFoundException;
 import com.exam.service.QuestionService;
 import com.exam.service.SysConfigService;
+import com.exam.service.UserService;
 import com.exam.util.CoreConst;
 import com.exam.util.MD5;
 import com.exam.util.QiNiuYunUtil;
@@ -39,6 +40,8 @@ public class UploadController{
     private SysConfigService sysConfigService;
     @Autowired
     private QuestionService questionService;
+    @Autowired
+    private UserService userService;
     
     @ResponseBody
     @PostMapping(value = "/upload")
@@ -91,6 +94,30 @@ public class UploadController{
             throw e;
 		}
     }
+    
+    @ResponseBody
+    @PostMapping(value = "/importUserExcel")
+    public UploadResponse importUserExcel(@RequestParam(value = "file", required = false) MultipartFile file) throws IOException {
+    	if (file == null || file.isEmpty()) {
+            throw new UploadFileNotFoundException(UploadResponse.Error.FILENOTFOUND);
+        }
+    	try {
+    		ResponseVo responseVo = userService.importUserExcel(file);
+    		String originalFilename = file.getOriginalFilename();
+    		String suffix = originalFilename.substring(originalFilename.lastIndexOf(".")).toLowerCase();
+    		String md5 = MD5.getMessageDigest(file.getBytes());
+    		String url = String.format("%1$s/%2$s", md5, suffix);
+    		if(responseVo.getStatus().equals(CoreConst.SUCCESS_CODE)){
+    			return  new UploadResponse(originalFilename, suffix, url, CoreConst.SUCCESS_CODE, responseVo.getMsg());
+    		}else {
+    			return  new UploadResponse(originalFilename, CoreConst.FAIL_CODE,responseVo.getMsg());
+    		}
+		} catch (Exception e) {
+            logger.error(String.format("UploadController.upload%s", e));
+            throw e;
+		}
+    }
+    
     @ResponseBody
     @PostMapping("/upload2QiniuForMd")
     public Object upload2QiniuForMd(@RequestParam("file") MultipartFile file) throws IOException {

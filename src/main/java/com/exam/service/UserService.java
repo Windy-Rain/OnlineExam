@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.exam.model.User;
 import com.exam.vo.UserConditionVo;
 import com.exam.vo.UserOnlineVo;
@@ -100,5 +102,12 @@ public interface UserService extends BaseService<User> {
     List<HashMap<String, Object>> academyPassNumSta();
     
     int userNums();
+
+    /**
+     * 批量导入用户
+     * @param file
+     * @return
+     */
+	ResponseVo importUserExcel(MultipartFile file);
 
 }

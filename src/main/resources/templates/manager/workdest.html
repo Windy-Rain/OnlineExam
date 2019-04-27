@@ -110,18 +110,8 @@
 
 <script type="text/javascript">
 	$(function () {
-		Core.postAjax("/api/uns","",function (data) {
-            if(data.status==200){
-            	console.log(data.data);
-            	//build_exam_li(data);
-            }else{
-            	layer.msg(data.msg);
-            }
-        })
-        
 		Core.postAjax("/api/aes","",function (data) {
             if(data.status==200){
-            	//console.log(data.data);
             	build_exam_li(data);
             }else{
             	layer.msg(data.msg);

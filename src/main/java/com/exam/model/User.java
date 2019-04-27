@@ -34,6 +34,8 @@ public class User implements Serializable{
 
     private String password;
     
+    private String description;
+    
     /**
      * 年级
      */
@@ -183,7 +185,15 @@ public class User implements Serializable{
         this.password = password == null ? null : password.trim();
     }
     
-    public String getGrade() {
+    public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getGrade() {
 		return grade;
 	}
 

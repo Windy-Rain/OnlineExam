@@ -17,10 +17,10 @@
     <script th:src="@{/js/detail.js}"></script>
 </head>
 <body>
-<header id="header" class="nav-header">
-	<div th:replace="home/fragments/navbar :: navbar"></div>
+<header id="header" class="nav-header" style="height:8%">
+	<div th:replace="home/fragments/navbar :: navbar(activeUri='examiantion')"></div>
 </header>
-<div class="exam-content">
+<div class="exam-content" style="min-height:75%;padding-bottom:1em;margin-top:0px">
 	<div class="ui header container">
 	    <div class="ui large breadcrumb" th:each="exam:${data['exam']}">
 	        <a class="section" href="/exam/examination"><i class="home icon"></i>在线考试列表</a>
@@ -86,7 +86,7 @@
 	   </div>
    </div>
 </div>
-<div class="footer" style="background:#4F94CD">
+<div class="footer" style="background:#4F94CD; height:17%">
     <div th:replace="home/fragments/footer :: copyrightExamWeb"></div>
 </div>
 <div class="return_top"><a class="fa fa-arrow-up"></a></div>

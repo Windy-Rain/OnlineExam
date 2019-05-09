@@ -262,6 +262,18 @@ public class ExamWebController {
 		}
 	}
 	
+	/**编辑用户资料*/
+    @PostMapping("/exam/editUser")
+    @ResponseBody
+    public ResponseVo editUser(User user){
+        int a = userService.updateByUserId(user);
+        if (a > 0) {
+            return ResultUtil.success("编辑用户成功！");
+        } else {
+            return ResultUtil.error("编辑用户失败");
+        }
+    }
+	
 	@GetMapping("/exam/startexam")
 	public String startToExam(Model model, Integer id) {
 		User user = (User)SecurityUtils.getSubject().getPrincipal();

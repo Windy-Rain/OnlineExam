@@ -61,7 +61,6 @@
 
 	function requestPage(offset){
 		Core.postAjax("/exam/list",{"limit":5,"offset":offset},function (result) {
-			console.log(result);
             build_stus_table(result);
             build_page_info(result);
             build_page_nav(result);
@@ -106,7 +105,6 @@
 	function build_page_info(result){
 		var pageInfo = result.pageInfo;
 		if(!pageInfo.pageNum == 0){
-			console.log(pageInfo);			
 			$("#page_info_area").empty();
 			$("#page_info_area").append("当前第"+ 
 				pageInfo.pageNum +"页,总共"+ 

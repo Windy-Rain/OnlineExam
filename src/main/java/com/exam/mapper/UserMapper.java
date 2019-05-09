@@ -93,4 +93,11 @@ public interface UserMapper extends MapperUtil<User> {
      * @return
      */
 	int batchInsert(List<User> users);
+	
+	/**
+	 * 批量删除
+	 * @param params
+	 * @return
+	 */
+	int deleteBatch(Map<String, Object> params);
 }

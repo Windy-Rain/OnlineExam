@@ -160,7 +160,7 @@
     
 	/*保存*/
     $("#updateUserInfoBtn").click(function(){
-        Core.postAjax("/user/edit",$("#updateUserInfoForm").serialize(),function (data) {
+        Core.postAjax("/exam/editUser",$("#updateUserInfoForm").serialize(),function (data) {
             if(data.status==200){
 	           	setTimeout(function(){
 	           		window.location.reload();

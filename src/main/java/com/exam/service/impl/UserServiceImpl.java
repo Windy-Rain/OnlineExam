@@ -319,4 +319,11 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 			return ResultUtil.error("导入失败");
 		}
 	}
+
+	@Override
+	public int deleteBatch(List<String> userIds) {
+		 Map<String,Object> params = new HashMap<String,Object>(1);
+	     params.put("userIds",userIds);
+		return userMapper.deleteBatch(params);
+	}
 }

@@ -140,7 +140,7 @@
     </update>
 
     <update id="updateByUserId" parameterType="com.exam.model.User">
-        update user SET username=#{username},sex=#{sex},nickname=#{nickname},grade=#{grade},class_id=#{classId},email=#{email},phone=#{phone},age=#{age},img=#{img},description=#{description},update_time = now() where user_id = #{userId,jdbcType=BIGINT}
+        update user SET username=#{username},sex=#{sex},nickname=#{nickname},grade=#{grade},class_id=#{classId},email=#{email},phone=#{phone},age=#{age},img=#{img},description=#{description},update_time = now() where user_id = #{userId}
     </update>
 
     <update id="updateStatusBatch" parameterType="map">
@@ -173,11 +173,22 @@
     	COUNT(u.user_id) AS num,
     	i.institute_name
     	from
-    	USER u
+    	user u
 		INNER JOIN classes c ON u.class_id = c.id
 		INNER JOIN institute i ON c.ins_id = i.id 
 		GROUP BY
 		i.id
     </select>
+    
+    <delete id="deleteBatch" parameterType="map">
+    	DELETE
+    	FROM
+    	user
+    	WHERE
+    	user_id in
+        <foreach collection="userIds" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
 
 </mapper>

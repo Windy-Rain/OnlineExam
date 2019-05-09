@@ -109,5 +109,12 @@ public interface UserService extends BaseService<User> {
      * @return
      */
 	ResponseVo importUserExcel(MultipartFile file);
+	
+	/**
+	 * 批量删除用户
+	 * @param ids
+	 * @return
+	 */
+	int deleteBatch(List<String> userIds);
 
 }

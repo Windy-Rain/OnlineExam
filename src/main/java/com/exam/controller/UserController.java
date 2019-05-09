@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.exam.model.Classes;
@@ -122,13 +123,74 @@ public class UserController {
             return ResultUtil.error("编辑用户失败");
         }
     }
+    /**
+     * 禁用用户
+     * @param userId
+     * @return
+     */
+    @PostMapping("/ban")
+    @ResponseBody
+    public ResponseVo banUser(String userId) {
+    	List<String> userIdsList = Arrays.asList(userId);
+    	int a = userService.updateStatusBatch(userIdsList,CoreConst.STATUS_INVALID);
+    	if(a > 0) {
+    		return ResultUtil.success("禁用用户成功");
+    	}else {
+    		return ResultUtil.error("禁用用户失败");
+    	}
+    }
+    
+    /**批量禁用用户*/
+    @PostMapping("/batch/ban")
+    @ResponseBody
+    public ResponseVo batchBanUser(String userIdStr) {
+        String[] userIds = userIdStr.split(",");
+        List<String> userIdsList = Arrays.asList(userIds);
+        int a = userService.updateStatusBatch(userIdsList,CoreConst.STATUS_INVALID);
+        if (a > 0) {
+            return ResultUtil.success("批量禁用用户成功");
+        } else {
+            return ResultUtil.error("批量禁用用户失败");
+        }
+    }
+    
+    /**
+     * 启用用户
+     * @param userId
+     * @return
+     */
+    @PostMapping("/enable")
+    @ResponseBody
+    public ResponseVo enableUser(String userId) {
+    	List<String> userIdsList = Arrays.asList(userId);
+    	int a = userService.updateStatusBatch(userIdsList,CoreConst.STATUS_VALID);
+    	if(a > 0) {
+    		return ResultUtil.success("启用用户成功");
+    	}else {
+    		return ResultUtil.error("启用用户失败");
+    	}
+    }
+    
+    /**批量启用用户*/
+    @PostMapping("/batch/enable")
+    @ResponseBody
+    public ResponseVo batchEnableUser(String userIdStr) {
+        String[] userIds = userIdStr.split(",");
+        List<String> userIdsList = Arrays.asList(userIds);
+        int a = userService.updateStatusBatch(userIdsList,CoreConst.STATUS_VALID);
+        if (a > 0) {
+            return ResultUtil.success("批量启用用户成功");
+        } else {
+            return ResultUtil.error("批量启用用户失败");
+        }
+    }
 
     /**删除用户*/
-    @GetMapping("/delete")
+    @PostMapping("/delete")
     @ResponseBody
     public ResponseVo deleteUser(String userId) {
-        List<String> userIdsList = Arrays.asList(userId);
-        int a = userService.updateStatusBatch(userIdsList,CoreConst.STATUS_INVALID);
+    	List<String> userIdsList = Arrays.asList(userId);
+        int a = userService.deleteBatch(userIdsList);
         if (a > 0) {
             return ResultUtil.success("删除用户成功");
         } else {
@@ -137,16 +199,16 @@ public class UserController {
     }
 
     /**批量删除用户*/
-    @GetMapping("/batch/delete")
+    @PostMapping("/batch/delete")
     @ResponseBody
     public ResponseVo batchDeleteUser(String userIdStr) {
-        String[] userIds = userIdStr.split(",");
+    	String[] userIds = userIdStr.split(",");
         List<String> userIdsList = Arrays.asList(userIds);
-        int a = userService.updateStatusBatch(userIdsList,CoreConst.STATUS_INVALID);
+        int a = userService.deleteBatch(userIdsList);
         if (a > 0) {
-            return ResultUtil.success("删除用户成功");
+            return ResultUtil.success("批量删除用户成功");
         } else {
-            return ResultUtil.error("删除用户失败");
+            return ResultUtil.error("批量删除用户失败");
         }
     }
 

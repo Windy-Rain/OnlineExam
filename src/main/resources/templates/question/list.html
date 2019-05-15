@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <section class="content-header">
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+        <li><a href="/manager"><i class="fa fa-dashboard"></i> 首页</a></li>
         <li><a href="#">考试管理</a></li>
         <li class="active">题库管理</li>
     </ol>
@@ -10,14 +10,14 @@
 <section class="content">
     <div class="jax-box">
         <form id="formSearch" class="form-horizontal form-search">
-            <div class="form-group">
-                <div class="col-md-3 col-sm-6">
-                    <label class="control-label  col-xs-4" for="keywords">题目:</label>
+        	<div class="form-group p-10">
+                <div class="col-md-4 col-sm-6">
+                    <label class="control-label  col-xs-4" for="keywords">题名:</label>
                     <div class="col-xs-8">
                         <input type="text" class="form-control" id="keywords">
                     </div>
                 </div>
-                 <div class="col-md-3 col-sm-6">
+                <div class="col-md-4 col-sm-6">
                     <label class="control-label  col-xs-4" for="question">课程:</label>
                     <div class="col-xs-8">
                         <select class="form-control"id="subjectId">
@@ -26,7 +26,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-4 col-sm-6">
                     <label class="control-label  col-xs-4" for="question">题目类型:</label>
                     <div class="col-xs-8">
                         <select class="form-control" id="questionType">
@@ -38,7 +38,9 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-2 col-sm-6">
+            </div>
+            <div class="form-group p-10">
+                <div class="col-md-4 col-sm-6">
                     <label class="control-label  col-xs-4">状态:</label>
                     <div class="col-xs-8">
                         <select id="status" class="form-control">
@@ -48,11 +50,15 @@
                         </select>
                     </div>
                 </div>
-                <shiro:hasPermission name="question:list">
-                    <div class="col-md-1 col-sm-6 " style="text-align:left;">
-                        <button type="button" id="btn_query" class="btn btn-info">查询</button>
-                    </div>
-                </shiro:hasPermission>
+                <div class="col-md-8 col-sm-6">
+                	<label class="control-label col-xs-4"></label>
+                	<div class="col-xs-8">
+	                	<shiro:hasPermission name="question:list">
+	                    	<button type="button" id="btn_query" class="btn btn-primary pull-right">查 询</button>
+	                    </shiro:hasPermission>
+	                	<button type="button" id="btn_requery" class="btn btn-primary pull-right mr5">重 填</button>
+                	</div>
+                </div>
             </div>
         </form>
     </div>
@@ -192,11 +198,11 @@
             align : "center",
             width : '10%',
             formatter : function(value) {
-               if(value){
-                   return '已考过题目'
-               }else{
-                   return '未考过题目'
-               }
+            	if(status == 0){
+             	   return statusName = '<span class="label label-success">未考过题目</span>';
+                }else if(status == 1){
+             	   return statusName = '<span class="label label-warning">已考过题目</span>';
+                }
             }
         },{
             field : 'operation',
@@ -251,6 +257,10 @@
     }
     
      $(function () {
+   	    /*重填*/
+        $("#btn_requery").click(function(){
+        	$("#formSearch")[0].reset();
+        });
         /*查询*/
         $("#btn_query").click(function(){
             Core.refreshTable("#table");
@@ -271,7 +281,6 @@
         	}else{
         		layer.msg("请上传数据");
         	}
-        	
         })
         
         /*批量删除*/

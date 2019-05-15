@@ -1,6 +1,6 @@
 <section class="content-header">
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+        <li><a href="/manager"><i class="fa fa-dashboard"></i> 首页</a></li>
         <li><a href="#">网站管理</a></li>
         <li class="active">基础设置</li>
     </ol>
@@ -8,69 +8,72 @@
 <!-- Main content -->
 <meta charset="utf-8">
 <section class="content">
-    <div class="jax-box">
-        <form id="siteForm" class="form-horizontal">
-            <div class="box-body">
-                <div class="form-group col-sm-11">
-                    <label for="BAIDU_PUSH_URL" class="col-lg-2 col-sm-3 control-label">百度推送地址：</label>
-                    <div class="col-lg-6 col-sm-8">
-                        <input th:value="${siteinfo.BAIDU_PUSH_URL}" type="text" class="form-control" id="BAIDU_PUSH_URL" name="BAIDU_PUSH_URL" require="">
-                    </div>
-                </div>
-                <div class="form-group col-sm-11">
-                    <label for="SITE_NAME" class="col-lg-2 col-sm-3 control-label">网站名称：</label>
-                    <div class="col-lg-6 col-sm-8">
-                        <input th:value="${siteinfo.SITE_NAME}" type="text" class="form-control" id="SITE_NAME" name="SITE_NAME" require="">
-                    </div>
-                </div>
-                <div class="form-group  col-sm-11">
-                    <label for="SITE_KWD" class="col-lg-2 col-sm-3 control-label">网站关键字：</label>
-                    <div class="col-lg-6 col-sm-8">
-                        <textarea th:text="${siteinfo.SITE_KWD}" rows="2" type="text" class="form-control" id="SITE_KWD" name="SITE_KWD" require="">
-                        </textarea>
-                    </div>
-                </div>
-                <div class="form-group  col-sm-11">
-                    <label for="SITE_DESC" class="col-lg-2 col-sm-3 control-label">网站描述：</label>
-                    <div class="col-lg-6 col-sm-8">
-                        <textarea th:text="${siteinfo.SITE_DESC}" rows="2" type="text" class="form-control" id="SITE_DESC" name="SITE_DESC" require="">
-                        </textarea>
-                    </div>
-                </div>
-                <div class="form-group  col-sm-11">
-                    <label for="SITE_PERSON_PIC" class="col-lg-2 col-sm-3 control-label">站长LOGO：</label>
-                    <div class="col-lg-6 col-sm-8">
-                        <input th:value="${siteinfo.SITE_PERSON_PIC}" type="text" class="form-control" id="SITE_PERSON_PIC" name="SITE_PERSON_PIC" require="">
-                    </div>
-                </div>
-                <div class="form-group  col-sm-11">
-                    <label for="SITE_PERSON_NAME" class="col-lg-2 col-sm-3 control-label">站长名称：</label>
-                    <div class="col-lg-6 col-sm-8">
-                        <input th:value="${siteinfo.SITE_PERSON_NAME}" type="text" class="form-control" id="SITE_PERSON_NAME" name="SITE_PERSON_NAME" require="">
-                    </div>
-                </div>
-                <div class="form-group  col-sm-11">
-                    <label for="SITE_PERSON_DESC" class="col-lg-2 col-sm-3 control-label">站长描述：</label>
-                    <div class="col-lg-6 col-sm-8">
-                        <input th:value="${siteinfo.SITE_PERSON_DESC}" type="text" class="form-control" id="SITE_PERSON_DESC" name="SITE_PERSON_DESC" require="">
-                    </div>
-                </div>
-                <shiro:hasPermission name="siteinfo:edit">
-                <div class="col-xs-12">
-                    <button type="button" id="btn_save" class="btn btn-info">保存</button>
-                </div>
-                </shiro:hasPermission>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="box box-primary">
+            	<div class="box-header with-border">
+                	<h3 class="box-title">网站基础信息维护</h3>
+            	</div>
+            	<form class="form-horizontal" id="siteInfoForm">
+            		<div class="box-body">
+            			<div class="form-group">
+            				<div class="col-md-6 col-sm-6">
+	            				<label for="SITE_PHONE">电话</label>
+	                  			<input type="text" class="form-control" th:value="${siteinfo.SITE_PHONE}" name="SITE_PHONE" placeholder="请输入联系电话号码" require="">
+                  			</div>
+                  			<div class="col-md-6 col-sm-6">
+	            				<label for="SITE_FAX">传真</label>
+	                  			<input type="text" class="form-control" th:value="${siteinfo.SITE_FAX}" name="SITE_FAX" placeholder="请输入传真号码" require="">
+                  			</div>
+            			</div>
+            			<div class="form-group">
+                  			<div class="col-md-6 col-sm-6">
+	            				<label for="SITE_EMAIL">问题反馈</label>
+	                  			<input type="text" class="form-control" th:value="${siteinfo.SITE_EMAIL}" name="SITE_EMAIL" placeholder="请输入反馈问题的邮箱" require="">
+                  			</div>
+                  			<div class="col-md-6 col-sm-6">
+	            				<label for="SITE_ADDRESS">通讯地址</label>
+	                  			<input type="text" class="form-control" th:value="${siteinfo.SITE_ADDRESS}" name="SITE_ADDRESS" placeholder="请输入通讯地址" require="">
+                  			</div>
+            			</div>
+            			<div class="form-group">
+                  			<div class="col-md-6 col-sm-6">
+		            			<label for="SITE_NAME">系统名称</label>
+		                  		<input type="text" class="form-control" th:value="${siteinfo.SITE_NAME}" name="SITE_NAME" placeholder="请输入系统名称" require="">
+                  			</div>
+                  			<div class="col-md-6 col-sm-6">
+	            				<label for="SITE_URL">访问网址</label>
+	                  			<input type="text" class="form-control" th:value="${siteinfo.SITE_URL}" name="SITE_URL" placeholder="请输入网址" require="">
+                  			</div>
+            			</div>
+            			<div class="form-group">
+            				<div class="col-md-12 col-sm-6">
+	            				<label for="SITE_DESC">系统描述</label>
+	                  			<textarea rows="4" class="form-control" th:text="${siteinfo.SITE_DESC}" name="SITE_DESC" placeholder="请输入系统描述" require=""></textarea>
+                  			</div>
+            			</div>
+            			<div class="box-footer">
+            				<shiro:hasPermission name="siteinfo:edit">
+	                			<button type="button" id="btn_save" class="btn btn-primary pull-center">保 存</button>
+	                        	<button type="button" id="btn_requery" class="btn btn-primary pull-center mr5">重 填</button>
+                        	</shiro:hasPermission>
+              			</div>
+            		</div>
+            	</form>
             </div>
-        </form>
-    </div>
-
+		</div>
+	</div>
 </section>
 <script>
     $(function () {
+    	/*重填*/
+        $("#btn_requery").click(function(){
+        	$("#siteInfoForm").reset();
+        });
         $("#btn_save").click(function () {
-            if(doValidForm("#siteForm")){
+            if(doValidForm("#siteInfoForm")){
                 Core.mask("#btn_save");
-                Core.postAjax("/siteinfo/edit",$("#siteForm").serialize(),function (data) {
+                Core.postAjax("/siteinfo/edit",$("#siteInfoForm").serialize(),function (data) {
                     Core.unmask("#btn_save");
                     layer.msg(data.msg);
                 })

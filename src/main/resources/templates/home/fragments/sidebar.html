@@ -6,9 +6,8 @@
         </div>
         <div class="panel-body">
             <ul>
-                <div class="avatar"> <img th:src="@{/img/person.jpg}" alt=""></div>
-                <p th:text="${@module.get('sysConfig').SITE_PERSON_NAME}" class="abname"></p>
-                <p th:text="${@module.get('sysConfig').SITE_PERSON_DESC}" class="abtext"></p>
+                <p th:text="${@module.get('sysConfig').SITE_NAME}" class="abname"></p>
+                <p th:text="${@module.get('sysConfig').SITE_DESC}" class="abtext"></p>
             </ul>
         </div>
     </div>
@@ -18,17 +17,17 @@
         </div>
         <div class="panel-body">
             <ul>
-                <li th:each="item:${@module.get('tagList')}" class="tag-li"><a class="btn btn-default btn-xs"  th:text="${item.name}"></a></li>
+                <li th:each="item:${@module.get('tagList')}" class="tag-li"><a class="btn btn-success btn-xs"  th:text="${item.name}"></a></li>
             </ul>
         </div>
     </div>
-    <div class="link panel panel-default">
+    <div class="tag panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">友情链接</h3>
         </div>
         <div class="panel-body">
             <ul>
-                <li th:each="item:${@module.get('linkList')}"><a th:href="${item.url}" th:text="${item.name}" target="_blank"></a></li>
+                <li th:each="item:${@module.get('linkList')}" class="tag-li"><a class="btn btn-default btn-xs" th:href="${item.url}" th:text="${item.name}"></a></li>
             </ul>
         </div>
     </div>
@@ -38,10 +37,9 @@
         </div>
         <div class="panel-body">
             <ul>
-                <li> <i class="fa fa-file fa-fw"></i> 当前考试场次：<span >3</span> 场</li>
-                <li> <i class="fa fa-tags fa-fw"></i> 标签总数：<span ></span> 6</li>
-                <li> <i class="fa fa-folder-open fa-fw"></i> 课程总数：<span >2</span> 个</li>
-                <li> <i class="fa fa-comments fa-fw"></i> 留言数量：<span >8</span> 条</li>
+                <li> <i class="fa fa-user fa-fw"></i> 当前系统总人数：<span >[[${@module.get('siteInfo').userNums}]]</span> 人</li>
+                <li> <i class="fa fa-navicon fa-fw"></i> 系统题库总量：<span >[[${@module.get('siteInfo').questionNums}]]</span> 道题</li>
+                <li> <i class="fa fa-coffee fa-fw"></i> 课程总数：<span >[[${@module.get('siteInfo').subjectNums}]]</span> 门课程</li>
             </ul>
         </div>
     </div>

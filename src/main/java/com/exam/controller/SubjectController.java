@@ -34,9 +34,9 @@ public class SubjectController {
 	
 	@PostMapping("list")
 	@ResponseBody
-	public PageResultVo loadSubject(Integer limit, Integer offset){
+	public PageResultVo loadSubject(Subject subject, Integer limit, Integer offset){
 		PageHelper.startPage(PageUtil.getPageNo(limit, offset),limit);
-		List<Subject> subjectList = subjectService.selectAll();
+		List<Subject> subjectList = subjectService.selectSubjects(subject);
 		PageInfo<Subject> pages = new PageInfo<>(subjectList);
 		return ResultUtil.table(subjectList, pages.getTotal(), pages);
 	}

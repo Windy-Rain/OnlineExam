@@ -1,6 +1,7 @@
 package com.exam.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -35,13 +36,15 @@ import com.exam.service.LoveService;
 import com.exam.service.QuestionService;
 import com.exam.service.SubjectService;
 import com.exam.service.UserService;
+import com.exam.shiro.ShiroRealm;
+import com.exam.util.CopyUtil;
 import com.exam.util.CoreConst;
 import com.exam.util.IpUtil;
-import com.exam.util.PageUtil;
+import com.exam.util.PasswordHelper;
 import com.exam.util.ResultUtil;
 import com.exam.util.XssKillerUtil;
+import com.exam.vo.ChangePasswordVo;
 import com.exam.vo.CommentConditionVo;
-import com.exam.vo.ExaminationConditionVo;
 import com.exam.vo.GradeConditionVo;
 import com.exam.vo.LoveConditionVo;
 import com.exam.vo.UserConditionVo;
@@ -68,15 +71,9 @@ public class ExamWebController {
 	private UserService userService;
 	@Autowired
     private ClassesService classesService;
+	@Autowired
+    private ShiroRealm shiroRealm;
 	
-	@RequestMapping("/")
-	public String index(Model model) {
-		if(SecurityUtils.getSubject().isAuthenticated()) {
-			return "index/index";
-		}else {
-			return "index/index";
-		}
-	}
 
 	/**
 	 * 考试界面
@@ -89,7 +86,7 @@ public class ExamWebController {
 		if(SecurityUtils.getSubject().isAuthenticated()) {
 			return "index/examination";
 		}else {
-			return "index/login";
+			return "redirect:/login";
 		}
 	}
 	
@@ -111,7 +108,7 @@ public class ExamWebController {
 			model.addAttribute("subjects", subjects);
 			return "index/question";
 		}else {
-			return "index/login";
+			return "redirect:/login";
 		}
 	}
 	
@@ -126,7 +123,7 @@ public class ExamWebController {
 			model.addAttribute("exams", examList);
 			return "index/queryScore";
 		}else {
-			return "index/login";
+			return "redirect:/login";
 		}
 	}
 	
@@ -168,7 +165,7 @@ public class ExamWebController {
 		if(SecurityUtils.getSubject().isAuthenticated()) {
 			return "index/comment";
 		}else {
-			return "index/login";
+			return "redirect:/login";
 		}
 		
 	}
@@ -234,15 +231,6 @@ public class ExamWebController {
 		}
     }
 	
-	@GetMapping("/exam/login")
-	public String login(Model model) {
-		if(SecurityUtils.getSubject().isAuthenticated()) {
-			return "redirect:/";
-		}else {
-			return "index/login";
-		}
-	}
-	
 	/**
 	 * 个人主页
 	 * @param model
@@ -258,7 +246,7 @@ public class ExamWebController {
 			model.addAttribute("user", user);
 			return "index/personInfo";
 		}else {
-			return "index/login";
+			return "redirect:/login";
 		}
 	}
 	
@@ -273,7 +261,42 @@ public class ExamWebController {
             return ResultUtil.error("编辑用户失败");
         }
     }
-	
+    
+    /**
+     * 修改密码
+     * @param changePasswordVo
+     * @return
+     */
+    @PostMapping("/exam/changePassword")
+    @ResponseBody
+    public ResponseVo changePassword(ChangePasswordVo changePasswordVo) {
+    	if(!changePasswordVo.getNewPassword().equals(changePasswordVo.getConfirmNewPassword())) {
+    		return ResultUtil.error("两次密码输入不一致");
+    	}
+    	User loginUser = userService.selectByUserId(((User) SecurityUtils.getSubject().getPrincipal()).getUserId());
+    	User newUser = CopyUtil.getCopy(loginUser, User.class);
+    	String sysOldPassword = loginUser.getPassword();
+    	newUser.setPassword(changePasswordVo.getOldPassword());
+    	String entryOldPassword = PasswordHelper.getPassword(newUser);
+    	if(sysOldPassword.equals(entryOldPassword)) {
+    		newUser.setPassword(changePasswordVo.getNewPassword());
+    		PasswordHelper.encryptPassword(newUser);
+    		userService.updateUserByPrimaryKey(newUser);
+    		//*清除登录缓存*//
+    		List<String> userIds = new ArrayList<>();
+    		userIds.add(loginUser.getUserId());
+    		shiroRealm.removeCachedAuthenticationInfo(userIds);
+    	}else {
+    		return ResultUtil.error("您输入的旧密码有误");
+    	}
+    	return ResultUtil.success("修改密码成功,请退出重新登录");
+    }
+	/**
+	 * 开始考试
+	 * @param model
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/exam/startexam")
 	public String startToExam(Model model, Integer id) {
 		User user = (User)SecurityUtils.getSubject().getPrincipal();

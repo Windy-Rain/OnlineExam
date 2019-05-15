@@ -9,6 +9,7 @@
 	<link rel="stylesheet" th:href="@{/libs/semantic-ui/semantic.min.css}" />
 	<link rel="stylesheet" th:href="@{/libs/adminlte/css/AdminLTE.min.css}"/>
 	<link rel="stylesheet" th:href="@{/css/exam-common.css}"/>
+	<link rel="stylesheet" th:href="@{/css/web-common.css}"/>
 	<script th:src="@{/libs/jquery/jquery.min.js}"></script>
 	<script th:src="@{/libs/jquery/jquery.countdown.min.js}"></script>
 	<script th:src="@{/libs/bootstrap/bootstrap.min.js}"></script>
@@ -17,11 +18,11 @@
     <script th:src="@{/js/core.js}"></script>
     <script th:src="@{/js/examination.js}"></script>
 </head>
-<body>
-<div id="header" class="nav-header" style="background:#4F94CD; height:8%">
+<body style="padding-top:75px">
+<div id="header" class="nav-header" style="background:#4F94CD">
 	<div th:replace="home/fragments/navbar :: navbar(activeUri='score')"></div>
 </div>
-<div class="exam-content" style="height:75%;margin:0">
+<div class="exam-content">
 	<div class="container">
 		<div class="row col-sm-12 row-padding">
             <p class="lead text-primary text-center font-p">宁夏理工学院(OE)在线考试教学辅助系统成绩查询</p>
@@ -83,9 +84,7 @@
 		</div>
 	</div>
 </div>
-<div class="footer" style="background:#4F94CD; height:17%">
-	<div th:replace="home/fragments/footer :: copyrightExamWeb"></div>
-</div>
+<div th:replace="home/fragments/footer :: copyrightExamWeb"></div>
 <script type="text/javascript">
 	$("#grade_table").hide();
 

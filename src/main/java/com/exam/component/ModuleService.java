@@ -28,15 +28,19 @@ public class ModuleService {
 
     public Object get(String moduleName){
         switch (moduleName){
-            case "tagList":             //标签
+        	//标签
+            case "tagList":
                 return tagService.selectTags(new Tag());
-            case "linkList":            //友链
+            //友链
+            case "linkList":
                 Link bizLink = new Link();
                 bizLink.setStatus(CoreConst.STATUS_VALID);
                 return linkService.selectLinks(bizLink);
-            case "siteInfo":            //网站信息统计
+            //网站信息统计
+            case "siteInfo":
                 return siteInfoService.getSiteInfo();
-            case "sysConfig":           //网站基本信息配置
+            //网站基本信息配置
+            case "sysConfig":
                 return sysConfigService.selectAll();
             default:
                 return null;

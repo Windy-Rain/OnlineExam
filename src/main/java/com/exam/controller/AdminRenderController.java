@@ -64,7 +64,7 @@ public class AdminRenderController {
     @GetMapping("/exams")
     public String exams(Model model) {
     	Subject subject = new Subject();
-    	subject.setStatus(CoreConst.STATUS_VALID);
+    	subject.setStatus(CoreConst.STATUS_INVALID);
     	List<Subject> subjects = subjectService.select(subject);
     	List<Institute> institutes = instituteService.selectAll();
     	List<Classes> classes = classesService.selectAll();
@@ -80,7 +80,7 @@ public class AdminRenderController {
     @GetMapping("/questions")
     public String questions(Model model) {
     	Subject subject = new Subject();
-    	subject.setStatus(CoreConst.STATUS_VALID);
+    	subject.setStatus(CoreConst.STATUS_INVALID);
     	List<Subject> subjects = subjectService.select(subject);
     	model.addAttribute("subjects", subjects);
     	return "question/list";
@@ -99,7 +99,11 @@ public class AdminRenderController {
     	model.addAttribute("subjects", subjects);
     	return "grade/list";
     }
-    
+    /**
+     * 成绩统计
+     * @param model
+     * @return
+     */
     @GetMapping("/datas")
     public String data(Model model) {
     	List<String> grades = userService.selectGradeList();

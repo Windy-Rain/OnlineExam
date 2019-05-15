@@ -34,9 +34,9 @@ public class InstituteController {
 	
 	@PostMapping("list")
 	@ResponseBody
-	public PageResultVo loadInstitute(Integer limit, Integer offset) {
+	public PageResultVo loadInstitute(Institute institute, Integer limit, Integer offset) {
 		PageHelper.startPage(PageUtil.getPageNo(limit, offset),limit);
-		List<Institute> instituteList = instituteService.selectAll();
+		List<Institute> instituteList = instituteService.selectInstitutes(institute);
 		PageInfo<Institute> pages = new PageInfo<>(instituteList);
 		return ResultUtil.table(instituteList, pages.getTotal(), pages);
 	}
@@ -54,7 +54,7 @@ public class InstituteController {
 		Date date = new Date();
 		institute.setCreateTime(date);
 		institute.setUpdateTime(date);
-		institute.setStatus(CoreConst.STATUS_VALID);
+		institute.setStatus(CoreConst.STATUS_INVALID);
 		int i = instituteService.insert(institute);
 		if(i > 0) {
 			return ResultUtil.success("新增学院成功");

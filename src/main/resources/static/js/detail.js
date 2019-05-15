@@ -284,7 +284,7 @@ var examDetailPage = {
 			        layer.msg(data.msg);
 			        window.location.href = "/exam/examination";
 				},
-				error:function(daata){
+				error:function(data){
 					layer.msg(data.msg)
 				}
 			});

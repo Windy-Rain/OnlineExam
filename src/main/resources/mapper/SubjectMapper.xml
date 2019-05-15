@@ -38,9 +38,6 @@
         <if test="name !=null and name != ''">
 			AND s.`name` like concat('%', #{name}, '%')
 		</if>
-		<if test="description !=null and description != ''">
-			AND s.description like concat('%', #{description}, '%')
-		</if>
 		<if test="status !=null">
 			AND s.`status` = #{status}
 		</if>

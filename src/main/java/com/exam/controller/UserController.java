@@ -115,8 +115,8 @@ public class UserController {
     /**编辑用户*/
     @PostMapping("/edit")
     @ResponseBody
-    public ResponseVo editUser(User userForm){
-        int a = userService.updateByUserId(userForm);
+    public ResponseVo editUser(User userFrom){
+        int a = userService.updateByUserId(userFrom);
         if (a > 0) {
             return ResultUtil.success("编辑用户成功！");
         } else {

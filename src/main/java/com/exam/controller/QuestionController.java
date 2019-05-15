@@ -49,7 +49,7 @@ public class QuestionController {
 	@GetMapping("/add")
 	public String addQuestion(Model model) {
 		Subject subject = new Subject();
-		subject.setStatus(CoreConst.STATUS_VALID);
+		subject.setStatus(CoreConst.STATUS_INVALID);
 		List<Subject> subjects = subjectService.selectSubjects(subject);
 		model.addAttribute("subjects", JSON.toJSONString(subjects));
 		return "question/add";
@@ -71,7 +71,7 @@ public class QuestionController {
     	Question question = questionService.selectById(id);
     	model.addAttribute("question", question);
     	Subject subject = new Subject();
-    	subject.setStatus(CoreConst.STATUS_VALID);
+    	subject.setStatus(CoreConst.STATUS_INVALID);
     	List<Subject> subjects = subjectService.selectSubjects(subject);
     	model.addAttribute("subjects", JSON.toJSONString(subjects));
     	return "question/detail";

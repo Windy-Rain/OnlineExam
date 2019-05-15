@@ -1,13 +1,41 @@
 <meta charset="utf-8">
 <section class="content-header">
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+        <li><a href="/manager"><i class="fa fa-dashboard"></i> 首页</a></li>
         <li><a href="#">权限管理</a></li>
         <li class="active">学院管理</li>
     </ol>
 </section>
 <!-- Main content -->
 <section class="content">
+	<div class="jax-box">
+        <form id="formSearch" class="form-horizontal form-search">
+            <div class="form-group">
+                <div class="col-md-4 col-sm-6">
+                    <label class="control-label  col-xs-4" for="instituteName">学院名:</label>
+                    <div class="col-xs-8">
+                        <input type="text" class="form-control" id="instituteName">
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <label class="control-label  col-xs-4">学院状态:</label>
+                    <div class="col-xs-8">
+                        <select id="status" class="form-control">
+                            <option value="">请选择</option>
+                            <option value="0">正常</option>
+                            <option value="1">弃用</option>
+                        </select>
+                    </div>
+                </div>
+                <shiro:hasPermission name="institute:list">
+                    <div class="col-md-4 col-sm-6">
+                        <button type="button" id="btn_query" class="btn btn-primary pull-right">查 询</button>
+                        <button type="button" id="btn_requery" class="btn btn-primary pull-right mr5">重 填</button>
+                    </div>
+                </shiro:hasPermission>
+            </div>
+        </form>
+    </div>
     <div class="jax-box jax-box-table">
         <div id="toolbar" class="btn-group">
             <shiro:hasPermission name="institute:add">
@@ -111,7 +139,7 @@
         },{
             field: 'description',
             title: '学院简介',
-            width : '50%',
+            width : '45%',
             
         },{
             field: 'instituteLogo',
@@ -127,8 +155,19 @@
             title: '排序',
             align : "center",
             width : '5%',
-        },
-        {
+        },{
+            field: 'status',
+            title: '课程状态',
+            align : "center",
+            width : '5%',
+            formatter : function(status) {
+               if(status == 0){
+            	   return statusName = '<span class="label label-success">正常</span>';
+               }else if(status == 1){
+            	   return statusName = '<span class="label label-danger">弃用</span>';
+               }
+            }
+        },{
             field : 'operation',
             title : '操作',
             align : "center",
@@ -154,8 +193,8 @@
         var temp = { //这里的键的名字和控制器的变量名必须一致，这边改动，控制器也需要改成一样的
             limit : params.limit, //页面大小
             offset : params.offset, //页码
-            //instituteName : $("#instituteName").val(),
-            //status : $("#status").val()
+            instituteName : $("#instituteName").val(),
+            status : $("#status").val()
         };
         return temp;
     }
@@ -179,6 +218,14 @@
     }
     
     $(function () {
+    	/*重填*/
+        $("#btn_requery").click(function(){
+        	$("#formSearch")[0].reset();
+        });
+        /*查询*/
+        $("#btn_query").click(function(){
+            Core.refreshTable("#table");
+        });
         /*新增*/
         $("#btn_add").click(function(){
             $("#instituteForm")[0].reset();

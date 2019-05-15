@@ -19,6 +19,20 @@
     	id,institute_name,description,institute_logo,sort,author,create_time,update_time,status
     </sql>
     
+    <select id="selectInstitutes" parameterType="com.exam.model.Institute" resultMap="BaseResultMap" >
+        SELECT
+        i.*
+        FROM institute i
+        WHERE 1=1
+        <if test="instituteName !=null and instituteName != ''">
+			AND i.institute_name like concat('%', #{instituteName}, '%')
+		</if>
+		<if test="status !=null">
+			AND i.`status` = #{status}
+		</if>
+		ORDER BY i.sort ASC
+    </select>
+    
     <select id="selectById" parameterType="int" resultMap="BaseResultMap">
     	SELECT
     	*
@@ -47,6 +61,4 @@
 			#{item}
 		</foreach>
 	</delete>
-    
-    
 </mapper>

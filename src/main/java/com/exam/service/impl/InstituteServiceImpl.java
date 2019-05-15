@@ -1,5 +1,7 @@
 package com.exam.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,11 @@ public class InstituteServiceImpl extends BaseServiceImpl<Institute> implements 
 	private InstituteMapper instituteMapper;
 	
 	@Override
+	public List<Institute> selectInstitutes(Institute institute) {
+		return instituteMapper.selectInstitutes(institute);
+	}
+	
+	@Override
 	public Institute selectById(Integer id) {
 		return instituteMapper.selectById(id);
 	}
@@ -28,5 +35,6 @@ public class InstituteServiceImpl extends BaseServiceImpl<Institute> implements 
 	public int deleteBatch(Integer[] ids) {
 		return instituteMapper.deleteBatch(ids);
 	}
+
 
 }

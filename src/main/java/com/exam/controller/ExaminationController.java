@@ -77,7 +77,7 @@ public class ExaminationController {
 	@GetMapping("/add")
 	public String addExam(Model model) {
 		Subject subject = new Subject();
-		subject.setStatus(CoreConst.STATUS_VALID);
+		subject.setStatus(CoreConst.STATUS_INVALID);
 		List<Subject> subjects = subjectService.selectSubjects(subject);
 		List<String> grades = userService.selectGradeList();
 		List<Classes> classes = classesService.selectAll();
@@ -108,7 +108,7 @@ public class ExaminationController {
 		Examination examination = examService.selectById(id);
 		model.addAttribute("examination", examination);
 		Subject subject = new Subject();
-		subject.setStatus(CoreConst.STATUS_VALID);
+		subject.setStatus(CoreConst.STATUS_INVALID);
 		List<Subject> subjects = subjectService.selectSubjects(subject);
 		List<String> grades = userService.selectGradeList();
 		List<Classes> classes = classesService.selectAll();

@@ -2,14 +2,15 @@ package com.exam.enmus;
 
 public enum SysConfigKey {
 	
+    
+	SITE_PHONE("SITE_PHONE", "电话"),
+	SITE_FAX("SITE_FAX","传真"),
+	SITE_EMAIL("SITE_EMAIL","问题反馈"),
+	SITE_ADDRESS("SITE_ADDRESS","通讯地址"),
+	SITE_NAME("SITE_NAME","系统名称"),
+	SITE_URL("SITE_URL","网址"),
+	SITE_DESC("SITE_DESC","系统描述"),
     CLOUD_STORAGE_CONFIG("CLOUD_STORAGE_CONFIG","云存储配置"),
-    BAIDU_PUSH_URL("BAIDU_PUSH_URL", "百度推送地址"),
-    SITE_NAME("SITE_NAME","网站名称"),
-    SITE_DESC("SITE_DESC","网站描述"),
-    SITE_KWD("SITE_KWD","网站关键字"),
-    SITE_PERSON_NAME("SITE_PERSON_NAME","站长名称"),
-    SITE_PERSON_DESC("SITE_PERSON_DESC","站长描述"),
-    SITE_PERSON_PIC("SITE_PERSON_PIC","站长头像"),
     ;
 
     private String value;

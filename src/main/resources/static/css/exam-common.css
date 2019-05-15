@@ -1,10 +1,14 @@
 /*-------top-start------*/
+body{
+	padding-top:55px
+}
 .exam-container{
     margin-right: auto;
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
 }
+
 
 @media (min-width: 1200px){
     .exam-container {
@@ -14,7 +18,7 @@
 
 .exam-content{
     position: relative;
-    margin-top: 55px;
+    min-height: 445px;
 }
 
 .exam-main{
@@ -40,7 +44,7 @@
 }
 
 .row-padding{
-	padding-top:80px;
+	padding-top:60px;
 	padding-bottom:30px
 }
 
@@ -298,10 +302,6 @@
     color: #fff;
 }
 
-/* .exam-content{
-	margin-top:70px;
-	min-height:76%;
-} */
 .ui.countdownTime.container {
 	height:10em;
 	padding-top:5em;
@@ -330,7 +330,6 @@
 }
 
 .error-content .error-img-content{
-    margin-top: 56px;
     padding-top: 100px;
     margin-bottom: 70px;
     text-align: center;

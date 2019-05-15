@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ErrorPageConfig implements ErrorPageRegistrar {
+	
     @Override
     public void registerErrorPages(ErrorPageRegistry errorPageRegistry) {
         ErrorPage e404 = new ErrorPage(HttpStatus.NOT_FOUND, "/error/404");

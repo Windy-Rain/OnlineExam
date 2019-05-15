@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <section class="content-header">
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+        <li><a href="/manager"><i class="fa fa-dashboard"></i> 首页</a></li>
         <li><a href="#">权限管理</a></li>
         <li class="active">角色管理</li>
     </ol>
@@ -12,37 +12,35 @@
         <form id="formSearch" class="form-horizontal form-search">
             <div class="form-group">
                 <div class="col-md-5 col-xs-8">
-                    <label class="control-label  col-xs-4" for="roleName">角色名称:</label>
+                    <label class="control-label col-xs-4" for="roleName">角色名称:</label>
                     <div class="col-xs-8">
                         <input type="text" class="form-control" id="roleName">
                     </div>
                 </div>
                 <shiro:hasPermission name="role:list">
-                    <div class="col-md-5 col-xs-4 " style="text-align:left;">
-                        <button type="button" id="btn_query" class="btn btn-info">查询</button>
+                    <div class="col-md-7 col-xs-4">
+                        <button type="button" id="btn_query" class="btn btn-primary pull-right">查 询</button>
+                        <button type="button" id="btn_requery" class="btn btn-primary pull-right mr5">重 填</button>
                     </div>
                 </shiro:hasPermission>
-
             </div>
-
         </form>
     </div>
     <div class="jax-box jax-box-table">
         <div id="toolbar" class="btn-group">
             <shiro:hasPermission name="role:add">
                 <button id="btn_add" type="button" class="btn btn-primary" data-toggle="modal" data-target="#roleModal">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 新增
                 </button>
             </shiro:hasPermission>
             <shiro:hasPermission name="role:batchDelete">
                 <button id="btn_batch_delete" type="button" class="btn btn-danger">
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>批量删除
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 批量删除
                 </button>
             </shiro:hasPermission>
         </div>
         <table id="table"></table>
     </div>
-
 </section>
 <!-- 角色模态框 -->
 <div id="roleModal" class="modal fade" tabindex="-1" role="dialog">
@@ -69,19 +67,17 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- /.box-body -->
                         <div class="box-footer">
                             <div class="pull-right">
                                 <button type="button" id="saveRole" class="btn btn-info">确定</button>
                                 <button type="button" data-dismiss="modal" class="btn btn-default">取消</button>
                             </div>
                         </div>
-                        <!-- /.box-footer -->
                     </form>
                 </div>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div>
+    </div>
 </div>
 
 
@@ -97,8 +93,8 @@
                 <div id="roleOpenWindow">
                 </div>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div>
+    </div>
 </div>
 
 <!-- 分配权限 -->
@@ -118,8 +114,8 @@
                     <button type="button" data-dismiss="modal" class="btn btn-default">取消</button>
                 </div>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div>
+    </div>
 </div>
 
 
@@ -184,6 +180,10 @@
     };
 
     $(function () {
+    	/*重填*/
+        $("#btn_requery").click(function(){
+        	$("#formSearch")[0].reset();
+        });
         /*查询*/
         $("#btn_query").click(function(){
             Core.refreshTable("#table");

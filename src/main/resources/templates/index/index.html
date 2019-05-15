@@ -6,17 +6,17 @@
 	<title th:text="${@module.get('sysConfig').SITE_NAME}"></title>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="stylesheet" th:href="@{/libs/bootstrap/bootstrap.min.css}"/>
-	<link rel="stylesheet" th:href="@{/libs/semantic-ui/semantic.min.css}" />
-	<link rel="stylesheet" th:href="@{/css/exam-common.css}" />
+	<link rel="stylesheet" th:href="@{/libs/semantic-ui/semantic.min.css}"/>
+	<link rel="stylesheet" th:href="@{/css/exam-common.css}"/>
+	<link rel="stylesheet" th:href="@{/css/web-common.css}"/>
 	<script th:src="@{/libs/jquery/jquery.min.js}"></script>
 	<script th:src="@{/libs/bootstrap/bootstrap.min.js}"></script>
     <script th:src="@{/libs/semantic-ui/semantic.min.js}"></script>
     <script th:src="@{/libs/layer/layer.js}"></script>
     <script th:src="@{/js/hc-sticky.js}"></script>
     <script th:src="@{/js/core.js}"></script>
-    <script th:src="@{/js/exam.js}"></script>
 </head>
-<body>
+<body style="padding:0px">
 	<div id="header" class="nav-header">
 		<div th:replace="home/fragments/navbar :: navbar"></div>
 	</div>
@@ -35,28 +35,26 @@
     	</div>
 	    <div class="ui four columns stackable grid">
 	        <div class="column" align="center">
-	            <i class="list layout huge icon"></i><h4>题库</h4>
-	            <h5>适合教学使用的题目，合理的题目分类</h5>
-	        </div>
-	        <div class="column" align="center">
 	            <i class="desktop huge icon"></i><h4>考试</h4>
 	            <h5>即使是正规的教学考试，也能轻松应对，准确评判</h5>
 	        </div>
 	        <div class="column" align="center">
-	            <i class="users huge icon"></i><h4>社区</h4>
-	            <h5>在这里同学可以分享自己的学习体验，解答疑惑</h5>
+	            <i class="list layout huge icon"></i><h4>题库</h4>
+	            <h5>适合教学使用的题库中心，合理的题目分类</h5>
 	        </div>
 	        <div class="column" align="center">
 	            <i class="github square huge icon"></i>
 	            <h4>技术</h4>
 	            <h5>多样化判题技术，灵活选择判题模式，准确的同时也能近人情</h5>
 	        </div>
+	        <div class="column" align="center">
+	            <i class="users huge icon"></i><h4>社区</h4>
+	            <h5>在这里同学可以分享自己的学习体验，解答疑惑</h5>
+	        </div>
 	    </div>
 	</div>
-	<div class="footer" style="background:#4F94CD">
-	    <div th:replace="home/fragments/footer :: copyrightExamWeb"></div>
-	</div>
-	<div class="return_top"><a class=" fa fa-arrow-up"></a></div>
+	<div th:replace="home/fragments/footer :: copyrightExamWeb"></div>
+	<div class="return_top"><a class="fa fa-arrow-up"></a></div>
 </body>
 <script type="text/javascript">
 	var headerMain = document.getElementById('headerMain');

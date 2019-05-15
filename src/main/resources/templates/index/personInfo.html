@@ -8,12 +8,15 @@
 	<link rel="stylesheet" th:href="@{/libs/bootstrap/bootstrap.min.css}"/>
 	<link rel="stylesheet" th:href="@{/libs/semantic-ui/semantic.min.css}" />
 	<link rel="stylesheet" th:href="@{/libs/adminlte/css/AdminLTE.min.css}"/>
+	<link rel="stylesheet" th:href="@{/libs/validate/validate.css}"/>
 	<link rel="stylesheet" th:href="@{/libs/upload/css/webuploader.css}"/>
 	<link rel="stylesheet" th:href="@{/css/exam-common.css}"/>
+	<link rel="stylesheet" th:href="@{/css/web-common.css}"/>
 	<script th:src="@{/libs/jquery/jquery.min.js}"></script>
 	<script th:src="@{/libs/jquery/jquery.countdown.min.js}"></script>
 	<script th:src="@{/libs/bootstrap/bootstrap.min.js}"></script>
     <script th:src="@{/libs/semantic-ui/semantic.min.js}"></script>
+    <script th:src="@{/libs/validate/validate.js}"></script>
     <script th:src="@{/libs/upload/js/webuploader.js}"></script>
     <script th:src="@{/libs/upload/js/jax.uploader.js}"></script>
     <script th:src="@{/libs/upload/js/uploadCall.js}"></script>
@@ -22,10 +25,10 @@
     <script th:src="@{/js/examination.js}"></script>
 </head>
 <body>
-<div id="header" class="nav-header" style="background:#4F94CD; height:8%">
+<div id="header" class="nav-header" style="background:#4F94CD;">
 	<div th:replace="home/fragments/navbar :: navbar"></div>
 </div>
-<div class="exam-content" style="min-height:75%;padding-bottom:2em;margin-top:10px">
+<div class="exam-content" style="padding-bottom:2em;margin-top:10px">
 	<div class="ui header container" style="padding-top:10px;padding-left:0px">
 	    <div class="ui large breadcrumb">
 	        <a class="section" th:href="@{/}"><i class="home icon"></i>首页</a>
@@ -52,11 +55,16 @@
 	                        </div>
 	                        <div class="description" th:text="${user.description}"></div>
 	                    </div>
+	                    <div class="extra content">
+	                    	<div class="ui bottom primary attached button" id="updateUserPasswordBtn">
+      							<i class="keyboard outline icon"></i>修改密码
+    						</div>
+	                    </div>
 	                </div>
 	            </div>
 	        </div>
 	        <div class="twelve wide column">
-	            <div class="ui segment">
+	            <div class="ui segment" id="updateUserInfo">
 	                <h4 class="ui dividing header">编辑个人资料</h4>
 	                <form class="ui form" id="updateUserInfoForm">
 	                    <input type="hidden" class="form-control" name="userId" th:value="${user.userId}">
@@ -124,15 +132,71 @@
 	                   	<button class="ui primary button" id="updateUserInfoBtn">保存</button>
 	                </form>
 	            </div>
+	            <div class="ui segment" style="margin:0px" id="updateUserPassword">
+	            	<h4 class="ui dividing header">修改密码</h4>
+	                <form class="ui form" id="updateUserPasswordForm">
+	                	<input type="hidden" class="form-control" name="userId" th:value="${user.userId}">
+	                	<div class="field">
+	                        <label><i class="user icon"></i>旧密码</label>
+	                        <input type="text" name="oldPassword" require="必填项" placeholder="请输入旧密码"/>
+		                </div>
+		                <div class="field">
+	                        <label><i class="user icon"></i>新密码</label>
+	                        <input type="text" name="newPassword" password="" pwdCheck="" require="必填项" placeholder="请输入新密码"/>
+		                </div>
+		                <div class="field">
+	                        <label><i class="user icon"></i>确认新密码</label>
+	                        <input type="text" name="confirmNewPassword" password=""  require="" placeholder="请再次输入新密码"/>
+		                </div>
+		                <button class="ui primary button" id="confirmUpdateUserPasswordBtn">修改</button>
+		                <button class="ui primary button" id="cancelUpdateUserPasswordBtn">取消</button>
+	                </form>
+               	</div>
 	        </div>
 	    </div>
 	</div>
 </div>
-<div class="footer" style="background:#4F94CD; height:17%">
-	<div th:replace="home/fragments/footer :: copyrightExamWeb"></div>
-</div>
+<div th:replace="home/fragments/footer :: copyrightExamWeb"></div>
 <script type="text/javascript">
 	$(function () {
+		$("#updateUserPassword").hide();
+		$("#updateUserPasswordBtn").click(function(){
+			$("#updateUserInfo").hide();
+			$("#updateUserPassword").show();
+		});
+		
+		/*保存*/
+	    $("#updateUserInfoBtn").click(function(){
+	    	if (doValidForm(updateUserInfoForm)) {
+		        Core.postAjax("/exam/editUser",$("#updateUserInfoForm").serialize(),function(data) {
+		            if(data.status==200){
+			           	layer.msg(data.msg);
+			           	//window.location.reload();
+		            }
+		            layer.msg(data.msg);
+		        })
+	    	}
+	    });
+		
+		/* 确定修改密码 */
+		$("#confirmUpdateUserPasswordBtn").click(function(){
+			if (doValidForm(updateUserPasswordForm)) {
+				Core.postAjax("/exam/changePassword",$("#updateUserPasswordForm").serialize(),function(data){
+					if(data.status==200){
+						layer.msg(data.msg);
+						$("#updateUserInfo").show();
+						$("#updateUserPassword").hide();
+					}else{
+						layer.msg(data.msg);
+					}
+				})
+			}
+		});
+		
+		$("#cancelUpdateUserPasswordBtn").click(function(){
+			$("#updateUserInfo").show();
+			$("#updateUserPassword").hide();
+		});
         /*上传图片*/
         $(".upload-img-btn").click(function(){
             if($("#upload-content").find(".upload-img-div").size()==0){
@@ -156,19 +220,8 @@
                 });
             }
         })
-    })
-    
-	/*保存*/
-    $("#updateUserInfoBtn").click(function(){
-        Core.postAjax("/exam/editUser",$("#updateUserInfoForm").serialize(),function (data) {
-            if(data.status==200){
-	           	setTimeout(function(){
-	           		window.location.reload();
-	           	},3000);
-            }
-            layer.msg(data.msg);
-        })
     });
+    
 </script>
 </body>
 </html>

@@ -312,6 +312,12 @@ img{
     text-transform: uppercase;
     font-family: 'Montserrat', sans-serif;
 }
+.copyright-p{
+	margin-bottom: 0;
+    font-size: 10px;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+}
 .copyright-section a{
     color:#0077dd;
 }
@@ -340,7 +346,7 @@ img{
     color: #6c6b6b;
 }
 .copyright-section.copyright-common{
-    background: #f3f3f3;
+    background: #4F94CD;
 }
 
 .slideUp {

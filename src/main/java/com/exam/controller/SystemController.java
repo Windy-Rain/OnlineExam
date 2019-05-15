@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.exam.model.Permission;
 import com.exam.model.User;
 import com.exam.service.PermissionService;
-import com.exam.service.SysConfigService;
 import com.exam.service.UserService;
 import com.exam.util.ResultUtil;
 import com.exam.vo.base.ResponseVo;
@@ -41,20 +40,12 @@ public class SystemController{
     private PermissionService permissionService;
     @Autowired
     private RedisCacheManager redisCacheManager;
-    @Autowired
-    private SysConfigService configService;
-
-    /*后台首页*/
-    @RequestMapping(value={"/index"})
-    public String index(){
-        return "manager/index";
-    }
 
     /*登陆*/
     @GetMapping("/login")
     public String login(Model model){
         if(SecurityUtils.getSubject().isAuthenticated()){
-            return "redirect:/index";
+            return "redirect:/";
         }
         return "system/login";
     }
@@ -67,7 +58,7 @@ public class SystemController{
         //判断验证码
         String rightCode = (String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
         if (StringUtils.isNotBlank(verification) && StringUtils.isNotBlank(rightCode) && verification.equals(rightCode)) {
-            //验证码通过
+        //验证码通过
         } else {
             return ResultUtil.error("验证码错误！");
         }
@@ -86,12 +77,6 @@ public class SystemController{
         //更新最后登录时间
         userService.updateLastLoginTime((User) SecurityUtils.getSubject().getPrincipal());
         return ResultUtil.success("登录成功！");
-    }
-
-    /*踢出*/
-    @GetMapping("/kickout")
-    public String kickout(Model model){
-        return "system/kickout";
     }
 
     /*登出*/

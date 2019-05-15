@@ -80,7 +80,7 @@ public class ShiroConfig {
         // 登录url
         shiroFilterFactoryBean.setLoginUrl("/login");
         // 登录成功后要跳转的链接
-        shiroFilterFactoryBean.setSuccessUrl("/index");
+        shiroFilterFactoryBean.setSuccessUrl("/");
         //未授权界面;
         shiroFilterFactoryBean.setUnauthorizedUrl("/error/403");
         //自定义拦截器
@@ -102,7 +102,7 @@ public class ShiroConfig {
         //这个参数是cookie的名称，对应前端的checkbox的name = rememberMe
         SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
         //<!-- 记住我cookie生效时间30天 ,单位秒;-->
-        simpleCookie.setMaxAge(2592000);
+        simpleCookie.setMaxAge(86400);
         return simpleCookie;
     }
 

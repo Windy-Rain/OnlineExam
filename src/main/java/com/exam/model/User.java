@@ -209,7 +209,7 @@ public class User implements Serializable{
      * @return the credentials salt
      */
     public String getCredentialsSalt() {
-        return username + "nbclass.com" + salt;
+        return username + "exam" + salt;
     }
 
 

@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <section class="content-header">
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+        <li><a href="/manager"><i class="fa fa-dashboard"></i> 首页</a></li>
         <li><a href="#">权限管理</a></li>
         <li class="active">班级管理</li>
     </ol>
@@ -12,12 +12,6 @@
         <form id="formSearch" class="form-horizontal form-search">
             <div class="form-group">
                 <div class="col-md-4 col-sm-6">
-                    <label class="control-label  col-xs-4" for="className">班级名称:</label>
-                    <div class="col-xs-8">
-                        <input type="text" class="form-control" id="className">
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
                     <label class="control-label  col-xs-4" for="insId">所属学院:</label>
                     <div class="col-xs-8">
                         <select class="form-control" id="insId">
@@ -26,19 +20,20 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-4 col-sm-6">
                     <label class="control-label  col-xs-4">状态:</label>
                     <div class="col-xs-8">
                         <select id="status" class="form-control">
                             <option value="">请选择</option>
                             <option value="0">正常</option>
-                            <option value="1">禁用</option>
+                            <option value="1">弃用</option>
                         </select>
                     </div>
                 </div>
                 <shiro:hasPermission name="classes:list">
-                    <div class="col-md-1 col-sm-6 " style="text-align:left;">
-                        <button type="button" id="btn_query" class="btn btn-info">查询</button>
+                    <div class="col-md-4 col-sm-6">
+                        <button type="button" id="btn_query" class="btn btn-primary pull-right">查 询</button>
+                        <button type="button" id="btn_requery" class="btn btn-primary pull-right mr5">重 填</button>
                     </div>
                 </shiro:hasPermission>
             </div>
@@ -169,7 +164,7 @@
                if(status == 0){
             	   statusName = '<span class="label label-success">正常</span>';
                }else if(status == 1){
-            	   statusName = '<span class="label label-danger">禁用</span>';
+            	   statusName = '<span class="label label-warning">弃用</span>';
                }
                return statusName;
             }
@@ -199,7 +194,6 @@
         var temp = { //这里的键的名字和控制器的变量名必须一致，这边改动，控制器也需要改成一样的
             limit : params.limit, //页面大小
             offset : params.offset, //页码
-            className : $("#className").val(),
             insId : $("#insId").val(),
             status : $("#status").val()
         };
@@ -225,6 +219,10 @@
     }
     
     $(function () {
+    	/*重填*/
+        $("#btn_requery").click(function(){
+        	$("#formSearch")[0].reset();
+        });
     	/*查询*/
         $("#btn_query").click(function(){
             Core.refreshTable("#table");

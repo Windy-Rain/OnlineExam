@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.exam.mapper.CommentMapper;
 import com.exam.mapper.ExaminationMapper;
 import com.exam.service.GradeService;
 import com.exam.service.UserService;
@@ -26,6 +27,9 @@ public class ExamApiController {
 	
 	@Autowired
 	private ExaminationMapper examMapper;
+	
+	@Autowired
+	private CommentMapper commentMapper;
 	
 	
 	/**
@@ -55,6 +59,21 @@ public class ExamApiController {
 			return ResultUtil.success("数据更新成功", examList);
 		}else {
 			return ResultUtil.error("没有数据");
+		}
+	}
+	
+	/**
+	 * 未审核的留言
+	 * @return
+	 */
+	@PostMapping("/api/msg")
+	@ResponseBody
+	public ResponseVo noReadMessage() {
+		List<HashMap<String, Object>> messageList = commentMapper.noReadMessage();
+		if(!messageList.isEmpty()) {
+			return ResultUtil.success("数据更新成功", messageList);
+		}else {
+			return ResultUtil.error("暂时没有未审核的留言");
 		}
 	}
 	

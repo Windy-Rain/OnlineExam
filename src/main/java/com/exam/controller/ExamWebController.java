@@ -238,12 +238,13 @@ public class ExamWebController {
 	 * @return
 	 */
 	@GetMapping("/exam/personInfo")
-	public String personal(Model model, String userId) {
+	public String personal(Model model) {
 		if(SecurityUtils.getSubject().isAuthenticated()) {
+			User user = (User)SecurityUtils.getSubject().getPrincipal();
 			List<Classes> classes = classesService.selectAll();
-			User user = userService.selectByUserId(userId);
+			User userInfo = userService.selectByUserId(user.getUserId());
 			model.addAttribute("classes", classes);
-			model.addAttribute("user", user);
+			model.addAttribute("user", userInfo);
 			return "index/personInfo";
 		}else {
 			return "redirect:/login";
@@ -251,14 +252,14 @@ public class ExamWebController {
 	}
 	
 	/**编辑用户资料*/
-    @PostMapping("/exam/editUser")
+    @PostMapping("/exam/updatePersonal")
     @ResponseBody
-    public ResponseVo editUser(User user){
+    public ResponseVo updatePersonal(User user){
         int a = userService.updateByUserId(user);
-        if (a > 0) {
-            return ResultUtil.success("编辑用户成功！");
-        } else {
-            return ResultUtil.error("编辑用户失败");
+        if(a > 0) {
+        	return ResultUtil.success("保存个人信息成功");
+        }else {
+        	return ResultUtil.error("修改个人信息失败");
         }
     }
     

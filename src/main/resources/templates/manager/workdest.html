@@ -192,6 +192,8 @@
 				var infoDiv = $("<div class='product-info'></div>").append(titleA).append(desSpan);
 				$("<li class='item'></li>").append(imgDiv).append(infoDiv).appendTo("#examList");
 			})
+		}else{
+			$("<li class='item'>最近没有发布考试</li>").appendTo("#examList");
 		}
 	}
 </script>

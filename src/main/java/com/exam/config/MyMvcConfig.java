@@ -22,4 +22,5 @@ public class MyMvcConfig implements WebMvcConfigurer {
 		registry.addViewController("/manager").setViewName("manager/manager");
 		registry.addViewController("/kickout").setViewName("system/kickout");
 	}
+	
 }

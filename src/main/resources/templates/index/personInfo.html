@@ -13,7 +13,6 @@
 	<link rel="stylesheet" th:href="@{/css/exam-common.css}"/>
 	<link rel="stylesheet" th:href="@{/css/web-common.css}"/>
 	<script th:src="@{/libs/jquery/jquery.min.js}"></script>
-	<script th:src="@{/libs/jquery/jquery.countdown.min.js}"></script>
 	<script th:src="@{/libs/bootstrap/bootstrap.min.js}"></script>
     <script th:src="@{/libs/semantic-ui/semantic.min.js}"></script>
     <script th:src="@{/libs/validate/validate.js}"></script>
@@ -22,7 +21,6 @@
     <script th:src="@{/libs/upload/js/uploadCall.js}"></script>
     <script th:src="@{/libs/layer/layer.js}"></script>
     <script th:src="@{/js/core.js}"></script>
-    <script th:src="@{/js/examination.js}"></script>
 </head>
 <body>
 <div id="header" class="nav-header" style="background:#4F94CD;">
@@ -55,103 +53,98 @@
 	                        </div>
 	                        <div class="description" th:text="${user.description}"></div>
 	                    </div>
-	                    <div class="extra content">
-	                    	<div class="ui bottom primary attached button" id="updateUserPasswordBtn">
-      							<i class="keyboard outline icon"></i>修改密码
-    						</div>
-	                    </div>
 	                </div>
 	            </div>
 	        </div>
 	        <div class="twelve wide column">
-	            <div class="ui segment" id="updateUserInfo">
-	                <h4 class="ui dividing header">编辑个人资料</h4>
-	                <form class="ui form" id="updateUserInfoForm">
-	                    <input type="hidden" class="form-control" name="userId" th:value="${user.userId}">
-	                    <div class="two fields">
-		                    <div class="field">
-		                        <label><i class="user icon"></i>姓名</label>
-		                        <input name="nickname" readonly="" placeholder="请输入姓名" type="text" th:value="${user.nickname}"/>
-		                    </div>
-		                    <div class="field">
-		                        <label><i class="venus mars icon"></i>性别</label>
-		                        <select class="ui fluid dropdown" name="sex">
-		                        	<option value="">请选择</option>
-		                        	<option value="1" th:selected="(${user.sex} == 1)">男</option>
-		                        	<option value="0" th:selected="(${user.sex} == 0)">女</option>
-		                        </select>
-		                    </div>
-		                </div>
-		                <div class="two fields">
-		                	<div class="field">
-		                        <label><i class="student icon"></i>学号</label>
-		                        <input name="username" placeholder="请输入学号" type="text" th:value="${user.username}" />
-		                	</div>
-		                	<div class="field">
-		                        <label><i class="student icon"></i>年级</label>
-		                        <input name="grade" placeholder="请输入年级" type="text" th:value="${user.grade}" />
-		                	</div>
-		                </div>
-		                <div class="two fields">
-		                    <div class="field">
-		                        <label><i class="student icon"></i>班级</label>
-		                        <select class="ui fluid dropdown" name="classId">
-		                        	<option value="">请选择</option>
-		                        	<option th:each="class:${classes}" th:selected="(${user.classId} == ${class.id})" th:value="${class.id}" th:text="${class.className}"></option>
-		                        </select>
-		                    </div>
-		                    <div class="field">
-		                        <label><i class="hourglass start icon"></i>年龄</label>
-		                        <input name="age" placeholder="请输入年龄" type="text" th:value="${user.age}" />
-		                    </div>
-		                </div>
-		                <div class="two fields">
-		                    <div class="field">
-		                        <label><i class="mobile icon"></i>手机号码</label>
-		                        <input name="phone" placeholder="请输入手机号码" type="text" th:value="${user.phone}" />
-		                    </div>
-		                    <div class="field">
-		                        <label><i class="mail outline icon"></i>邮箱</label>
-		                        <input name="email" placeholder="请输入邮箱地址" type="text" th:value="${user.email}"/>
-		                    </div>
-		                </div>
-		                <div class="two fields">
-		                    <div class="field">
-		                        <label><i class="upload icon"></i>更换头像</label>
-		                        <div id="upload-content"></div>
-		                        <div class="ui icon input" style="margin-top:5px">
-			                        <input type="text" name="img" id="imgUrl" th:value="${user.img}" placeholder="头像地址（建议400*400）">
-			                        <i class="cloud upload link icon upload-img-btn"></i>
+       			<div class="nav-tabs-custom">
+       				<ul class="nav nav-tabs">
+       					<li class="active"><a href="#updateUserInfoForm" data-toggle="tab">编辑个人资料</a></li>
+       					<li><a href="#updateUserPasswordForm" data-toggle="tab">修改密码</a></li>
+       				</ul>
+       				<div class="tab-content">
+       					<form class="ui form tab-pane active" id="updateUserInfoForm">
+		                    <input type="hidden" class="form-control" name="userId" th:value="${user.userId}">
+		                    <div class="two fields">
+			                    <div class="field">
+			                        <label><i class="user icon"></i>姓名</label>
+			                        <input name="nickname" placeholder="请输入姓名" type="text" th:value="${user.nickname}" require="必填项"/>
 			                    </div>
-		                    </div>
-		                    <div class="field">
-		                        <label><i class="smile icon"></i>自我描述</label>
-		                        <textarea name="description" rows="9" th:text="${user.description}"></textarea>
-	                    	</div>
-	                   	</div>
-	                   	<button class="ui primary button" id="updateUserInfoBtn">保存</button>
-	                </form>
-	            </div>
-	            <div class="ui segment" style="margin:0px" id="updateUserPassword">
-	            	<h4 class="ui dividing header">修改密码</h4>
-	                <form class="ui form" id="updateUserPasswordForm">
-	                	<input type="hidden" class="form-control" name="userId" th:value="${user.userId}">
-	                	<div class="field">
-	                        <label><i class="user icon"></i>旧密码</label>
-	                        <input type="text" name="oldPassword" require="必填项" placeholder="请输入旧密码"/>
-		                </div>
-		                <div class="field">
-	                        <label><i class="user icon"></i>新密码</label>
-	                        <input type="text" name="newPassword" password="" pwdCheck="" require="必填项" placeholder="请输入新密码"/>
-		                </div>
-		                <div class="field">
-	                        <label><i class="user icon"></i>确认新密码</label>
-	                        <input type="text" name="confirmNewPassword" password=""  require="" placeholder="请再次输入新密码"/>
-		                </div>
-		                <button class="ui primary button" id="confirmUpdateUserPasswordBtn">修改</button>
-		                <button class="ui primary button" id="cancelUpdateUserPasswordBtn">取消</button>
-	                </form>
-               	</div>
+			                    <div class="field">
+			                        <label><i class="venus mars icon"></i>性别</label>
+			                        <select class="ui fluid dropdown" name="sex" require="必填项">
+			                        	<option value="">请选择</option>
+			                        	<option value="1" th:selected="(${user.sex} == 1)">男</option>
+			                        	<option value="0" th:selected="(${user.sex} == 0)">女</option>
+			                        </select>
+			                    </div>
+			                </div>
+			                <div class="two fields">
+			                	<div class="field">
+			                        <label><i class="student icon"></i>学号</label>
+			                        <input name="username" placeholder="请输入学号" type="text" th:value="${user.username}" require="必填项"/>
+			                	</div>
+			                	<div class="field">
+			                        <label><i class="student icon"></i>年级</label>
+			                        <input name="grade" placeholder="请输入年级" type="text" th:value="${user.grade}" require="必填项"/>
+			                	</div>
+			                </div>
+			                <div class="two fields">
+			                    <div class="field">
+			                        <label><i class="student icon"></i>班级</label>
+			                        <select class="ui fluid dropdown" name="classId" require="必填项">
+			                        	<option value="">请选择</option>
+			                        	<option th:each="class:${classes}" th:selected="(${user.classId} == ${class.id})" th:value="${class.id}" th:text="${class.className}"></option>
+			                        </select>
+			                    </div>
+			                    <div class="field">
+			                        <label><i class="hourglass start icon"></i>年龄</label>
+			                        <input name="age" placeholder="请输入年龄" type="text" th:value="${user.age}" require="必填项"/>
+			                    </div>
+			                </div>
+			                <div class="two fields">
+			                    <div class="field">
+			                        <label><i class="mobile icon"></i>手机号码</label>
+			                        <input name="phone" placeholder="请输入手机号码" type="text" th:value="${user.phone}" require="必填项"/>
+			                    </div>
+			                    <div class="field">
+			                        <label><i class="mail outline icon"></i>邮箱</label>
+			                        <input name="email" placeholder="请输入邮箱地址" type="text" th:value="${user.email}" require="必填项"/>
+			                    </div>
+			                </div>
+			                <div class="two fields">
+			                    <div class="field">
+			                        <label><i class="upload icon"></i>更换头像</label>
+			                        <div id="upload-content"></div>
+			                        <div class="ui icon input" style="margin-top:5px">
+				                        <input type="text" name="img" id="imgUrl" th:value="${user.img}" require="必填项" placeholder="头像地址（建议400*400）">
+				                        <i class="cloud upload link icon upload-img-btn"></i>
+				                    </div>
+			                    </div>
+			                    <div class="field">
+			                        <label><i class="smile icon"></i>自我描述</label>
+			                        <textarea name="description" rows="9" th:text="${user.description}" require="必填项"></textarea>
+		                    	</div>
+		                   	</div>
+		                   	<button class="ui primary button" id="updateUserInfoBtn">保存</button>
+		                </form>
+		                <form class="ui form tab-pane" id="updateUserPasswordForm">
+		                	<div class="field">
+		                        <label><i class="user icon"></i>旧密码</label>
+		                        <input type="text" name="oldPassword" require="必填项" placeholder="请输入旧密码"/>
+			                </div>
+			                <div class="field">
+		                        <label><i class="user icon"></i>新密码</label>
+		                        <input type="text" name="newPassword" password="" pwdCheck="" require="必填项" placeholder="请输入新密码"/>
+			                </div>
+			                <div class="field">
+		                        <label><i class="user icon"></i>确认新密码</label>
+		                        <input type="text" name="confirmNewPassword" password=""  require="" placeholder="请再次输入新密码"/>
+			                </div>
+			                <button class="ui primary button" id="updateUserPasswordBtn">修改</button>
+		                </form>
+       				</div>
+       			</div>
 	        </div>
 	    </div>
 	</div>
@@ -159,44 +152,83 @@
 <div th:replace="home/fragments/footer :: copyrightExamWeb"></div>
 <script type="text/javascript">
 	$(function () {
-		$("#updateUserPassword").hide();
-		$("#updateUserPasswordBtn").click(function(){
-			$("#updateUserInfo").hide();
-			$("#updateUserPassword").show();
-		});
-		
 		/*保存*/
-	    $("#updateUserInfoBtn").click(function(){
+	    /* $("#updateUserInfoBtn").click(function(){
 	    	if (doValidForm(updateUserInfoForm)) {
-		        Core.postAjax("/exam/editUser",$("#updateUserInfoForm").serialize(),function(data) {
+		        Core.postAjax("/exam/updatePersonal",$("#updateUserInfoForm").serialize(),function(data) {
 		            if(data.status==200){
 			           	layer.msg(data.msg);
-			           	//window.location.reload();
+			           	window.location.reload();
 		            }
 		            layer.msg(data.msg);
 		        })
 	    	}
+	    }); */
+	    
+	   $("#updateUserInfoBtn").on('click', function () {
+	        $.ajax({
+	            type: "POST",
+	            url: "/exam/updatePersonal",
+	            data: $("#updateUserInfoForm").serialize(),
+	            dataType: "json",
+	            success: function (data) {
+	                if (data.status == 200) {
+	                    layer.msg(data.msg, {
+	                        offset: '30%',
+	                        time: 800
+	                    }, function () {
+	                    	//window.location.reload();
+	                    });
+	                }else{
+	                    layer.msg(data.msg, {
+	                        icon: 2,
+	                        offset: '30%',
+	                        time: 2000
+	                    });
+	                }
+	            }
+	        });
+	    });
+	    
+	    /* 确定修改密码 */
+	    $("#updateUserPasswordBtn").on('click', function () {
+	        $.ajax({
+	            type: "POST",
+	            url: "/exam/changePassword",
+	            data: $("#updateUserPasswordForm").serialize(),
+	            dataType: "json",
+	            success: function (data) {
+	                if (data.status == 200) {
+	                    layer.msg(data.msg, {
+	                        offset: '30%',
+	                        time: 800
+	                    }, function () {
+	                    	//window.location.reload();
+	                    });
+	                }else{
+	                    layer.msg(data.msg, {
+	                        icon: 2,
+	                        offset: '30%',
+	                        time: 2000
+	                    });
+	                }
+	            }
+	        });
 	    });
 		
-		/* 确定修改密码 */
-		$("#confirmUpdateUserPasswordBtn").click(function(){
+		
+		/* $("#updateUserPasswordBtn").click(function(){
 			if (doValidForm(updateUserPasswordForm)) {
 				Core.postAjax("/exam/changePassword",$("#updateUserPasswordForm").serialize(),function(data){
 					if(data.status==200){
 						layer.msg(data.msg);
-						$("#updateUserInfo").show();
-						$("#updateUserPassword").hide();
 					}else{
 						layer.msg(data.msg);
 					}
 				})
 			}
-		});
+		}); */
 		
-		$("#cancelUpdateUserPasswordBtn").click(function(){
-			$("#updateUserInfo").show();
-			$("#updateUserPassword").hide();
-		});
         /*上传图片*/
         $(".upload-img-btn").click(function(){
             if($("#upload-content").find(".upload-img-div").size()==0){
@@ -221,7 +253,6 @@
             }
         })
     });
-    
 </script>
 </body>
 </html>

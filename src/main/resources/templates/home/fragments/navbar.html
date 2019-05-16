@@ -25,11 +25,10 @@
 		    <div class="ui simple dropdown right item">
 		        <img class="ui avatar image" id="imgSrc"/>
 		        <span id="userImg" style="display: none"><shiro:principal property="img" /></span>
-		        <span id="userId" style="display: none"><shiro:principal property="userId" /></span>
 		        <span><shiro:principal property="nickname"/></span><i class="dropdown icon"></i>
 		        <div class="menu">
 		        	<shiro:hasPermission name="manager">
-		        		<a class="item" href="/manager">
+		        		<a class="item" href="/manager" target="view_window">
 		                	<i class="laptop icon"></i>进入管理后台
 		            	</a>
 		        	</shiro:hasPermission>
@@ -60,8 +59,7 @@
 			})
 			/* 我的信息 */
 			$("#myInfo").on('click', function(){
-				var userId = $("#userId").text();
-				window.location.href="/exam/personInfo?userId="+userId;
+				window.location.href="/exam/personInfo";
 			})
 		});
 	</script>

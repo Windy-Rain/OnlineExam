@@ -1,0 +1,390 @@
+2019-05-22 11:55:43.465  INFO 912 --- [main] com.exam.OnlineExamApplication           : Starting OnlineExamApplication on LAPTOP-7SEUEP84 with PID 912 (E:\eclipse_workspace\OnlineExam\target\classes started by HungKuei_PC in E:\eclipse_workspace\OnlineExam)
+2019-05-22 11:55:43.474 DEBUG 912 --- [main] com.exam.OnlineExamApplication           : Running with Spring Boot v2.0.2.RELEASE, Spring v5.0.6.RELEASE
+2019-05-22 11:55:43.479  INFO 912 --- [main] com.exam.OnlineExamApplication           : No active profile set, falling back to default profiles: default
+2019-05-22 11:55:45.449 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\ClassesMapper.class]
+2019-05-22 11:55:45.450 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\CommentMapper.class]
+2019-05-22 11:55:45.451 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\ExaminationMapper.class]
+2019-05-22 11:55:45.451 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\ExamQuestionMapper.class]
+2019-05-22 11:55:45.451 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\GradeMapper.class]
+2019-05-22 11:55:45.451 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\InstituteMapper.class]
+2019-05-22 11:55:45.451 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\LinkMapper.class]
+2019-05-22 11:55:45.451 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\LoveMapper.class]
+2019-05-22 11:55:45.452 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\PermissionMapper.class]
+2019-05-22 11:55:45.452 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\QuestionMapper.class]
+2019-05-22 11:55:45.452 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\RoleMapper.class]
+2019-05-22 11:55:45.452 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\RolePermissionMapper.class]
+2019-05-22 11:55:45.452 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\SubjectMapper.class]
+2019-05-22 11:55:45.453 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\SysConfigMapper.class]
+2019-05-22 11:55:45.453 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\TagMapper.class]
+2019-05-22 11:55:45.453 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\UserMapper.class]
+2019-05-22 11:55:45.453 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [E:\eclipse_workspace\OnlineExam\target\classes\com\exam\mapper\UserRoleMapper.class]
+2019-05-22 11:55:45.454 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'classesMapper' and 'com.exam.mapper.ClassesMapper' mapperInterface
+2019-05-22 11:55:45.454 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'classesMapper'.
+2019-05-22 11:55:45.454 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'commentMapper' and 'com.exam.mapper.CommentMapper' mapperInterface
+2019-05-22 11:55:45.454 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'commentMapper'.
+2019-05-22 11:55:45.455 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'examinationMapper' and 'com.exam.mapper.ExaminationMapper' mapperInterface
+2019-05-22 11:55:45.455 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'examinationMapper'.
+2019-05-22 11:55:45.455 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'examQuestionMapper' and 'com.exam.mapper.ExamQuestionMapper' mapperInterface
+2019-05-22 11:55:45.455 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'examQuestionMapper'.
+2019-05-22 11:55:45.455 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'gradeMapper' and 'com.exam.mapper.GradeMapper' mapperInterface
+2019-05-22 11:55:45.455 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'gradeMapper'.
+2019-05-22 11:55:45.455 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'instituteMapper' and 'com.exam.mapper.InstituteMapper' mapperInterface
+2019-05-22 11:55:45.455 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'instituteMapper'.
+2019-05-22 11:55:45.456 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'linkMapper' and 'com.exam.mapper.LinkMapper' mapperInterface
+2019-05-22 11:55:45.456 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'linkMapper'.
+2019-05-22 11:55:45.456 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'loveMapper' and 'com.exam.mapper.LoveMapper' mapperInterface
+2019-05-22 11:55:45.456 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'loveMapper'.
+2019-05-22 11:55:45.456 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'permissionMapper' and 'com.exam.mapper.PermissionMapper' mapperInterface
+2019-05-22 11:55:45.456 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'permissionMapper'.
+2019-05-22 11:55:45.457 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'questionMapper' and 'com.exam.mapper.QuestionMapper' mapperInterface
+2019-05-22 11:55:45.457 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'questionMapper'.
+2019-05-22 11:55:45.457 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'roleMapper' and 'com.exam.mapper.RoleMapper' mapperInterface
+2019-05-22 11:55:45.457 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'roleMapper'.
+2019-05-22 11:55:45.457 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'rolePermissionMapper' and 'com.exam.mapper.RolePermissionMapper' mapperInterface
+2019-05-22 11:55:45.458 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'rolePermissionMapper'.
+2019-05-22 11:55:45.458 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'subjectMapper' and 'com.exam.mapper.SubjectMapper' mapperInterface
+2019-05-22 11:55:45.458 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'subjectMapper'.
+2019-05-22 11:55:45.459 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'sysConfigMapper' and 'com.exam.mapper.SysConfigMapper' mapperInterface
+2019-05-22 11:55:45.460 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'sysConfigMapper'.
+2019-05-22 11:55:45.460 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'tagMapper' and 'com.exam.mapper.TagMapper' mapperInterface
+2019-05-22 11:55:45.460 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'tagMapper'.
+2019-05-22 11:55:45.460 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'userMapper' and 'com.exam.mapper.UserMapper' mapperInterface
+2019-05-22 11:55:45.460 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'userMapper'.
+2019-05-22 11:55:45.460 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'userRoleMapper' and 'com.exam.mapper.UserRoleMapper' mapperInterface
+2019-05-22 11:55:45.461 DEBUG 912 --- [main] t.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'userRoleMapper'.
+2019-05-22 11:55:50.189  INFO 912 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-05-22 11:55:50.196 DEBUG 912 --- [main] c.e.m.PermissionMapper.selectAllPerms    : ==>  Preparing: SELECT id, permission_id, name, description, url, perms, parent_id, type, order_num, icon, status, create_time, update_time FROM permission WHERE status=? ORDER BY order_num 
+2019-05-22 11:55:50.423 DEBUG 912 --- [main] c.e.m.PermissionMapper.selectAllPerms    : ==> Parameters: 1(Integer)
+2019-05-22 11:55:50.523 DEBUG 912 --- [main] c.e.m.PermissionMapper.selectAllPerms    : <==      Total: 99
+2019-05-22 11:55:51.156  INFO 912 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-22 11:55:51.156  INFO 912 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.31
+2019-05-22 11:55:51.167  INFO 912 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.16] using APR version [1.6.3].
+2019-05-22 11:55:51.168  INFO 912 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2019-05-22 11:55:51.168  INFO 912 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2019-05-22 11:55:52.243  INFO 912 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2m  2 Nov 2017]
+2019-05-22 11:55:52.458  INFO 912 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-22 11:55:54.548  WARN 912 --- [main] org.thymeleaf.templatemode.TemplateMode  : [THYMELEAF][main] Template Mode 'LEGACYHTML5' is deprecated. Using Template Mode 'HTML' instead.
+2019-05-22 11:55:55.261  INFO 912 --- [main] com.exam.OnlineExamApplication           : Started OnlineExamApplication in 13.043 seconds (JVM running for 14.127)
+2019-05-22 11:56:09.602  INFO 912 --- [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-05-22 11:56:09.685  INFO 912 --- [http-nio-8081-exec-2] a.s.s.m.AbstractValidatingSessionManager : Enabling session validation scheduler...
+2019-05-22 11:56:10.224  INFO 912 --- [http-nio-8081-exec-2] io.lettuce.core.EpollProvider            : Starting without optional epoll library
+2019-05-22 11:56:10.225  INFO 912 --- [http-nio-8081-exec-2] io.lettuce.core.KqueueProvider           : Starting without optional kqueue library
+2019-05-22 11:56:11.130  INFO 912 --- [http-nio-8081-exec-2] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:56:11.346  INFO 912 --- [http-nio-8081-exec-2] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:56:11.395 DEBUG 912 --- [http-nio-8081-exec-2] com.exam.mapper.LinkMapper.selectLinks   : ==>  Preparing: select id,`name`, url, description, img, email, qq, status, origin, remark, create_time, update_time FROM link WHERE 1=1 AND status = ? 
+2019-05-22 11:56:11.398 DEBUG 912 --- [http-nio-8081-exec-2] com.exam.mapper.LinkMapper.selectLinks   : ==> Parameters: 1(Integer)
+2019-05-22 11:56:11.421 DEBUG 912 --- [http-nio-8081-exec-2] com.exam.mapper.LinkMapper.selectLinks   : <==      Total: 3
+2019-05-22 11:56:11.430  INFO 912 --- [http-nio-8081-exec-2] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:56:11.434  INFO 912 --- [http-nio-8081-exec-2] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:56:11.444  INFO 912 --- [http-nio-8081-exec-2] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:56:11.447  INFO 912 --- [http-nio-8081-exec-2] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:56:11.458  INFO 912 --- [http-nio-8081-exec-2] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:07.328  INFO 912 --- [http-nio-8081-exec-3] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:07.340  INFO 912 --- [http-nio-8081-exec-3] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:07.351 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.LinkMapper.selectLinks   : ==>  Preparing: select id,`name`, url, description, img, email, qq, status, origin, remark, create_time, update_time FROM link WHERE 1=1 AND status = ? 
+2019-05-22 11:58:07.353 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.LinkMapper.selectLinks   : ==> Parameters: 1(Integer)
+2019-05-22 11:58:07.357 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.LinkMapper.selectLinks   : <==      Total: 3
+2019-05-22 11:58:07.361  INFO 912 --- [http-nio-8081-exec-3] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:07.367  INFO 912 --- [http-nio-8081-exec-3] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:07.372  INFO 912 --- [http-nio-8081-exec-3] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:07.376  INFO 912 --- [http-nio-8081-exec-3] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:07.380  INFO 912 --- [http-nio-8081-exec-3] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:07.684  INFO 912 --- [http-nio-8081-exec-6] com.exam.controller.KaptchaController    : 生成验证码文本====y3xe
+2019-05-22 11:58:20.884 DEBUG 912 --- [http-nio-8081-exec-4] c.e.mapper.UserMapper.selectByUsername   : ==>  Preparing: SELECT id, user_id, class_id, username, password, grade, salt, nickname, email, phone, sex, age, img, status, create_time, update_time, last_login_time FROM user WHERE username = ? 
+2019-05-22 11:58:20.886 DEBUG 912 --- [http-nio-8081-exec-4] c.e.mapper.UserMapper.selectByUsername   : ==> Parameters: admin(String)
+2019-05-22 11:58:20.933 DEBUG 912 --- [http-nio-8081-exec-4] c.e.mapper.UserMapper.selectByUsername   : <==      Total: 1
+2019-05-22 11:58:27.694 DEBUG 912 --- [http-nio-8081-exec-9] c.e.mapper.UserMapper.selectByUsername   : ==>  Preparing: SELECT id, user_id, class_id, username, password, grade, salt, nickname, email, phone, sex, age, img, status, create_time, update_time, last_login_time FROM user WHERE username = ? 
+2019-05-22 11:58:27.695 DEBUG 912 --- [http-nio-8081-exec-9] c.e.mapper.UserMapper.selectByUsername   : ==> Parameters: admin(String)
+2019-05-22 11:58:27.700 DEBUG 912 --- [http-nio-8081-exec-9] c.e.mapper.UserMapper.selectByUsername   : <==      Total: 1
+2019-05-22 11:58:27.744 DEBUG 912 --- [http-nio-8081-exec-9] c.e.m.UserMapper.updateLastLoginTime     : ==>  Preparing: update user SET last_login_time = now() where id = ? 
+2019-05-22 11:58:27.755 DEBUG 912 --- [http-nio-8081-exec-9] c.e.m.UserMapper.updateLastLoginTime     : ==> Parameters: 1(Integer)
+2019-05-22 11:58:27.936 DEBUG 912 --- [http-nio-8081-exec-9] c.e.m.UserMapper.updateLastLoginTime     : <==    Updates: 1
+2019-05-22 11:58:29.021  INFO 912 --- [http-nio-8081-exec-10] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:29.036 DEBUG 912 --- [http-nio-8081-exec-10] c.e.mapper.RoleMapper.findRoleByUserId   : ==>  Preparing: SELECT r.role_id FROM role r LEFT JOIN user_role ur ON r.role_id = ur.role_id WHERE ur.user_id = ? 
+2019-05-22 11:58:29.051 DEBUG 912 --- [http-nio-8081-exec-10] c.e.mapper.RoleMapper.findRoleByUserId   : ==> Parameters: 1(String)
+2019-05-22 11:58:29.085 DEBUG 912 --- [http-nio-8081-exec-10] c.e.mapper.RoleMapper.findRoleByUserId   : <==      Total: 1
+2019-05-22 11:58:29.086 DEBUG 912 --- [http-nio-8081-exec-10] c.e.m.P.findPermsByUserId                : ==>  Preparing: SELECT DISTINCT p.perms FROM permission p LEFT JOIN role_permission rp ON p.permission_id = rp.permission_id LEFT JOIN user_role ur on rp.role_id = ur.role_id WHERE ur.user_id = ? and p.perms is not null and p.perms!='' and p.status=1 
+2019-05-22 11:58:29.090 DEBUG 912 --- [http-nio-8081-exec-10] c.e.m.P.findPermsByUserId                : ==> Parameters: 1(String)
+2019-05-22 11:58:29.100 DEBUG 912 --- [http-nio-8081-exec-10] c.e.m.P.findPermsByUserId                : <==      Total: 92
+2019-05-22 11:58:29.108  INFO 912 --- [http-nio-8081-exec-10] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:29.111 DEBUG 912 --- [http-nio-8081-exec-10] com.exam.mapper.LinkMapper.selectLinks   : ==>  Preparing: select id,`name`, url, description, img, email, qq, status, origin, remark, create_time, update_time FROM link WHERE 1=1 AND status = ? 
+2019-05-22 11:58:29.112 DEBUG 912 --- [http-nio-8081-exec-10] com.exam.mapper.LinkMapper.selectLinks   : ==> Parameters: 1(Integer)
+2019-05-22 11:58:29.114 DEBUG 912 --- [http-nio-8081-exec-10] com.exam.mapper.LinkMapper.selectLinks   : <==      Total: 3
+2019-05-22 11:58:29.116  INFO 912 --- [http-nio-8081-exec-10] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:29.119  INFO 912 --- [http-nio-8081-exec-10] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:29.121  INFO 912 --- [http-nio-8081-exec-10] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:29.123  INFO 912 --- [http-nio-8081-exec-10] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:29.126  INFO 912 --- [http-nio-8081-exec-10] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:33.634  INFO 912 --- [http-nio-8081-exec-2] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:33.688  INFO 912 --- [http-nio-8081-exec-2] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:33.692 DEBUG 912 --- [http-nio-8081-exec-2] com.exam.mapper.LinkMapper.selectLinks   : ==>  Preparing: select id,`name`, url, description, img, email, qq, status, origin, remark, create_time, update_time FROM link WHERE 1=1 AND status = ? 
+2019-05-22 11:58:33.693 DEBUG 912 --- [http-nio-8081-exec-2] com.exam.mapper.LinkMapper.selectLinks   : ==> Parameters: 1(Integer)
+2019-05-22 11:58:33.698 DEBUG 912 --- [http-nio-8081-exec-2] com.exam.mapper.LinkMapper.selectLinks   : <==      Total: 3
+2019-05-22 11:58:33.703  INFO 912 --- [http-nio-8081-exec-2] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:33.707  INFO 912 --- [http-nio-8081-exec-2] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:33.711  INFO 912 --- [http-nio-8081-exec-2] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:33.714  INFO 912 --- [http-nio-8081-exec-2] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:33.721  INFO 912 --- [http-nio-8081-exec-2] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:34.105 DEBUG 912 --- [http-nio-8081-exec-1] c.e.m.E.updateExamToStart                : ==>  Preparing: UPDATE examination SET status = 1 WHERE status = 0 AND start_time <= ? AND end_time > ? 
+2019-05-22 11:58:34.108 DEBUG 912 --- [http-nio-8081-exec-1] c.e.m.E.updateExamToStart                : ==> Parameters: 2019-05-22 11:58:34.104(Timestamp), 2019-05-22 11:58:34.104(Timestamp)
+2019-05-22 11:58:34.237 DEBUG 912 --- [http-nio-8081-exec-1] c.e.m.E.updateExamToStart                : <==    Updates: 0
+2019-05-22 11:58:34.238 DEBUG 912 --- [http-nio-8081-exec-1] c.e.m.ExaminationMapper.updateExamToEnd  : ==>  Preparing: UPDATE examination SET status = 2 WHERE status <= 2 AND end_time <= ? 
+2019-05-22 11:58:34.241 DEBUG 912 --- [http-nio-8081-exec-1] c.e.m.ExaminationMapper.updateExamToEnd  : ==> Parameters: 2019-05-22 11:58:34.238(Timestamp)
+2019-05-22 11:58:34.244 DEBUG 912 --- [http-nio-8081-exec-1] c.e.m.ExaminationMapper.updateExamToEnd  : <==    Updates: 6
+2019-05-22 11:58:34.386 DEBUG 912 --- [http-nio-8081-exec-1] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN classes c ON a.class_id = c.id INNER JOIN institute i ON c.ins_id = i.id INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-05-22 11:58:34.391 DEBUG 912 --- [http-nio-8081-exec-1] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-05-22 11:58:34.502 DEBUG 912 --- [http-nio-8081-exec-1] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-05-22 11:58:34.506 DEBUG 912 --- [http-nio-8081-exec-1] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, i.id AS institute_id, i.institute_name, i.description AS institute_description, c.id AS class_id, c.class_name, c.description AS class_description, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN classes c ON a.class_id = c.id INNER JOIN institute i ON c.ins_id = i.id INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-05-22 11:58:34.515 DEBUG 912 --- [http-nio-8081-exec-1] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 5(Integer)
+2019-05-22 11:58:34.532 DEBUG 912 --- [http-nio-8081-exec-1] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-05-22 11:58:34.538 DEBUG 912 --- [http-nio-8081-exec-1] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-05-22 11:58:34.545 DEBUG 912 --- [http-nio-8081-exec-1] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 10(Integer), 9(Integer), 8(Integer), 7(Integer), 6(Integer)
+2019-05-22 11:58:34.714 DEBUG 912 --- [http-nio-8081-exec-1] c.e.m.E.listQuestionsByExamId            : <==      Total: 31
+2019-05-22 11:58:37.225 DEBUG 912 --- [http-nio-8081-exec-10] com.exam.mapper.SubjectMapper.select     : ==>  Preparing: SELECT id,create_time,update_time,user_id,name,description,img_url,sort,author,status FROM subject 
+2019-05-22 11:58:37.226 DEBUG 912 --- [http-nio-8081-exec-10] com.exam.mapper.SubjectMapper.select     : ==> Parameters: 
+2019-05-22 11:58:37.228 DEBUG 912 --- [http-nio-8081-exec-10] com.exam.mapper.SubjectMapper.select     : <==      Total: 5
+2019-05-22 11:58:37.229 DEBUG 912 --- [http-nio-8081-exec-10] c.e.m.QuestionMapper.countBySubjectId    : ==>  Preparing: select count(id) nums from question where question.subject_id=? 
+2019-05-22 11:58:37.230 DEBUG 912 --- [http-nio-8081-exec-10] c.e.m.QuestionMapper.countBySubjectId    : ==> Parameters: 1(Integer)
+2019-05-22 11:58:37.231 DEBUG 912 --- [http-nio-8081-exec-10] c.e.m.QuestionMapper.countBySubjectId    : <==      Total: 1
+2019-05-22 11:58:37.232 DEBUG 912 --- [http-nio-8081-exec-10] c.e.m.QuestionMapper.countBySubjectId    : ==>  Preparing: select count(id) nums from question where question.subject_id=? 
+2019-05-22 11:58:37.233 DEBUG 912 --- [http-nio-8081-exec-10] c.e.m.QuestionMapper.countBySubjectId    : ==> Parameters: 2(Integer)
+2019-05-22 11:58:37.234 DEBUG 912 --- [http-nio-8081-exec-10] c.e.m.QuestionMapper.countBySubjectId    : <==      Total: 1
+2019-05-22 11:58:37.235 DEBUG 912 --- [http-nio-8081-exec-10] c.e.m.QuestionMapper.countBySubjectId    : ==>  Preparing: select count(id) nums from question where question.subject_id=? 
+2019-05-22 11:58:37.235 DEBUG 912 --- [http-nio-8081-exec-10] c.e.m.QuestionMapper.countBySubjectId    : ==> Parameters: 3(Integer)
+2019-05-22 11:58:37.237 DEBUG 912 --- [http-nio-8081-exec-10] c.e.m.QuestionMapper.countBySubjectId    : <==      Total: 1
+2019-05-22 11:58:37.238 DEBUG 912 --- [http-nio-8081-exec-10] c.e.m.QuestionMapper.countBySubjectId    : ==>  Preparing: select count(id) nums from question where question.subject_id=? 
+2019-05-22 11:58:37.239 DEBUG 912 --- [http-nio-8081-exec-10] c.e.m.QuestionMapper.countBySubjectId    : ==> Parameters: 6(Integer)
+2019-05-22 11:58:37.239 DEBUG 912 --- [http-nio-8081-exec-10] c.e.m.QuestionMapper.countBySubjectId    : <==      Total: 1
+2019-05-22 11:58:37.240 DEBUG 912 --- [http-nio-8081-exec-10] c.e.m.QuestionMapper.countBySubjectId    : ==>  Preparing: select count(id) nums from question where question.subject_id=? 
+2019-05-22 11:58:37.240 DEBUG 912 --- [http-nio-8081-exec-10] c.e.m.QuestionMapper.countBySubjectId    : ==> Parameters: 7(Integer)
+2019-05-22 11:58:37.241 DEBUG 912 --- [http-nio-8081-exec-10] c.e.m.QuestionMapper.countBySubjectId    : <==      Total: 1
+2019-05-22 11:58:37.246  INFO 912 --- [http-nio-8081-exec-10] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:37.268  INFO 912 --- [http-nio-8081-exec-10] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:37.269 DEBUG 912 --- [http-nio-8081-exec-10] com.exam.mapper.LinkMapper.selectLinks   : ==>  Preparing: select id,`name`, url, description, img, email, qq, status, origin, remark, create_time, update_time FROM link WHERE 1=1 AND status = ? 
+2019-05-22 11:58:37.270 DEBUG 912 --- [http-nio-8081-exec-10] com.exam.mapper.LinkMapper.selectLinks   : ==> Parameters: 1(Integer)
+2019-05-22 11:58:37.271 DEBUG 912 --- [http-nio-8081-exec-10] com.exam.mapper.LinkMapper.selectLinks   : <==      Total: 3
+2019-05-22 11:58:37.274  INFO 912 --- [http-nio-8081-exec-10] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:37.276  INFO 912 --- [http-nio-8081-exec-10] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:37.278  INFO 912 --- [http-nio-8081-exec-10] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:37.279  INFO 912 --- [http-nio-8081-exec-10] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:37.281  INFO 912 --- [http-nio-8081-exec-10] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:39.912 DEBUG 912 --- [http-nio-8081-exec-8] c.e.m.E.selectAllByStatus                : ==>  Preparing: SELECT * FROM examination WHERE examination.status = ? 
+2019-05-22 11:58:39.914 DEBUG 912 --- [http-nio-8081-exec-8] c.e.m.E.selectAllByStatus                : ==> Parameters: 2(Integer)
+2019-05-22 11:58:39.932 DEBUG 912 --- [http-nio-8081-exec-8] c.e.m.E.selectAllByStatus                : <==      Total: 6
+2019-05-22 11:58:39.940  INFO 912 --- [http-nio-8081-exec-8] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:39.986  INFO 912 --- [http-nio-8081-exec-8] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:39.993 DEBUG 912 --- [http-nio-8081-exec-8] com.exam.mapper.LinkMapper.selectLinks   : ==>  Preparing: select id,`name`, url, description, img, email, qq, status, origin, remark, create_time, update_time FROM link WHERE 1=1 AND status = ? 
+2019-05-22 11:58:39.995 DEBUG 912 --- [http-nio-8081-exec-8] com.exam.mapper.LinkMapper.selectLinks   : ==> Parameters: 1(Integer)
+2019-05-22 11:58:40.002 DEBUG 912 --- [http-nio-8081-exec-8] com.exam.mapper.LinkMapper.selectLinks   : <==      Total: 3
+2019-05-22 11:58:40.009  INFO 912 --- [http-nio-8081-exec-8] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:40.013  INFO 912 --- [http-nio-8081-exec-8] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:40.018  INFO 912 --- [http-nio-8081-exec-8] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:40.023  INFO 912 --- [http-nio-8081-exec-8] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:40.031  INFO 912 --- [http-nio-8081-exec-8] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:42.194  INFO 912 --- [http-nio-8081-exec-7] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:42.235  INFO 912 --- [http-nio-8081-exec-7] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:42.240  INFO 912 --- [http-nio-8081-exec-7] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:42.245 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.TagMapper.selectTags     : ==>  Preparing: select id, `name`, description, create_time, update_time FROM tag WHERE 1=1 
+2019-05-22 11:58:42.247 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.TagMapper.selectTags     : ==> Parameters: 
+2019-05-22 11:58:42.267 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.TagMapper.selectTags     : <==      Total: 6
+2019-05-22 11:58:42.270 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.LinkMapper.selectLinks   : ==>  Preparing: select id,`name`, url, description, img, email, qq, status, origin, remark, create_time, update_time FROM link WHERE 1=1 AND status = ? 
+2019-05-22 11:58:42.271 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.LinkMapper.selectLinks   : ==> Parameters: 1(Integer)
+2019-05-22 11:58:42.274 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.LinkMapper.selectLinks   : <==      Total: 3
+2019-05-22 11:58:42.277 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.QuestionMapper.countNum  : ==>  Preparing: select count(id) questionNums from question 
+2019-05-22 11:58:42.278 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.QuestionMapper.countNum  : ==> Parameters: 
+2019-05-22 11:58:42.279 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.QuestionMapper.countNum  : <==      Total: 1
+2019-05-22 11:58:42.281 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.UserMapper.userNums      : ==>  Preparing: select count(id) userNums from user 
+2019-05-22 11:58:42.281 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.UserMapper.userNums      : ==> Parameters: 
+2019-05-22 11:58:42.283 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.UserMapper.userNums      : <==      Total: 1
+2019-05-22 11:58:42.285 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.SubjectMapper.totalNum   : ==>  Preparing: select count(id) nums from subject 
+2019-05-22 11:58:42.285 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.SubjectMapper.totalNum   : ==> Parameters: 
+2019-05-22 11:58:42.286 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.SubjectMapper.totalNum   : <==      Total: 1
+2019-05-22 11:58:42.288 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.QuestionMapper.countNum  : ==>  Preparing: select count(id) questionNums from question 
+2019-05-22 11:58:42.288 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.QuestionMapper.countNum  : ==> Parameters: 
+2019-05-22 11:58:42.289 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.QuestionMapper.countNum  : <==      Total: 1
+2019-05-22 11:58:42.290 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.UserMapper.userNums      : ==>  Preparing: select count(id) userNums from user 
+2019-05-22 11:58:42.291 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.UserMapper.userNums      : ==> Parameters: 
+2019-05-22 11:58:42.292 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.UserMapper.userNums      : <==      Total: 1
+2019-05-22 11:58:42.294 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.SubjectMapper.totalNum   : ==>  Preparing: select count(id) nums from subject 
+2019-05-22 11:58:42.294 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.SubjectMapper.totalNum   : ==> Parameters: 
+2019-05-22 11:58:42.295 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.SubjectMapper.totalNum   : <==      Total: 1
+2019-05-22 11:58:42.297 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.QuestionMapper.countNum  : ==>  Preparing: select count(id) questionNums from question 
+2019-05-22 11:58:42.297 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.QuestionMapper.countNum  : ==> Parameters: 
+2019-05-22 11:58:42.298 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.QuestionMapper.countNum  : <==      Total: 1
+2019-05-22 11:58:42.300 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.UserMapper.userNums      : ==>  Preparing: select count(id) userNums from user 
+2019-05-22 11:58:42.300 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.UserMapper.userNums      : ==> Parameters: 
+2019-05-22 11:58:42.301 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.UserMapper.userNums      : <==      Total: 1
+2019-05-22 11:58:42.302 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.SubjectMapper.totalNum   : ==>  Preparing: select count(id) nums from subject 
+2019-05-22 11:58:42.302 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.SubjectMapper.totalNum   : ==> Parameters: 
+2019-05-22 11:58:42.303 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.SubjectMapper.totalNum   : <==      Total: 1
+2019-05-22 11:58:42.308  INFO 912 --- [http-nio-8081-exec-7] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:42.310 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.LinkMapper.selectLinks   : ==>  Preparing: select id,`name`, url, description, img, email, qq, status, origin, remark, create_time, update_time FROM link WHERE 1=1 AND status = ? 
+2019-05-22 11:58:42.311 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.LinkMapper.selectLinks   : ==> Parameters: 1(Integer)
+2019-05-22 11:58:42.316 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.LinkMapper.selectLinks   : <==      Total: 3
+2019-05-22 11:58:42.329  INFO 912 --- [http-nio-8081-exec-7] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:42.336  INFO 912 --- [http-nio-8081-exec-7] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:42.338  INFO 912 --- [http-nio-8081-exec-7] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:42.340  INFO 912 --- [http-nio-8081-exec-7] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:42.342  INFO 912 --- [http-nio-8081-exec-7] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 11:58:42.687 DEBUG 912 --- [http-nio-8081-exec-7] c.e.m.C.selectComments_COUNT             : ==>  Preparing: SELECT count(0) FROM (SELECT t.*, f.id AS parent_id, f.nickname AS parent_nickname, f.content AS parent_content, IFNULL(love.love_count, 0) AS love_count FROM comment t LEFT JOIN comment f ON t.pid = f.id LEFT JOIN (SELECT l.sup_id, count(1) AS love_count FROM love l WHERE l.love_type = 2 GROUP BY l.sup_id) love ON t.id = love.sup_id WHERE 1 = 1 AND t.sid = ? AND t.status = ?) table_count 
+2019-05-22 11:58:42.690 DEBUG 912 --- [http-nio-8081-exec-7] c.e.m.C.selectComments_COUNT             : ==> Parameters: -1(Integer), 1(Integer)
+2019-05-22 11:58:42.742 DEBUG 912 --- [http-nio-8081-exec-7] c.e.m.C.selectComments_COUNT             : <==      Total: 1
+2019-05-22 11:58:42.743 DEBUG 912 --- [http-nio-8081-exec-7] c.e.mapper.CommentMapper.selectComments  : ==>  Preparing: SELECT t.*, f.id AS parent_id, f.nickname AS parent_nickname, f.content AS parent_content, IFNULL(love.love_count,0) AS love_count FROM comment t LEFT JOIN comment f ON t.pid = f.id LEFT JOIN ( SELECT l.sup_id, count(1) AS love_count FROM love l WHERE l.love_type=2 GROUP BY l.sup_id ) love ON t.id = love.sup_id WHERE 1 = 1 AND t.sid = ? AND t.status = ? ORDER BY t.create_time DESC LIMIT ? 
+2019-05-22 11:58:42.745 DEBUG 912 --- [http-nio-8081-exec-7] c.e.mapper.CommentMapper.selectComments  : ==> Parameters: -1(Integer), 1(Integer), 10(Integer)
+2019-05-22 11:58:42.750 DEBUG 912 --- [http-nio-8081-exec-7] c.e.mapper.CommentMapper.selectComments  : <==      Total: 10
+2019-05-22 11:58:48.633 DEBUG 912 --- [http-nio-8081-exec-10] c.e.mapper.CommentMapper.noReadMessage   : ==>  Preparing: SELECT c.nickname, c.avatar, c.content, c.create_time FROM comment c WHERE c.status = 0 order by c.create_time desc 
+2019-05-22 11:58:48.634 DEBUG 912 --- [http-nio-8081-exec-10] c.e.mapper.CommentMapper.noReadMessage   : ==> Parameters: 
+2019-05-22 11:58:48.637 DEBUG 912 --- [http-nio-8081-exec-10] c.e.mapper.CommentMapper.noReadMessage   : <==      Total: 2
+2019-05-22 11:58:48.658 DEBUG 912 --- [http-nio-8081-exec-2] c.e.m.P.selectMenuByUserId               : ==>  Preparing: SELECT DISTINCT p.id, p.permission_id, p.name, p.description, p.url, p.parent_id, p.icon, p.order_num FROM permission p LEFT JOIN role_permission rp ON p.permission_id = rp.permission_id LEFT JOIN user_role ur on rp.role_id = ur.role_id WHERE ur.user_id = ? and p.type in(0,1) and p.status=1 ORDER BY p.order_num 
+2019-05-22 11:58:48.660 DEBUG 912 --- [http-nio-8081-exec-2] c.e.m.P.selectMenuByUserId               : ==> Parameters: 1(String)
+2019-05-22 11:58:48.663 DEBUG 912 --- [http-nio-8081-exec-2] c.e.m.P.selectMenuByUserId               : <==      Total: 25
+2019-05-22 11:58:48.694 DEBUG 912 --- [http-nio-8081-exec-3] c.e.m.E.updateExamToStart                : ==>  Preparing: UPDATE examination SET status = 1 WHERE status = 0 AND start_time <= ? AND end_time > ? 
+2019-05-22 11:58:48.695 DEBUG 912 --- [http-nio-8081-exec-3] c.e.m.E.updateExamToStart                : ==> Parameters: 2019-05-22 11:58:48.694(Timestamp), 2019-05-22 11:58:48.694(Timestamp)
+2019-05-22 11:58:48.695 DEBUG 912 --- [http-nio-8081-exec-3] c.e.m.E.updateExamToStart                : <==    Updates: 0
+2019-05-22 11:58:48.696 DEBUG 912 --- [http-nio-8081-exec-3] c.e.m.ExaminationMapper.updateExamToEnd  : ==>  Preparing: UPDATE examination SET status = 2 WHERE status <= 2 AND end_time <= ? 
+2019-05-22 11:58:48.696 DEBUG 912 --- [http-nio-8081-exec-3] c.e.m.ExaminationMapper.updateExamToEnd  : ==> Parameters: 2019-05-22 11:58:48.696(Timestamp)
+2019-05-22 11:58:48.697 DEBUG 912 --- [http-nio-8081-exec-3] c.e.m.ExaminationMapper.updateExamToEnd  : <==    Updates: 6
+2019-05-22 11:58:48.698 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.QuestionMapper.countNum  : ==>  Preparing: select count(id) questionNums from question 
+2019-05-22 11:58:48.698 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.QuestionMapper.countNum  : ==> Parameters: 
+2019-05-22 11:58:48.699 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.QuestionMapper.countNum  : <==      Total: 1
+2019-05-22 11:58:48.699 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.UserMapper.userNums      : ==>  Preparing: select count(id) userNums from user 
+2019-05-22 11:58:48.700 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.UserMapper.userNums      : ==> Parameters: 
+2019-05-22 11:58:48.700 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.UserMapper.userNums      : <==      Total: 1
+2019-05-22 11:58:48.701 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.SubjectMapper.totalNum   : ==>  Preparing: select count(id) nums from subject 
+2019-05-22 11:58:48.701 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.SubjectMapper.totalNum   : ==> Parameters: 
+2019-05-22 11:58:48.702 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.SubjectMapper.totalNum   : <==      Total: 1
+2019-05-22 11:58:48.703 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.CommentMapper.totalNum   : ==>  Preparing: select count(id) nums FROM comment WHERE status = ? 
+2019-05-22 11:58:48.704 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.CommentMapper.totalNum   : ==> Parameters: 0(Integer)
+2019-05-22 11:58:48.705 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.CommentMapper.totalNum   : <==      Total: 1
+2019-05-22 11:58:48.728 DEBUG 912 --- [http-nio-8081-exec-6] c.e.m.ExaminationMapper.recAddExamSta    : ==>  Preparing: select e.title, e.status, e.create_time, u.nickname, u.img from examination e INNER JOIN user u ON e.user_id = u.user_id order by e.create_time desc limit 4 
+2019-05-22 11:58:48.729 DEBUG 912 --- [http-nio-8081-exec-6] c.e.m.ExaminationMapper.recAddExamSta    : ==> Parameters: 
+2019-05-22 11:58:48.739 DEBUG 912 --- [http-nio-8081-exec-5] c.e.mapper.UserMapper.academyPassNumSta  : ==>  Preparing: SELECT COUNT(u.user_id) AS num, i.institute_name from user u INNER JOIN classes c ON u.class_id = c.id INNER JOIN institute i ON c.ins_id = i.id GROUP BY i.id 
+2019-05-22 11:58:48.740 DEBUG 912 --- [http-nio-8081-exec-5] c.e.mapper.UserMapper.academyPassNumSta  : ==> Parameters: 
+2019-05-22 11:58:48.745 DEBUG 912 --- [http-nio-8081-exec-5] c.e.mapper.UserMapper.academyPassNumSta  : <==      Total: 2
+2019-05-22 11:58:48.766 DEBUG 912 --- [http-nio-8081-exec-6] c.e.m.ExaminationMapper.recAddExamSta    : <==      Total: 4
+2019-05-22 12:01:06.037 DEBUG 912 --- [http-nio-8081-exec-3] c.e.mapper.SubjectMapper.selectSubjects  : ==>  Preparing: SELECT s.* FROM subject s WHERE 1=1 AND s.`status` = ? ORDER BY s.sort ASC 
+2019-05-22 12:01:06.040 DEBUG 912 --- [http-nio-8081-exec-3] c.e.mapper.SubjectMapper.selectSubjects  : ==> Parameters: 0(Integer)
+2019-05-22 12:01:06.045 DEBUG 912 --- [http-nio-8081-exec-3] c.e.mapper.SubjectMapper.selectSubjects  : <==      Total: 5
+2019-05-22 12:01:06.047 DEBUG 912 --- [http-nio-8081-exec-3] c.e.mapper.UserMapper.selectGradeList    : ==>  Preparing: SELECT distinct grade FROM user 
+2019-05-22 12:01:06.049 DEBUG 912 --- [http-nio-8081-exec-3] c.e.mapper.UserMapper.selectGradeList    : ==> Parameters: 
+2019-05-22 12:01:06.051 DEBUG 912 --- [http-nio-8081-exec-3] c.e.mapper.UserMapper.selectGradeList    : <==      Total: 2
+2019-05-22 12:01:06.053 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.ClassesMapper.selectAll  : ==>  Preparing: SELECT id,create_time,update_time,ins_id,class_name,description,sort,author,status FROM classes 
+2019-05-22 12:01:06.054 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.ClassesMapper.selectAll  : ==> Parameters: 
+2019-05-22 12:01:06.057 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.ClassesMapper.selectAll  : <==      Total: 4
+2019-05-22 12:01:06.268 DEBUG 912 --- [http-nio-8081-exec-6] c.e.m.Q.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM (SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM question a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 GROUP BY a.id) table_count 
+2019-05-22 12:01:06.269 DEBUG 912 --- [http-nio-8081-exec-6] c.e.m.Q.findByCondition_COUNT            : ==> Parameters: 
+2019-05-22 12:01:06.273 DEBUG 912 --- [http-nio-8081-exec-6] c.e.m.Q.findByCondition_COUNT            : <==      Total: 1
+2019-05-22 12:01:06.273 DEBUG 912 --- [http-nio-8081-exec-6] c.e.m.QuestionMapper.findByCondition     : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM question a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 GROUP BY a.id LIMIT ? 
+2019-05-22 12:01:06.274 DEBUG 912 --- [http-nio-8081-exec-6] c.e.m.QuestionMapper.findByCondition     : ==> Parameters: 10(Integer)
+2019-05-22 12:01:06.279 DEBUG 912 --- [http-nio-8081-exec-6] c.e.m.QuestionMapper.findByCondition     : <==      Total: 10
+2019-05-22 12:01:07.683 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.SubjectMapper.select     : ==>  Preparing: SELECT id,create_time,update_time,user_id,name,description,img_url,sort,author,status FROM subject WHERE status = ? 
+2019-05-22 12:01:07.685 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.SubjectMapper.select     : ==> Parameters: 0(Integer)
+2019-05-22 12:01:07.689 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.SubjectMapper.select     : <==      Total: 5
+2019-05-22 12:01:07.690 DEBUG 912 --- [http-nio-8081-exec-7] c.exam.mapper.InstituteMapper.selectAll  : ==>  Preparing: SELECT id,create_time,update_time,institute_name,description,institute_logo,sort,author,status FROM institute 
+2019-05-22 12:01:07.691 DEBUG 912 --- [http-nio-8081-exec-7] c.exam.mapper.InstituteMapper.selectAll  : ==> Parameters: 
+2019-05-22 12:01:07.694 DEBUG 912 --- [http-nio-8081-exec-7] c.exam.mapper.InstituteMapper.selectAll  : <==      Total: 2
+2019-05-22 12:01:07.698 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.ClassesMapper.selectAll  : ==>  Preparing: SELECT id,create_time,update_time,ins_id,class_name,description,sort,author,status FROM classes 
+2019-05-22 12:01:07.699 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.ClassesMapper.selectAll  : ==> Parameters: 
+2019-05-22 12:01:07.702 DEBUG 912 --- [http-nio-8081-exec-7] com.exam.mapper.ClassesMapper.selectAll  : <==      Total: 4
+2019-05-22 12:01:07.705 DEBUG 912 --- [http-nio-8081-exec-7] c.e.mapper.UserMapper.selectGradeList    : ==>  Preparing: SELECT distinct grade FROM user 
+2019-05-22 12:01:07.706 DEBUG 912 --- [http-nio-8081-exec-7] c.e.mapper.UserMapper.selectGradeList    : ==> Parameters: 
+2019-05-22 12:01:07.708 DEBUG 912 --- [http-nio-8081-exec-7] c.e.mapper.UserMapper.selectGradeList    : <==      Total: 2
+2019-05-22 12:01:07.823 DEBUG 912 --- [http-nio-8081-exec-4] c.e.m.E.updateExamToStart                : ==>  Preparing: UPDATE examination SET status = 1 WHERE status = 0 AND start_time <= ? AND end_time > ? 
+2019-05-22 12:01:07.824 DEBUG 912 --- [http-nio-8081-exec-4] c.e.m.E.updateExamToStart                : ==> Parameters: 2019-05-22 12:01:07.823(Timestamp), 2019-05-22 12:01:07.823(Timestamp)
+2019-05-22 12:01:07.826 DEBUG 912 --- [http-nio-8081-exec-4] c.e.m.E.updateExamToStart                : <==    Updates: 0
+2019-05-22 12:01:07.826 DEBUG 912 --- [http-nio-8081-exec-4] c.e.m.ExaminationMapper.updateExamToEnd  : ==>  Preparing: UPDATE examination SET status = 2 WHERE status <= 2 AND end_time <= ? 
+2019-05-22 12:01:07.827 DEBUG 912 --- [http-nio-8081-exec-4] c.e.m.ExaminationMapper.updateExamToEnd  : ==> Parameters: 2019-05-22 12:01:07.826(Timestamp)
+2019-05-22 12:01:07.828 DEBUG 912 --- [http-nio-8081-exec-4] c.e.m.ExaminationMapper.updateExamToEnd  : <==    Updates: 6
+2019-05-22 12:01:07.830 DEBUG 912 --- [http-nio-8081-exec-4] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN classes c ON a.class_id = c.id INNER JOIN institute i ON c.ins_id = i.id INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-05-22 12:01:07.831 DEBUG 912 --- [http-nio-8081-exec-4] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-05-22 12:01:07.832 DEBUG 912 --- [http-nio-8081-exec-4] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-05-22 12:01:07.832 DEBUG 912 --- [http-nio-8081-exec-4] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, i.id AS institute_id, i.institute_name, i.description AS institute_description, c.id AS class_id, c.class_name, c.description AS class_description, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN classes c ON a.class_id = c.id INNER JOIN institute i ON c.ins_id = i.id INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-05-22 12:01:07.833 DEBUG 912 --- [http-nio-8081-exec-4] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 10(Integer)
+2019-05-22 12:01:07.836 DEBUG 912 --- [http-nio-8081-exec-4] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 6
+2019-05-22 12:01:07.837 DEBUG 912 --- [http-nio-8081-exec-4] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? , ? ) 
+2019-05-22 12:01:07.838 DEBUG 912 --- [http-nio-8081-exec-4] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 10(Integer), 9(Integer), 8(Integer), 7(Integer), 6(Integer), 5(Integer)
+2019-05-22 12:01:07.849 DEBUG 912 --- [http-nio-8081-exec-4] c.e.m.E.listQuestionsByExamId            : <==      Total: 33
+2019-05-22 12:01:08.561 DEBUG 912 --- [http-nio-8081-exec-2] c.e.m.S.selectSubjects_COUNT             : ==>  Preparing: SELECT count(0) FROM subject s WHERE 1 = 1 
+2019-05-22 12:01:08.562 DEBUG 912 --- [http-nio-8081-exec-2] c.e.m.S.selectSubjects_COUNT             : ==> Parameters: 
+2019-05-22 12:01:08.563 DEBUG 912 --- [http-nio-8081-exec-2] c.e.m.S.selectSubjects_COUNT             : <==      Total: 1
+2019-05-22 12:01:08.564 DEBUG 912 --- [http-nio-8081-exec-2] c.e.mapper.SubjectMapper.selectSubjects  : ==>  Preparing: SELECT s.* FROM subject s WHERE 1=1 ORDER BY s.sort ASC LIMIT ? 
+2019-05-22 12:01:08.565 DEBUG 912 --- [http-nio-8081-exec-2] c.e.mapper.SubjectMapper.selectSubjects  : ==> Parameters: 10(Integer)
+2019-05-22 12:01:08.567 DEBUG 912 --- [http-nio-8081-exec-2] c.e.mapper.SubjectMapper.selectSubjects  : <==      Total: 5
+2019-05-22 12:01:09.168 DEBUG 912 --- [http-nio-8081-exec-1] com.exam.mapper.SubjectMapper.select     : ==>  Preparing: SELECT id,create_time,update_time,user_id,name,description,img_url,sort,author,status FROM subject WHERE status = ? 
+2019-05-22 12:01:09.169 DEBUG 912 --- [http-nio-8081-exec-1] com.exam.mapper.SubjectMapper.select     : ==> Parameters: 0(Integer)
+2019-05-22 12:01:09.170 DEBUG 912 --- [http-nio-8081-exec-1] com.exam.mapper.SubjectMapper.select     : <==      Total: 5
+2019-05-22 12:01:09.209 DEBUG 912 --- [http-nio-8081-exec-10] c.e.m.Q.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM (SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM question a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 GROUP BY a.id) table_count 
+2019-05-22 12:01:09.209 DEBUG 912 --- [http-nio-8081-exec-10] c.e.m.Q.findByCondition_COUNT            : ==> Parameters: 
+2019-05-22 12:01:09.211 DEBUG 912 --- [http-nio-8081-exec-10] c.e.m.Q.findByCondition_COUNT            : <==      Total: 1
+2019-05-22 12:01:09.212 DEBUG 912 --- [http-nio-8081-exec-10] c.e.m.QuestionMapper.findByCondition     : ==>  Preparing: SELECT a.*, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM question a INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 GROUP BY a.id LIMIT ? 
+2019-05-22 12:01:09.212 DEBUG 912 --- [http-nio-8081-exec-10] c.e.m.QuestionMapper.findByCondition     : ==> Parameters: 10(Integer)
+2019-05-22 12:01:09.216 DEBUG 912 --- [http-nio-8081-exec-10] c.e.m.QuestionMapper.findByCondition     : <==      Total: 10
+2019-05-22 12:01:11.556 DEBUG 912 --- [http-nio-8081-exec-3] c.e.m.E.updateExamToStart                : ==>  Preparing: UPDATE examination SET status = 1 WHERE status = 0 AND start_time <= ? AND end_time > ? 
+2019-05-22 12:01:11.558 DEBUG 912 --- [http-nio-8081-exec-3] c.e.m.E.updateExamToStart                : ==> Parameters: 2019-05-22 12:01:11.555(Timestamp), 2019-05-22 12:01:11.555(Timestamp)
+2019-05-22 12:01:11.560 DEBUG 912 --- [http-nio-8081-exec-3] c.e.m.E.updateExamToStart                : <==    Updates: 0
+2019-05-22 12:01:11.561 DEBUG 912 --- [http-nio-8081-exec-3] c.e.m.ExaminationMapper.updateExamToEnd  : ==>  Preparing: UPDATE examination SET status = 2 WHERE status <= 2 AND end_time <= ? 
+2019-05-22 12:01:11.563 DEBUG 912 --- [http-nio-8081-exec-3] c.e.m.ExaminationMapper.updateExamToEnd  : ==> Parameters: 2019-05-22 12:01:11.56(Timestamp)
+2019-05-22 12:01:11.565 DEBUG 912 --- [http-nio-8081-exec-3] c.e.m.ExaminationMapper.updateExamToEnd  : <==    Updates: 6
+2019-05-22 12:01:11.566 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.QuestionMapper.countNum  : ==>  Preparing: select count(id) questionNums from question 
+2019-05-22 12:01:11.567 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.QuestionMapper.countNum  : ==> Parameters: 
+2019-05-22 12:01:11.569 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.QuestionMapper.countNum  : <==      Total: 1
+2019-05-22 12:01:11.571 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.UserMapper.userNums      : ==>  Preparing: select count(id) userNums from user 
+2019-05-22 12:01:11.572 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.UserMapper.userNums      : ==> Parameters: 
+2019-05-22 12:01:11.573 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.UserMapper.userNums      : <==      Total: 1
+2019-05-22 12:01:11.575 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.SubjectMapper.totalNum   : ==>  Preparing: select count(id) nums from subject 
+2019-05-22 12:01:11.576 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.SubjectMapper.totalNum   : ==> Parameters: 
+2019-05-22 12:01:11.577 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.SubjectMapper.totalNum   : <==      Total: 1
+2019-05-22 12:01:11.579 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.CommentMapper.totalNum   : ==>  Preparing: select count(id) nums FROM comment WHERE status = ? 
+2019-05-22 12:01:11.580 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.CommentMapper.totalNum   : ==> Parameters: 0(Integer)
+2019-05-22 12:01:11.600 DEBUG 912 --- [http-nio-8081-exec-3] com.exam.mapper.CommentMapper.totalNum   : <==      Total: 1
+2019-05-22 12:01:11.655 DEBUG 912 --- [http-nio-8081-exec-5] c.e.m.ExaminationMapper.recAddExamSta    : ==>  Preparing: select e.title, e.status, e.create_time, u.nickname, u.img from examination e INNER JOIN user u ON e.user_id = u.user_id order by e.create_time desc limit 4 
+2019-05-22 12:01:11.656 DEBUG 912 --- [http-nio-8081-exec-5] c.e.m.ExaminationMapper.recAddExamSta    : ==> Parameters: 
+2019-05-22 12:01:11.657 DEBUG 912 --- [http-nio-8081-exec-8] c.e.mapper.UserMapper.academyPassNumSta  : ==>  Preparing: SELECT COUNT(u.user_id) AS num, i.institute_name from user u INNER JOIN classes c ON u.class_id = c.id INNER JOIN institute i ON c.ins_id = i.id GROUP BY i.id 
+2019-05-22 12:01:11.657 DEBUG 912 --- [http-nio-8081-exec-8] c.e.mapper.UserMapper.academyPassNumSta  : ==> Parameters: 
+2019-05-22 12:01:11.658 DEBUG 912 --- [http-nio-8081-exec-5] c.e.m.ExaminationMapper.recAddExamSta    : <==      Total: 4
+2019-05-22 12:01:11.658 DEBUG 912 --- [http-nio-8081-exec-8] c.e.mapper.UserMapper.academyPassNumSta  : <==      Total: 2
+2019-05-22 12:01:16.438  INFO 912 --- [http-nio-8081-exec-6] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 12:01:16.457  INFO 912 --- [http-nio-8081-exec-6] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 12:01:16.462 DEBUG 912 --- [http-nio-8081-exec-6] com.exam.mapper.LinkMapper.selectLinks   : ==>  Preparing: select id,`name`, url, description, img, email, qq, status, origin, remark, create_time, update_time FROM link WHERE 1=1 AND status = ? 
+2019-05-22 12:01:16.463 DEBUG 912 --- [http-nio-8081-exec-6] com.exam.mapper.LinkMapper.selectLinks   : ==> Parameters: 1(Integer)
+2019-05-22 12:01:16.470 DEBUG 912 --- [http-nio-8081-exec-6] com.exam.mapper.LinkMapper.selectLinks   : <==      Total: 3
+2019-05-22 12:01:16.474  INFO 912 --- [http-nio-8081-exec-6] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 12:01:16.479  INFO 912 --- [http-nio-8081-exec-6] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 12:01:16.484  INFO 912 --- [http-nio-8081-exec-6] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 12:01:16.488  INFO 912 --- [http-nio-8081-exec-6] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 12:01:16.494  INFO 912 --- [http-nio-8081-exec-6] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 12:01:17.412  INFO 912 --- [http-nio-8081-exec-5] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 12:01:17.431  INFO 912 --- [http-nio-8081-exec-5] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 12:01:17.435 DEBUG 912 --- [http-nio-8081-exec-5] com.exam.mapper.LinkMapper.selectLinks   : ==>  Preparing: select id,`name`, url, description, img, email, qq, status, origin, remark, create_time, update_time FROM link WHERE 1=1 AND status = ? 
+2019-05-22 12:01:17.436 DEBUG 912 --- [http-nio-8081-exec-5] com.exam.mapper.LinkMapper.selectLinks   : ==> Parameters: 1(Integer)
+2019-05-22 12:01:17.439 DEBUG 912 --- [http-nio-8081-exec-5] com.exam.mapper.LinkMapper.selectLinks   : <==      Total: 3
+2019-05-22 12:01:17.443  INFO 912 --- [http-nio-8081-exec-5] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 12:01:17.447  INFO 912 --- [http-nio-8081-exec-5] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 12:01:17.451  INFO 912 --- [http-nio-8081-exec-5] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 12:01:17.455  INFO 912 --- [http-nio-8081-exec-5] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 12:01:17.460  INFO 912 --- [http-nio-8081-exec-5] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 12:01:17.643 DEBUG 912 --- [http-nio-8081-exec-8] c.e.m.E.updateExamToStart                : ==>  Preparing: UPDATE examination SET status = 1 WHERE status = 0 AND start_time <= ? AND end_time > ? 
+2019-05-22 12:01:17.644 DEBUG 912 --- [http-nio-8081-exec-8] c.e.m.E.updateExamToStart                : ==> Parameters: 2019-05-22 12:01:17.642(Timestamp), 2019-05-22 12:01:17.642(Timestamp)
+2019-05-22 12:01:17.646 DEBUG 912 --- [http-nio-8081-exec-8] c.e.m.E.updateExamToStart                : <==    Updates: 0
+2019-05-22 12:01:17.646 DEBUG 912 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.updateExamToEnd  : ==>  Preparing: UPDATE examination SET status = 2 WHERE status <= 2 AND end_time <= ? 
+2019-05-22 12:01:17.647 DEBUG 912 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.updateExamToEnd  : ==> Parameters: 2019-05-22 12:01:17.646(Timestamp)
+2019-05-22 12:01:17.648 DEBUG 912 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.updateExamToEnd  : <==    Updates: 6
+2019-05-22 12:01:17.650 DEBUG 912 --- [http-nio-8081-exec-8] c.e.m.E.findByCondition_COUNT            : ==>  Preparing: SELECT count(0) FROM examination a INNER JOIN classes c ON a.class_id = c.id INNER JOIN institute i ON c.ins_id = i.id INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 
+2019-05-22 12:01:17.650 DEBUG 912 --- [http-nio-8081-exec-8] c.e.m.E.findByCondition_COUNT            : ==> Parameters: 
+2019-05-22 12:01:17.653 DEBUG 912 --- [http-nio-8081-exec-8] c.e.m.E.findByCondition_COUNT            : <==      Total: 1
+2019-05-22 12:01:17.654 DEBUG 912 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.findByCondition  : ==>  Preparing: SELECT a.*, i.id AS institute_id, i.institute_name, i.description AS institute_description, c.id AS class_id, c.class_name, c.description AS class_description, subject.id AS s_subject_id, subject.`name` AS s_subject_name, subject.description AS s_subject_description FROM examination a INNER JOIN classes c ON a.class_id = c.id INNER JOIN institute i ON c.ins_id = i.id INNER JOIN subject ON a.subject_id = subject.id WHERE 1 = 1 order by a.id desc LIMIT ? 
+2019-05-22 12:01:17.654 DEBUG 912 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.findByCondition  : ==> Parameters: 5(Integer)
+2019-05-22 12:01:17.658 DEBUG 912 --- [http-nio-8081-exec-8] c.e.m.ExaminationMapper.findByCondition  : <==      Total: 5
+2019-05-22 12:01:17.659 DEBUG 912 --- [http-nio-8081-exec-8] c.e.m.E.listQuestionsByExamId            : ==>  Preparing: SELECT e.*, q.id AS question_id, q.title AS question_title, q.content AS question_content, q.question_type AS q_question_type, q.option_a AS question_option_a, q.option_b AS question_option_b, q.option_c AS question_option_c, q.option_d AS question_option_d, q.option_e AS question_option_e, q.option_f AS question_option_f, q.answer AS question_answer, q.parse AS question_parse, q.score AS question_score, q.difficulty AS question_difficulty, q.subject_id AS question_subject_id, q.create_time AS question_create_time, q.update_time AS question_update_time, q.status AS question_status FROM examination e INNER JOIN exam_question eq ON e.id = eq.exam_id INNER JOIN question q ON eq.question_id = q.id WHERE e.id IN ( ? , ? , ? , ? , ? ) 
+2019-05-22 12:01:17.659 DEBUG 912 --- [http-nio-8081-exec-8] c.e.m.E.listQuestionsByExamId            : ==> Parameters: 10(Integer), 9(Integer), 8(Integer), 7(Integer), 6(Integer)
+2019-05-22 12:01:17.672 DEBUG 912 --- [http-nio-8081-exec-8] c.e.m.E.listQuestionsByExamId            : <==      Total: 31
+2019-05-22 12:01:19.850  INFO 912 --- [http-nio-8081-exec-6] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 12:01:19.869  INFO 912 --- [http-nio-8081-exec-6] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 12:01:19.872 DEBUG 912 --- [http-nio-8081-exec-6] com.exam.mapper.LinkMapper.selectLinks   : ==>  Preparing: select id,`name`, url, description, img, email, qq, status, origin, remark, create_time, update_time FROM link WHERE 1=1 AND status = ? 
+2019-05-22 12:01:19.883 DEBUG 912 --- [http-nio-8081-exec-6] com.exam.mapper.LinkMapper.selectLinks   : ==> Parameters: 1(Integer)
+2019-05-22 12:01:19.885 DEBUG 912 --- [http-nio-8081-exec-6] com.exam.mapper.LinkMapper.selectLinks   : <==      Total: 3
+2019-05-22 12:01:19.889  INFO 912 --- [http-nio-8081-exec-6] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 12:01:19.894  INFO 912 --- [http-nio-8081-exec-6] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 12:01:19.898  INFO 912 --- [http-nio-8081-exec-6] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 12:01:19.907  INFO 912 --- [http-nio-8081-exec-6] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2019-05-22 12:01:19.913  INFO 912 --- [http-nio-8081-exec-6] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据

@@ -1,48 +1,109 @@
 <meta charset="utf-8">
-<form class="form-horizontal" id="markDetailForm">
-    <input name="id" type="hidden" th:value="${grade.id}">
-    <div class="box-body">
-        <div class="form-group">
-            <label  class="col-sm-3 control-label">考生姓名 :</label>
-            <div class="col-sm-8">
-            	<input th:value="${user.nickname}" class="form-control" readonly>
-            </div>
-        </div>
-        <div class="form-group">
-            <label  class="col-sm-3 control-label">考生学号 :</label>
-            <div class="col-sm-8">
-            	<input th:value="${user.username}" class="form-control" readonly>
-            </div>
-        </div>
-        <div class="form-group">
-            <label  class="col-sm-3 control-label">考试名称 :</label>
-            <div class="col-sm-8">
-            	<input th:value="${exam.title}" class="form-control" readonly>
-            </div>
-        </div>
-        <div class="form-group">
-            <label  class="col-sm-3 control-label">考生选择题答案:</label>
-            <div class="col-sm-8">
-            	<input th:value="${grade.autoJson}" class="form-control" readonly>
-            </div>
-        </div>
-        <div class="form-group">
-            <label  class="col-sm-3 control-label">考生问答题答案:</label>
-            <div class="col-sm-8">
-            	<textarea type="text" th:field="*{grade.manulJson}" rows="4" class="form-control" readonly></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <label  class="col-sm-3 control-label">考生交卷时间:</label>
-            <div class="col-sm-8">
-            	<input type="text" class="form-control" th:value="${#dates.format(exam.createTime, 'yyyy-MM-dd HH:mm:ss')}" readonly/>
-            </div>
-        </div>
-        <div class="form-group">
-            <label  class="col-sm-3 control-label">最终得分:</label>
-            <div class="col-sm-8">
-                <input type="text" th:value="${grade.result}" class="form-control" readonly>
-            </div>
-        </div>
+<div id="export_word">
+    <div class="row exam-title">
+    	<p id="examTitle" th:text="${grade.examination.title}"></p>
     </div>
-</form>
+    <div class="row exam-info">
+    	<div class="col-xs-6 col-sm-5 text-right">
+    		<p th:text="'（考试科目：'+${grade.examination.subject.name}"></p>
+    	</div>
+    	<div class="col-xs-6 col-sm-3 text-center">
+    		<p th:text="'考试时间：'+${grade.examination.examTime}+'分钟'"></p>
+    	</div>
+    	<div class="col-xs-6 col-sm-4">
+    		<p th:text="'试卷总分：'+${grade.examination.totalScore}+'分）'"></p>
+    	</div>
+    </div>
+    <div class="row user-info">
+        <p>
+        	<label class="col-xs-6 col-sm-3"> 学院: 
+        		<input th:value="${grade.user.institute.instituteName}" disabled/>
+        	</label>
+            <label class="col-xs-6 col-sm-3"> 班级: 
+            	<input th:value="${grade.user.classes.className}" disabled/>
+            </label>
+            <label class="col-xs-6 col-sm-3"> 学号: 
+            	<input th:value="${grade.user.username}" disabled/>
+            </label>
+            <label class="col-xs-6 col-sm-3"> 姓名: 
+            	<input id="username" th:value="${grade.user.nickname}" disabled/>
+            </label>
+        </p>
+    </div>
+    <div class="row score-info">
+    	<table class="table table-bordered text-center">
+    		<tbody>
+    			<tr>
+    				<td style="border: 2px solid black">题型</td>
+    				<td style="border: 2px solid black">选择题</td>
+    				<td style="border: 2px solid black">问答题</td>
+    				<td style="border: 2px solid black">总分</td>
+    				<td style="border: 2px solid black">出卷人</td>
+    				<td style="border: 2px solid black">评分人</td>
+    			</tr>
+    			<tr>
+    				<td style="border: 2px solid black">得分</td>
+    				<td style="border: 2px solid black" th:text="${grade.autoResult}"></td>
+    				<td style="border: 2px solid black" th:text="${grade.manulResult}"></td>
+    				<td style="border: 2px solid black" th:text="${grade.result}"></td>
+    				<td style="border: 2px solid black" th:text="${grade.examination.author}"></td>
+    				<td style="border: 2px solid black" th:text="${grade.examination.author}"></td>
+    			</tr>
+    		</tbody>
+		</table>
+    </div>
+    <div class="RadioSelection">
+        <p id="RadioSelectionTitle"><span class="line_height">&nbsp;&nbsp;&nbsp;&nbsp;一 、单项选择题</span></p>
+        <ol>
+            <li th:each="question,questionInfo:${grade.examination.questions}" th:if="${question.questionType==0}">
+                <p class="question_title mt10" th:text="${question.title}+'（'+${question.score}+'分）'"></p>
+                <div class="article-body markdown-body editor-preview-active-side" style="margin-top:10px;border-width:0px" th:utext="${question.content}"></div>
+               	<input type="radio" th:name="${questionInfo.index}" th:checked="(${question.stuAnswer=='A'})" disabled/>
+               	<span th:text="'A.'+${question.optionA}" th:class="('A'==${question.answer})?'text-success':''"></span><br>
+                <input type="radio" th:name="${questionInfo.index}" th:checked="(${question.stuAnswer=='B'})" disabled/>
+                <span th:text="'B.'+${question.optionB}" th:class="('B'==${question.answer})?'text-success':''"></span><br>
+                <input type="radio" th:name="${questionInfo.index}" th:checked="(${question.stuAnswer=='C'})" disabled/>
+                <span th:text="'C.'+${question.optionC}" th:class="('C'==${question.answer})?'text-success':''"></span><br>
+                <input type="radio" th:name="${questionInfo.index}" th:checked="(${question.stuAnswer=='D'})" disabled/>
+                <span th:text="'D.'+${question.optionD}" th:class="('D'==${question.answer})?'text-success':''"></span><br>
+                <p class="mt10" th:text="'考生答案：'+${question.stuAnswer}"></p>
+                <p class="text-success" th:text="${question.answer}==''?'参考答案：无':'参考答案：'+${question.answer}"></p>
+                <p class="text-danger" th:text="${question.parse}==''?'答案解析：无解析':'答案解析：'+${question.parse}"></p>
+            </li>
+        </ol>
+    </div>
+    <br>
+    <div class="CheckboxSelection">
+        <p id="CheckboxSelectionTitle"><span class="line_height">&nbsp;&nbsp;&nbsp;&nbsp;二、 多项选择题</span></p>
+        <ol>
+            <li th:each="question,questionInfo:${grade.examination.questions}" th:if="${question.questionType==1}">
+                <p class="question_title mt10" th:text="${question.title}+'（'+${question.score}+'分）'"></p>
+                <div class="article-body markdown-body editor-preview-active-side" style="margin-top:10px;border-width:0px" th:utext="${question.content}"></div>
+                <input type="checkbox" th:name="${questionInfo.index}" th:checked="(${question.stuAnswer=='A'})" disabled/>
+               	<span th:text="'A.'+${question.optionA}"></span><br>
+                <input type="checkbox" th:name="${questionInfo.index}" th:checked="(${question.stuAnswer=='B'})" disabled/>
+                <span th:text="'B.'+${question.optionB}"></span><br>
+                <input type="checkbox" th:name="${questionInfo.index}" th:checked="(${question.stuAnswer=='C'})" disabled/>
+                <span th:text="'C.'+${question.optionC}"></span><br>
+                <input type="checkbox" th:name="${questionInfo.index}" th:checked="(${question.stuAnswer=='D'})" disabled/>
+                <span th:text="'D.'+${question.optionD}"></span><br>
+                <p class="mt10" th:text="'考生答案：'+${question.stuAnswer}"></p>
+                <p class="text-success" th:text="${question.answer}==''?'参考答案：无':'参考答案：'+${question.answer}"></p>
+                <p class="text-danger" th:text="${question.parse}==''?'答案解析：无解析':'答案解析：'+${question.parse}"></p>
+            </li>
+        </ol>
+    </div>
+    <br>
+    <div class="ShortAnswer">
+        <p id="ShortAnswerTitle"><span class="line_height">&nbsp;&nbsp;&nbsp;&nbsp;三、 简答题</span></p>
+        <ol>
+        	<li th:each="question,questionInfo:${grade.examination.questions}" th:if="${question.questionType==2}">
+		        <p class="question_title mt10" th:text="${question.title}+'（'+${question.score}+'分）'"></p>
+		        <div class="article-body markdown-body editor-preview-active-side" style="margin-top:10px;border-width:0px" th:utext="${question.content}"></div>
+		        <textarea class="form-control mb10" rows="6" th:text="${question.stuAnswer}" readonly></textarea>
+		        <p class="text-success" th:text="${question.answer}==''?'参考答案：无':'参考答案：'+${question.answer}"></p>
+		        <p class="text-danger" th:text="${question.parse}==''?'答案解析：无解析':'答案解析：'+${question.parse}"></p>
+        	</li>
+        </ol>
+    </div>
+</div>

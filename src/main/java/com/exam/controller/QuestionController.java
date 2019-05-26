@@ -59,6 +59,7 @@ public class QuestionController {
     @ResponseBody
     public ResponseVo add(Question question) {
     	try {
+    		question.setStatus(CoreConst.STATUS_INVALID);
 			Question questions = questionService.insertQuestion(question);
 			return ResultUtil.success("新增题目成功！");
 		} catch (Exception e) {
@@ -80,6 +81,7 @@ public class QuestionController {
     @PostMapping("/edit")
     @ResponseBody
     public ResponseVo edit(Question question) {
+    	question.setStatus(CoreConst.STATUS_INVALID);
     	questionService.updateNotNull(question);
     	return ResultUtil.success("编辑题目成功");
     }

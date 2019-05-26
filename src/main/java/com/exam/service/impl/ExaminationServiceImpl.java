@@ -13,7 +13,6 @@ import org.springframework.util.CollectionUtils;
 import com.exam.mapper.ExaminationMapper;
 import com.exam.mapper.QuestionMapper;
 import com.exam.model.Examination;
-import com.exam.model.Question;
 import com.exam.service.ExaminationService;
 import com.exam.vo.ExaminationConditionVo;
 
@@ -63,11 +62,8 @@ public class ExaminationServiceImpl extends BaseServiceImpl<Examination> impleme
 	}
 	
 	@Override
-	public List<Examination> queryByExamId(Integer id) {
-		List<Integer> ids = new ArrayList<>();
-		ids.add(id);
-		List<Examination> listExam =  examMapper.listQuestionsByExamId(ids);
-		return listExam;
+	public Examination queryByExamId(Integer id) {
+		return examMapper.ExaminationById(id);
 	}
 
 	@Override

@@ -1,23 +1,21 @@
 <meta charset="utf-8">
 <section class="content-header">
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+        <li><a href="/manager"><i class="fa fa-dashboard"></i> 首页</a></li>
         <li><a href="#">考试管理</a></li>
-        <li class="active">编辑题目</li>
+        <li class="active">更新题目</li>
     </ol>
 </section>
-<!-- Main content -->
 <section class="content">
     <div class="jax-box">
         <div class="box-body">
             <form id="questionForm" class="form-horizontal">
                 <input th:value="${question.id}" type="hidden" name="id">
-                <input id="status" type="hidden" name="status">
-                <input id="questionContent" th:value="${question.content}" type="hidden" name="content">
+                <input id="questionContent" type="hidden" name="content">
                 <div class="col-lg-8 pl0">
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input type="text" th:value="${question.title}" class="form-control" id="title" name="title" placeholder="请输入题目标题" require="">
+                            <textarea type="text" rows="3" th:text="${question.title}" class="form-control" id="title" name="title" placeholder="请输入题目标题" require=""></textarea>
                         </div>
                     </div>
                     <div class="form-group form-editor">
@@ -29,33 +27,26 @@
                 <div class="col-lg-4 question-extra">
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <a class="btn btn-primary btn-sm" onclick="saveQuestion(0)">保存草稿</a>
-                            <a class="btn btn-success btn-sm" onclick="saveQuestion(0)">修改题目</a>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <label class="control-label label-four" for="">课程分类:</label>
-                            <div class="col-xs-6">
-                                <select id="subject-select" class="form-control" name="subjectId" require="">
-                                </select>
+                            <label class="control-label label-four">课程分类:</label>
+                            <div class="ml80">
+                                <select id="subject-select" class="form-control" name="subjectId" require=""></select>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <label class="control-label label-four" for="">题目类型:</label>
-                            <div class="ml80 radioItem">
-                                <label>
+                            <label class="control-label label-four">题目类型:</label>
+                            <div class="radio icheck ml80 radioItem">
+                                <label style="margin-bottom: 5px">
                                     <input class="minimal"  type="radio"  name="questionType" th:checked="${(question.questionType == 0)? true : false}" value="0" >单项选择题
                                 </label>
-                                <label>
+                                <label class="ml20">
                                     <input class="minimal"  type="radio"  name="questionType" th:checked="${(question.questionType == 1)? true : false}" value="1">多项选择题
                                 </label>
                                 <label>
                                     <input class="minimal"  type="radio"  name="questionType" th:checked="${(question.questionType == 2)? true : false}" value="2">主观问答题
                                 </label>
-                                <label>
+                                <label class="ml20">
                                     <input class="minimal"  type="radio"  name="questionType" th:checked="${(question.questionType == 3)? true : false}" value="3">编程题
                                 </label>
                             </div>
@@ -63,25 +54,32 @@
                     </div>
                     <div class="form-group" id="option-group">
                         <div class="col-xs-12">
-                            <label class="control-label label-four" for="">题目选项:</label>
-                            <div class="ml80" id="option">
-                                 <label>
-                                   <input th:value="${question.optionA}" type="text" class="form-control" name="optionA" placeholder="选项A" require="">
-                                </label> <span style="cursor:pointer;color:#449284" id="addItemBtn" class="glyphicon glyphicon-plus-sign"></span>
+                            <label class="control-label label-four">题目选项:</label>
+                            <div class="ml80 mb5">
+                                <input type="text" class="form-control" name="optionA" th:value="${question.optionA}" placeholder="选项A" require="">
+                            </div>
+                            <div class="ml80 mb5">
+                                <input type="text" class="form-control" name="optionB" th:value="${question.optionB}" placeholder="选项B" require="">
+                            </div>
+                            <div class="ml80 mb5">
+                                <input type="text" class="form-control" name="optionC" th:value="${question.optionC}" placeholder="选项C" require="">
+                            </div>
+                            <div class="ml80 mb5">
+                                <input type="text" class="form-control" name="optionD" th:value="${question.optionD}" placeholder="选项D" require="">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <label class="control-label label-four" for="">题目分值:</label>
-                            <div class=" ml80">
+                            <label class="control-label label-four">题目分值:</label>
+                            <div class="ml80">
                                 <input type="text" th:field="*{question.score}" class="form-control" name="score" placeholder="题目分值" require="">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <label class="control-label label-four" for="">题目难度:</label>
+                            <label class="control-label label-four">题目难度:</label>
                             <div class="ml80">
                                 <select class="form-control" name="difficulty" require="">
 		                            <option value="">请选择</option>
@@ -96,18 +94,27 @@
                     </div>
                  	<div class="form-group">
                         <div class="col-xs-12">
-                            <label class="control-label label-four" for="">正确答案:</label>
+                            <label class="control-label label-four">正确答案:</label>
                             <div class="ml80">
-                                <textarea type="text" th:field="*{question.answer}" rows="4" class="form-control" name="answer" require="" placeholder="正确答案"></textarea>
+                                <textarea type="text" th:field="*{question.answer}" rows="1" class="form-control" name="answer" require="" placeholder="正确答案"></textarea>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <label class="control-label label-four" for="">答案解析:</label>
+                            <label class="control-label label-four">答案解析:</label>
                             <div class="ml80">
                                 <textarea type="text" th:field="*{question.parse}" rows="4" class="form-control" name="parse" require="" placeholder="答案解析"></textarea>
                             </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0px">
+                        <div class="col-xs-12">
+                        	<label class="control-label label-four"></label>
+                        	<div class="ml80">
+                        		<button type="button" class="btn btn-primary btn-lg" onclick="updateQuestion()"> 更新题目 </button>
+                        		<button type="button" class="btn btn-primary btn-lg" onclick="backQuestion()"> 返回题库 </button>
+                        	</div>
                         </div>
                     </div>
                 </div>
@@ -123,7 +130,7 @@
     var html='<option value="">请选择</option>';
     $.each(subjectsObj,function (i,item) {
         if(item!=null){
-            var isSelected= subjectId==item.id?' selected="selected"':'';
+            var isSelected = subjectId==item.id ? 'selected="selected"':'';
             html+='<option value="'+item.id+'"'+isSelected+'>'+item.name+'</option>';
         }else{
         	html='<option value="">请添加课程</option>';
@@ -150,53 +157,12 @@
         radioClass: 'iradio_minimal-blue',
     });
     
-    var maxInput = 5;
-	var index = 1;
-	if("[[${question.optionB}]]"!=""){
-		index++;
-	}
-	if("[[${question.optionC}]]"!=""){
-		index++;
-	}
-	if("[[${question.optionD}]]"!=""){
-		index++;
-	}
-	if("[[${question.optionE}]]"!=""){
-		index++;
-	}
-	if("[[${question.optionF}]]"!=""){
-		index++;
-	}
-	for(var i = 2; i <= index; i++){
-		var alphabet= String.fromCharCode(64 + parseInt(i));
-		$("#option").append('<div><label><input th:value="${question.option'+alphabet+'}" type="text" class="form-control" name="option'+alphabet+'" placeholder="选项'+alphabet+'" require=""></label>'+
-        ' <span style="color:red;cursor:pointer" class="glyphicon glyphicon-minus-sign removeAption" aria-hidden="true"></span><div>');
-	}
-    $("#addItemBtn").click(function(e){
-        if(index <= maxInput){
-            var html = '<label><input type="text" class="form-control" ';
-			index++;
-			var alphabet= String.fromCharCode(64 + parseInt(index));
-			$("#option").append('<div><label><input type="text" class="form-control" name="option'+alphabet+'" placeholder="选项'+alphabet+'" require=""></label>'+
-					            ' <span style="color:red;cursor:pointer" class="glyphicon glyphicon-minus-sign removeAption" aria-hidden="true"></span><div>');
-			optionLength++;
-        }
-        return false;
-    });
-
-    $("#option").on("click",".removeAption", function(e){
-		if(index > 1){
-			$(this).parent('div').remove();
-			index--;
-		}
-		return false;
-    });
     var detailSimplemde = new SimpleMDE({
         // textarea的DOM对象
         element: document.getElementById("questionField"),
         // 自动下载FontAwesome，设为false为不下载(如果设为false则必须手动引入)
         autoDownloadFontAwesome: false,
-        placeholder: "请输入题目附加内容，没有请填“无”！",
+        placeholder: "这里请输入题干无法展示的内容（代码或者图表），没有请忽略。",
         /*autosave: {
             // 启用自动保存功能
             enabled: true,
@@ -216,10 +182,11 @@
         status: [ "lines", "words"] // Optional usage
     });
 
-    function  saveQuestion(status) {
-        if(validQuestion()){
-            Core.confirm("确认修改题目？",function () {
-                $("#status").val(status);
+    function updateQuestion() {
+        if(doValidForm(questionForm)){
+        	var contentMd=detailSimplemde.value();
+        	$("#questionContent").val(detailSimplemde.markdown(contentMd));
+            Core.confirm("确认更新题目？",function () {
                 Core.postAjax("/question/edit",$("#questionForm").serialize(),function (data) {
                     if(data.status=200){
                         detailSimplemde.clearAutosavedValue();
@@ -229,17 +196,8 @@
             })
         }
     }
-
-    function  validQuestion() {
-        if(doValidForm(questionForm)){
-            var contentMd=detailSimplemde.value();
-            if(contentMd!=""){
-                $("#questionContent").val(detailSimplemde.markdown(contentMd));
-                return true;
-            }else{
-                layer.msg("请输入题目附加内容，没有请填“无”！")
-            }
-        }
-        return false;
+    
+    function backQuestion(){
+    	window.location.href="#questions";
     }
 </script>

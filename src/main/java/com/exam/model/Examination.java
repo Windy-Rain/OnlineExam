@@ -22,6 +22,9 @@ public class Examination extends BaseVo {
 	private Integer status;
 	
 	@Transient
+	private long examTime;
+	
+	@Transient
 	List<Question> questions;
 	
 	@Transient
@@ -91,6 +94,12 @@ public class Examination extends BaseVo {
 	}
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+	public long getExamTime() {
+		return examTime;
+	}
+	public void setExamTime(long examTime) {
+		this.examTime = examTime;
 	}
 	public List<Question> getQuestions() {
 		return questions;

@@ -123,11 +123,12 @@
 
 <!-- 成绩详情模态框 -->
 <div id="gradeDetailModal" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" style="width:1024px" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">成绩详情</h4>
+                <button type="button" class="btn btn-danger pull-right ml10" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="btn btn-primary pull-right" onclick="exportWord()">导出Word</button>
+                <h4 class="modal-title">考生试卷</h4>
             </div>
             <div class="modal-body">
             	<div id="gradeOpenWindow"></div>
@@ -216,7 +217,7 @@
             title : '操作',
             align : "center",
             width : '13%',
-            class:'min-width-100',
+            class : 'min-width-100',
             formatter : function(value,
                                  row, index) {
                 var mark = markFlag=="true"&&row.status==0 ? '<a class="btn btn btn-info btn-sm" onclick="markGrade('+row.id+')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 批阅</a>' : '';
@@ -267,6 +268,13 @@
     			closable: true, //必须点击按钮才能关闭
     		}).modal("show");
     	},2);
+    }
+    
+    /* 导出试卷 */
+    function exportWord(){
+    	var examTitle = $("#examTitle").text();
+    	var username = $("#username").val();
+        $("#export_word").wordExport(username+'--'+examTitle);
     }
    
     /*删除*/

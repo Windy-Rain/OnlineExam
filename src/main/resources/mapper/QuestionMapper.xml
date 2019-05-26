@@ -10,8 +10,6 @@
         <result column="option_b" property="optionB" jdbcType="VARCHAR" />
         <result column="option_c" property="optionC" jdbcType="VARCHAR" />
         <result column="option_d" property="optionD" jdbcType="VARCHAR" />
-        <result column="option_e" property="optionE" jdbcType="VARCHAR" />
-        <result column="option_f" property="optionF" jdbcType="VARCHAR" />
         <result column="answer" property="answer" jdbcType="LONGVARCHAR" />
         <result column="parse" property="parse" jdbcType="LONGVARCHAR" />
         <result column="score" property="score" jdbcType="INTEGER" />
@@ -30,8 +28,8 @@
         <id column="num" property="counts" jdbcType="INTEGER" />
     </resultMap>
     <sql id="Base_Column_List" >
-        id,title,content,question_type,option_a,option_b,option_c,option_d,option_e,option_f,
-        answer,parse,score,difficulty,subject_id,exam_id,create_time,update_time,status
+        id,title,content,question_type,option_a,option_b,option_c,option_d,answer,parse,
+        score,difficulty,subject_id,exam_id,create_time,update_time,status
     </sql>
     
     <select id="findByCondition" parameterType="com.exam.vo.QuestionConditionVo" resultMap="BaseResultMap">

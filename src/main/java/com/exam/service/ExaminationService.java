@@ -35,7 +35,7 @@ public interface ExaminationService extends BaseService<Examination> {
 	 * @return
 	 */
 	
-	List<Examination> queryByExamId(Integer id);
+	Examination queryByExamId(Integer id);
 	
 	
 	int deleteBatch(Integer[] ids);

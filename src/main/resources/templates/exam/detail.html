@@ -154,7 +154,7 @@
         showMeridian: 1,
         startDate:new Date(),
         todayBtn: true,
-        format: "yyyy-mm-dd hh:ii:ss", //时间格式
+        format: "yyyy-mm-dd hh:ii", //时间格式
     }).on("click",function(){
         $("#startExamTime").datetimepicker("setEndDate",$("#endExamTime").val())
     });
@@ -166,7 +166,7 @@
         forceParse: false,
         showMeridian: 1,
         todayBtn: true,
-        format: "yyyy-mm-dd hh:ii:ss", //时间格式
+        format: "yyyy-mm-dd hh:ii", //时间格式
     }).on("click",function(){
         $("#endExamTime").datetimepicker("setStartDate",$("#startExamTime").val())
     });

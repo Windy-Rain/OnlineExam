@@ -205,6 +205,14 @@ public class ExamWebController {
 		}
 	}
 	
+	/**
+	 * 点赞
+	 * @param request
+	 * @param vo
+	 * @param supId
+	 * @param loveType
+	 * @return
+	 */
 	@PostMapping("/exam/love")
 	@ResponseBody
     public ResponseVo love(HttpServletRequest request, LoveConditionVo vo, Integer supId,Integer loveType) {
@@ -301,9 +309,9 @@ public class ExamWebController {
 	@GetMapping("/exam/startexam")
 	public String startToExam(Model model, Integer id) {
 		User user = (User)SecurityUtils.getSubject().getPrincipal();
-		List<Examination> listExam = examService.queryByExamId(id);
+		Examination examination = examService.queryByExamId(id);
 		Map<String, Object> data = new HashMap<>();
-		data.put("exam", listExam);
+		data.put("exam", examination);
 		model.addAttribute("data", data);
 		model.addAttribute("user", user);
 		return "index/detail";
@@ -340,8 +348,8 @@ public class ExamWebController {
 			int autoResult = 0;
 			StringBuffer autoStr = new StringBuffer();
 			StringBuffer manulStr = new StringBuffer();
-			List<Examination> listExam = examService.queryByExamId(grade.getExamId());
-			List<Question> questions = listExam.get(0).getQuestions();
+			Examination examination = examService.queryByExamId(grade.getExamId());
+			List<Question> questions = examination.getQuestions();
 			for(int i = 0; i < questions.size(); i++) {
 				Question question = questions.get(i);
 				if(question.getQuestionType() <= 1) {
@@ -361,7 +369,7 @@ public class ExamWebController {
 			grade.setAutoJson(autoJson);
 			grade.setManulJson(manulJson);
 			grade.setManulResult(0);
-			grade.setStatus(0);
+			grade.setStatus(CoreConst.STATUS_INVALID);
 			Date date = new Date();
 			grade.setCreateTime(date);
 			grade.setUpdateTime(date);

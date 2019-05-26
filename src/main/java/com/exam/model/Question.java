@@ -13,8 +13,6 @@ public class Question extends BaseVo {
 	private String optionB;
 	private String optionC;
 	private String optionD;
-	private String optionE;
-	private String optionF;
 	private String answer;
 	private String parse;
 	private Integer score;
@@ -68,18 +66,6 @@ public class Question extends BaseVo {
 	}
 	public void setOptionD(String optionD) {
 		this.optionD = optionD;
-	}
-	public String getOptionE() {
-		return optionE;
-	}
-	public void setOptionE(String optionE) {
-		this.optionE = optionE;
-	}
-	public String getOptionF() {
-		return optionF;
-	}
-	public void setOptionF(String optionF) {
-		this.optionF = optionF;
 	}
 	public String getAnswer() {
 		return answer;

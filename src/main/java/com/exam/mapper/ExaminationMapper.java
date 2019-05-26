@@ -26,6 +26,13 @@ public interface ExaminationMapper extends MapperUtil<Examination> {
 	 */
 	List<Examination> listQuestionsByExamId(List<Integer> ids);
 
+	/**
+	 * 根据id查询试卷
+	 * @param id
+	 * @return
+	 */
+	Examination ExaminationById(Integer id);
+	
 	Examination selectById(Integer id);
 
 	int deleteBatch(Integer[] ids);

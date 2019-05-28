@@ -24,12 +24,16 @@ import com.exam.service.SysConfigService;
 import com.exam.service.UserService;
 import com.exam.util.CoreConst;
 import com.exam.util.MD5;
+import com.exam.util.QCloudUtil;
 import com.exam.util.QiNiuYunUtil;
 import com.exam.util.ResultUtil;
 import com.exam.vo.CloudStorageConfigVo;
 import com.exam.vo.UploadResponse;
 import com.exam.vo.base.ResponseVo;
 import com.google.gson.Gson;
+import com.qcloud.cos.auth.BasicCOSCredentials;
+import com.qcloud.cos.auth.COSCredentials;
+import com.qcloud.cos.transfer.Upload;
 
 @Controller
 @RequestMapping("/upload")
@@ -43,7 +47,37 @@ public class UploadController{
     @Autowired
     private UserService userService;
     
+    //腾讯云对象存储
     @ResponseBody
+    @PostMapping(value = "/upload")
+    public UploadResponse upload(@RequestParam(value = "file", required = false) MultipartFile file) throws Exception {
+		if(file == null || file.isEmpty()) {
+			throw new UploadFileNotFoundException(UploadResponse.Error.FILENOTFOUND);
+		}
+		try {
+			String originalFileName = file.getOriginalFilename();
+			String suffix = originalFileName.substring(originalFileName.lastIndexOf(".")).toLowerCase();
+			String value = sysConfigService.selectAll().get(SysConfigKey.CLOUD_STORAGE_CONFIG.getValue());
+			Gson gson = new Gson();
+			CloudStorageConfigVo cloudStorageConfig = gson.fromJson(value, CloudStorageConfigVo.class);
+			String dir = cloudStorageConfig.getQcloudPrefix();
+			String md5 = MD5.getMessageDigest(file.getBytes());
+			String filePath = String.format("%1$s/%2$s%3$s", dir, md5, suffix);
+			ResponseVo responseVo = QCloudUtil.writeFile(cloudStorageConfig, filePath, file);
+			String qCloudDomain = cloudStorageConfig.getQcloudDomain();
+            String url = String.format("%1$s/%2$s", qCloudDomain, filePath);
+            if(responseVo.getStatus().equals(CoreConst.SUCCESS_CODE)){
+                return  new UploadResponse(url,originalFileName, suffix, url, CoreConst.SUCCESS_CODE);
+            }else{
+                return  new UploadResponse(originalFileName,  CoreConst.FAIL_CODE,responseVo.getMsg());
+            }
+		} catch (Exception e) {
+			logger.error(String.format("UploadController.upload%s", e));
+            throw e;
+		}
+    }
+    //上传到七牛云图床
+    /*@ResponseBody
     @PostMapping(value = "/upload")
     public UploadResponse upload(@RequestParam(value = "file", required = false) MultipartFile file) throws Exception{
         if (file == null || file.isEmpty()) {
@@ -70,7 +104,7 @@ public class UploadController{
             logger.error(String.format("UploadController.upload%s", e));
             throw e;
         }
-    }
+    }*/
     
     @ResponseBody
     @PostMapping(value = "/importExcel")

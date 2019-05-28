@@ -170,11 +170,19 @@
 			<artifactId>poi-ooxml</artifactId>
 			<version>3.17</version>
 		</dependency>
+		
 		<!-- 七牛云 -->
 		<dependency>
 			<groupId>com.qiniu</groupId>
 			<artifactId>qiniu-java-sdk</artifactId>
 			<version>[7.2.0, 7.2.99]</version>
+		</dependency>
+		
+		<!--腾讯云存储依赖-->
+		<dependency>
+		    <groupId>com.qcloud</groupId>
+		    <artifactId>cos_api</artifactId>
+		    <version>5.2.4</version>
 		</dependency>
 		
 		<!-- jsoup Java的HTML解析器 -->

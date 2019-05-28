@@ -98,6 +98,11 @@
                 <span class="glyphicon glyphicon-retweet" aria-hidden="true"></span> 批量启用
             </button>
             </shiro:hasPermission>
+            <shiro:hasPermission name="user:batchAssignRole">
+            <button type="button" onclick="batchAssignRoleList()" class="btn btn-info">
+                <span class="glyphicon glyphicon-glass" aria-hidden="true"></span> 批量分配角色
+            </button>
+            </shiro:hasPermission>
             <shiro:hasPermission name="user:batchDelete">
             <button id="btn_batch_delete" type="button" class="btn btn-danger">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 批量删除
@@ -241,6 +246,27 @@
             <div class="modal-footer">
                 <div class="pull-right">
                     <button type="button" id="saveAssign" class="btn btn-info">确定</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-default">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 分配角色模态框 -->
+<div id="batchAssignRoleModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">分配角色</h4>
+            </div>
+            <div class="modal-body">
+                <table id="batchAssignRoleTable">
+                </table>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button" id="batchSaveAssign" class="btn btn-info">确定</button>
                     <button type="button" data-dismiss="modal" class="btn btn-default">取消</button>
                 </div>
             </div>
@@ -458,6 +484,7 @@
     }
     /*分配角色-列表查询*/
     function assignRoleList(userId) {
+    	var result = Core.selectSingleData("#table");
         userIdChecked=userId;
         $("#assignRoleModal").modal("show");
         if(loadRoleCount==0){
@@ -503,6 +530,54 @@
         }
     }
 
+    /*批量分配角色*/
+    function batchAssignRoleList() {
+    	var result = Core.selectSingleData("#table");
+        userIdChecked="1";
+        $("#batchAssignRoleModal").modal("show");
+        if(loadRoleCount==0){
+            var roleColumns=[
+                {checkbox: true },
+                {
+                    field: 'roleId',
+                    title: '角色ID',
+                    align : "center"
+                }, {
+                    field: 'name',
+                    title: '角色名称',
+                    align : "center"
+                }, {
+                    field: 'description',
+                    title: '角色描述',
+                    align : "center"
+                },
+                {
+                    field: 'status',
+                    title: '角色状态',
+                    align : "center",
+                    formatter:function(value,row, index){
+                        return row.status == '1' ? "有效" : "删除";
+                    }
+                }];
+            var roleOptions={
+                id:"#batchAssignRoleTable",
+                url: "/user/batch/assign/role/list",
+                columns:roleColumns,
+                pagination : false,
+                queryParams : queryRoleParams,
+                onLoadSuccess: function(){  //加载成功时执行
+                    loadRoleCount=1;
+                    Core.checkTableBy("#batchAssignRoleTable",{field:"roleId", values:selectRoleIds});
+                },
+                responseHandler : handleRoleData,
+            }
+            Core.initTable(roleOptions);
+        }
+        if(loadRoleCount==1){
+            Core.refreshTable("#batchAssignRoleTable");
+        }
+    }
+    
     /*处理角色数据*/
     function handleRoleData(res){
         selectRoleIds = res.hasRoles;
@@ -528,7 +603,7 @@
         $("#btn_import_excel").click(function(){
             Core.clearError("#importExcelModal");
         });
-        /*  刷新题库 */
+        /*刷新用户列表 */
         $("#saveExcel").click(function(){
         	if($("#excelUrl").val() != ""){
         		$("#importExcelModal").modal("hide");
@@ -601,54 +676,36 @@
                 })
             }
         });
-        /*分配角色*/
-        $("#btn_assign_role").click(function(){
-            var result = Core.selectSingleData("#table");
-            if(result){
-                $("#assignRoleModal").modal("show");
-                if(loadRoleCount==0){
-                    var roleColumns=[
-                        {checkbox: true },
-                        {
-                            field: 'roleId',
-                            title: '角色ID',
-                            align : "center"
-                        }, {
-                            field: 'name',
-                            title: '角色名称',
-                            align : "center"
-                        }, {
-                            field: 'description',
-                            title: '角色描述',
-                            align : "center"
-                        },
-                        {
-                            field: 'status',
-                            title: '角色状态',
-                            align : "center",
-                            formatter:function(value,row, index){
-                                return row.status == '1' ? "有效" : "删除";
-                            }
-                        }];
-                    var roleOptions={
-                        id:"#assignRoleTable",
-                        url: "/user/assign/role/list",
-                        columns:roleColumns,
-                        pagination : false,
-                        queryParams : queryRoleParams,
-                        onLoadSuccess: function(){  //加载成功时执行
-                            loadRoleCount=1;
-                            Core.checkTableBy("#assignRoleTable",{field:"roleId", values:selectRoleIds});
-                        },
-                        responseHandler : handleRoleData,
-                    }
-                    Core.initTable(roleOptions);
-                }
-                if(loadRoleCount==1){
-                    Core.refreshTable("#assignRoleTable");
-                }
+        
+        /*批量分配角色保存*/
+        $("#batchSaveAssign").click(function () {
+            var checkedRows= Core.selectMutiData("#batchAssignRoleTable");
+            var result= Core.selectMutiData("#table");
+            if(checkedRows && result){
+                Core.mask("#batchSaveAssign");
+                Core.confirm("确定批量分配角色选中的"+result.length+"条记录？",function () {
+	                userIdStr="";
+	                $.each(result, function(i, item){
+	                	userIdStr+=(item.userId+",");
+	                })
+	                userIdStr=userIdStr.substring(0,userIdStr.length-1);
+	                roleIdStr="";
+	                $.each(checkedRows, function (i, item) {
+	                    roleIdStr+=(item.roleId+",");
+	                })
+	                roleIdStr=roleIdStr.substring(0,roleIdStr.length-1);
+	                Core.postAjax('/user/batch/assign/role',{userIdStr:userIdStr,roleIdStr:roleIdStr},function (data) {
+	                    Core.unmask("#batchSaveAssign");
+	                    if(data.status==200){
+	                        $("#batchAssignRoleModal").modal("hide");
+	                        Core.refreshTable("#table");
+	                    }
+	                    layer.msg(data.msg);
+	                })
+                });
             }
-        });
+        })
+        
         /*保存用戶*/
         $("#saveUser").click(function(){
             if(doValidForm(userForm)){
@@ -664,6 +721,7 @@
                 })
             };
         });
+        
         /*分配角色保存*/
         $("#saveAssign").click(function () {
             var checkedRows= Core.selectMutiData("#assignRoleTable");

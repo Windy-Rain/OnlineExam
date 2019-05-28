@@ -33,7 +33,7 @@ public class QiNiuYunUtil {
             Response response = uploadManager.put(uploadBytes, key, upToken);
             //解析上传成功的结果
             DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
-/*                System.out.println(putRet.key);
+            /*System.out.println(putRet.key);
             System.out.println(putRet.hash);*/
             return new ResponseVo(CoreConst.SUCCESS_CODE,"上传成功");
         } catch (QiniuException ex) {
@@ -49,7 +49,7 @@ public class QiNiuYunUtil {
 
     public static boolean deleteFile(CloudStorageConfigVo cloudStorageConfigVo,String filePath){
         Configuration cfg = new Configuration(Zone.zone0());
-//...其他参数参考类注释
+        //...其他参数参考类注释
         String accessKey = cloudStorageConfigVo.getQiniuAccessKey();
         String secretKey = cloudStorageConfigVo.getQiniuSecretKey();
         String bucket = cloudStorageConfigVo.getQiniuBucketName();
@@ -69,7 +69,7 @@ public class QiNiuYunUtil {
 
     public static boolean deleteFileBatch(CloudStorageConfigVo cloudStorageConfigVo,String[] keyList){
         Configuration cfg = new Configuration(Zone.zone0());
-//...其他参数参考类注释
+        //...其他参数参考类注释
         String accessKey = cloudStorageConfigVo.getQiniuAccessKey();
         String secretKey = cloudStorageConfigVo.getQiniuSecretKey();
         String bucket = cloudStorageConfigVo.getQiniuBucketName();

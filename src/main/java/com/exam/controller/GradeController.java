@@ -1,7 +1,5 @@
 package com.exam.controller;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
 
@@ -63,6 +61,18 @@ public class GradeController {
 	@GetMapping("/mark")
 	public String mark(Model model, Integer id) {
 		Grade grade = gradeService.selectByPrimaryKey(id);
+		List<String> answerStr = Arrays.asList(grade.getAnswerJson().split("~_~"));
+		Examination examination = examService.queryByExamId(grade.getExamId());
+		long examTime = (examination.getEndTime().getTime()-examination.getStartTime().getTime())/(1000*60);
+		examination.setExamTime(examTime);
+		List<Question> questions = examination.getQuestions();
+		for(int i = 0; i < questions.size(); i++) {
+			Question question = questions.get(i);
+			question.setStuAnswer(answerStr.get(i));
+		}
+		User user = userService.selectByUserId(grade.getUserId());
+		grade.setExamination(examination);
+		grade.setUser(user);
 		model.addAttribute("grade", grade);
 		return "grade/mark";
 	}

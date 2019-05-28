@@ -108,16 +108,18 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
     }
 
     @Override
-    public ResponseVo addAssignRole(String userId, List<String> roleIds) {
+    public ResponseVo addAssignRole(List<String> userIdList, List<String> roleIds) {
         try{
-            UserRole userRole = new UserRole();
-            userRole.setUserId(userId);
-            userRoleMapper.delete(userRole);
-            for(String roleId :roleIds){
-                userRole.setId(null);
-                userRole.setRoleId(roleId);
-                userRoleMapper.insert(userRole);
-            }
+        	for(String userId : userIdList) {
+        		UserRole userRole = new UserRole();
+                userRole.setUserId(userId);
+                userRoleMapper.delete(userRole);
+                for(String roleId :roleIds){
+                    userRole.setId(null);
+                    userRole.setRoleId(roleId);
+                    userRoleMapper.insert(userRole);
+                }
+        	}
             return ResultUtil.success("分配角色成功");
         }catch(Exception e){
             return ResultUtil.error("分配角色失败");

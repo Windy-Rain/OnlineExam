@@ -75,7 +75,7 @@ public interface UserService extends BaseService<User> {
      * @param roleIds
      * @return int
      */
-    ResponseVo addAssignRole(String userId, List<String> roleIds);
+    ResponseVo addAssignRole(List<String> userIdList, List<String> roleIds);
 
     /**
      * 根据主键更新用户信息

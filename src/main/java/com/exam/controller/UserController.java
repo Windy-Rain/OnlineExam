@@ -38,6 +38,7 @@ import com.exam.vo.base.PageResultVo;
 import com.exam.vo.base.ResponseVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.mysql.fabric.xmlrpc.base.Array;
 
 @Controller
 @RequestMapping("/user")
@@ -228,12 +229,37 @@ public class UserController {
     @PostMapping("/assign/role")
     @ResponseBody
     public ResponseVo assignRole(String userId, String roleIdStr){
+    	List<String> userIdList = new ArrayList<>();
+    	userIdList.add(userId);
         String[] roleIds = roleIdStr.split(",");
         List<String> roleIdsList = Arrays.asList(roleIds);
-        ResponseVo responseVo = userService.addAssignRole(userId,roleIdsList);
-        List<String> userIds = new ArrayList<>();
-        userIds.add(userId);
-        shiroRealm.clearAuthorizationByUserId(userIds);
+        ResponseVo responseVo = userService.addAssignRole(userIdList,roleIdsList);
+        shiroRealm.clearAuthorizationByUserId(userIdList);
+        return responseVo;
+    }
+    
+    /**批量分配角色列表查询*/
+    @PostMapping("/batch/assign/role/list")
+    @ResponseBody
+    public Map<String,Object> batchAssignRoleList(String userId){
+        List<Role> roleList = roleService.selectRoles(new Role());
+        Set<String> hasRoles = roleService.findRoleByUserId(userId);
+        Map<String, Object> jsonMap = new HashMap<>(2);
+        jsonMap.put("rows", roleList);
+        jsonMap.put("hasRoles",hasRoles);
+        return jsonMap;
+    }
+    
+    /**批量保存分配角色*/
+    @PostMapping("/batch/assign/role")
+    @ResponseBody
+    public ResponseVo batchAssignRole(String userIdStr, String roleIdStr){
+    	String[] userIds = userIdStr.split(",");
+    	List<String> userIdList = Arrays.asList(userIds);
+        String[] roleIds = roleIdStr.split(",");
+        List<String> roleIdsList = Arrays.asList(roleIds);
+        ResponseVo responseVo = userService.addAssignRole(userIdList,roleIdsList);
+        shiroRealm.clearAuthorizationByUserId(userIdList);
         return responseVo;
     }
 

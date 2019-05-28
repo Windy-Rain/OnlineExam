@@ -7,6 +7,7 @@
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="stylesheet" th:href="@{/libs/bootstrap/bootstrap.min.css}"/>
 	<link rel="stylesheet" th:href="@{/libs/semantic-ui/semantic.min.css}" />
+	<link rel="stylesheet" th:href="@{/libs/zplayer/css/zplayer.min.css}"/>
 	<link rel="stylesheet" th:href="@{/css/exam-common.css}"/>
 	<link rel="stylesheet" th:href="@{/css/web-common.css}"/>
 	<script th:src="@{/libs/jquery/jquery.min.js}"></script>
@@ -167,12 +168,21 @@
 	    function startToExamAction(id) {
 			Core.postAjax("/exam/validate",{"id":id}, function(data){
 				if(data.status==200){
-					setTimeout(function(){
-						window.location.href="/exam/startexam?id="+id;
-					},3000);
-					layer.msg(data.msg);
+					layer.msg(data.msg, {
+						title: "系统提示",
+					    time: 0,//不自动关闭
+					    icon: 3,
+					    btn: ['进入考试', '取消'],
+					    yes: function(index){
+						    layer.close(index);
+						    window.location.href="/exam/startexam?id="+id;
+				    	}
+					});
 				}else{
-					layer.msg(data.msg);
+					layer.alert(data.msg, {
+						title:"系统提示",
+						icon: 3
+					});
 				}
 			})
 	        //window.location.href="/exam/startexam?id="+id

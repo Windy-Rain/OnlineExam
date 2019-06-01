@@ -1,9 +1,9 @@
 <meta charset="utf-8">
 <section class="content-header">
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+        <li><a href="/manager"><i class="fa fa-dashboard"></i> 首页</a></li>
         <li><a href="#">考试管理</a></li>
-        <li class="active">数据统计</li>
+        <li class="active">考试情况</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -14,13 +14,15 @@
                 <div class="col-md-4 col-sm-6">
                     <label class="control-label  col-xs-4">考试名称:</label>
                     <div class="col-xs-8">
-                        <input type="text" class="form-control" id="title">
+                    	<select class="form-control" name="examId">
+                            <option th:each="exam:${exams}" th:value="${exam.id}" th:text="${exam.title}"></option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6">
                     <label class="control-label  col-xs-4" for="grade">年级:</label>
                     <div class="col-xs-8">
-                        <select class="form-control" id="grade">
+                        <select class="form-control" name="grade">
                             <option  value="">请选择</option>
                             <option th:each="grade:${grades}" th:value="${grade}" th:text="${grade}"></option>
                         </select>
@@ -29,7 +31,7 @@
                 <div class="col-md-4 col-sm-6">
                     <label class="control-label  col-xs-4" for="insId">考试学院:</label>
                     <div class="col-xs-8">
-                        <select class="form-control" id="insId">
+                        <select class="form-control" name="insId">
                             <option  value="">请选择</option>
                             <option th:each="institute:${institutes}" th:value="${institute.id}" th:text="${institute.instituteName}"></option>
                         </select>
@@ -40,7 +42,7 @@
            		<div class="col-md-4 col-sm-6">
                     <label class="control-label  col-xs-4" for="classId">考试班级:</label>
                     <div class="col-xs-8">
-                        <select class="form-control" id="classId">
+                        <select class="form-control" name="classId">
                             <option  value="">请选择</option>
                             <option th:each="class:${classes}" th:value="${class.id}" th:text="${class.className}"></option>
                         </select>
@@ -49,7 +51,7 @@
             	<div class="col-md-4 col-sm-6">
                     <label class="control-label  col-xs-4" for="subject">考试课程:</label>
                     <div class="col-xs-8">
-                        <select class="form-control" id="subjectId">
+                        <select class="form-control" name="subjectId">
                             <option  value="">请选择</option>
                             <option th:each="subject:${subjects}" th:value="${subject.id}" th:text="${subject.name}"></option>
                         </select>
@@ -67,98 +69,82 @@
             </div>
         </form>
     </div>
-    <div class="jax-box jax-box-table">
-        <table id="table"></table>
-    </div>
+    <div class="box">
+    	<div class="box-header with-border">
+        	<h3 class="box-title">考试情况条形统计图</h3>
+	        <div class="box-tools pull-right">
+		        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+		        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+	        </div>
+        </div>
+        <div class="box-body pb20" id="pieChart" style="height:520px"></div>
+	</div>
 </section>
-
 <script>
-    var columns = [ 
-    	{
-            field : 'title',
-            title : '试卷名称',
-            align : "left",
-            width : '27%',
-        },{
-            field : 'totalNums',
-            title : '参考人数',
-            align : "center",
-            width : '8%',
-        },{
-            field : 'passNums',
-            title : '及格人数(60-79分)',
-            align : "center",
-            width : '10%',
-        },{
-            field : 'noPassNums',
-            title : '未及格人数(60分以下)',
-            align : "center",
-            width : '10%',
-        },{
-            field : 'goodNums',
-            title : '良好人数(80-89分)',
-            align : "center",
-            width : '10%',
-        },{
-            field : 'fineNums',
-            title : '优秀人数(90-100分)',
-            align : "center",
-            width : '10%',
-        },{
-            field : 'totalPassNums',
-            title : '及格总人数',
-            align : "center",
-            width : '10%',
-            formatter: function(value, row, index){
-                return row.passNums+row.goodNums+row.fineNums;//行合计
-            },
-        },{
-            field : 'passRate',
-            title : '及格率',
-            align : "center",
-            width : '15%',
-            formatter: function(value, row, index){
-            	 var res = 100*parseInt(row.passNums+row.goodNums+row.fineNums)/parseInt(row.totalNums);
-            	 var pressHtml = "<div class='progress progress-striped active'>"+
-            	 					"<div class='progress-bar progress-bar-success' role='progressbar'"+
-            	 					"aria-valuenow='50' aria-valuemin='0' aria-valuemax='100' style='width:"+res.toFixed(2)+"%'>"
-            	 					+res.toFixed(2)+"%"+"</div>"+
-            	 				"</div>";
-                return pressHtml;//及格率
-            },
-        }];
-    var options={
-            id:"#table",
-            url: '/data/list',
-            columns:columns,
-            toolbar: '#toolbar',
-            showRefresh: true,
-            queryParams : queryParams
-        }
-        Core.initTable(options);
-
-    /*查询参数*/
-    function queryParams(params) {
-        var temp = { //这里的键的名字和控制器的变量名必须一致，这边改动，控制器也需要改成一样的
-            limit : params.limit, //页面大小
-            offset : params.offset, //页码
-            title : $("#title").val(),
-            grade : $("#grade").val(),
-            insId : $("#insId").val(),
-            classId : $("#classId").val(),
-            subjectId : $("#subjectId").val(),
-        };
-        return temp;
-    }
-    
     $(function () {
+    	getData();
     	/*查询*/
         $("#btn_query").click(function(){
-            Core.refreshTable("#table");
+        	getData();
         });
         /* 重置表单 */
         $("#btn_requery").click(function(){
         	$("#formSearch")[0].reset();
         });
     })
+    
+    function getData(){
+    	Core.postAjax("/data/list",$("#formSearch").serialize(),function (data) {
+            if(data.status==200){
+            	//初始化echarts实例
+            	var myChart = echarts.init(document.getElementById('pieChart'));
+            	//app.title = '坐标轴刻度与标签对齐';
+            	option = {
+            	    color: ['#3398DB'],
+            	    tooltip : {
+            	        trigger: 'axis',
+            	        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            	            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            	        }
+            	    },
+            	    grid: {
+            	        left: '3%',
+            	        right: '4%',
+            	        bottom: '4%',
+            	        containLabel: true
+            	    },
+            	    xAxis : [
+            	        {
+            	            type : 'category',
+            	            data : ['参加考试总人数', '未批阅人数','及格人数（60分以上）', '未及格人数（60分以下不含60分）','合格人数（60分-79分）','良好人数（80分-89分）', '优秀人数（90分以上）', '及格率(单位：%)'],
+            	            axisTick: {
+            	                alignWithLabel: true
+            	            },
+            	            axisLabel: {  
+           	            		interval:0,  
+           	            		rotate:40  
+            	            }
+            	        }
+            	    ],
+            	    yAxis : [
+            	        {
+            	            type : 'value'
+            	        }
+            	    ],
+            	    series : [
+            	        {
+            	            name:'直接访问',
+            	            type:'bar',
+            	            barWidth: '60%',
+            	            data:data.data
+            	        }
+            	    ]
+            	}
+            	//使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+            }else{
+            	layer.msg(data.msg);
+            }
+        })
+    }
 </script>

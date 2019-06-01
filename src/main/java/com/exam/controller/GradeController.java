@@ -45,8 +45,13 @@ public class GradeController {
 	public PageResultVo loadGrade(GradeConditionVo gradeConditionVo, Integer limit, Integer offset) {
 		PageHelper.startPage(PageUtil.getPageNo(limit, offset),limit);
 		User user = (User)SecurityUtils.getSubject().getPrincipal();
-		if(!user.getNickname().equals("超级管理员")) {
-			gradeConditionVo.setAuthor(user.getNickname());
+		List<String> roleList = userService.selectRoleByUserId(user.getUserId());
+		if(!roleList.contains("超级管理员")) {
+			if(roleList.contains("老师")) {
+				gradeConditionVo.setAuthor(user.getNickname());
+			}else {
+				gradeConditionVo.setUserId(user.getUserId());
+			}
 		}
 		List<Grade> gradeList = gradeService.findByCondition(gradeConditionVo);
 		PageInfo<Grade> pages = new PageInfo<>(gradeList);
@@ -86,8 +91,6 @@ public class GradeController {
 			if(grade.getResult() == 0) {
 				grade.setStatus(CoreConst.EXAM_END);
 			}
-			System.out.println(grade.getResult());
-			System.out.println(obj.getExamination().getTotalScore());
 			int userScore = grade.getResult();
 			int examScore = obj.getExamination().getTotalScore();
 			float score = (float)userScore/examScore;
@@ -98,7 +101,7 @@ public class GradeController {
 			}else if(score >= 0.8) {
 				grade.setStatus(CoreConst.EXAM_GOOD);
 			}else if(score >= 0.6) {
-				grade.setStatus(CoreConst.EXAM_PASS);
+				grade.setStatus(CoreConst.EXAM_STANDARD);
 			}
 			gradeService.updateNotNull(grade);
 			return ResultUtil.success("批阅成功");

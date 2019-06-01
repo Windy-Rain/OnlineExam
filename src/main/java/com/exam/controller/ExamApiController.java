@@ -77,7 +77,7 @@ public class ExamApiController {
 		}
 	}
 	
-	@PostMapping("/api/uns")
+	/*@PostMapping("/api/uns")
 	@ResponseBody
 	public ResponseVo userNumSta(StatisticConditionVo vo) {
 		List<HashMap<String, Object>> users = gradeService.examUserNumsAnalysis(vo);
@@ -86,6 +86,6 @@ public class ExamApiController {
 		}else {
 			return ResultUtil.error("没有数据");
 		}
-	}
+	}*/
 	
 }

@@ -175,11 +175,13 @@
     
     <select id="selectAllByStatus" parameterType="int" resultMap="BaseResultMap">
     	SELECT
-    	*
+    	e.*
     	FROM
-    	examination 
+    	examination e
+    	INNER JOIN grade g ON e.id = g.exam_id 
     	WHERE
-    	examination.status = #{status}
+    	g.status != #{status}
+    	group by e.title
     </select>
     
     <select id="recAddExamSta" resultType="HashMap">

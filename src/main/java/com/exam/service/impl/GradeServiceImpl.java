@@ -1,9 +1,9 @@
 package com.exam.service.impl;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.exam.mapper.GradeMapper;
 import com.exam.model.Grade;
 import com.exam.service.GradeService;
+import com.exam.util.CoreConst;
 import com.exam.vo.GradeConditionVo;
 import com.exam.vo.StatisticConditionVo;
 
@@ -22,8 +23,7 @@ public class GradeServiceImpl extends BaseServiceImpl<Grade> implements GradeSer
 	
 	@Override
 	public List<Grade> findByCondition(GradeConditionVo vo) {
-		List<Grade> list = gradeMpper.findByCondition(vo);
-		return list;
+		return gradeMpper.findByCondition(vo);
 	}
 
 	@Override
@@ -52,62 +52,42 @@ public class GradeServiceImpl extends BaseServiceImpl<Grade> implements GradeSer
 	}
 
 	@Override
-	public List<HashMap<String, Object>> examUserNumsAnalysis(StatisticConditionVo vo) {
-		
-		List<HashMap<String, Object>> totalUserNums = gradeMpper.totalUserNums(vo);
-		List<HashMap<String, Object>> passUserNums = gradeMpper.passUserNums(vo);
-		List<HashMap<String, Object>> noPassUserNums = gradeMpper.noPassUserNums(vo);
-		List<HashMap<String, Object>> goodUserNums = gradeMpper.goodUserNums(vo);
-		List<HashMap<String, Object>> fineUserNums = gradeMpper.fineUserNums(vo);
-		for(Map<String,Object> totalMap : totalUserNums) {
-			if(!passUserNums.isEmpty()) {
-				for(Map<String,Object> passMap : passUserNums) {
-					if(totalMap.get("title").equals(passMap.get("title"))) {
-						totalMap.put("passNums", passMap.get("passNums"));
-					}else {
-						totalMap.put("passNums", 0);
-					}
-				}
-			}else {
-				totalMap.put("passNums", 0);
-			}
-			
-			if(!noPassUserNums.isEmpty()) {
-				for(Map<String,Object> noPassMap : noPassUserNums) {
-					if(totalMap.get("title").equals(noPassMap.get("title"))) {
-						totalMap.put("noPassNums", noPassMap.get("noPassNums"));
-					}else {
-						totalMap.put("noPassNums", 0);
-					}
-					
-				}
-			}else {
-				totalMap.put("noPassNums", 0);
-			}
-			
-			if(!goodUserNums.isEmpty()) {
-				for(Map<String,Object> goodMap : goodUserNums) {
-					if(totalMap.get("title").equals(goodMap.get("title"))) {
-						totalMap.put("goodNums", goodMap.get("goodNums"));
-					}else {
-						totalMap.put("goodNums", 0);
-					}
-				}
-			}else {
-				totalMap.put("goodNums", 0);
-			}
-			if(!fineUserNums.isEmpty()) {
-				for(Map<String,Object> fineMap : fineUserNums) {
-					if(totalMap.get("title").equals(fineMap.get("title"))) {
-						totalMap.put("fineNums", fineMap.get("fineNums"));
-					}else {
-						totalMap.put("fineNums", 0);
-					}
-				}
-			}else {
-				totalMap.put("fineNums", 0);
-			}
+	public List<Integer> getUserNumsAnalysis(StatisticConditionVo vo) {
+		//参加考试的总人数
+		Integer totalUserNums = gradeMpper.getUserNums(vo);
+		//未批阅的人数
+		vo.setStatus(CoreConst.STATUS_INVALID);
+		Integer noMarkUserNums = gradeMpper.getUserNums(vo);
+		//（60分-79分）合格人数
+		vo.setStatus(CoreConst.EXAM_STANDARD);
+		Integer standardUserNums = gradeMpper.getUserNums(vo);
+		//（80分-89）良好人数
+		vo.setStatus(CoreConst.EXAM_GOOD);
+		Integer goodUserNums = gradeMpper.getUserNums(vo);
+		//（90分以上）优秀人数
+		vo.setStatus(CoreConst.EXAM_FINE);
+		Integer fineUserNums = gradeMpper.getUserNums(vo);
+		//（60分以上）及格人数
+		Integer passUserNums = standardUserNums+goodUserNums+fineUserNums;
+		//（60分以下不含60分）不及格人数
+		vo.setStatus(CoreConst.EXAM_END);
+		Integer noPassUserNums = gradeMpper.getUserNums(vo);
+		List<Integer> userList = new ArrayList<>();
+		userList.add(totalUserNums);
+		userList.add(noMarkUserNums);
+		userList.add(passUserNums);
+		userList.add(noPassUserNums);
+		userList.add(standardUserNums);
+		userList.add(goodUserNums);
+		userList.add(fineUserNums);
+		if(totalUserNums != 0) {
+			BigDecimal b = new BigDecimal((float)passUserNums/(totalUserNums-noMarkUserNums));
+			Integer passRate = (int) (b.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()*100);
+			userList.add(passRate);
+		}else {
+			Integer passRate = 0;
+			userList.add(passRate);
 		}
-		return totalUserNums;
+		return userList;
 	}
 }

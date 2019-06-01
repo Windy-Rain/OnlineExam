@@ -122,6 +122,16 @@
         WHERE u.user_id = #{userId,jdbcType=VARCHAR}
     </select>
     
+    <select id="selectRoleByUserId" resultType="String">
+    	SELECT
+    	r.name AS role_name
+    	FROM
+    	user u
+    	LEFT JOIN user_role ur ON u.user_id = ur.user_id
+        LEFT JOIN role r ON ur.role_id = r.role_id
+        WHERE u.user_id = #{userId,jdbcType=VARCHAR}
+    </select>
+    
     <insert id="batchInsert" parameterType="java.util.List">
     	<selectKey resultType ="java.lang.Integer" keyProperty= "id" order= "AFTER">
             SELECT LAST_INSERT_ID()

@@ -84,6 +84,12 @@ public interface UserMapper extends MapperUtil<User> {
      */
     List<HashMap<String, Object>> academyPassNumSta();
     
+    /**
+     * 查询用户角色
+     * @param userId
+     * @return
+     */
+    List<String> selectRoleByUserId(String userId);
     
     @Select("select count(id) userNums from user")
     int userNums();

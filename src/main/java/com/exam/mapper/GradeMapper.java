@@ -40,33 +40,8 @@ public interface GradeMapper extends MapperUtil<Grade> {
 	Grade validateExam(@Param("id") Integer id, @Param("userId") String userId);
 	
 	/**
-	 * 参加考试的总人数
+	 * 统计考试情况人数
 	 * @return
 	 */
-	List<HashMap<String, Object>> totalUserNums(StatisticConditionVo vo);
-	
-	/**
-	 * 及格人数
-	 * @return
-	 */
-	List<HashMap<String, Object>> passUserNums(StatisticConditionVo vo);
-	
-	/**
-	 * 不及格人数
-	 * @return
-	 */
-	List<HashMap<String, Object>> noPassUserNums(StatisticConditionVo vo);
-	
-	/**
-	 * 成绩良好人数
-	 * @return
-	 */
-	List<HashMap<String, Object>> goodUserNums(StatisticConditionVo vo);
-	
-	/**
-	 * 成绩优秀人数
-	 * @return
-	 */
-	List<HashMap<String, Object>> fineUserNums(StatisticConditionVo vo);
-
+	Integer getUserNums(StatisticConditionVo vo);
 }

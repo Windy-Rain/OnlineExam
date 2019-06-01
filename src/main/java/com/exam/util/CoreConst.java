@@ -6,7 +6,7 @@ public class CoreConst {
 	public static final Integer STATUS_VALID = 1;
 	public static final Integer STATUS_INVALID = 0;
 	public static final Integer EXAM_END = 2;
-	public static final Integer EXAM_PASS = 1;
+	public static final Integer EXAM_STANDARD = 1;
 	public static final Integer EXAM_GOOD = 3;
 	public static final Integer EXAM_FINE = 4;
 	public static final Integer PAGE_SIZE = 10;

@@ -9,9 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.exam.model.Classes;
+import com.exam.model.Examination;
 import com.exam.model.Institute;
 import com.exam.model.Subject;
 import com.exam.service.ClassesService;
+import com.exam.service.ExaminationService;
 import com.exam.service.GradeService;
 import com.exam.service.InstituteService;
 import com.exam.service.SubjectService;
@@ -33,6 +35,8 @@ public class AdminRenderController {
     private ClassesService classesService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private ExaminationService examService;
     
     
     /*网站基本信息*/
@@ -106,10 +110,12 @@ public class AdminRenderController {
      */
     @GetMapping("/datas")
     public String data(Model model) {
+    	List<Examination> examList = examService.selectAllByStatus(CoreConst.STATUS_INVALID);
     	List<String> grades = userService.selectGradeList();
     	List<Institute> institutes = instituteService.selectAll();
     	List<Classes> classes = classesService.selectAll();
     	List<Subject> subjects = subjectService.selectAll();
+    	model.addAttribute("exams", examList);
     	model.addAttribute("grades", grades);
     	model.addAttribute("institutes", institutes);
     	model.addAttribute("classes", classes);

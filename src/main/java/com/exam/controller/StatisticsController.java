@@ -1,6 +1,5 @@
 package com.exam.controller;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.exam.service.GradeService;
-import com.exam.util.PageUtil;
 import com.exam.util.ResultUtil;
 import com.exam.vo.StatisticConditionVo;
-import com.exam.vo.base.PageResultVo;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+import com.exam.vo.base.ResponseVo;
 
 @Controller
 @RequestMapping("data")
@@ -27,13 +23,18 @@ public class StatisticsController {
 	
 	@PostMapping("list")
 	@ResponseBody
-	public PageResultVo loadData(StatisticConditionVo vo, Integer limit, Integer offset) {
-		PageHelper.startPage(PageUtil.getPageNo(limit, offset),limit);
-		List<HashMap<String, Object>> list = gradeService.examUserNumsAnalysis(vo);
-		/*for(int i = 0; i < list.size(); i++) {
-			Integer passNums = (Integer) list.get(i).get("passNums");
-		}*/
-		PageInfo<HashMap<String, Object>> pages = new PageInfo<>(list);
-		return ResultUtil.table(list, pages.getTotal(), pages);
+	public ResponseVo loadData(Integer examId, String grade, Integer insId, Integer classId, Integer subjectId) {
+		StatisticConditionVo vo = new StatisticConditionVo();
+		vo.setExamId(examId);
+		vo.setGrade(grade);
+		vo.setInsId(insId);
+		vo.setClassId(classId);
+		vo.setSubjectId(subjectId);
+		List<Integer> userList = gradeService.getUserNumsAnalysis(vo);
+		if(!userList.isEmpty()) {
+			return ResultUtil.success("数据更新成功", userList);
+		}else {
+			return ResultUtil.error("数据获取失败");
+		}
 	}
 }

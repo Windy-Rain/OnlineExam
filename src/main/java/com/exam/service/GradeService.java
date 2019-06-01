@@ -45,6 +45,6 @@ public interface GradeService extends BaseService<Grade> {
 	 * 参加考试人数统计
 	 * @return
 	 */
-	List<HashMap<String, Object>> examUserNumsAnalysis(StatisticConditionVo vo);
+	List<Integer> getUserNumsAnalysis(StatisticConditionVo vo);
 	
 }

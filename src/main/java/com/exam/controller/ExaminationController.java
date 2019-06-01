@@ -2,6 +2,7 @@ package com.exam.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.shiro.SecurityUtils;
@@ -61,11 +62,12 @@ public class ExaminationController {
 		examService.updateExamToStart();
 		examService.updateExamToEnd();
 		User user = (User)SecurityUtils.getSubject().getPrincipal();
-		if(!user.getNickname().equals("超级管理员")) {
-			if(user.getClassId() != null) {
-				examConditionVo.setClassId(user.getClassId());
-			}else {
+		List<String> roleList = userService.selectRoleByUserId(user.getUserId());
+		if(!roleList.contains("超级管理员")) {
+			if(roleList.contains("老师")) {
 				examConditionVo.setAuthor(user.getNickname());
+			}else {
+				examConditionVo.setClassId(user.getClassId());
 			}
 		}
 		PageHelper.startPage(PageUtil.getPageNo(limit, offset),limit);

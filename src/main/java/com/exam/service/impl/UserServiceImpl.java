@@ -328,4 +328,9 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	     params.put("userIds",userIds);
 		return userMapper.deleteBatch(params);
 	}
+
+	@Override
+	public List<String> selectRoleByUserId(String userId) {
+		return userMapper.selectRoleByUserId(userId);
+	}
 }

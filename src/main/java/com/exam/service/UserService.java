@@ -91,6 +91,13 @@ public interface UserService extends BaseService<User> {
     void kickout(Serializable sessionId, String username);
     
     /**
+     * 查询用户角色
+     * @param userId
+     * @return
+     */
+    List<String> selectRoleByUserId(String userId);
+    
+    /**
      * 年级List
      * @return
      */

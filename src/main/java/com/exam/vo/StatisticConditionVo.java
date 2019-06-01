@@ -3,8 +3,7 @@ package com.exam.vo;
 import com.exam.vo.base.BaseConditionVo;
 
 public class StatisticConditionVo extends BaseConditionVo {
-	
-	private String title;
+	private Integer examId;
 	
 	private String grade;
 	
@@ -13,13 +12,15 @@ public class StatisticConditionVo extends BaseConditionVo {
 	private Integer classId;
 	
 	private Integer subjectId;
+	
+	private Integer status;
 
-	public String getTitle() {
-		return title;
+	public Integer getExamId() {
+		return examId;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setExamId(Integer examId) {
+		this.examId = examId;
 	}
 
 	public String getGrade() {
@@ -52,5 +53,13 @@ public class StatisticConditionVo extends BaseConditionVo {
 
 	public void setSubjectId(Integer subjectId) {
 		this.subjectId = subjectId;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 }

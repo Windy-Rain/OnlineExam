@@ -36,8 +36,6 @@ public class ExamQuestionServiceImpl extends BaseServiceImpl<ExamQuestion> imple
 			ExamQuestion examQuestion = new ExamQuestion();
 			examQuestion.setExamId(examId);
 			examQuestion.setQuestionId(questionId);
-			examQuestion.setCreateTime(date);
-			examQuestion.setUpdateTime(date);
 			examQuestionMapper.insert(examQuestion);
 		}
 	}

@@ -1,46 +1,26 @@
-<meta charset="utf-8">
 <div th:fragment="navbar" class="jax-header">
     <header class="main-header">
-        <a href="/manager" class="logo">
-            <span class="logo-mini"><b>OE</b></span>
-            <span class="logo-lg">OnlineExam</span>
+        <a href="#" class="logo">
+            <span class="logo-mini"><b>OD</b></span>
+            <span class="logo-lg">OpenDev</span>
         </a>
         <nav class="navbar navbar-static-top">
-            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                 <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
             </a>
-
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     <li class="dropdown messages-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-envelope-o"></i>
-                            <span class="label label-success" id="noReadMessageNums"></span>
+                            <span class="label label-success">4</span>
                         </a>
-                        <ul class="dropdown-menu">
-              				<li class="header" id="messageTip"></li>
-              				<li>
-              					<ul class="menu" id="noReadMessage"></ul>
-              				</li>
-              				<li class="footer"><a href="manager#comments">查看所有留言</a></li>
-              			</ul>
                     </li>
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img class="user-image" id="imgSrc" alt="User Image">
-                            <span><shiro:principal property="nickname" /></span>
-                            <span id="userId" style="display: none"><shiro:principal property="userId" /></span>
-                            <span id="userImg" style="display: none"><shiro:principal property="img" /></span>
+                            <img th:src="@{/libs/img/user2-160x160.jpg}" class="user-image" alt="User Image">
+                            <span class="hidden-xs">HungKuei</span>
                         </a>
-                        <ul class="dropdown-menu dropdown-left">
-                            <li><a id="userInfoBtn" href="#">个人信息</a></li>
-                            <li><a id="changePasswordBtn" href="#" data-toggle="modal" data-target="#passwordModal">修改密码</a></li>
-                            <li class="divider"></li>
-                            <li><a id="logoutBtn" href="#">退出系统</a></li>
-                        </ul>
                     </li>
                     <li>
                         <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
@@ -49,131 +29,4 @@
             </div>
         </nav>
     </header>
-    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog"  role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">用户信息</h4>
-                </div>
-                <div class="modal-body">
-                    <p id="myInfoOpenWindow"></p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="passwordModal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">修改密码</h4>
-                </div>
-                <div class="modal-body">
-                    <div>
-                        <form class="form-horizontal" id="passwordForm">
-                            <div class="box-body">
-                                <div class="form-group">
-                                    <label for="oldPassword" class="col-sm-3 control-label">旧密码 :</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" name="oldPassword" id="oldPassword" require="必填项"  placeholder="">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="password" class="col-sm-3 control-label">新密码 :</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" name="newPassword" id="password" password="" pwdCheck="" require="必填项"  placeholder="">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="confirmPassword" class="col-sm-3 control-label">确认新密码 :</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" name="confirmNewPassword" id="confirmPassword" password=""  require="" placeholder="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="box-footer">
-                                <div class="pull-right">
-                                    <button type="button" id="savePassword" class="btn btn-info">确定</button>
-                                    <button type="button" data-dismiss="modal" class="btn btn-default">取消</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script>
-    	$("#imgSrc").attr("src",$("#userImg").text());
-        $(function () {
-        	Core.postAjax("api/msg","",function(data){
-        		build_message_li(data);
-        	})
-            //修改信息
-            $("#userInfoBtn").on('click', function () {
-                Core.load("#myInfoOpenWindow","/user/edit?userId="+$("#userId").text(), function(){
-                    $("#myModal").modal("show");
-                });
-            })
-            /*退出登录*/
-            $("#logoutBtn").on('click', function () {
-                Core.confirm("确认退出？",function () {
-                    Core.postAjax("/logout",{},function(data){
-                        if(data.status==200){
-                            window.location.href="/login";
-                        }else{
-                            layer.msg(data.msg);
-                        }
-                    })
-                })
-            })
-            /*修改密码*/
-            $("#changePasswordBtn").on('click', function () {
-                $("#passwordForm")[0].reset();
-                Core.clearError("#passwordForm");
-            })
-            /*确定修改密码*/
-            $("#savePassword").on('click', function () {
-                if(doValidForm(passwordForm)){
-                    Core.mask("#savePassword")
-                    Core.postAjax("/user/changePassword",$("#passwordForm").serialize(),function(data){
-                        Core.unmask("#savePassword")
-                        if(data.status==200){
-                            $("#passwordModal").modal("hide");
-                            layer.msg('密码修改成功!');
-                        }else{
-                            layer.msg(data.msg);
-                        }
-                    })
-                }
-            })
-
-            $("#passwordForm").keyup(function(event){
-                if(event.keyCode ==13){
-                    $("#savePassword").click();
-                }
-            });
-        });
-        
-        function build_message_li(data){
-        	var message = data.data;
-        	if(data.status == 200){
-        		$("#noReadMessageNums").append(message.length);
-        		$("#messageTip").append("您有"+message.length+"条留言未审核");
-        		$.each(message, function(index, items){
-        			var imgDiv = $("<div class='pull-left'></div)").append("<img class='img-circle' src='"+items.avatar+"'/>");
-        			var timeSmall = $("<small><i class='fa fa-clock-o'></i></small>").append(items.create_time);
-        			var msgH4 = $("<h4></h4>").append(items.nickname).append(timeSmall);
-        			var contentP = $("<p style='padding-top:5px'></p>").append(items.content);
-        			var msgA = $("<a href='manager#comments'></a>").append(imgDiv).append(msgH4).append(contentP);
-        			$("<li></li>").append(msgA)
-        						  .appendTo("#noReadMessage");
-        		})
-        	}else{
-        		$("#messageTip").append("暂时没有未审核的留言");
-        		$("<li class='text-center' style='padding-top:50px'>空空如也~</li>").appendTo("#noReadMessage");
-        	}
-        }
-    </script>
 </div>

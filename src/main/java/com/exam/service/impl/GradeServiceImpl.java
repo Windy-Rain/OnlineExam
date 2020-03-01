@@ -80,7 +80,7 @@ public class GradeServiceImpl extends BaseServiceImpl<Grade> implements GradeSer
 		userList.add(standardUserNums);
 		userList.add(goodUserNums);
 		userList.add(fineUserNums);
-		if(totalUserNums != 0) {
+		if(totalUserNums != 0 && totalUserNums-noMarkUserNums != 0) {
 			BigDecimal b = new BigDecimal((float)passUserNums/(totalUserNums-noMarkUserNums));
 			Integer passRate = (int) (b.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()*100);
 			userList.add(passRate);

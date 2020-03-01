@@ -14,16 +14,16 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.0.2.RELEASE</version>
-		<relativePath/>
+		<relativePath />
 	</parent>
-	
-	<!-- 字符编码UTF-8、指定jdk的版本为1.8，默认为1.5  -->
+
+	<!-- 字符编码UTF-8、指定jdk的版本为1.8，默认为1.5 -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 	</properties>
-	
+
 	<!--指定项目中公有的依赖 -->
 	<dependencies>
 		<!-- spring boot的相关启动 -->
@@ -35,34 +35,27 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
-		
+
 		<!-- spring boot单元测试 -->
-		<!-- <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency> -->
-		
+		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-test</artifactId> 
+			<scope>test</scope> </dependency> -->
+
 		<!-- 开启热部署 -->
-		<!-- <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
-			<scope>true</scope>
-		</dependency> -->
-		
+		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-devtools</artifactId> 
+			<optional>true</optional> <scope>true</scope> </dependency> -->
+
 		<!-- springboot redis -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
-		
+
 		<!-- springboot thymeleaf -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
-		
+
 		<!-- springboot整合mybatis -->
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
@@ -73,14 +66,14 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
 		</dependency>
-		
+
 		<!--mapper -->
 		<dependency>
 			<groupId>tk.mybatis</groupId>
 			<artifactId>mapper-spring-boot-starter</artifactId>
 			<version>1.2.3</version>
 		</dependency>
-		
+
 		<!-- pagehelper分页插件 -->
 		<dependency>
 			<groupId>com.github.pagehelper</groupId>
@@ -93,41 +86,41 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
+
 		<!-- apache shiro -->
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-spring</artifactId>
 			<version>1.4.0</version>
 		</dependency>
-		
+
 		<!-- 阿里巴巴 Druid数据源依赖 -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
 			<version>1.1.10</version>
 		</dependency>
-		
+
 		<dependency>
-		    <groupId>com.alibaba</groupId>
-		    <artifactId>easyexcel</artifactId>
-		    <version>1.1.2-beat1</version>
+			<groupId>com.alibaba</groupId>
+			<artifactId>easyexcel</artifactId>
+			<version>1.1.2-beat1</version>
 		</dependency>
-		
+
 		<!-- 数据库连接池、驱动 -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.47</version>
 		</dependency>
-		
+
 		<!-- springboot thymeleaf和shiro 整合——按钮可见性 -->
 		<dependency>
 			<groupId>com.github.theborakompanioni</groupId>
 			<artifactId>thymeleaf-extras-shiro</artifactId>
 			<version>2.0.0</version>
 		</dependency>
-		
+
 		<!-- shiro连接redis集群 -->
 		<dependency>
 			<groupId>org.crazycake</groupId>
@@ -140,20 +133,20 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
+
 		<!-- kaptcha验证码 -->
 		<dependency>
 			<groupId>com.github.penggle</groupId>
 			<artifactId>kaptcha</artifactId>
 			<version>2.3.2</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
 			<version>2.6</version>
 		</dependency>
-		
+
 		<!-- 阿里巴巴fastjson json数据格式 -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -170,28 +163,28 @@
 			<artifactId>poi-ooxml</artifactId>
 			<version>3.17</version>
 		</dependency>
-		
+
 		<!-- 七牛云 -->
 		<dependency>
 			<groupId>com.qiniu</groupId>
 			<artifactId>qiniu-java-sdk</artifactId>
-			<version>[7.2.0, 7.2.99]</version>
+			<version>7.2.28</version>
 		</dependency>
-		
-		<!--腾讯云存储依赖-->
+
+		<!--腾讯云存储依赖 -->
 		<dependency>
-		    <groupId>com.qcloud</groupId>
-		    <artifactId>cos_api</artifactId>
-		    <version>5.2.4</version>
+			<groupId>com.qcloud</groupId>
+			<artifactId>cos_api</artifactId>
+			<version>5.2.4</version>
 		</dependency>
-		
+
 		<!-- jsoup Java的HTML解析器 -->
 		<dependency>
 			<groupId>org.jsoup</groupId>
 			<artifactId>jsoup</artifactId>
 			<version>1.9.2</version>
 		</dependency>
-		
+
 	</dependencies>
 	<build>
 		<plugins>

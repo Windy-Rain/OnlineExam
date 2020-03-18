@@ -1,7 +1,7 @@
 # OnlineExam在线考试系统
 登录页面
-![Image text](https://github.com/HungKuei/OnlineExam/blob/master/screenshot/login.png)
+![Image text](https://online-exam-1256117146.cos.ap-beijing.myqcloud.com/github/login.png)
 前端首页
-![Image text](https://github.com/HungKuei/OnlineExam/blob/master/screenshot/index.png)
+![Image text](https://online-exam-1256117146.cos.ap-beijing.myqcloud.com/github/index.png)
 后端桌面
-![Image text](https://github.com/HungKuei/OnlineExam/blob/master/screenshot/manager.png)
+![Image text](https://online-exam-1256117146.cos.ap-beijing.myqcloud.com/github/manager.png)

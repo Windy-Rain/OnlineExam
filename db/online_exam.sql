@@ -680,7 +680,7 @@ INSERT INTO `sys_config` VALUES (7, 'SITE_ADDRESS', '宁夏石嘴山市大武口
 INSERT INTO `sys_config` VALUES (8, 'SITE_NAME', 'OnlineExam | C语言在线考试系统', 1, '站长头像');
 INSERT INTO `sys_config` VALUES (9, 'SITE_URL', 'http://exam.nxlgjsj.cn', 1, '站长名称');
 INSERT INTO `sys_config` VALUES (10, 'SITE_DESC', 'OnlineExam | C语言在线考试系统是一个在线测试学习系统，并用于辅助课程教学和学生学习。', 1, '站长描述');
-INSERT INTO `sys_config` VALUES (11, 'CLOUD_STORAGE_CONFIG', '{\"type\":3,\"qiniuDomain\":\"\",\"qiniuPrefix\":\"\",\"qiniuAccessKey\":\"\",\"qiniuSecretKey\":\"\",\"qiniuBucketName\":\"\",\"aliyunDomain\":\"\",\"aliyunPrefix\":\"\",\"aliyunEndPoint\":\"\",\"aliyunAccessKeyId\":\"\",\"aliyunAccessKeySecret\":\"\",\"aliyunBucketName\":\"\",\"qcloudDomain\":\"https://online-exam-1256117146.cos.ap-beijing.myqcloud.com\",\"qcloudPrefix\":\"img/exam\",\"qcloudSecretId\":\"AKIDrUs0sUOvkOnvoRttjJdhU1IJ4Zon7yA6\",\"qcloudSecretKey\":\"mIYcT6ViiT1LRKzRghV6UfcLrAF6j9LK\",\"qcloudBucketName\":\"online-exam-1256117146\",\"qcloudRegion\":\"ap-beijing\"}', 1, '百度推送地址');
+INSERT INTO `sys_config` VALUES (11, 'CLOUD_STORAGE_CONFIG', '{\"type\":3,\"qiniuDomain\":\"\",\"qiniuPrefix\":\"\",\"qiniuAccessKey\":\"\",\"qiniuSecretKey\":\"\",\"qiniuBucketName\":\"\",\"aliyunDomain\":\"\",\"aliyunPrefix\":\"\",\"aliyunEndPoint\":\"\",\"aliyunAccessKeyId\":\"\",\"aliyunAccessKeySecret\":\"\",\"aliyunBucketName\":\"\",\"qcloudDomain\":\"https://online-exam-1256117146.cos.ap-beijing.myqcloud.com\",\"qcloudPrefix\":\"img/exam\",\"qcloudSecretId\":\"**************\",\"qcloudSecretKey\":\"*******************\",\"qcloudBucketName\":\"online-exam-1256117146\",\"qcloudRegion\":\"ap-beijing\"}', 1, '百度推送地址');
 
 -- ----------------------------
 -- Table structure for tag

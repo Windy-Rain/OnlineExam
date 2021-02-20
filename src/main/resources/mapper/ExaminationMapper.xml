@@ -181,7 +181,6 @@
     	INNER JOIN grade g ON e.id = g.exam_id 
     	WHERE
     	g.status != #{status}
-    	group by e.title
     </select>
     
     <select id="recAddExamSta" resultType="HashMap">

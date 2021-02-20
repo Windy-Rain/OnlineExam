@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.exam.model.Classes;
@@ -38,7 +37,6 @@ import com.exam.vo.base.PageResultVo;
 import com.exam.vo.base.ResponseVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.mysql.fabric.xmlrpc.base.Array;
 
 @Controller
 @RequestMapping("/user")
